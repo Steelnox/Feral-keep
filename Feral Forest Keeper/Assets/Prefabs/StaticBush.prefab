@@ -82,8 +82,10 @@ MonoBehaviour:
   smoothMovement: 10
   blendScale: 0.4
   hidePos: {x: 0, y: 0, z: 0}
-  particlesPivot: {fileID: 0}
-  cutParticles: {fileID: 0}
+  particlesPivot: {fileID: 2422829183512928388, guid: 99abaac45c5273848b82b5444be4057a,
+    type: 3}
+  cutParticles: {fileID: 3807477531284663767, guid: 88447502be7760748bdb5d6acf3d80ec,
+    type: 3}
 --- !u!65 &8250437012458000339
 BoxCollider:
   m_ObjectHideFlags: 0

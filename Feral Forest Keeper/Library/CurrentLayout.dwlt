@@ -116,7 +116,7 @@ MonoBehaviour:
   m_MinSize: {x: 915, y: 448}
   m_MaxSize: {x: 22010, y: 10024}
   vertical: 0
-  controlID: 99
+  controlID: 96
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 448}
   m_MaxSize: {x: 4002, y: 8048}
   vertical: 1
-  controlID: 34
+  controlID: 97
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -220,7 +220,7 @@ MonoBehaviour:
   m_MinSize: {x: 204, y: 348}
   m_MaxSize: {x: 4004, y: 8048}
   vertical: 1
-  controlID: 100
+  controlID: 150
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -693,8 +693,7 @@ MonoBehaviour:
     m_SceneHandles: 
     m_ShowAllHits: 0
     m_SearchArea: 1
-    m_Folders:
-    - Assets/Prefabs/Enemy
+    m_Folders: []
   m_ViewMode: 0
   m_StartGridSize: 16
   m_LastFolders: []
@@ -706,7 +705,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 20b90000
     m_LastClickedID: 47392
-    m_ExpandedIDs: 000000003e0b00007a0b0000840b0000880b00002c0c00003a0c00001c0d0000720d00009a0d0000a20d0000aa0d0000be0d0000720e0000e40e0000160f00002a0f0000620f0000980f0000f60f0000ac100000c2670000c4670000
+    m_ExpandedIDs: 00000000440b0000800b00008a0b00008e0b0000320c0000400c0000240d00007e0d0000a60d0000ae0d0000b60d0000cc0d0000800e0000f20e0000240f0000380f0000700f0000a80f000008100000c81000007468000076680000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -734,7 +733,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff000000003e0b00007a0b0000840b0000880b00002c0c00003a0c00001c0d0000720d00009a0d0000a20d0000aa0d0000be0d0000720e0000e40e0000160f00002a0f0000620f0000980f0000f60f0000ac100000c2670000c4670000
+    m_ExpandedIDs: ffffffff00000000440b0000800b00008a0b00008e0b0000320c0000400c0000240d00007e0d0000a60d0000ae0d0000b60d0000cc0d0000800e0000f20e0000240f0000380f0000700f0000a80f000008100000c81000007468000076680000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
