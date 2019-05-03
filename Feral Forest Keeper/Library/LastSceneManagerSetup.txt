@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Escena_Eric.unity
+- path: Assets/Scenes/ControlsAndCameraProveRoom.unity
   isLoaded: 1
   isActive: 1
