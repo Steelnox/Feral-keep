@@ -18,14 +18,18 @@ public class PlayerAnimationController : MonoBehaviour
 
     public Animator animator;
 
-    void Start()
+    /*void Start()
     {
         
-    }
+    }*/
 
     void Update()
     {
         animator.SetFloat("Velocity", GenericSensUtilities.instance.Transform3DTo2DMovement(PlayerController.instance.movement).magnitude);
+        animator.SetFloat("X_Input", PlayerController.instance.X_Input);
+        animator.SetFloat("Y_Input", PlayerController.instance.Z_Input);
+        animator.SetFloat("PushDirection_X", PlayerController.instance.pushDirection.x);
+        animator.SetFloat("PushDirection_Y", PlayerController.instance.pushDirection.z);
     }
     public void SetTargetLockAnim(bool blocked)
     {
@@ -39,9 +43,17 @@ public class PlayerAnimationController : MonoBehaviour
     {
         return animator.GetCurrentAnimatorStateInfo(0).IsName(name);
     }
-    public void SetLeafWeaponAnim(bool b)
+    public void SetLeafWeaponAnim(bool active)
     {
-        animator.SetBool("WeaponLeaf", b);
+        animator.SetBool("WeaponLeaf", active);
     }
-
+    public void SetPushinAnim(bool active)
+    {
+        animator.SetBool("Pushing", active);
+    }
+    public string GetActualAnimationPlayingName()
+    {
+        AnimatorClipInfo[] animInfo = animator.GetCurrentAnimatorClipInfo(0);
+        return animInfo[0].clip.name;
+    }
 }

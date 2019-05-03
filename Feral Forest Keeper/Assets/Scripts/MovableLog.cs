@@ -11,15 +11,12 @@ public class MovableLog : MonoBehaviour
     public float angleToContact;
     public float attachDistance;
     public float weight;
-    public Vector3 playerForceInput;
-    public Vector3 previousPos;
 
-    /*private float angleBetweenForward;
-    private float angleBetweenRight;*/
+    private Vector3 lastNoPushingPos;
 
     void Start()
     {
-        previousPos = logBody.transform.position;
+        lastNoPushingPos = Vector3.zero;
     }
 
     void Update()
@@ -27,7 +24,7 @@ public class MovableLog : MonoBehaviour
         //CheckSideToPush();
         if (beingPushed)
         {
-            if (CheckGroundDistance() > logBody.GetComponent<MeshRenderer>().bounds.extents.y + 0.2f && logBody.transform.position.y < previousPos.y)
+            if (CheckGroundDistance() > logBody.GetComponent<MeshRenderer>().bounds.extents.y + 0.2f && GenericSensUtilities.instance.DistanceBetween2Vectors(logBody.transform.position, lastNoPushingPos) > 0.5f)
             {
                 falling = true;
             }
@@ -40,7 +37,6 @@ public class MovableLog : MonoBehaviour
         {
             falling = false;
         }
-        previousPos = logBody.transform.position;
     }
     public Vector2 CheckSideToPush()
     {
@@ -127,5 +123,17 @@ public class MovableLog : MonoBehaviour
             return dis;
         }
         return 0;
+    }
+    public void SetLastNoPushPosition(Vector3 _pos)
+    {
+        lastNoPushingPos = _pos;
+    }
+    public Vector3 GetLastNoPushingPosition()
+    {
+        return lastNoPushingPos;
+    }
+    public void ResetLastNoPushingPos()
+    {
+        lastNoPushingPos = Vector3.zero;
     }
 }

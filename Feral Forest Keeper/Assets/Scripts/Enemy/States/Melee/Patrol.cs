@@ -47,7 +47,7 @@ public class Patrol : State
             timer = 0;
         }
 
-        if (melee.SeesPlayer() && melee.GetDistance(melee.player.transform.position) <= melee.distanceToChase) melee.ChangeState(melee.chase);
+        if (melee.GetDistance(melee.player.transform.position) <= melee.distanceToChase) melee.ChangeState(melee.chase);
     }
 
     public void AssignRandom()

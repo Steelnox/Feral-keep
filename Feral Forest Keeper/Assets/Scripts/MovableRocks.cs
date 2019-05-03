@@ -11,15 +11,13 @@ public class MovableRocks : MonoBehaviour
     public float angleToContact;
     public float attachDistance;
     public float weight;
-    public Vector3 playerForceInput;
-    public Vector3 previousPos;
 
-    /*private float angleBetweenForward;
-    private float angleBetweenRight;*/
+    private Vector3 lastNoPushingPos;
 
     void Start()
     {
-        previousPos = rockBody.transform.position;
+        //previousPos = rockBody.transform.position;
+        lastNoPushingPos = Vector3.zero;
     }
 
     void Update()
@@ -27,7 +25,7 @@ public class MovableRocks : MonoBehaviour
         //CheckSideToPush();
         if (beingPushed)
         {
-            if (CheckGroundDistance() > rockBody.GetComponent<MeshRenderer>().bounds.extents.y + 0.2f && rockBody.transform.position.y < previousPos.y)
+            if (CheckGroundDistance() > rockBody.GetComponent<MeshRenderer>().bounds.extents.y + 1 &&  GenericSensUtilities.instance.DistanceBetween2Vectors(rockBody.transform.position, lastNoPushingPos) > 0.5f)
             {
                 falling = true;
             }
@@ -40,7 +38,7 @@ public class MovableRocks : MonoBehaviour
         {
             falling = false;
         }
-        previousPos = rockBody.transform.position;
+        //previousPos = rockBody.transform.position;
     }
     public Vector2 CheckSideToPush()
     {
@@ -125,5 +123,17 @@ public class MovableRocks : MonoBehaviour
             return dis;
         }
         return 0;
+    }
+    public void SetLastNoPushPosition(Vector3 _pos)
+    {
+        lastNoPushingPos = _pos;
+    }
+    public Vector3 GetLastNoPushingPosition()
+    {
+        return lastNoPushingPos;
+    }
+    public void ResetLastNoPushingPos()
+    {
+        lastNoPushingPos = Vector3.zero;
     }
 }

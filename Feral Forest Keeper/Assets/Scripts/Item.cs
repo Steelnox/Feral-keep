@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    public enum ItemType { LEAF, LEAF_WEAPON, POWER_GANTLET, KEY};
+    public enum ItemType { LEAF, LEAF_WEAPON, POWER_GANTLET, KEY, LIVE_UP};
 
     public ItemType itemType;
     public float interactionDistance;
 
     public Vector3 hidePos;
     public bool collected;
+    public void Start()
+    {
 
+    }
     public void CollectItem()
     {
         collected = true;

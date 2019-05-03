@@ -48,7 +48,7 @@ public class PatrolRangedMove : State
             timer = 0;
         }
 
-        if (ranged.SeesPlayer() &&  distanceToPlayer <= ranged.distanceToChase && distanceToPlayer > ranged.distanceToAttack) ranged.ChangeState(ranged.chase);
+        if (distanceToPlayer <= ranged.distanceToChase && distanceToPlayer > ranged.distanceToAttack) ranged.ChangeState(ranged.chase);
         if (distanceToPlayer <= ranged.distanceToFlee) ranged.ChangeState(ranged.flee);
         if (distanceToPlayer <= ranged.distanceToAttack && distanceToPlayer > ranged.distanceToFlee) ranged.ChangeState(ranged.attack);
 

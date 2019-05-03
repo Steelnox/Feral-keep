@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1374208395}
   m_Layer: 10
   m_Name: MovableRockV2
-  m_TagString: Untagged
+  m_TagString: MovableRock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

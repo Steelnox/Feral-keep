@@ -9,6 +9,7 @@ TagManager:
   - NewPlayer
   - PlayerWeapon
   - DeathZone
+  - MovableRock
   layers:
   - Default
   - TransparentFX

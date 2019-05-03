@@ -61,7 +61,7 @@ public class MeleeAttack : State
             //   melee.enemy_animator.enabled = true;
 
 
-            Collider[] entities = Physics.OverlapSphere(transform.position, 0.25f);
+            Collider[] entities = Physics.OverlapSphere(transform.position, 0.5f);
             
             
             foreach (Collider col in entities)

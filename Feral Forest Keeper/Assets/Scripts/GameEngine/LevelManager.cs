@@ -5,6 +5,7 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     public LevelControl[] levelList;
+    public float respawnCoolDown;
 
     [SerializeField]
     private int activeLevelID;
@@ -18,9 +19,11 @@ public class LevelManager : MonoBehaviour
     private LevelGates previousLevelOUT;
     [SerializeField]
     private bool changingLevel;
+    private float actualRespawnCoolDown;
 
     void Start ()
     {
+        actualRespawnCoolDown = respawnCoolDown;
         levelList[0].SetActive(true);
         activeLevelID = 0;
         if (levelList[activeLevelID] != null)
@@ -28,7 +31,7 @@ public class LevelManager : MonoBehaviour
             if (levelList[activeLevelID].levelGateOUT != null) actualLevelGateOUT = levelList[activeLevelID].levelGateOUT;
             if (levelList[activeLevelID].levelGateIN != null) actualLevelGateIN = levelList[activeLevelID].levelGateIN;
         }
-        if (levelList[activeLevelID + 1] != null)
+        if (levelList.Length > 1 && levelList[activeLevelID + 1] != null)
         {
             if (levelList[activeLevelID + 1].levelGateIN != null) nextLevelGateIN = levelList[activeLevelID + 1].levelGateIN;
         }
@@ -64,10 +67,21 @@ public class LevelManager : MonoBehaviour
             }
         }
         /////// PLAYER DEATH CONTROLER ////////
-        if (PlayerController.instance.actualPlayerLive == 0)
+        if (!PlayerController.instance.playerAlive)
         {
+            actualRespawnCoolDown = respawnCoolDown;
+            PlayerController.instance.p_controller.enabled = false;
+            //PlayerController.instance.characterModel.transform.forward = levelList[activeLevelID].levelCheckPoint.transform.forward;
+            PlayerController.instance.SetCanMove(false);
             PlayerController.instance.transform.position = levelList[activeLevelID].levelCheckPoint.transform.position;
-            PlayerController.instance.actualPlayerLive = PlayerController.instance.playerLive;
+
+            if (PlayerController.instance.transform.position == levelList[activeLevelID].levelCheckPoint.transform.position)
+            {
+                Debug.Log("After death, player on CheckPointPosition");
+                PlayerController.instance.actualPlayerLive = PlayerController.instance.playerLive;
+                PlayerController.instance.SetCanMove(true);
+                PlayerController.instance.p_controller.enabled = true;
+            }
         }
     }
 

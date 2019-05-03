@@ -22,11 +22,11 @@ public class BushParts_Behavior : MonoBehaviour
     {
         if (playerInRange && GenericSensUtilities.instance.DistanceBetween2Vectors(PlayerController.instance.playerRoot.transform.position, bodyPivot.transform.position) < interactionDistance)
         {
-            playerInteraction = true;
+            if (playerInteraction != true)playerInteraction = true;
         }
         else
         {
-            playerInteraction = false;
+            if (playerInteraction != false) playerInteraction = false;
         }
         if (playerInteraction)
         {

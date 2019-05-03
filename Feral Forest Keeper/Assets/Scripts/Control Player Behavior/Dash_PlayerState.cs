@@ -16,10 +16,10 @@ public class Dash_PlayerState : State
     {
         count = dashLifeTime;
         PlayerController.instance.dashing = true;
-        dashDirection = GenericSensUtilities.instance.Transform2DTo3DMovement(PlayerController.instance.direction).normalized;
+        dashDirection = GenericSensUtilities.instance.Transform2DTo3DMovement(GenericSensUtilities.instance.Transform3DTo2DMovement(PlayerController.instance.characterModel.transform.forward)).normalized;
         dashDirection.y = 0;
         PlayerController.instance.dashTrail.enabled = true;
-        PlayerController.instance.SpendDashCharge();
+        PlayerController.instance.dashCooldown = 0;
         PlayerController.instance.imGrounded = true;
     }
     public override void Execute()

@@ -44,5 +44,10 @@ public class Projectile : MonoBehaviour
 
         }
 
+        else if(other.tag == "MovableRock")
+        {
+            Destroy(this.gameObject);
+        }
+
     }
 }

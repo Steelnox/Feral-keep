@@ -15,7 +15,7 @@ public class CameraController : MonoBehaviour
     #endregion
 
     public Camera p_Camera;
-    public GameObject target;
+    public GameObject player;
     public Vector3 cameraOffSet;
     public float smoothValue;
     public float standardFOV;
@@ -23,6 +23,7 @@ public class CameraController : MonoBehaviour
     public float pushFOV;
     public float largeFOV;
     public Quaternion initCameraRotation;
+    public float scriptedCooldownTime;
 
     public enum Behavior {FOLLOW_PLAYER, CHANGE_LEVEL, SCRIPT_MOVEMENT};
     [SerializeField]
@@ -32,15 +33,19 @@ public class CameraController : MonoBehaviour
     private Vector2 cameraMovement2Axis;
     private Vector2 desiredPosition2D;
     private Vector2 relativeCameraMovementVector;
+    [SerializeField]
+    private GameObject scriptedTarget;
+    private float actualScriptedCooldown;
     
     void Start ()
     {
-        target = PlayerController.instance.playerRoot;
-        desiredPosition = target.transform.position + cameraOffSet;
+        player = PlayerController.instance.playerRoot;
+        desiredPosition = player.transform.position + cameraOffSet;
         transform.position = desiredPosition;
         actualBehavior = Behavior.FOLLOW_PLAYER;
         initCameraRotation = p_Camera.transform.rotation;
         p_Camera.fieldOfView = standardFOV;
+        actualScriptedCooldown = scriptedCooldownTime;
 	}
 	
 	void Update ()
@@ -49,10 +54,10 @@ public class CameraController : MonoBehaviour
         {
             case Behavior.FOLLOW_PLAYER:
                 //FaceTarget();
-                FollowTarget();
+                FollowTarget(player);
                 break;
             case Behavior.CHANGE_LEVEL:
-                desiredPosition = target.transform.position + cameraOffSet;
+                desiredPosition = player.transform.position + cameraOffSet;
                 cameraMovement = Vector3.Slerp(cameraMovement, desiredPosition, (smoothValue / 2) * Time.deltaTime);
                 p_Camera.transform.position = cameraMovement;
                 //Debug.Log("Camera Movement = " + cameraMovement);
@@ -60,6 +65,17 @@ public class CameraController : MonoBehaviour
                 if ((cameraMovement - desiredPosition).magnitude < 0.2f) SetActualBehavior(Behavior.FOLLOW_PLAYER);
                 break;
             case Behavior.SCRIPT_MOVEMENT:
+                actualScriptedCooldown -= Time.deltaTime;
+                if (actualScriptedCooldown <= 0)
+                {
+                    PlayerController.instance.SetCanMove(true);
+                    actualScriptedCooldown = scriptedCooldownTime;
+                    SetActualBehavior(Behavior.FOLLOW_PLAYER);
+                    break;
+                }
+                PlayerController.instance.SetCanMove(false);
+                PlayerController.instance.ChangeState(PlayerController.instance.movementState);
+                FollowTarget(scriptedTarget);
                 break;
             default:
                 break;
@@ -71,9 +87,9 @@ public class CameraController : MonoBehaviour
 
         p_Camera.transform.forward = Vector3.Slerp(p_Camera.transform.forward, camera_target_Dir.normalized, (smoothValue / 2) * Time.deltaTime);
     }
-    void FollowTarget()
+    void FollowTarget(GameObject _target)
     {
-        desiredPosition = target.transform.position + cameraOffSet;
+        desiredPosition = _target.transform.position + cameraOffSet;
         desiredPosition2D.x = desiredPosition.x;
         desiredPosition2D.y = desiredPosition.z;
 
@@ -87,6 +103,12 @@ public class CameraController : MonoBehaviour
         p_Camera.transform.position = cameraMovement;
     }
     
+    public void StartScriptedMovement(GameObject tempTarget)
+    {
+        scriptedTarget = tempTarget;
+        SetActualBehavior(Behavior.SCRIPT_MOVEMENT);
+    }
+
     Vector2 TransformTo2DMovement(Vector3 movVect)
     {
         Vector2 mov2D;
@@ -99,7 +121,7 @@ public class CameraController : MonoBehaviour
     {
         Vector3 mov3D;
         mov3D.x = movVect.x;
-        mov3D.y = target.transform.position.y + cameraOffSet.y;
+        mov3D.y = player.transform.position.y + cameraOffSet.y;
         mov3D.z = movVect.y;
 
         return mov3D;

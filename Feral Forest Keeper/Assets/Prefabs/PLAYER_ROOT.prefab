@@ -757,11 +757,15 @@ MonoBehaviour:
   nearestEnemy: {fileID: 0}
   nearestRock: {fileID: 0}
   nearestLog: {fileID: 0}
+  nearestItem: {fileID: 0}
+  nearestDoor: {fileID: 0}
   overGrass: 0
   onRangeEnemyList: []
   movableRocksList: []
   movableLogsList: []
   grassesList: []
+  itemsList: []
+  doorsList: []
 --- !u!114 &9025968201178293384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -794,12 +798,12 @@ MonoBehaviour:
   targetLocked: {fileID: 0}
   weaponCollider: {fileID: 5098196867595614553}
   playerLive: 10
-  dashCharges: 3
+  dashCharges: 1
   dashCooldownTime: 5
   dashCooldownSmoothRecover: 1
   movementSpeed: 3
   movementLockTargetSpeed: 1
-  bushMovement: 1
+  bushMovementSpeed: 1
   gravityForce: 3
   gravity: 0
   smooth: 10
@@ -824,9 +828,12 @@ MonoBehaviour:
   actualSpeedMultipler: 0
   useWeaponColllider: 0
   noInput: 0
+  no_X_Input: 0
+  no_Y_Input: 0
   startWithAllSkills: 0
   dashCooldown: 0
   dashChargesRemind: 0
+  pushDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &5731419604216075417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -891,7 +898,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638c8fd60b3ac2a4ca19b0b9188d8ac2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &3601599327981248064
 MonoBehaviour:
   m_ObjectHideFlags: 0

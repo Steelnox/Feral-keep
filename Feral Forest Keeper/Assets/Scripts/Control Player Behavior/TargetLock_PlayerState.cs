@@ -9,7 +9,7 @@ public class TargetLock_PlayerState : State
 
     public override void Enter()
     {
-        CameraController.instance.target = PlayerController.instance.characterModel;
+        CameraController.instance.player = PlayerController.instance.characterModel;
         PlayerController.instance.targetLocked = PlayerSensSystem.instance.nearestEnemy.gameObject;
         PlayerController.instance.actualSpeedMultipler = PlayerController.instance.movementLockTargetSpeed;
         PlayerAnimationController.instance.SetTargetLockAnim(true);
@@ -77,6 +77,6 @@ public class TargetLock_PlayerState : State
         PlayerController.instance.actualSpeedMultipler = PlayerController.instance.movementSpeed;
         PlayerController.instance.targetLocked = null;
         PlayerAnimationController.instance.SetTargetLockAnim(false);
-        CameraController.instance.target = PlayerController.instance.playerRoot;
+        CameraController.instance.player = PlayerController.instance.playerRoot;
     }
 }

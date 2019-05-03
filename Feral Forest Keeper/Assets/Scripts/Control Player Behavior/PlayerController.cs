@@ -68,18 +68,23 @@ public class PlayerController : MonoBehaviour
     public float actualSpeedMultipler;
     public bool useWeaponColllider;
     public bool noInput;
+    public bool no_X_Input;
+    public bool no_Y_Input;
     public bool startWithAllSkills;
+    public bool playerAlive;
 
     [SerializeField]
     public float dashCooldown;
     [SerializeField]
     private float dashChargesRemind;
     private Vector3 initFallingPosition;
+    public Vector3 pushDirection;
 
     protected StateMachine p_StateMachine = new StateMachine();
 
     void Start()
     {
+        playerAlive = true;
         attackPivot.transform.localRotation = Quaternion.Euler(0, -60, 0);
         dashTrail.enabled = false;
         SetCanMove(true);
@@ -87,7 +92,6 @@ public class PlayerController : MonoBehaviour
         actualSpeedMultipler = movementSpeed;
         dashing = false;
         dashCooldown = dashCooldownTime;
-        dashChargesRemind = dashCharges;
         actualPlayerLive = playerLive;
         initFallingPosition = this.transform.position;
     }
@@ -106,9 +110,8 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetButtonDown("A") || Input.GetKeyDown(KeyCode.Space) && !attacking && imGrounded)
         {
-            if (!inSlowMovement && dashChargesRemind > 0) ChangeState(dashState);
+            if (!inSlowMovement && dashCooldown == dashCooldownTime) ChangeState(dashState);
         }
-        
         if (PlayerSensSystem.instance.nearestRock != null && GenericSensUtilities.instance.DistanceBetween2Vectors(characterModel.transform.position, PlayerSensSystem.instance.nearestRock.transform.position) < PlayerSensSystem.instance.nearestRock.attachDistance
             || PlayerSensSystem.instance.nearestLog != null && GenericSensUtilities.instance.DistanceBetween2Vectors(characterModel.transform.position, PlayerSensSystem.instance.nearestLog.transform.position) < PlayerSensSystem.instance.nearestLog.attachDistance)
         {
@@ -120,11 +123,11 @@ public class PlayerController : MonoBehaviour
                 PlayerSensSystem.instance.nearestRock.CheckSideToPush();
                 if (Input.GetButtonDown("RB") || Input.GetKeyDown(KeyCode.E))
                 {
-                    Debug.Log("Enter PushRockState");
+                    //Debug.Log("Enter PushRockState");
                     //PlayerSensSystem.instance.nearestRock.CheckSideToPush();
                     if (PlayerSensSystem.instance.nearestRock.attchAviable)
                     {
-                        Debug.Log("Enter PushRockStateFase2");
+                        //Debug.Log("Enter PushRockStateFase2");
                         ChangeState(pushRockState);
                     }
                 }
@@ -180,6 +183,14 @@ public class PlayerController : MonoBehaviour
             X_Input = Input.GetAxis("Horizontal");
             Z_Input = Input.GetAxis("Vertical");
         }
+        if (no_X_Input)
+        {
+            X_Input = 0;
+        }
+        if (no_Y_Input)
+        {
+            Z_Input = 0;
+        }
 
         if (canMove && !gettingHit && !attacking && imGrounded)
         {
@@ -227,18 +238,14 @@ public class PlayerController : MonoBehaviour
         if (imGrounded) initFallingPosition = this.transform.position;
         /////////END OF MOVEMENT LOGIC////////
 
+        ///DASH COOLDOWN/////
         if (dashCooldown < dashCooldownTime * 0.97f)
         {
             dashCooldown = Mathf.Lerp(dashCooldown, dashCooldownTime, dashCooldownSmoothRecover * Time.deltaTime);
-            if (dashCooldown % dashCooldownTime / dashCharges < 0.1f)
-            {
-                dashChargesRemind++;
-            }
         }
-        else if (dashCooldown != dashCooldownTime)
+        else
         {
-            dashChargesRemind = dashCharges;
-            dashCooldown = dashCooldownTime;
+            if (dashCooldown != dashCooldownTime) dashCooldown = dashCooldownTime;
         }
 
         ///Check if Over Grass///
@@ -256,11 +263,11 @@ public class PlayerController : MonoBehaviour
                 switch (PlayerSensSystem.instance.nearestItem.itemType)
                 {
                     case Item.ItemType.LEAF:
-                        Player_GUI_System.instance.SetOnScreenPickUpIcon(true);
+                        //Player_GUI_System.instance.SetOnScreenPickUpIcon(true);
                         PlayerManager.instance.AddItemToInventary(PlayerSensSystem.instance.nearestItem);
                         PlayerSensSystem.instance.nearestItem.CollectItem();
                         PlayerManager.instance.CountLeafs();
-                        Player_GUI_System.instance.SetKeysCount(PlayerManager.instance.actualLeafQuantity);
+                        Player_GUI_System.instance.SetLeafsCount(PlayerManager.instance.actualLeafQuantity);
                         break;
                     case Item.ItemType.LEAF_WEAPON:
                         Player_GUI_System.instance.SetOnScreenPickUpIcon(true);
@@ -290,8 +297,12 @@ public class PlayerController : MonoBehaviour
                             Player_GUI_System.instance.SetKeysCount(PlayerManager.instance.actualKeyQuantity);
                         }
                         break;
+                    case Item.ItemType.LIVE_UP:
+                        PlayerSensSystem.instance.nearestItem.CollectItem();
+                        if (actualPlayerLive < playerLive)actualPlayerLive += 1;
+                        break;
                 }
-                Player_GUI_System.instance.SetOnScreenPickUpIcon(true);
+                //Player_GUI_System.instance.SetOnScreenPickUpIcon(true);
             }
             else
             {
@@ -323,7 +334,14 @@ public class PlayerController : MonoBehaviour
         {
             Player_GUI_System.instance.SetOnScreenUnlockDoorIcon(false);
         }
-
+        if (actualPlayerLive == 0)
+        {
+            if (playerAlive != false) playerAlive = false;
+        }
+        else if (actualPlayerLive > 0)
+        {
+            if (playerAlive != true) playerAlive = true;
+        }
         p_StateMachine.ExecuteState();
     }
     public void OnTriggerStay(Collider other)
@@ -337,10 +355,11 @@ public class PlayerController : MonoBehaviour
                 if (GenericSensUtilities.instance.DistanceBetween2Vectors(gate.transform.position, transform.position) < 1.0f) gate.UseGate();
             }
         }
-        if (other.tag == "DeathZone")
-        {
-            actualPlayerLive = 0;
-        }
+        //if (other.tag == "DeathZone" && playerAlive)
+        //{
+        //    if (playerAlive)
+        //    actualPlayerLive = 0;
+        //}
     }
     public void SetCanMove(bool b)
     {
@@ -386,11 +405,6 @@ public class PlayerController : MonoBehaviour
         p_StateMachine.ChangeState(state);
 
         currentState = p_StateMachine.currentState;
-    }
-    public void SpendDashCharge()
-    {
-        dashChargesRemind--;
-        dashCooldown -= dashCooldownTime / dashCharges;
     }
 
     ///////GAMEPAD TEST//////////
