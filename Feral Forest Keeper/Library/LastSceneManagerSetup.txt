@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/ControlsAndCameraProveRoom.unity
+- path: Assets/Scenes/PrototypeLvl.unity
   isLoaded: 1
   isActive: 1
