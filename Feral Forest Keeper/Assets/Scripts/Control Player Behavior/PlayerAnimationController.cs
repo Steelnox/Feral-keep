@@ -30,10 +30,15 @@ public class PlayerAnimationController : MonoBehaviour
         animator.SetFloat("Y_Input", PlayerController.instance.Z_Input);
         animator.SetFloat("PushDirection_X", PlayerController.instance.pushDirection.x);
         animator.SetFloat("PushDirection_Y", PlayerController.instance.pushDirection.z);
+        SetPushinAnim(PlayerController.instance.pushing);
     }
     public void SetTargetLockAnim(bool blocked)
     {
-        animator.SetBool("TargetLocked", blocked);
+        if (animator.GetBool("TargetLocked") != blocked)
+        {
+            animator.SetBool("TargetLocked", blocked);
+
+        }
     }
     public void AttackAnim()
     {
@@ -45,11 +50,28 @@ public class PlayerAnimationController : MonoBehaviour
     }
     public void SetLeafWeaponAnim(bool active)
     {
-        animator.SetBool("WeaponLeaf", active);
+        if (animator.GetBool("WeaponLeaf") != active)
+        {
+            animator.SetBool("WeaponLeaf", active);
+        }
     }
     public void SetPushinAnim(bool active)
     {
-        animator.SetBool("Pushing", active);
+        if(animator.GetBool("Pushing") != active)
+        {
+            animator.SetBool("Pushing", active);
+        }
+    }
+    public void SetGettingHitAnim(bool active)
+    {
+        if (animator.GetBool("GettingHit") != active)
+        {
+            animator.SetBool("GettingHit", active);
+        }
+    }
+    public bool GetGettingHitAnimState()
+    {
+        return animator.GetBool("GettingHit");
     }
     public string GetActualAnimationPlayingName()
     {

@@ -103,6 +103,61 @@ public class PlayerSensSystem : MonoBehaviour
             }
         }
     }
+    public void OnTriggerStay(Collider other)
+    {
+        if (other != null)
+        {
+
+            Enemy e = other.GetComponent<Enemy>();
+            if (e != null)
+            {
+                if (!FindSameEnemyOnList(e))
+                {
+                    onRangeEnemyList.Add(e);
+                }
+            }
+            MovableRocks rock = other.GetComponent<MovableRocks>();
+            if (rock != null)
+            {
+                if (!FindSameMovableRockOnList(rock))
+                {
+                    movableRocksList.Add(rock);
+                }
+            }
+            MovableLog log = other.GetComponent<MovableLog>();
+            if (log != null)
+            {
+                if (!FindSameMovableLogOnList(log))
+                {
+                    movableLogsList.Add(log);
+                }
+            }
+            BushGrass_Behavior grass = other.GetComponent<BushGrass_Behavior>();
+            if (grass != null)
+            {
+                if (!FindSameGrassOnList(grass))
+                {
+                    grassesList.Add(grass);
+                }
+            }
+            Item item = other.GetComponent<Item>();
+            if (item != null)
+            {
+                if (!FindSameItemOnList(item))
+                {
+                    itemsList.Add(item);
+                }
+            }
+            OpenableDoors door = other.GetComponent<OpenableDoors>();
+            if (door != null)
+            {
+                if (!FindSameDoorOnList(door))
+                {
+                    doorsList.Add(door);
+                }
+            }
+        }
+    }
     public void OnTriggerExit(Collider other)
     {
         if (other != null)
@@ -383,5 +438,49 @@ public class PlayerSensSystem : MonoBehaviour
             return dis;
         }
         return 0;
+    }
+    public BushGrass_Behavior FindNearestGrassBushToPushingRock(MovableRocks _rock)
+    {
+        BushGrass_Behavior bushGrass = null;
+        if (grassesList.Count > 0)
+        {
+            foreach (BushGrass_Behavior b in grassesList)
+            {
+                if (bushGrass == null)
+                {
+                    bushGrass = b;
+                }
+                else
+                {
+                    if (GenericSensUtilities.instance.DistanceBetween2Vectors(_rock.transform.position, b.transform.position) < GenericSensUtilities.instance.DistanceBetween2Vectors(_rock.transform.position, bushGrass.transform.position))
+                    {
+                        bushGrass = b;
+                    }
+                }
+            }
+        }
+        return bushGrass;
+    }
+    public BushGrass_Behavior FindNearestGrassBushToPushingLog(MovableLog _log)
+    {
+        BushGrass_Behavior bushGrass = null;
+        if (grassesList.Count > 0)
+        {
+            foreach (BushGrass_Behavior b in grassesList)
+            {
+                if (bushGrass == null)
+                {
+                    bushGrass = b;
+                }
+                else
+                {
+                    if (GenericSensUtilities.instance.DistanceBetween2Vectors(_log.transform.position, b.transform.position) < GenericSensUtilities.instance.DistanceBetween2Vectors(_log.transform.position, bushGrass.transform.position))
+                    {
+                        bushGrass = b;
+                    }
+                }
+            }
+        }
+        return bushGrass;
     }
 }

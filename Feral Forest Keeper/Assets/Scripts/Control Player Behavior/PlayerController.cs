@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
     public float lockTargetDistance;
     public int damagePlayer;
     public float deathHeight;
+    public float hitCooldownTime;
 
     public float X_Input;
     public float Z_Input;
@@ -72,6 +73,7 @@ public class PlayerController : MonoBehaviour
     public bool no_Y_Input;
     public bool startWithAllSkills;
     public bool playerAlive;
+    public bool pushing;
 
     [SerializeField]
     public float dashCooldown;
@@ -79,6 +81,7 @@ public class PlayerController : MonoBehaviour
     private float dashChargesRemind;
     private Vector3 initFallingPosition;
     public Vector3 pushDirection;
+    private float actualHitCooldown;
 
     protected StateMachine p_StateMachine = new StateMachine();
 
@@ -94,25 +97,174 @@ public class PlayerController : MonoBehaviour
         dashCooldown = dashCooldownTime;
         actualPlayerLive = playerLive;
         initFallingPosition = this.transform.position;
+        pushing = false;
+        actualHitCooldown = hitCooldownTime;
     }
 
     void Update()
     {
+        CheckInputsConditions();
+        ApplyGravity();
+        SetDashCooldown();
+        ItemsDetection();
+        DoorsDetection();
+        if (gettingHit)
+        {
+            if (!PlayerAnimationController.instance.GetGettingHitAnimState())PlayerAnimationController.instance.SetGettingHitAnim(true);
+            actualHitCooldown -= Time.deltaTime;
+            if (actualHitCooldown <= 0)
+            {
+                PlayerAnimationController.instance.SetGettingHitAnim(false);
+                actualHitCooldown = hitCooldownTime;
+                gettingHit = false;
+            }
+        }
         /////INPUTS CHECK////
         //XboxGamePadKeyTest();
-        if (Input.GetMouseButtonDown(0) || Input.GetButtonDown("X") && !attacking && targetLocked == null && !dashing)
+
+        //imGrounded = p_controller.isGrounded; //Now each State setup imGrounded.
+        if (imGrounded) initFallingPosition = this.transform.position;
+        /////////END OF MOVEMENT LOGIC////////
+
+        ///Check if Over Grass///
+        if (!PlayerSensSystem.instance.CheckIfOverGrass() && currentState != pushLogState && currentState != pushRockState)
+        {
+            MovingInSlowZone(false);
+        }
+
+        if (actualPlayerLive == 0)
+        {
+            if (playerAlive != false) playerAlive = false;
+        }
+        else if (actualPlayerLive > 0)
+        {
+            if (playerAlive != true) playerAlive = true;
+        }
+        p_StateMachine.ExecuteState();
+    }
+    private void DoorsDetection()
+    {
+        if (PlayerSensSystem.instance.nearestDoor != null && PlayerSensSystem.instance.nearestDoor.doorKey != null)
+        {
+            if (GenericSensUtilities.instance.DistanceBetween2Vectors(PlayerSensSystem.instance.nearestDoor.transform.position, characterModel.transform.position) < PlayerSensSystem.instance.nearestDoor.interactionDistance && PlayerManager.instance.FindKeyInInventory(PlayerSensSystem.instance.nearestDoor.doorKey) && PlayerSensSystem.instance.nearestDoor.GetLockedActualState() == true)
+            {
+                Player_GUI_System.instance.SetOnScreenUnlockDoorIcon(true);
+                if (Input.GetButtonDown("B") || Input.GetKeyDown(KeyCode.F))
+                {
+                    PlayerSensSystem.instance.nearestDoor.OpenDoor();
+                }
+            }
+            else
+            {
+                Player_GUI_System.instance.SetOnScreenUnlockDoorIcon(false);
+            }
+        }
+        else
+        {
+            Player_GUI_System.instance.SetOnScreenUnlockDoorIcon(false);
+        }
+    }
+    private void ItemsDetection()
+    {
+        if (PlayerSensSystem.instance.nearestItem != null)
+        {
+            //Debug.Log("ItemNear");
+            if (GenericSensUtilities.instance.DistanceBetween2Vectors(characterModel.transform.position, PlayerSensSystem.instance.nearestItem.transform.position) < PlayerSensSystem.instance.nearestItem.interactionDistance)
+            {
+                switch (PlayerSensSystem.instance.nearestItem.itemType)
+                {
+                    case Item.ItemType.LEAF:
+                        //Player_GUI_System.instance.SetOnScreenPickUpIcon(true);
+                        PlayerManager.instance.AddItemToInventary(PlayerSensSystem.instance.nearestItem);
+                        PlayerSensSystem.instance.nearestItem.CollectItem();
+                        PlayerManager.instance.CountLeafs();
+                        Player_GUI_System.instance.SetLeafsCount(PlayerManager.instance.actualLeafQuantity);
+                        break;
+                    case Item.ItemType.LEAF_WEAPON:
+                        Player_GUI_System.instance.SetOnScreenPickUpIcon(true);
+                        if (Input.GetButtonDown("B") || Input.GetKeyDown(KeyCode.F))
+                        {
+                            PlayerManager.instance.AddItemToInventary(PlayerSensSystem.instance.nearestItem);
+                            PlayerSensSystem.instance.nearestItem.CollectItem();
+                            PlayerManager.instance.CheckIfHaveSwordItem();
+                        }
+                        break;
+                    case Item.ItemType.POWER_GANTLET:
+                        Player_GUI_System.instance.SetOnScreenPickUpIcon(true);
+                        if (Input.GetButtonDown("B") || Input.GetKeyDown(KeyCode.F))
+                        {
+                            PlayerManager.instance.AddItemToInventary(PlayerSensSystem.instance.nearestItem);
+                            PlayerSensSystem.instance.nearestItem.CollectItem();
+
+                        }
+                        break;
+                    case Item.ItemType.KEY:
+                        Player_GUI_System.instance.SetOnScreenPickUpIcon(true);
+                        if (Input.GetButtonDown("B") || Input.GetKeyDown(KeyCode.F))
+                        {
+                            PlayerManager.instance.AddItemToInventary(PlayerSensSystem.instance.nearestItem);
+                            PlayerSensSystem.instance.nearestItem.CollectItem();
+                            PlayerManager.instance.CountKeys();
+                            Player_GUI_System.instance.SetKeysCount(PlayerManager.instance.actualKeyQuantity);
+                        }
+                        break;
+                    case Item.ItemType.LIVE_UP:
+                        PlayerSensSystem.instance.nearestItem.CollectItem();
+                        if (actualPlayerLive < playerLive) actualPlayerLive += 1;
+                        break;
+                }
+                //Player_GUI_System.instance.SetOnScreenPickUpIcon(true);
+            }
+            else
+            {
+                Player_GUI_System.instance.SetOnScreenPickUpIcon(false);
+            }
+        }
+        else if (PlayerSensSystem.instance.nearestItem == null)
+        {
+            Player_GUI_System.instance.SetOnScreenPickUpIcon(false);
+        }
+    }
+    private void ApplyGravity()
+    {
+        if (!imGrounded /*&& currentState != pushRockState*/)
+        {
+            gravity += Mathf.Exp(gravityForce);
+
+            movement.y = movement.y - (gravity * Time.deltaTime);
+            if (PlayerSensSystem.instance.CheckGroundDistance() < 0.5f)
+            {
+                //Debug.Log("Player almost touching the ground");
+                if (GenericSensUtilities.instance.DistanceBetween2Vectors(initFallingPosition, this.transform.position) > deathHeight && actualPlayerLive > 0)
+                {
+                    //Debug.Log("Player die Falling down: " + GenericSensUtilities.instance.DistanceBetween2Vectors(initFallingPosition, this.transform.position));
+                    actualPlayerLive = 0;
+                }
+            }
+        }
+        else
+        {
+            if (gravity > 0 || gravity < 0)
+                gravity = 0;
+        }
+    }
+    private void CheckInputsConditions()
+    {
+        CheckInputs();
+
+        if (Input.GetMouseButtonDown(0) || Input.GetButtonDown("X") && !attacking && targetLocked == null && !dashing && !gettingHit)
         {
             ChangeState(meleeState);
         }
-        if (Input.GetMouseButtonDown(1) || Input.GetButtonDown("Y") && !attacking && !dart.IsShooted() && !dashing)
+        if (Input.GetMouseButtonDown(1) || Input.GetButtonDown("Y") && !attacking && !dart.IsShooted() && !dashing && !gettingHit)
         {
             ChangeState(slashState);
         }
-        if (Input.GetButtonDown("A") || Input.GetKeyDown(KeyCode.Space) && !attacking && imGrounded)
+        if (Input.GetButtonDown("A") || Input.GetKeyDown(KeyCode.Space) && !attacking && imGrounded && !gettingHit)
         {
             if (!inSlowMovement && dashCooldown == dashCooldownTime) ChangeState(dashState);
         }
-        if (PlayerSensSystem.instance.nearestRock != null && GenericSensUtilities.instance.DistanceBetween2Vectors(characterModel.transform.position, PlayerSensSystem.instance.nearestRock.transform.position) < PlayerSensSystem.instance.nearestRock.attachDistance
+        if (!Input.GetButton("RB") || !Input.GetKey(KeyCode.E) && PlayerSensSystem.instance.nearestRock != null && GenericSensUtilities.instance.DistanceBetween2Vectors(characterModel.transform.position, PlayerSensSystem.instance.nearestRock.transform.position) < PlayerSensSystem.instance.nearestRock.attachDistance
             || PlayerSensSystem.instance.nearestLog != null && GenericSensUtilities.instance.DistanceBetween2Vectors(characterModel.transform.position, PlayerSensSystem.instance.nearestLog.transform.position) < PlayerSensSystem.instance.nearestLog.attachDistance)
         {
             /// PUSHING ROCKS ////
@@ -171,8 +323,20 @@ public class PlayerController : MonoBehaviour
             //Debug.Log("HidingPushIcon3");
             Player_GUI_System.instance.SetOnScreenPushIcon(false);
         }
-
-        ///////////
+    }
+    private void SetDashCooldown()
+    {
+        if (dashCooldown < dashCooldownTime * 0.97f)
+        {
+            dashCooldown = Mathf.Lerp(dashCooldown, dashCooldownTime, dashCooldownSmoothRecover * Time.deltaTime);
+        }
+        else
+        {
+            if (dashCooldown != dashCooldownTime) dashCooldown = dashCooldownTime;
+        }
+    }
+    public void CheckInputs()
+    {
         if (noInput)
         {
             X_Input = 0;
@@ -209,140 +373,8 @@ public class PlayerController : MonoBehaviour
         movement.x *= actualSpeedMultipler;
         movement.z *= actualSpeedMultipler;
 
-        //Gravedad
-        if (!imGrounded && currentState != pushRockState)
-        {
-            gravity += Mathf.Exp(gravityForce);
-
-            movement.y = movement.y - (gravity * Time.deltaTime);
-            if (PlayerSensSystem.instance.CheckGroundDistance() < 0.5f)
-            {
-                //Debug.Log("Player almost touching the ground");
-                if (GenericSensUtilities.instance.DistanceBetween2Vectors(initFallingPosition, this.transform.position) > deathHeight && actualPlayerLive > 0)
-                {
-                    //Debug.Log("Player die Falling down: " + GenericSensUtilities.instance.DistanceBetween2Vectors(initFallingPosition, this.transform.position));
-                    actualPlayerLive = 0;
-                }
-            }
-        }
-        else
-        {
-            if (gravity > 0 || gravity < 0)
-                gravity = 0;
-        }
-
         modelForwardDirection.x = direction.x;
         modelForwardDirection.z = direction.y;
-
-        //imGrounded = p_controller.isGrounded; //Now each State setup imGrounded.
-        if (imGrounded) initFallingPosition = this.transform.position;
-        /////////END OF MOVEMENT LOGIC////////
-
-        ///DASH COOLDOWN/////
-        if (dashCooldown < dashCooldownTime * 0.97f)
-        {
-            dashCooldown = Mathf.Lerp(dashCooldown, dashCooldownTime, dashCooldownSmoothRecover * Time.deltaTime);
-        }
-        else
-        {
-            if (dashCooldown != dashCooldownTime) dashCooldown = dashCooldownTime;
-        }
-
-        ///Check if Over Grass///
-        if (!PlayerSensSystem.instance.CheckIfOverGrass() && currentState != pushLogState && currentState != pushRockState)
-        {
-            MovingInSlowZone(false);
-        }
-
-        ///Items detection///
-        if (PlayerSensSystem.instance.nearestItem != null)
-        {
-            //Debug.Log("ItemNear");
-            if (GenericSensUtilities.instance.DistanceBetween2Vectors(characterModel.transform.position, PlayerSensSystem.instance.nearestItem.transform.position) < PlayerSensSystem.instance.nearestItem.interactionDistance)
-            {
-                switch (PlayerSensSystem.instance.nearestItem.itemType)
-                {
-                    case Item.ItemType.LEAF:
-                        //Player_GUI_System.instance.SetOnScreenPickUpIcon(true);
-                        PlayerManager.instance.AddItemToInventary(PlayerSensSystem.instance.nearestItem);
-                        PlayerSensSystem.instance.nearestItem.CollectItem();
-                        PlayerManager.instance.CountLeafs();
-                        Player_GUI_System.instance.SetLeafsCount(PlayerManager.instance.actualLeafQuantity);
-                        break;
-                    case Item.ItemType.LEAF_WEAPON:
-                        Player_GUI_System.instance.SetOnScreenPickUpIcon(true);
-                        if (Input.GetButtonDown("B") || Input.GetKeyDown(KeyCode.F))
-                        {
-                            PlayerManager.instance.AddItemToInventary(PlayerSensSystem.instance.nearestItem);
-                            PlayerSensSystem.instance.nearestItem.CollectItem();
-                            PlayerManager.instance.CheckIfHaveSwordItem();
-                        }
-                        break;
-                    case Item.ItemType.POWER_GANTLET:
-                        Player_GUI_System.instance.SetOnScreenPickUpIcon(true);
-                        if (Input.GetButtonDown("B") || Input.GetKeyDown(KeyCode.F))
-                        {
-                            PlayerManager.instance.AddItemToInventary(PlayerSensSystem.instance.nearestItem);
-                            PlayerSensSystem.instance.nearestItem.CollectItem();
-
-                        }
-                        break;
-                    case Item.ItemType.KEY:
-                        Player_GUI_System.instance.SetOnScreenPickUpIcon(true);
-                        if (Input.GetButtonDown("B") || Input.GetKeyDown(KeyCode.F))
-                        {
-                            PlayerManager.instance.AddItemToInventary(PlayerSensSystem.instance.nearestItem);
-                            PlayerSensSystem.instance.nearestItem.CollectItem();
-                            PlayerManager.instance.CountKeys();
-                            Player_GUI_System.instance.SetKeysCount(PlayerManager.instance.actualKeyQuantity);
-                        }
-                        break;
-                    case Item.ItemType.LIVE_UP:
-                        PlayerSensSystem.instance.nearestItem.CollectItem();
-                        if (actualPlayerLive < playerLive)actualPlayerLive += 1;
-                        break;
-                }
-                //Player_GUI_System.instance.SetOnScreenPickUpIcon(true);
-            }
-            else
-            {
-                Player_GUI_System.instance.SetOnScreenPickUpIcon(false);
-            }
-        }
-        else if (PlayerSensSystem.instance.nearestItem == null)
-        {
-            Player_GUI_System.instance.SetOnScreenPickUpIcon(false);
-        }
-
-        ///Doors Detection///
-        if (PlayerSensSystem.instance.nearestDoor != null && PlayerSensSystem.instance.nearestDoor.doorKey != null)
-        {
-            if (GenericSensUtilities.instance.DistanceBetween2Vectors(PlayerSensSystem.instance.nearestDoor.transform.position, characterModel.transform.position) < PlayerSensSystem.instance.nearestDoor.interactionDistance && PlayerManager.instance.FindKeyInInventory(PlayerSensSystem.instance.nearestDoor.doorKey) && PlayerSensSystem.instance.nearestDoor.GetLockedActualState() == true)
-            {
-                Player_GUI_System.instance.SetOnScreenUnlockDoorIcon(true);
-                if (Input.GetButtonDown("B") || Input.GetKeyDown(KeyCode.F))
-                {
-                    PlayerSensSystem.instance.nearestDoor.OpenDoor();
-                }
-            }
-            else
-            {
-                Player_GUI_System.instance.SetOnScreenUnlockDoorIcon(false);
-            }
-        }
-        else
-        {
-            Player_GUI_System.instance.SetOnScreenUnlockDoorIcon(false);
-        }
-        if (actualPlayerLive == 0)
-        {
-            if (playerAlive != false) playerAlive = false;
-        }
-        else if (actualPlayerLive > 0)
-        {
-            if (playerAlive != true) playerAlive = true;
-        }
-        p_StateMachine.ExecuteState();
     }
     public void OnTriggerStay(Collider other)
     {
@@ -385,8 +417,11 @@ public class PlayerController : MonoBehaviour
     }
     public void GetDamage(float damage)
     {
-        actualPlayerLive -= damage;
-        //gettingHit = true;
+        if (!gettingHit)
+        {
+            actualPlayerLive -= damage;
+            gettingHit = true;
+        }
     }
     public void MovingInSlowZone(bool b)
     {
