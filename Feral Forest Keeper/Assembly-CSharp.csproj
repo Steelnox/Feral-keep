@@ -152,19 +152,19 @@
     <None Include="Assets\ProCore\ProBuilder\readme.txt" />
     <None Include="Assets\ProCore\ProBuilder\Shader\pb_SmoothingPreview.shader" />
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>D:/Uni/3r any/Projecte/Feral-keep/Feral Forest Keeper/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>D:/JORDI_PC/Users/Jordi/Documents/GitHub/Feral-keep/Feral Forest Keeper/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>D:/Uni/3r any/Projecte/Feral-keep/Feral Forest Keeper/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>D:/JORDI_PC/Users/Jordi/Documents/GitHub/Feral-keep/Feral Forest Keeper/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>D:/Uni/3r any/Projecte/Feral-keep/Feral Forest Keeper/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>D:/JORDI_PC/Users/Jordi/Documents/GitHub/Feral-keep/Feral Forest Keeper/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>D:/Uni/3r any/Projecte/Feral-keep/Feral Forest Keeper/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>D:/JORDI_PC/Users/Jordi/Documents/GitHub/Feral-keep/Feral Forest Keeper/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>D:/Uni/3r any/Projecte/Feral-keep/Feral Forest Keeper/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+      <HintPath>D:/JORDI_PC/Users/Jordi/Documents/GitHub/Feral-keep/Feral Forest Keeper/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.3.11f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -368,28 +368,28 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.3.11f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="ProBuilderCore-Unity5">
-      <HintPath>D:/Uni/3r any/Projecte/Feral-keep/Feral Forest Keeper/Assets/ProCore/ProBuilder/Classes/ProBuilderCore-Unity5.dll</HintPath>
+      <HintPath>D:/JORDI_PC/Users/Jordi/Documents/GitHub/Feral-keep/Feral Forest Keeper/Assets/ProCore/ProBuilder/Classes/ProBuilderCore-Unity5.dll</HintPath>
     </Reference>
     <Reference Include="ProBuilderMeshOps-Unity5">
-      <HintPath>D:/Uni/3r any/Projecte/Feral-keep/Feral Forest Keeper/Assets/ProCore/ProBuilder/Classes/ProBuilderMeshOps-Unity5.dll</HintPath>
+      <HintPath>D:/JORDI_PC/Users/Jordi/Documents/GitHub/Feral-keep/Feral Forest Keeper/Assets/ProCore/ProBuilder/Classes/ProBuilderMeshOps-Unity5.dll</HintPath>
     </Reference>
     <Reference Include="KdTreeLib">
-      <HintPath>D:/Uni/3r any/Projecte/Feral-keep/Feral Forest Keeper/Assets/ProCore/ProBuilder/Classes/ClassesLib/KdTreeLib.dll</HintPath>
+      <HintPath>D:/JORDI_PC/Users/Jordi/Documents/GitHub/Feral-keep/Feral Forest Keeper/Assets/ProCore/ProBuilder/Classes/ClassesLib/KdTreeLib.dll</HintPath>
     </Reference>
     <Reference Include="pb_Stl">
-      <HintPath>D:/Uni/3r any/Projecte/Feral-keep/Feral Forest Keeper/Assets/ProCore/ProBuilder/Classes/ClassesLib/pb_Stl.dll</HintPath>
+      <HintPath>D:/JORDI_PC/Users/Jordi/Documents/GitHub/Feral-keep/Feral Forest Keeper/Assets/ProCore/ProBuilder/Classes/ClassesLib/pb_Stl.dll</HintPath>
     </Reference>
     <Reference Include="Poly2Tri">
-      <HintPath>D:/Uni/3r any/Projecte/Feral-keep/Feral Forest Keeper/Assets/ProCore/ProBuilder/Classes/ClassesLib/Poly2Tri.dll</HintPath>
+      <HintPath>D:/JORDI_PC/Users/Jordi/Documents/GitHub/Feral-keep/Feral Forest Keeper/Assets/ProCore/ProBuilder/Classes/ClassesLib/Poly2Tri.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
-      <HintPath>D:/Uni/3r any/Projecte/Feral-keep/Feral Forest Keeper/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
+      <HintPath>D:/JORDI_PC/Users/Jordi/Documents/GitHub/Feral-keep/Feral Forest Keeper/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>D:/Uni/3r any/Projecte/Feral-keep/Feral Forest Keeper/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>D:/JORDI_PC/Users/Jordi/Documents/GitHub/Feral-keep/Feral Forest Keeper/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>D:/Uni/3r any/Projecte/Feral-keep/Feral Forest Keeper/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
+      <HintPath>D:/JORDI_PC/Users/Jordi/Documents/GitHub/Feral-keep/Feral Forest Keeper/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.3.11f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
