@@ -36,6 +36,8 @@ public abstract class Enemy : MonoBehaviour
 
     public LayerMask m_CollisionLayerMask;
 
+    public GameObject HealthBar;
+
 
 
 

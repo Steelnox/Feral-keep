@@ -24,7 +24,7 @@ public class Damaged : State
         directionKnockback = (melee.enemy_navmesh.transform.position - melee.player.transform.position).normalized;
 
         timer = 0;
-        Debug.Log(melee.currentHealth);
+
 
         melee.enemy_navmesh.isStopped = true;
 
@@ -40,7 +40,7 @@ public class Damaged : State
         timer += Time.deltaTime;
         if (timer >= timeKnockback)
         {
-            if (melee.currentHealth <= 0) Destroy(this.gameObject);
+            if (melee.currentHealth <= 0) this.gameObject.SetActive(false);
             if(melee.currentHealth > 0)
             {
                 if (melee.GetDistance(melee.player.transform.position) <= melee.distanceToChase) melee.ChangeState(melee.chase);
