@@ -74,13 +74,15 @@ public class Bush_Behavior : MonoBehaviour
     {
         Vector3 bushPos = bush_Pivot.transform.position;
         isCutted = true;
-        SetParticles(bushPos);
+        //SetParticles(bushPos);
         HideBush();
-        PlayParticles();
+        SetParticles(bushPos);
+        //PlayParticles();
     }
-    private void SetParticles(Vector3 _pos)
+    private void SetParticles(Vector3 pos)
     {
-        particlesPivot.transform.position = _pos;
+        //particlesPivot.transform.position = pos;
+        ParticlesFeedback_Control.instance.SetBushParticlesOnScene(pos);
     }
     private void HideParticles()
     {

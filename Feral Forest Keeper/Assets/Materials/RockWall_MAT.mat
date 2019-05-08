@@ -62,15 +62,15 @@ Material:
     m_Floats:
     - _AlphaClip: 0
     - _Blend: 0
-    - _BumpScale: 0.5
+    - _BumpScale: 1
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0.22
+    - _Glossiness: 0.12
     - _GlossyReflections: 1
-    - _Metallic: 0.171
+    - _Metallic: 0.28
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02

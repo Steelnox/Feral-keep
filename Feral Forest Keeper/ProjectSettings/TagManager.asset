@@ -10,6 +10,7 @@ TagManager:
   - PlayerWeapon
   - DeathZone
   - MovableRock
+  - BushParticle
   layers:
   - Default
   - TransparentFX

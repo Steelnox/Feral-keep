@@ -14,6 +14,7 @@ public class OpenableDoors : MonoBehaviour
 
     public Item doorKey;
     public Switch_Behavior activationSwitch;
+    public bool holdSwitchToOpen;
 
     public float smoothmovement;
     //public bool openedState;
@@ -89,48 +90,97 @@ public class OpenableDoors : MonoBehaviour
         }
         if (activationSwitch != null && doorKey == null)
         {
-            if (activationSwitch.IsHoldedSwitched())
+            if (holdSwitchToOpen)
             {
-                if (cameraFeedback && actualSetupTimeLaps == 0 && justOpen && scripteMovementsRepetitions > 0)
+                if (activationSwitch.IsHoldedSwitched())
                 {
-                    Debug.Log("openning door camera feedback");
-                    justClose = true;
-                    justOpen = false;
-                    scripteMovementsRepetitions--;
-                    CameraController.instance.StartScriptedMovement(this.gameObject);
-                }
-                //Debug.Log("SwitchedActivated");
-                if (movableDoorPivot.transform.localRotation.eulerAngles != openRot)
-                {
-                    //Debug.Log("Opennig Door");
-                    movableDoorPivot.transform.localRotation = Quaternion.Lerp(movableDoorPivot.transform.localRotation, Quaternion.Euler(openRot), Time.deltaTime * smoothmovement);
+                    if (cameraFeedback && actualSetupTimeLaps == 0 && justOpen && scripteMovementsRepetitions > 0)
+                    {
+                        //Debug.Log("openning door camera feedback");
+                        justClose = true;
+                        justOpen = false;
+                        scripteMovementsRepetitions--;
+                        CameraController.instance.StartScriptedMovement(this.gameObject);
+                    }
+                    //Debug.Log("SwitchedActivated");
+                    if (movableDoorPivot.transform.localRotation.eulerAngles != openRot)
+                    {
+                        //Debug.Log("Opennig Door");
+                        movableDoorPivot.transform.localRotation = Quaternion.Lerp(movableDoorPivot.transform.localRotation, Quaternion.Euler(openRot), Time.deltaTime * smoothmovement);
+                    }
+                    else
+                    {
+                        movableDoorPivot.transform.localRotation = Quaternion.Euler(openRot);
+                    }
                 }
                 else
+                if (!activationSwitch.IsHoldedSwitched())
                 {
-                    movableDoorPivot.transform.localRotation = Quaternion.Euler(openRot);
+                    if (cameraFeedback && actualSetupTimeLaps == 0 && justClose && scripteMovementsRepetitions > 0)
+                    {
+                        //Debug.Log("closing door camera feedback");
+                        justOpen = true;
+                        justClose = false;
+                        scripteMovementsRepetitions--;
+                        CameraController.instance.StartScriptedMovement(this.gameObject);
+                    }
+                    if (movableDoorPivot.transform.localRotation.eulerAngles != closeRot)
+                    {
+                        //Debug.Log("Closing Door");
+                        movableDoorPivot.transform.localRotation = Quaternion.Lerp(movableDoorPivot.transform.localRotation, Quaternion.Euler(closeRot), Time.deltaTime * smoothmovement);
+                    }
+                    else
+                    {
+                        movableDoorPivot.transform.localRotation = Quaternion.Euler(closeRot);
+                    }
                 }
             }
-            else
-            if (!activationSwitch.IsHoldedSwitched())
+            if (!holdSwitchToOpen)
             {
-                if (cameraFeedback && actualSetupTimeLaps == 0 && justClose && scripteMovementsRepetitions > 0)
+                if (activationSwitch.IsSwitched())
                 {
-                    Debug.Log("closing door camera feedback");
-                    justOpen = true;
-                    justClose = false;
-                    scripteMovementsRepetitions--;
-                    CameraController.instance.StartScriptedMovement(this.gameObject);
-                }
-                if (movableDoorPivot.transform.localRotation.eulerAngles != closeRot)
-                {
-                    //Debug.Log("Closing Door");
-                    movableDoorPivot.transform.localRotation = Quaternion.Lerp(movableDoorPivot.transform.localRotation, Quaternion.Euler(closeRot), Time.deltaTime * smoothmovement);
+                    if (cameraFeedback && actualSetupTimeLaps == 0 && justOpen && scripteMovementsRepetitions > 0)
+                    {
+                        //Debug.Log("openning door camera feedback");
+                        justClose = true;
+                        justOpen = false;
+                        scripteMovementsRepetitions--;
+                        CameraController.instance.StartScriptedMovement(this.gameObject);
+                    }
+                    //Debug.Log("SwitchedActivated");
+                    if (movableDoorPivot.transform.localRotation.eulerAngles != openRot)
+                    {
+                        //Debug.Log("Opennig Door");
+                        movableDoorPivot.transform.localRotation = Quaternion.Lerp(movableDoorPivot.transform.localRotation, Quaternion.Euler(openRot), Time.deltaTime * smoothmovement);
+                    }
+                    else
+                    {
+                        movableDoorPivot.transform.localRotation = Quaternion.Euler(openRot);
+                    }
                 }
                 else
+                if (!activationSwitch.IsSwitched())
                 {
-                    movableDoorPivot.transform.localRotation = Quaternion.Euler(closeRot);
+                    if (cameraFeedback && actualSetupTimeLaps == 0 && justClose && scripteMovementsRepetitions > 0)
+                    {
+                        //Debug.Log("closing door camera feedback");
+                        justOpen = true;
+                        justClose = false;
+                        scripteMovementsRepetitions--;
+                        CameraController.instance.StartScriptedMovement(this.gameObject);
+                    }
+                    if (movableDoorPivot.transform.localRotation.eulerAngles != closeRot)
+                    {
+                        //Debug.Log("Closing Door");
+                        movableDoorPivot.transform.localRotation = Quaternion.Lerp(movableDoorPivot.transform.localRotation, Quaternion.Euler(closeRot), Time.deltaTime * smoothmovement);
+                    }
+                    else
+                    {
+                        movableDoorPivot.transform.localRotation = Quaternion.Euler(closeRot);
+                    }
                 }
             }
+            
         }
     }
     private void UnlockDoor()
