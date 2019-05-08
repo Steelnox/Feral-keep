@@ -9,6 +9,7 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: Box005
+    4300002: RocaMovable
   externalObjects: {}
   materials:
     importMaterials: 1

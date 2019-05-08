@@ -12,10 +12,13 @@ ModelImporter:
     2100000: No Name
     2300000: Hedra006
     2300002: Object005
+    2300004: //RootNode
     3300000: Hedra006
     3300002: Object005
+    3300004: //RootNode
     4300000: Hedra006
     4300002: Object005
+    4300004: Copa_Tree_Pino2
   externalObjects: {}
   materials:
     importMaterials: 1
