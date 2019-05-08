@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b6f3abb05bb357142aa8197b48cd0f62, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -112,8 +112,8 @@ MonoBehaviour:
   angleToContact: 45
   attachDistance: 1
   weight: 2
-  playerForceInput: {x: 0, y: 0, z: 0}
-  previousPos: {x: 0, y: 0, z: 0}
+  lastNoPushingPos: {x: 0, y: 0, z: 0}
+  bodyMeshrenderer: {fileID: 0}
 --- !u!54 &1374208395
 Rigidbody:
   m_ObjectHideFlags: 0
