@@ -37,7 +37,6 @@ public class PlayerAnimationController : MonoBehaviour
         if (animator.GetBool("TargetLocked") != blocked)
         {
             animator.SetBool("TargetLocked", blocked);
-
         }
     }
     public void AttackAnim()

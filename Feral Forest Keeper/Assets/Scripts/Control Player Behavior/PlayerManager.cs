@@ -18,7 +18,9 @@ public class PlayerManager : MonoBehaviour
 
     public List<Item> items;
 
+    public Item branchWeapon;
     public Item leafSwordSlot;
+    public Item powerGantaletItem;
     public int actualLeafQuantity;
     public int actualKeyQuantity;
 
@@ -39,7 +41,7 @@ public class PlayerManager : MonoBehaviour
     {
         items.Add(i);
     }
-    public void QuitItemElement(Item _i)
+    public void QuitItemElementFromItemsList(Item _i)
     {
         foreach(Item item in items)
         {
@@ -49,7 +51,27 @@ public class PlayerManager : MonoBehaviour
             }
         }
     }
-    public void CheckIfHaveSwordItem()
+    public void CheckIfHaveBranchWeaponItem()
+    {
+        foreach (Item item in items)
+        {
+            if (item.itemType == Item.ItemType.BRANCH_WEAPON)
+            {
+                branchWeapon = item;
+            }
+        }
+        if (branchWeapon != null)
+        {
+            PlayerAnimationController.instance.SetLeafWeaponAnim(true);
+            Player_GUI_System.instance.SetOnScreenLeafWeaponIcon(true);
+        }
+        else
+        {
+            PlayerAnimationController.instance.SetLeafWeaponAnim(false);
+            Player_GUI_System.instance.SetOnScreenLeafWeaponIcon(false);
+        }
+    }
+    public void CheckIfHaveLeafWeaponItem()
     {
         foreach(Item item in items)
         {
@@ -83,7 +105,7 @@ public class PlayerManager : MonoBehaviour
         int count = 0;
         foreach (Item item in items)
         {
-            if (item.itemType == Item.ItemType.LEAF) count++;
+            if (item.itemType == Item.ItemType.BRANCH_WEAPON) count++;
         }
         actualLeafQuantity = count;
     }

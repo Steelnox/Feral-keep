@@ -173,7 +173,7 @@ public class PlayerController : MonoBehaviour
             {
                 switch (PlayerSensSystem.instance.nearestItem.itemType)
                 {
-                    case Item.ItemType.LEAF:
+                    case Item.ItemType.BRANCH_WEAPON:
                         //Player_GUI_System.instance.SetOnScreenPickUpIcon(true);
                         PlayerManager.instance.AddItemToInventary(PlayerSensSystem.instance.nearestItem);
                         PlayerSensSystem.instance.nearestItem.CollectItem();
@@ -186,7 +186,7 @@ public class PlayerController : MonoBehaviour
                         {
                             PlayerManager.instance.AddItemToInventary(PlayerSensSystem.instance.nearestItem);
                             PlayerSensSystem.instance.nearestItem.CollectItem();
-                            PlayerManager.instance.CheckIfHaveSwordItem();
+                            PlayerManager.instance.CheckIfHaveLeafWeaponItem();
                         }
                         break;
                     case Item.ItemType.POWER_GANTLET:
