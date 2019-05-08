@@ -50,12 +50,10 @@ public class Sanctuary : MonoBehaviour
                 enemy.SetActive(true);
             }
 
-            if(playerManager.powerGauntaletItem == null)
+            if(playerManager.powerGauntaletSlot == null)
             {
-                playerManager.powerGauntaletItem = gauntlet;
+                playerManager.powerGauntaletSlot = gauntlet;
             }
-            
-
             actionDone = true;
         }
     }

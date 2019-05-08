@@ -18,15 +18,17 @@ public class PlayerManager : MonoBehaviour
 
     public List<Item> items;
 
-    public Item branchWeapon;
+    public Item branchWeaponSlot;
     public Item leafSwordSlot;
-    public Item powerGauntaletItem;
+    public Item powerGauntaletSlot;
     public int actualLeafQuantity;
     public int actualKeyQuantity;
 
     void Start()
     {
-        powerGauntaletItem = null;
+        branchWeaponSlot = null;
+        leafSwordSlot = null;
+        powerGauntaletSlot = null;
         if (PlayerController.instance.startWithAllSkills)
         {
             PlayerAnimationController.instance.SetLeafWeaponAnim(true);
@@ -58,10 +60,10 @@ public class PlayerManager : MonoBehaviour
         {
             if (item.itemType == Item.ItemType.BRANCH_WEAPON)
             {
-                branchWeapon = item;
+                branchWeaponSlot = item;
             }
         }
-        if (branchWeapon != null)
+        if (branchWeaponSlot != null)
         {
             PlayerAnimationController.instance.SetLeafWeaponAnim(true);
             Player_GUI_System.instance.SetOnScreenLeafWeaponIcon(true);
