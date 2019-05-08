@@ -24,6 +24,7 @@ public class PlayerSensSystem : MonoBehaviour
     public MovableLog nearestLog;
     public Item nearestItem;
     public OpenableDoors nearestDoor;
+    public Sanctuary nearestSanctuary;
     public bool overGrass;
 
     [SerializeField]
@@ -33,6 +34,7 @@ public class PlayerSensSystem : MonoBehaviour
     public List<BushGrass_Behavior> grassesList;
     public List<Item> itemsList;
     public List<OpenableDoors> doorsList;
+    public List<Sanctuary> sanctuaryList;
 
     void Start()
     {
@@ -46,13 +48,13 @@ public class PlayerSensSystem : MonoBehaviour
         GetNearestLog();
         GetNearestItem();
         GetNearestDoor();
+        GetNearestSanctuary();
     }     
 
     public void OnTriggerEnter(Collider other)
     {
         if (other != null)
         {
-            
             Enemy e = other.GetComponent<Enemy>();
             if (e != null)
             {
@@ -99,6 +101,14 @@ public class PlayerSensSystem : MonoBehaviour
                 if (!FindSameDoorOnList(door))
                 {
                     doorsList.Add(door);
+                }
+            }
+            Sanctuary sanctuary = other.GetComponent<Sanctuary>();
+            if (sanctuary != null)
+            {
+                if (!FindSameSanctuaryOnList(sanctuary))
+                {
+                    sanctuaryList.Add(sanctuary);
                 }
             }
         }
@@ -154,6 +164,14 @@ public class PlayerSensSystem : MonoBehaviour
                 if (!FindSameDoorOnList(door))
                 {
                     doorsList.Add(door);
+                }
+            }
+            Sanctuary sanctuary = other.GetComponent<Sanctuary>();
+            if (sanctuary != null)
+            {
+                if (!FindSameSanctuaryOnList(sanctuary))
+                {
+                    sanctuaryList.Add(sanctuary);
                 }
             }
         }
@@ -230,6 +248,18 @@ public class PlayerSensSystem : MonoBehaviour
                     if (door == d)
                     {
                         doorsList.Remove(d);
+                        return;
+                    }
+                }
+            }
+            Sanctuary sanctuary = other.GetComponent<Sanctuary>();
+            if (door != null)
+            {
+                foreach (Sanctuary s in sanctuaryList)
+                {
+                    if (sanctuary == s)
+                    {
+                        sanctuaryList.Remove(s);
                         return;
                     }
                 }
@@ -356,6 +386,29 @@ public class PlayerSensSystem : MonoBehaviour
 
         nearestDoor = door;
     }
+    public void GetNearestSanctuary()
+    {
+        Sanctuary sanctuary = null;
+
+        if (sanctuaryList.Count > 0)
+        {
+            foreach (Sanctuary s in sanctuaryList)
+            {
+                if (sanctuary == null)
+                {
+                    sanctuary = s;
+                }
+                else
+                {
+                    if (GenericSensUtilities.instance.DistanceBetween2Vectors(transform.position, s.transform.position) < GenericSensUtilities.instance.DistanceBetween2Vectors(transform.position, sanctuary.transform.position))
+                    {
+                        sanctuary = s;
+                    }
+                }
+            }
+        }
+        nearestSanctuary = sanctuary;
+    }
     public bool CheckIfOverGrass()
     {
         foreach (BushGrass_Behavior g in grassesList)
@@ -421,6 +474,14 @@ public class PlayerSensSystem : MonoBehaviour
         foreach (OpenableDoors d in doorsList)
         {
             if (d == _mDoor) return true;
+        }
+        return false;
+    }
+    private bool FindSameSanctuaryOnList(Sanctuary _mSanctuary)
+    {
+        foreach (Sanctuary s in sanctuaryList)
+        {
+            if (s == _mSanctuary) return true;
         }
         return false;
     }

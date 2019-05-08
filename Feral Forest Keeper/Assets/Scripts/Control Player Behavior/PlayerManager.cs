@@ -24,6 +24,9 @@ public class PlayerManager : MonoBehaviour
     public int actualLeafQuantity;
     public int actualKeyQuantity;
 
+    public GameObject branchWeaponForAnimations;
+    public GameObject leafWeaponForAnimations;
+
     void Start()
     {
         branchWeaponSlot = null;

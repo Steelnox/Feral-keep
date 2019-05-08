@@ -25,16 +25,17 @@ public class PlayerController : MonoBehaviour
     public TrailRenderer attackTrail;
     public TrailRenderer dashTrail;
     public CharacterController p_controller;
-    public DartBehavior dart;
+    //public DartBehavior dart;
     public MeleeAtack_PlayerState meleeState;
-    public SlashAttack_PlayerState slashState;
+    //public SlashAttack_PlayerState slashState;
     public Movement_PlayerState movementState;
-    public TargetLock_PlayerState targetState;
+    //public TargetLock_PlayerState targetState;
     public PushRock_State pushRockState;
     public PushLog_State pushLogState;
     public Dash_PlayerState dashState;
-    public GameObject targetLocked;
+    //public GameObject targetLocked;
     public BoxCollider weaponCollider;
+    public GameObject meleeWeaponPosition;
 
     public int playerLive;
     public int dashCharges;
@@ -49,7 +50,7 @@ public class PlayerController : MonoBehaviour
     public float actualPlayerLive;
     public float smoothAttackTrail;
     public float attackCoolDown;
-    public float lockTargetDistance;
+    //public float lockTargetDistance;
     public int damagePlayer;
     public float deathHeight;
     public float hitCooldownTime;
@@ -174,11 +175,13 @@ public class PlayerController : MonoBehaviour
                 switch (PlayerSensSystem.instance.nearestItem.itemType)
                 {
                     case Item.ItemType.BRANCH_WEAPON:
-                        //Player_GUI_System.instance.SetOnScreenPickUpIcon(true);
-                        PlayerManager.instance.AddItemToInventary(PlayerSensSystem.instance.nearestItem);
-                        PlayerSensSystem.instance.nearestItem.CollectItem();
-                        PlayerManager.instance.CountLeafs();
-                        Player_GUI_System.instance.SetLeafsCount(PlayerManager.instance.actualLeafQuantity);
+                        Player_GUI_System.instance.SetOnScreenPickUpIcon(true);
+                        if (Input.GetButtonDown("B") || Input.GetKeyDown(KeyCode.F))
+                        {
+                            PlayerManager.instance.AddItemToInventary(PlayerSensSystem.instance.nearestItem);
+                            PlayerSensSystem.instance.nearestItem.CollectItem();
+                            PlayerManager.instance.CheckIfHaveBranchWeaponItem();
+                        }
                         break;
                     case Item.ItemType.LEAF_WEAPON:
                         Player_GUI_System.instance.SetOnScreenPickUpIcon(true);
@@ -252,14 +255,14 @@ public class PlayerController : MonoBehaviour
     {
         CheckInputs();
 
-        if (Input.GetMouseButtonDown(0) || Input.GetButtonDown("X") && !attacking && targetLocked == null && !dashing && !gettingHit)
+        if (Input.GetMouseButtonDown(0) || Input.GetButtonDown("X") && !attacking /*&& targetLocked == null*/ && !dashing && !gettingHit)
         {
             ChangeState(meleeState);
         }
-        if (Input.GetMouseButtonDown(1) || Input.GetButtonDown("Y") && !attacking && !dart.IsShooted() && !dashing && !gettingHit)
-        {
-            ChangeState(slashState);
-        }
+        //if (Input.GetMouseButtonDown(1) || Input.GetButtonDown("Y") && !attacking /*&& !dart.IsShooted()*/ && !dashing && !gettingHit)
+        //{
+        //    ChangeState(slashState);
+        //}
         if (Input.GetButtonDown("A") || Input.GetKeyDown(KeyCode.Space) && !attacking && imGrounded && !gettingHit)
         {
             if (!inSlowMovement && dashCooldown == dashCooldownTime) ChangeState(dashState);
@@ -401,10 +404,10 @@ public class PlayerController : MonoBehaviour
     {
         return canMove;
     }
-    public void RangedAttack()
-    {
-        dart.Shoot(shootPoint.transform.position, playerRoot.transform.forward);
-    }
+    //public void RangedAttack()
+    //{
+    //    dart.Shoot(shootPoint.transform.position, playerRoot.transform.forward);
+    //}
     public void MoveBetweenGates(GameObject _gate)
     {
         p_controller.enabled = false;
