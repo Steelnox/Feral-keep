@@ -108,6 +108,8 @@ MonoBehaviour:
   enemy_list: []
   rock_list: []
   player: {fileID: 0}
+  playerManager: {fileID: 0}
+  gauntlet: {fileID: 488947888031936451, guid: 76adb0dc7ee7afb4ca1857e5dd91aa2a, type: 3}
   rockEvent: 0
   positionCheckpoint: {x: 0, y: 0, z: 0}
   materialActivated: {fileID: 2100000, guid: c6fb60f9bc345334aae9a5d39e436a7b, type: 2}

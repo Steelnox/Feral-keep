@@ -20,12 +20,13 @@ public class PlayerManager : MonoBehaviour
 
     public Item branchWeapon;
     public Item leafSwordSlot;
-    public Item powerGantaletItem;
+    public Item powerGauntaletItem;
     public int actualLeafQuantity;
     public int actualKeyQuantity;
 
     void Start()
     {
+        powerGauntaletItem = null;
         if (PlayerController.instance.startWithAllSkills)
         {
             PlayerAnimationController.instance.SetLeafWeaponAnim(true);
