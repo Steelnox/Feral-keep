@@ -146,10 +146,11 @@ public class PlayerController : MonoBehaviour
     }
     private void DoorsDetection()
     {
-        if (PlayerSensSystem.instance.nearestDoor != null && PlayerSensSystem.instance.nearestDoor.doorKey != null)
+        if (PlayerSensSystem.instance.nearestDoor != null && PlayerSensSystem.instance.nearestDoor.doorKeys.Length > 0)
         {
-            if (GenericSensUtilities.instance.DistanceBetween2Vectors(PlayerSensSystem.instance.nearestDoor.transform.position, characterModel.transform.position) < PlayerSensSystem.instance.nearestDoor.interactionDistance && PlayerManager.instance.FindKeyInInventory(PlayerSensSystem.instance.nearestDoor.doorKey) && PlayerSensSystem.instance.nearestDoor.GetLockedActualState() == true)
+            if (GenericSensUtilities.instance.DistanceBetween2Vectors(PlayerSensSystem.instance.nearestDoor.transform.position, characterModel.transform.position) < PlayerSensSystem.instance.nearestDoor.interactionDistance && PlayerManager.instance.FindKeysInInventory(PlayerSensSystem.instance.nearestDoor.doorKeys) && PlayerSensSystem.instance.nearestDoor.GetLockedActualState() == true)
             {
+                Debug.Log("HAVE THE AMOUNT OF KEYS?: " + PlayerManager.instance.FindKeysInInventory(PlayerSensSystem.instance.nearestDoor.doorKeys));
                 Player_GUI_System.instance.SetOnScreenUnlockDoorIcon(true);
                 if (Input.GetButtonDown("B") || Input.GetKeyDown(KeyCode.F))
                 {
@@ -290,65 +291,69 @@ public class PlayerController : MonoBehaviour
         {
             if (!inSlowMovement && dashCooldown == dashCooldownTime) ChangeState(dashState);
         }
-        if (!Input.GetButton("RB") || !Input.GetKey(KeyCode.E) && PlayerSensSystem.instance.nearestRock != null && GenericSensUtilities.instance.DistanceBetween2Vectors(characterModel.transform.position, PlayerSensSystem.instance.nearestRock.transform.position) < PlayerSensSystem.instance.nearestRock.attachDistance
+        if (PlayerManager.instance.powerGauntaletSlot != null)
+        {
+            if (!Input.GetButton("RB") || !Input.GetKey(KeyCode.E) && PlayerSensSystem.instance.nearestRock != null && GenericSensUtilities.instance.DistanceBetween2Vectors(characterModel.transform.position, PlayerSensSystem.instance.nearestRock.transform.position) < PlayerSensSystem.instance.nearestRock.attachDistance
             || PlayerSensSystem.instance.nearestLog != null && GenericSensUtilities.instance.DistanceBetween2Vectors(characterModel.transform.position, PlayerSensSystem.instance.nearestLog.transform.position) < PlayerSensSystem.instance.nearestLog.attachDistance)
-        {
-            /// PUSHING ROCKS ////
-            if (PlayerSensSystem.instance.nearestRock != null && GenericSensUtilities.instance.DistanceBetween2Vectors(characterModel.transform.position, PlayerSensSystem.instance.nearestRock.transform.position) < PlayerSensSystem.instance.nearestRock.attachDistance
-                && characterModel.transform.position.y > PlayerSensSystem.instance.nearestRock.rockBody.transform.position.y - PlayerSensSystem.instance.nearestRock.rockBody.GetComponent<MeshRenderer>().bounds.extents.y * 0.8f
-                && characterModel.transform.position.y < PlayerSensSystem.instance.nearestRock.rockBody.transform.position.y + PlayerSensSystem.instance.nearestRock.rockBody.GetComponent<MeshRenderer>().bounds.extents.y * 0.8f)
             {
-                PlayerSensSystem.instance.nearestRock.CheckSideToPush();
-                if (Input.GetButtonDown("RB") || Input.GetKeyDown(KeyCode.E))
+                /// PUSHING ROCKS ////
+                if (PlayerSensSystem.instance.nearestRock != null && GenericSensUtilities.instance.DistanceBetween2Vectors(characterModel.transform.position, PlayerSensSystem.instance.nearestRock.transform.position) < PlayerSensSystem.instance.nearestRock.attachDistance
+                    && characterModel.transform.position.y > PlayerSensSystem.instance.nearestRock.rockBody.transform.position.y - PlayerSensSystem.instance.nearestRock.rockBody.GetComponent<MeshRenderer>().bounds.extents.y * 0.8f
+                    && characterModel.transform.position.y < PlayerSensSystem.instance.nearestRock.rockBody.transform.position.y + PlayerSensSystem.instance.nearestRock.rockBody.GetComponent<MeshRenderer>().bounds.extents.y * 0.8f)
                 {
-                    //Debug.Log("Enter PushRockState");
-                    //PlayerSensSystem.instance.nearestRock.CheckSideToPush();
-                    if (PlayerSensSystem.instance.nearestRock.attchAviable)
+                    PlayerSensSystem.instance.nearestRock.CheckSideToPush();
+                    if (Input.GetButtonDown("RB") || Input.GetKeyDown(KeyCode.E))
                     {
-                        //Debug.Log("Enter PushRockStateFase2");
-                        ChangeState(pushRockState);
+                        //Debug.Log("Enter PushRockState");
+                        //PlayerSensSystem.instance.nearestRock.CheckSideToPush();
+                        if (PlayerSensSystem.instance.nearestRock.attchAviable)
+                        {
+                            //Debug.Log("Enter PushRockStateFase2");
+                            ChangeState(pushRockState);
+                        }
+                    }
+                    if (PlayerSensSystem.instance.nearestRock.attchAviable && !PlayerSensSystem.instance.nearestRock.CheckIfFalling())
+                    {
+                        Player_GUI_System.instance.SetOnScreenPushIcon(true);
+                    }
+                    else
+                    {
+                        Player_GUI_System.instance.SetOnScreenPushIcon(false);
                     }
                 }
-                if (PlayerSensSystem.instance.nearestRock.attchAviable && !PlayerSensSystem.instance.nearestRock.CheckIfFalling())
-                {
-                    Player_GUI_System.instance.SetOnScreenPushIcon(true);
-                }
-                else
-                {
-                    Player_GUI_System.instance.SetOnScreenPushIcon(false);
-                }
-            }
 
-            /// PUSHING LOGS ////
-            if (PlayerSensSystem.instance.nearestLog != null && GenericSensUtilities.instance.DistanceBetween2Vectors(characterModel.transform.position, PlayerSensSystem.instance.nearestLog.transform.position) < PlayerSensSystem.instance.nearestLog.attachDistance
-                && characterModel.transform.position.y > PlayerSensSystem.instance.nearestLog.logBody.transform.position.y - PlayerSensSystem.instance.nearestLog.logBody.GetComponent<MeshRenderer>().bounds.extents.y * 0.8f
-                && characterModel.transform.position.y < PlayerSensSystem.instance.nearestLog.logBody.transform.position.y + PlayerSensSystem.instance.nearestLog.logBody.GetComponent<MeshRenderer>().bounds.extents.y * 0.8f)
-            {
-                PlayerSensSystem.instance.nearestLog.CheckSideToPush();
-                if (Input.GetButtonDown("RB") || Input.GetKeyDown(KeyCode.E))
+                /// PUSHING LOGS ////
+                if (PlayerSensSystem.instance.nearestLog != null && GenericSensUtilities.instance.DistanceBetween2Vectors(characterModel.transform.position, PlayerSensSystem.instance.nearestLog.transform.position) < PlayerSensSystem.instance.nearestLog.attachDistance
+                    && characterModel.transform.position.y > PlayerSensSystem.instance.nearestLog.logBody.transform.position.y - PlayerSensSystem.instance.nearestLog.logBody.GetComponent<MeshRenderer>().bounds.extents.y * 0.8f
+                    && characterModel.transform.position.y < PlayerSensSystem.instance.nearestLog.logBody.transform.position.y + PlayerSensSystem.instance.nearestLog.logBody.GetComponent<MeshRenderer>().bounds.extents.y * 0.8f)
                 {
-                    //Debug.Log("Enter PushRockState");
-                    //PlayerSensSystem.instance.nearestLog.CheckSideToPush();
-                    if (PlayerSensSystem.instance.nearestLog.attchAviable)
+                    PlayerSensSystem.instance.nearestLog.CheckSideToPush();
+                    if (Input.GetButtonDown("RB") || Input.GetKeyDown(KeyCode.E))
                     {
-                        ChangeState(pushLogState);
+                        //Debug.Log("Enter PushRockState");
+                        //PlayerSensSystem.instance.nearestLog.CheckSideToPush();
+                        if (PlayerSensSystem.instance.nearestLog.attchAviable)
+                        {
+                            ChangeState(pushLogState);
+                        }
+                    }
+                    if (PlayerSensSystem.instance.nearestLog.attchAviable && !PlayerSensSystem.instance.nearestLog.CheckIfFalling())
+                    {
+                        Player_GUI_System.instance.SetOnScreenPushIcon(true);
+                    }
+                    else
+                    {
+                        Player_GUI_System.instance.SetOnScreenPushIcon(false);
                     }
                 }
-                if (PlayerSensSystem.instance.nearestLog.attchAviable && !PlayerSensSystem.instance.nearestLog.CheckIfFalling())
-                {
-                    Player_GUI_System.instance.SetOnScreenPushIcon(true);
-                }
-                else
-                {
-                    Player_GUI_System.instance.SetOnScreenPushIcon(false);
-                }
+            }
+            else
+            {
+                //Debug.Log("HidingPushIcon3");
+                Player_GUI_System.instance.SetOnScreenPushIcon(false);
             }
         }
-        else
-        {
-            //Debug.Log("HidingPushIcon3");
-            Player_GUI_System.instance.SetOnScreenPushIcon(false);
-        }
+        
     }
     private void SetDashCooldown()
     {

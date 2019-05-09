@@ -26,7 +26,6 @@ public class Player_GUI_System : MonoBehaviour
     public RectTransform leafWeaponIcon;
     public RectTransform branchWeaponIcon;
     public Text keysCount;
-    public Text leafsCount;
 
     private Vector2 leafWeaponIconOnScrenPos;
     private Vector2 actionIconOnScreenPos;
@@ -119,10 +118,6 @@ public class Player_GUI_System : MonoBehaviour
     public void SetKeysCount(int keys)
     {
         keysCount.text = "" + keys;
-    }
-    public void SetLeafsCount(int leafs)
-    {
-        leafsCount.text = "" + leafs;
     }
 }
 

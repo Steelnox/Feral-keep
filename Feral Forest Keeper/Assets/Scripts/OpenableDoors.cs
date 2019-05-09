@@ -6,19 +6,19 @@ public class OpenableDoors : MonoBehaviour
 {
     public GameObject movableDoorPivot;
     public GameObject doorBody;
-    public float interactionDistance;
-    public bool cameraFeedback;
-    public float scripteMovementsRepetitions;
-    public bool startOpened;
-    public float setupTimeLaps;
-
-    public Item doorKey;
+    public Item[] doorKeys;
     public Switch_Behavior activationSwitch;
-    public bool holdSwitchToOpen;
-
+    public float interactionDistance;
+    public float setupTimeLaps;
+    public float scripteMovementsRepetitions;
     public float smoothmovement;
-    //public bool openedState;
+    public bool cameraFeedback;
+    public bool startOpened;
+    public bool holdSwitchToOpen;
     public bool lockState;
+    public enum AxisPivot { X, Y, Z}
+    public AxisPivot axisPivot;
+    public int maxGrades;
 
     private bool activated;
     private bool opened;
@@ -30,24 +30,49 @@ public class OpenableDoors : MonoBehaviour
     private bool justClose;
     [SerializeField]
     private float actualSetupTimeLaps;
+    private int numKeys;
 
     void Start()
     {
         actualSetupTimeLaps = setupTimeLaps;
 
-        if (doorKey != null && activationSwitch == null)
+        if (doorKeys.Length > 0 && activationSwitch == null)
         {
             closeRot = movableDoorPivot.transform.localRotation.eulerAngles;
-            openRot = new Vector3(0, 120, 0);
+            switch (axisPivot)
+            {
+                case AxisPivot.X:
+                    openRot = new Vector3(maxGrades, 0, 0);
+                    break;
+                case AxisPivot.Y:
+                    openRot = new Vector3(0, maxGrades, 0);
+                    break;
+                case AxisPivot.Z:
+                    openRot = new Vector3(0, 0, maxGrades);
+                    break;
+            }
 
+            numKeys = doorKeys.Length;
             locked = lockState;
             opened = false;
             justUnlocked = true;
         }
-        if (activationSwitch != null && doorKey == null)
+        if (activationSwitch != null && doorKeys.Length == 0)
         {
             closeRot = movableDoorPivot.transform.localRotation.eulerAngles;
-            openRot = new Vector3(0, 120, 0);
+            switch (axisPivot)
+            {
+                case AxisPivot.X:
+                    openRot = new Vector3(maxGrades, 0, 0);
+                    break;
+                case AxisPivot.Y:
+                    openRot = new Vector3(0, maxGrades, 0);
+                    break;
+                case AxisPivot.Z:
+                    openRot = new Vector3(0, 0, maxGrades);
+                    break;
+            }
+
             if (startOpened)
             {
                 movableDoorPivot.transform.localRotation = Quaternion.Euler(openRot);
@@ -73,7 +98,7 @@ public class OpenableDoors : MonoBehaviour
         {
             if (actualSetupTimeLaps != 0) actualSetupTimeLaps = 0;
         }
-        if (doorKey != null && activationSwitch == null)
+        if (doorKeys.Length > 0 && activationSwitch == null)
         {
             if (!locked)
             {
@@ -88,7 +113,7 @@ public class OpenableDoors : MonoBehaviour
                 }
             }
         }
-        if (activationSwitch != null && doorKey == null)
+        if (activationSwitch != null && doorKeys.Length == 0)
         {
             if (holdSwitchToOpen)
             {
@@ -180,7 +205,6 @@ public class OpenableDoors : MonoBehaviour
                     }
                 }
             }
-            
         }
     }
     private void UnlockDoor()
@@ -203,5 +227,9 @@ public class OpenableDoors : MonoBehaviour
     public bool GetLockedActualState()
     {
         return locked;
+    }
+    public int GetNumKeys()
+    {
+        return numKeys;
     }
 }

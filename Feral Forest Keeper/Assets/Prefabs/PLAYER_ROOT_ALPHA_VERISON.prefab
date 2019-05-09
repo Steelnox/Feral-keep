@@ -1215,7 +1215,6 @@ MonoBehaviour:
   leafWeaponIcon: {fileID: 0}
   branchWeaponIcon: {fileID: 0}
   keysCount: {fileID: 0}
-  leafsCount: {fileID: 0}
 --- !u!114 &4706931804043738238
 MonoBehaviour:
   m_ObjectHideFlags: 0

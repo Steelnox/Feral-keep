@@ -87,6 +87,7 @@ public class PlayerManager : MonoBehaviour
             if (item.itemType == Item.ItemType.LEAF_WEAPON)
             {
                 leafSwordSlot = item;
+                branchWeaponSlot = null;
             }
         }
         if (leafSwordSlot != null)
@@ -121,15 +122,22 @@ public class PlayerManager : MonoBehaviour
         }
         actualLeafQuantity = count;
     }
-    public bool FindKeyInInventory(Item key)
+    public bool FindKeysInInventory(Item[] keysList)
     {
-        foreach (Item item in items)
+        bool result = false;
+        int numKeys = 0;
+
+        for (int i = 0; i < keysList.Length; i++)
         {
-            if (item == key)
+            foreach (Item item in items)
             {
-                return true;
+                if (item == keysList[i])
+                {
+                    numKeys++;
+                }
             }
         }
-        return false;
+        if (numKeys == keysList.Length) result = true;
+        return result;
     }
 }
