@@ -45,6 +45,9 @@ public class RangedMove : Enemy
         if (other.tag == "PlayerWeapon" && currentState != damaged)
         {
             ChangeState(damaged);
+            HealthBar.SetActive(true);
+            float x = HealthBar.transform.localScale.x * 0.5f;
+            HealthBar.transform.localScale = new Vector3(x, 1, 1);
         }
     }
 }
