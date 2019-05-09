@@ -23,6 +23,7 @@ public class Item : MonoBehaviour
     }
     public void SetItem(Vector3 pos, Vector3 rot)
     {
+        if (collected == true) collected = false;
         transform.position = pos;
         transform.rotation = Quaternion.Euler(rot);
     }

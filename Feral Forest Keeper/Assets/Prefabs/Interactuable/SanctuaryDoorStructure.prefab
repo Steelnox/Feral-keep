@@ -19,7 +19,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &5060148679657941862
 Transform:
@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 55296d1b6ee54e14e8eb4648d4b448ee, type: 2}
+  - {fileID: 2100000, guid: 840936a0715309449b0691b0626b9c1f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1159,6 +1159,7 @@ GameObject:
   - component: {fileID: 5060148681118983642}
   - component: {fileID: 5060148681118983641}
   - component: {fileID: 5060148681118983623}
+  - component: {fileID: 3838907317131290585}
   m_Layer: 10
   m_Name: SanctuaryDoorStructure
   m_TagString: Untagged
@@ -2411,3 +2412,16 @@ MonoBehaviour:
   axisPivot: 2
   maxGrades: 70
   actualSetupTimeLaps: 0
+--- !u!65 &3838907317131290585
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5060148681118983640}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6, y: 3.0000002, z: 1}
+  m_Center: {x: -3, y: 1.4999999, z: 0.5}

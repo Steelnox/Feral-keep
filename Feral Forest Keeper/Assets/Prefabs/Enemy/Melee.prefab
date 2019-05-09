@@ -130,9 +130,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.15321414
-  m_Height: 0.3064283
+  m_Height: 0.49
   m_Direction: 1
-  m_Center: {x: 0, y: 0.39801055, z: -0.04015477}
+  m_Center: {x: 0, y: 0.5, z: -0.04015477}
 --- !u!54 &4085395567938847067
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -354,11 +354,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6549901792006296709}
     m_Modifications:
-    - target: {fileID: 8628053427497267204, guid: 28575bf9bf5978545b5b7639f30050d2,
-        type: 3}
-      propertyPath: m_Name
-      value: Canvas
-      objectReference: {fileID: 0}
     - target: {fileID: 1099174526880630178, guid: 28575bf9bf5978545b5b7639f30050d2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -463,6 +458,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8628053427497267204, guid: 28575bf9bf5978545b5b7639f30050d2,
+        type: 3}
+      propertyPath: m_Name
+      value: Canvas
       objectReference: {fileID: 0}
     - target: {fileID: 5478301780562013057, guid: 28575bf9bf5978545b5b7639f30050d2,
         type: 3}

@@ -56,32 +56,22 @@ public class Bush_Behavior : MonoBehaviour
                     bush_Pivot.transform.up = Vector3.Lerp(bush_Pivot.transform.up, initUpVector, (smoothMovement * 2) * Time.deltaTime);
                 }
             }
-            /*if (isCutted && justBeingCutted)
-            {
-                Debug.Log("Bush Cutted");
-                if (cutParticles.particleCount == 0)
-                {
-                    Debug.Log("Bush particlesCOuint == 0");
-                    HideParticles();
-                    ResetParticles();
-                    justBeingCutted = false;
-                    active = false;
-                }
-            }*/
         }
     }
     public void CutBush()
     {
         Vector3 bushPos = bush_Pivot.transform.position;
         isCutted = true;
-        //SetParticles(bushPos);
         HideBush();
         SetParticles(bushPos);
-        //PlayParticles();
+        int random = Random.Range(1, 100);
+        if (random % 2 == 0)
+        {
+            GameManager.instance.GetRandomLiveUpItem().transform.position = bushPos + Vector3.up * 0.1f;
+        }
     }
     private void SetParticles(Vector3 pos)
     {
-        //particlesPivot.transform.position = pos;
         ParticlesFeedback_Control.instance.SetBushParticlesOnScene(pos);
     }
     private void HideParticles()
@@ -109,7 +99,6 @@ public class Bush_Behavior : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        //PlayerController p = other.gameObject.GetComponent<PlayerController>();
         if (other.tag == "PlayerWeapon")
         {
             if (PlayerManager.instance.leafSwordSlot != null)CutBush();

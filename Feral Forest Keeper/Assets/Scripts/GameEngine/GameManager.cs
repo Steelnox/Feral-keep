@@ -4,6 +4,18 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    #region Singleton
+
+    public static GameManager instance;
+
+    private void Awake()
+    {
+        if (instance == null) instance = this;
+        if (instance != this) Destroy(this);
+    }
+
+    #endregion
+
     public bool pause;
     public RectTransform provisionalGUIMenu;
     public Item[] liveUpPool;
@@ -46,7 +58,15 @@ public class GameManager : MonoBehaviour
     }
     public Item GetRandomLiveUpItem()
     {
-        int random = Random.Range(0, liveUpPool.Length - 1);
-        return liveUpPool[random];
+        int random = Random.Range(0, liveUpPool.Length);
+        if (liveUpPool[random].collected)
+        {
+            liveUpPool[random].collected = false;
+            return liveUpPool[random];
+        }
+        else
+        {
+            return null;
+        }
     }
 }
