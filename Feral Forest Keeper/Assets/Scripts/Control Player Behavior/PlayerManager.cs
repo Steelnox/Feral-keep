@@ -29,12 +29,14 @@ public class PlayerManager : MonoBehaviour
 
     void Start()
     {
+        branchWeaponForAnimations.SetActive(false);
+        leafWeaponForAnimations.SetActive(false);
         branchWeaponSlot = null;
         leafSwordSlot = null;
         powerGauntaletSlot = null;
         if (PlayerController.instance.startWithAllSkills)
         {
-            PlayerAnimationController.instance.SetLeafWeaponAnim(true);
+            PlayerAnimationController.instance.SetWeaponAnim(true);
         }
     }
 
@@ -68,13 +70,14 @@ public class PlayerManager : MonoBehaviour
         }
         if (branchWeaponSlot != null)
         {
-            PlayerAnimationController.instance.SetLeafWeaponAnim(true);
-            Player_GUI_System.instance.SetOnScreenLeafWeaponIcon(true);
+            branchWeaponForAnimations.SetActive(true);
+            PlayerAnimationController.instance.SetWeaponAnim(true);
+            Player_GUI_System.instance.SetOnScreenBranchWeaponIcon(true);
         }
         else
         {
-            PlayerAnimationController.instance.SetLeafWeaponAnim(false);
-            Player_GUI_System.instance.SetOnScreenLeafWeaponIcon(false);
+            PlayerAnimationController.instance.SetWeaponAnim(false);
+            Player_GUI_System.instance.SetOnScreenBranchWeaponIcon(false);
         }
     }
     public void CheckIfHaveLeafWeaponItem()
@@ -88,12 +91,15 @@ public class PlayerManager : MonoBehaviour
         }
         if (leafSwordSlot != null)
         {
-            PlayerAnimationController.instance.SetLeafWeaponAnim(true);
+            branchWeaponForAnimations.SetActive(false);
+            leafWeaponForAnimations.SetActive(true);
+            Player_GUI_System.instance.SetOnScreenBranchWeaponIcon(false);
+            PlayerAnimationController.instance.SetWeaponAnim(true);
             Player_GUI_System.instance.SetOnScreenLeafWeaponIcon(true);
         }
         else
         {
-            PlayerAnimationController.instance.SetLeafWeaponAnim(false);
+            PlayerAnimationController.instance.SetWeaponAnim(false);
             Player_GUI_System.instance.SetOnScreenLeafWeaponIcon(false);
         }
     }

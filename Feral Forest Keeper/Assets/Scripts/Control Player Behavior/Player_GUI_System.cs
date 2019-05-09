@@ -22,7 +22,9 @@ public class Player_GUI_System : MonoBehaviour
     public RectTransform pushIcon;
     public RectTransform pickupIcon;
     public RectTransform unlockDoorIcon;
+    public RectTransform activateSanctuaryIcon;
     public RectTransform leafWeaponIcon;
+    public RectTransform branchWeaponIcon;
     public Text keysCount;
     public Text leafsCount;
 
@@ -39,6 +41,8 @@ public class Player_GUI_System : MonoBehaviour
         SetOnScreenPickUpIcon(false);
         SetOnScreenUnlockDoorIcon(false);
         SetOnScreenLeafWeaponIcon(false);
+        SetOnScreenBranchWeaponIcon(false);
+        SetOnScreenActivateSanctuaryIcon(false);
     }
 
     void Update()
@@ -88,6 +92,28 @@ public class Player_GUI_System : MonoBehaviour
         else
         {
             leafWeaponIcon.anchoredPosition = hidePos;
+        }
+    }
+    public void SetOnScreenBranchWeaponIcon(bool b)
+    {
+        if (b)
+        {
+            branchWeaponIcon.anchoredPosition = leafWeaponIconOnScrenPos;
+        }
+        else
+        {
+            branchWeaponIcon.anchoredPosition = hidePos;
+        }
+    }
+    public void SetOnScreenActivateSanctuaryIcon(bool b)
+    {
+        if (b)
+        {
+            activateSanctuaryIcon.anchoredPosition = actionIconOnScreenPos;
+        }
+        else
+        {
+            activateSanctuaryIcon.anchoredPosition = hidePos;
         }
     }
     public void SetKeysCount(int keys)

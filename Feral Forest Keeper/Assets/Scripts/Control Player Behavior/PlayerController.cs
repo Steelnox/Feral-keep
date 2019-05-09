@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
     public Dash_PlayerState dashState;
     //public GameObject targetLocked;
     public BoxCollider weaponCollider;
-    public GameObject meleeWeaponPosition;
+    public GameObject meleeWeaponRoot;
 
     public int playerLive;
     public int dashCharges;
@@ -109,6 +109,7 @@ public class PlayerController : MonoBehaviour
         SetDashCooldown();
         ItemsDetection();
         DoorsDetection();
+        SanctuaryDetection();
         if (gettingHit)
         {
             if (!PlayerAnimationController.instance.GetGettingHitAnimState())PlayerAnimationController.instance.SetGettingHitAnim(true);
@@ -226,6 +227,28 @@ public class PlayerController : MonoBehaviour
         else if (PlayerSensSystem.instance.nearestItem == null)
         {
             Player_GUI_System.instance.SetOnScreenPickUpIcon(false);
+        }
+    }
+    private void SanctuaryDetection()
+    {
+        if (PlayerSensSystem.instance.nearestSanctuary != null) 
+        {
+            if (GenericSensUtilities.instance.DistanceBetween2Vectors(PlayerSensSystem.instance.nearestSanctuary.transform.position, PlayerController.instance.transform.position) < 2)
+            {
+                Player_GUI_System.instance.SetOnScreenActivateSanctuaryIcon(true);
+                if (Input.GetButtonDown("B") || Input.GetKeyDown(KeyCode.F))
+                {
+                    PlayerSensSystem.instance.nearestSanctuary.ActivateSanctuary();
+                }
+            }
+            else
+            {
+                Player_GUI_System.instance.SetOnScreenActivateSanctuaryIcon(false);
+            }
+        }
+        else
+        {
+            Player_GUI_System.instance.SetOnScreenActivateSanctuaryIcon(false);
         }
     }
     private void ApplyGravity()

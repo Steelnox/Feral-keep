@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 308504007550023804}
   - component: {fileID: 3155543380552968221}
   - component: {fileID: 1984833096164167290}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ITEM_BranchWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemType: 0
-  interactionDistance: 0
+  interactionDistance: 1
   hidePos: {x: 0, y: 0, z: 0}
   collected: 0
 --- !u!65 &1984833096164167290
@@ -85,6 +85,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: f392c11a67edb0348b7c702315c9e7dd, type: 3}
       propertyPath: m_Name
       value: Weapon_Branch
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f392c11a67edb0348b7c702315c9e7dd, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f392c11a67edb0348b7c702315c9e7dd, type: 3}
       propertyPath: m_LocalPosition.x

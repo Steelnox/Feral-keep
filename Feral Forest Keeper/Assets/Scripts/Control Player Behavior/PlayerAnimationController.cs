@@ -47,11 +47,11 @@ public class PlayerAnimationController : MonoBehaviour
     {
         return animator.GetCurrentAnimatorStateInfo(0).IsName(name);
     }
-    public void SetLeafWeaponAnim(bool active)
+    public void SetWeaponAnim(bool active)
     {
-        if (animator.GetBool("WeaponLeaf") != active)
+        if (animator.GetBool("Weapon") != active)
         {
-            animator.SetBool("WeaponLeaf", active);
+            animator.SetBool("Weapon", active);
         }
     }
     public void SetPushinAnim(bool active)

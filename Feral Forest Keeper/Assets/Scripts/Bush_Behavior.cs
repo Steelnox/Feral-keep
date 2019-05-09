@@ -112,7 +112,7 @@ public class Bush_Behavior : MonoBehaviour
         //PlayerController p = other.gameObject.GetComponent<PlayerController>();
         if (other.tag == "PlayerWeapon")
         {
-            CutBush();
+            if (PlayerManager.instance.leafSwordSlot != null)CutBush();
         }
     }
 }
