@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public bool pause;
     public RectTransform provisionalGUIMenu;
-
+    public Item[] liveUpPool;
     private Vector2 provisionalGUIMenuOnScreenPos;
     private Vector2 hidePos;
 
@@ -43,5 +43,10 @@ public class GameManager : MonoBehaviour
             PlayerController.instance.SetCanMove(true);
             if (provisionalGUIMenu.anchoredPosition != hidePos) provisionalGUIMenu.anchoredPosition = hidePos;
         }
+    }
+    public Item GetRandomLiveUpItem()
+    {
+        int random = Random.Range(0, liveUpPool.Length - 1);
+        return liveUpPool[random];
     }
 }

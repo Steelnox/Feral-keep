@@ -11,6 +11,7 @@ public class Item : MonoBehaviour
 
     public Vector3 hidePos;
     public bool collected;
+
     public void Start()
     {
 

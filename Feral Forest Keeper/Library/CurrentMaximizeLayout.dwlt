@@ -23,10 +23,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 909, y: 424}
-  m_MaxSize: {x: 22004, y: 10000}
+  m_MinSize: {x: 915, y: 424}
+  m_MaxSize: {x: 22010, y: 10024}
   vertical: 0
-  controlID: 8567
+  controlID: 8917
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -126,8 +126,8 @@ MonoBehaviour:
     y: 0
     width: 442
     height: 947
-  m_MinSize: {x: 232, y: 274}
-  m_MaxSize: {x: 10002, y: 10024}
+  m_MinSize: {x: 230, y: 250}
+  m_MaxSize: {x: 10000, y: 10000}
   m_ActualView: {fileID: 4}
   m_Panes:
   - {fileID: 4}
@@ -172,11 +172,11 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Materials/Items
+    - Assets/Prefabs/Items
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Materials/Items
+  - Assets/Prefabs/Items
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\Hobbes\Documents\Videojocs Carpeta projectes\FERAL_PROJECT\GitHub_Local\Feral-keep\Feral
     Forest Keeper
@@ -184,8 +184,8 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: c65f0300
-    m_LastClickedID: 221126
+    m_SelectedIDs: 62530000
+    m_LastClickedID: 21346
     m_ExpandedIDs: 00000000783900004a510000a4520000645300002e540000ce540000ec5400000855000012550000205500003e550000c255000068560000a2560000a45700005858000074590000765a00004c6800004e680000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -239,8 +239,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: a043feff
-    m_LastClickedInstanceID: -113760
+    m_SelectedInstanceIDs: ea5f0300
+    m_LastClickedInstanceID: 221162
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: 5ce500003a5e0100
     m_RenameOverlay:
@@ -319,7 +319,7 @@ MonoBehaviour:
   m_MinSize: {x: 204, y: 424}
   m_MaxSize: {x: 4004, y: 8024}
   vertical: 1
-  controlID: 8547
+  controlID: 8918
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -373,14 +373,14 @@ MonoBehaviour:
     height: 513
   m_PersistentViewDataDictionary: {fileID: 0}
   m_WindowGUID: 4cc1c637d0118124dbb7817a9cfe764b
-  m_SceneLighting: 1
+  m_SceneLighting: 0
   m_2DMode: 0
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 7.711436, y: 1.2699091, z: -16.644264}
+    m_Target: {x: -12.741071, y: -2.1197996, z: -1.9301671}
     speed: 2
-    m_Value: {x: 7.711436, y: 1.2699091, z: -16.644264}
+    m_Value: {x: -12.741071, y: -2.1197996, z: -1.9301671}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -408,13 +408,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: 0.13990091, y: -0.4296836, z: 0.06757976, w: 0.88951266}
+    m_Target: {x: 0.0057351543, y: 0.98718274, z: -0.1552665, w: 0.036465842}
     speed: 2
-    m_Value: {x: 0.13990091, y: -0.4296836, z: 0.06757976, w: 0.88951266}
+    m_Value: {x: 0.0057351543, y: 0.98718274, z: -0.1552665, w: 0.036465842}
   m_Size:
-    m_Target: 2.8578846
+    m_Target: 2.8578837
     speed: 2
-    m_Value: 2.8578846
+    m_Value: 2.8578837
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -544,8 +544,8 @@ MonoBehaviour:
     y: 0
     width: 204
     height: 947
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 204, y: 224}
+  m_MaxSize: {x: 4004, y: 4024}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -582,7 +582,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: f8affeffeed5feff20d6feff840ffffff85c0000505d00005a610000fe640000
+      m_ExpandedIDs: 50120500
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
