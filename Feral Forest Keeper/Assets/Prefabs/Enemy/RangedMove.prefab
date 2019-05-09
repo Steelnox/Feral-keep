@@ -199,7 +199,7 @@ MonoBehaviour:
   m_CollisionLayerMask:
     serializedVersion: 2
     m_Bits: 0
-  HealthBar: {fileID: 0}
+  HealthBar: {fileID: 6500900450301134106}
   patrol: {fileID: 4507946412084314189}
   chase: {fileID: 5510113244144112258}
   attack: {fileID: 1688598975400674458}
@@ -491,6 +491,12 @@ PrefabInstance:
 --- !u!224 &1832980016473402169 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1099174526880630178, guid: 28575bf9bf5978545b5b7639f30050d2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1599060397622144667}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6500900450301134106 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5478301780562013057, guid: 28575bf9bf5978545b5b7639f30050d2,
     type: 3}
   m_PrefabInstance: {fileID: 1599060397622144667}
   m_PrefabAsset: {fileID: 0}

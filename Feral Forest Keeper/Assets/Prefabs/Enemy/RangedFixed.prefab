@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bae9859ee58c97041a1677b0d0a0c070, type: 2}
+  - {fileID: 2100000, guid: 0c85c0d2ce0189640b4c139ba0f3f0dc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -197,7 +197,7 @@ MonoBehaviour:
   m_CollisionLayerMask:
     serializedVersion: 2
     m_Bits: 0
-  HealthBar: {fileID: 0}
+  HealthBar: {fileID: 5560563577155224651}
   look: {fileID: 7993237415266343801}
   attack: {fileID: 6548456758504554795}
   damaged: {fileID: 7948329713503075658}
@@ -299,7 +299,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bae9859ee58c97041a1677b0d0a0c070, type: 2}
+  - {fileID: 2100000, guid: 0c85c0d2ce0189640b4c139ba0f3f0dc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -446,6 +446,12 @@ PrefabInstance:
 --- !u!224 &1039429938437499496 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1099174526880630178, guid: 28575bf9bf5978545b5b7639f30050d2,
+    type: 3}
+  m_PrefabInstance: {fileID: 84936642113695690}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5560563577155224651 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5478301780562013057, guid: 28575bf9bf5978545b5b7639f30050d2,
     type: 3}
   m_PrefabInstance: {fileID: 84936642113695690}
   m_PrefabAsset: {fileID: 0}
