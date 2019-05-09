@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 09d4bb531e6eda041b1c057d75333ad0
+guid: 658c69235f415904db3ee354198bc26c
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,9 +8,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Tribal
+  fontName: Zenzai Itachi
   fontNames:
-  - Tribal
+  - Zenzai Itachi
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
