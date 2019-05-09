@@ -1215,6 +1215,7 @@ MonoBehaviour:
   activateSanctuaryIcon: {fileID: 0}
   leafWeaponIcon: {fileID: 0}
   branchWeaponIcon: {fileID: 0}
+  strengthForestIcon: {fileID: 0}
   keysCount: {fileID: 0}
 --- !u!114 &4706931804043738238
 MonoBehaviour:

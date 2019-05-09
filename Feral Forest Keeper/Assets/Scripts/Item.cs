@@ -11,10 +11,21 @@ public class Item : MonoBehaviour
 
     public Vector3 hidePos;
     public bool collected;
+    private Vector3 onScenPoition;
+    private AnimationCurve curve;
 
     public void Start()
     {
-
+        onScenPoition = transform.position;
+        curve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(1, 1));
+        curve.postWrapMode = WrapMode.PingPong;
+    }
+    public void Update()
+    {
+        if (!collected)
+        {
+            transform.position = Vector3.Lerp(onScenPoition + Vector3.down * 0.1f, onScenPoition + Vector3.up * 0.1f, curve.Evaluate(Time.time));
+        }
     }
     public void CollectItem()
     {
@@ -26,5 +37,6 @@ public class Item : MonoBehaviour
         if (collected == true) collected = false;
         transform.position = pos;
         transform.rotation = Quaternion.Euler(rot);
+        onScenPoition = pos;
     }
 }

@@ -67,7 +67,7 @@ public class Bush_Behavior : MonoBehaviour
         int random = Random.Range(1, 100);
         if (random % 2 == 0)
         {
-            GameManager.instance.GetRandomLiveUpItem().transform.position = bushPos + Vector3.up * 0.1f;
+            GameManager.instance.GetRandomLiveUpItem().SetItem(bushPos + Vector3.up * 0.3f, transform.rotation.eulerAngles);
         }
     }
     private void SetParticles(Vector3 pos)

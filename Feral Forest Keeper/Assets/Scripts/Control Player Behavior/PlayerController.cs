@@ -240,6 +240,7 @@ public class PlayerController : MonoBehaviour
                 if (Input.GetButtonDown("B") || Input.GetKeyDown(KeyCode.F))
                 {
                     PlayerSensSystem.instance.nearestSanctuary.ActivateSanctuary();
+                    Player_GUI_System.instance.SetOnScreenStrenfthForestIcon(true);
                 }
             }
             else

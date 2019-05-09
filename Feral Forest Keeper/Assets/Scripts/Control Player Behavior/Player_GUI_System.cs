@@ -25,16 +25,19 @@ public class Player_GUI_System : MonoBehaviour
     public RectTransform activateSanctuaryIcon;
     public RectTransform leafWeaponIcon;
     public RectTransform branchWeaponIcon;
+    public RectTransform strengthForestIcon;
     public Text keysCount;
 
     private Vector2 leafWeaponIconOnScrenPos;
     private Vector2 actionIconOnScreenPos;
+    private Vector2 strengthIconOnScreenPos;
     private Vector2 hidePos;
 
     void Start()
     {
         leafWeaponIconOnScrenPos = leafWeaponIcon.anchoredPosition;
         actionIconOnScreenPos = pushIcon.anchoredPosition;
+        strengthIconOnScreenPos = strengthForestIcon.anchoredPosition;
         hidePos = Vector2.right * 1000;
         SetOnScreenPushIcon(false);
         SetOnScreenPickUpIcon(false);
@@ -42,6 +45,7 @@ public class Player_GUI_System : MonoBehaviour
         SetOnScreenLeafWeaponIcon(false);
         SetOnScreenBranchWeaponIcon(false);
         SetOnScreenActivateSanctuaryIcon(false);
+        SetOnScreenStrenfthForestIcon(false);
     }
 
     void Update()
@@ -113,6 +117,17 @@ public class Player_GUI_System : MonoBehaviour
         else
         {
             activateSanctuaryIcon.anchoredPosition = hidePos;
+        }
+    }
+    public void SetOnScreenStrenfthForestIcon(bool b)
+    {
+        if (b)
+        {
+            strengthForestIcon.anchoredPosition = strengthIconOnScreenPos;
+        }
+        else
+        {
+            strengthForestIcon.anchoredPosition = hidePos;
         }
     }
     public void SetKeysCount(int keys)
