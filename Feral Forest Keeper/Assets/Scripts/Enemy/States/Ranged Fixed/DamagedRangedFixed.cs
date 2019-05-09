@@ -28,7 +28,7 @@ public class DamagedRangedFixed : State
 
         distanceToPlayer = ranged.GetDistance(ranged.player.transform.position);
 
-        if (ranged.currentHealth <= 0) Destroy(this.gameObject);
+        if (ranged.currentHealth <= 0) this.gameObject.SetActive(false);
         if (ranged.currentHealth > 0)
         {
             if (distanceToPlayer <= ranged.distanceToAttack) ranged.ChangeState(ranged.attack);

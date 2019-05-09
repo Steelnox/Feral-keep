@@ -354,6 +354,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6549901792006296709}
     m_Modifications:
+    - target: {fileID: 8628053427497267204, guid: 28575bf9bf5978545b5b7639f30050d2,
+        type: 3}
+      propertyPath: m_Name
+      value: Canvas
+      objectReference: {fileID: 0}
     - target: {fileID: 1099174526880630178, guid: 28575bf9bf5978545b5b7639f30050d2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -372,22 +377,22 @@ PrefabInstance:
     - target: {fileID: 1099174526880630178, guid: 28575bf9bf5978545b5b7639f30050d2,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.35819796
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1099174526880630178, guid: 28575bf9bf5978545b5b7639f30050d2,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1099174526880630178, guid: 28575bf9bf5978545b5b7639f30050d2,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1099174526880630178, guid: 28575bf9bf5978545b5b7639f30050d2,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9336457
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1099174526880630178, guid: 28575bf9bf5978545b5b7639f30050d2,
         type: 3}
@@ -397,7 +402,7 @@ PrefabInstance:
     - target: {fileID: 1099174526880630178, guid: 28575bf9bf5978545b5b7639f30050d2,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -41.979
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1099174526880630178, guid: 28575bf9bf5978545b5b7639f30050d2,
         type: 3}
@@ -412,12 +417,12 @@ PrefabInstance:
     - target: {fileID: 1099174526880630178, guid: 28575bf9bf5978545b5b7639f30050d2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.0213
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1099174526880630178, guid: 28575bf9bf5978545b5b7639f30050d2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.545
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 1099174526880630178, guid: 28575bf9bf5978545b5b7639f30050d2,
         type: 3}
@@ -458,11 +463,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8628053427497267204, guid: 28575bf9bf5978545b5b7639f30050d2,
-        type: 3}
-      propertyPath: m_Name
-      value: Canvas
       objectReference: {fileID: 0}
     - target: {fileID: 5478301780562013057, guid: 28575bf9bf5978545b5b7639f30050d2,
         type: 3}

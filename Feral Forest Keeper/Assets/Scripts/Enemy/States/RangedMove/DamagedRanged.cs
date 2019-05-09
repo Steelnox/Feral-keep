@@ -40,7 +40,7 @@ public class DamagedRanged : State
         timer += Time.deltaTime;
         if (timer >= timeKnockback)
         {
-            if (ranged.currentHealth <= 0) Destroy(this.gameObject);
+            if (ranged.currentHealth <= 0) this.gameObject.SetActive(false);
             if (ranged.currentHealth > 0)
             {
                 if (ranged.GetDistance(ranged.player.transform.position) <= ranged.distanceToChase) ranged.ChangeState(ranged.chase);
