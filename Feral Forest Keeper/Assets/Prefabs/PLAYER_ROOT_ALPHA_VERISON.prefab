@@ -945,7 +945,7 @@ GameObject:
   - component: {fileID: 4706931805604448393}
   - component: {fileID: 4706931804043738238}
   m_Layer: 0
-  m_Name: PLAYER_ROOT 1
+  m_Name: PLAYER_ROOT_ALPHA_VERISON
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -958,7 +958,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6842893140168500509}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.5, y: 1.326, z: 21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1346,21 +1346,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8842695633186261813, guid: 4374043e3c7b15e48a5f64f5402fca4c,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8842695633186261813, guid: 4374043e3c7b15e48a5f64f5402fca4c,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8842695633186261813, guid: 4374043e3c7b15e48a5f64f5402fca4c,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4374043e3c7b15e48a5f64f5402fca4c, type: 3}
 --- !u!1 &6543644705254657168 stripped
@@ -1444,12 +1429,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8385089848938494860, guid: 1374826f5be4d7746b5e72e5c526e5b7,
         type: 3}
-      propertyPath: m_LocalScale.y
+      propertyPath: m_LocalScale.x
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8385089848938494860, guid: 1374826f5be4d7746b5e72e5c526e5b7,
         type: 3}
-      propertyPath: m_LocalScale.x
+      propertyPath: m_LocalScale.y
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8385089848938494860, guid: 1374826f5be4d7746b5e72e5c526e5b7,
