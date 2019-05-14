@@ -97,7 +97,7 @@ MonoBehaviour:
   - {fileID: 3582090573031776125}
   - {fileID: 8420560229956568396}
   playerOver: 0
-  grassContactDistance: 0.5
+  grassContactDistance: 0.6
   bushContactDistance: 0.8
 --- !u!65 &1398895332954806359
 BoxCollider:

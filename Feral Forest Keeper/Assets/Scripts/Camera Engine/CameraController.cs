@@ -42,7 +42,7 @@ public class CameraController : MonoBehaviour
         player = PlayerController.instance.playerRoot;
         desiredPosition = player.transform.position + cameraOffSet;
         transform.position = desiredPosition;
-        actualBehavior = Behavior.FOLLOW_PLAYER;
+        SetActualBehavior(Behavior.FOLLOW_PLAYER);
         initCameraRotation = p_Camera.transform.rotation;
         p_Camera.fieldOfView = standardFOV;
         actualScriptedCooldown = scriptedCooldownTime;
@@ -134,6 +134,16 @@ public class CameraController : MonoBehaviour
 
     bool FollowTargetWithinLevelBorders()
     {
+        Vector3 UP_MIDDLE_NearPlanePoint = new Vector3(0.5f, 1, p_Camera.nearClipPlane);
+        UP_MIDDLE_NearPlanePoint = p_Camera.ViewportToWorldPoint(UP_MIDDLE_NearPlanePoint);
+        Vector3 UP_MIDDLE_FarPlanePoint = new Vector3(0.5f, 1, p_Camera.farClipPlane);
+        UP_MIDDLE_FarPlanePoint = p_Camera.ViewportToWorldPoint(UP_MIDDLE_FarPlanePoint);
+
+        Vector3 DOWN_MIDDLE_NearPlanePoint = new Vector3(0.5f, 0, p_Camera.nearClipPlane);
+        DOWN_MIDDLE_NearPlanePoint = p_Camera.ViewportToWorldPoint(DOWN_MIDDLE_NearPlanePoint);
+        Vector3 DOWN_MIDDLE_FarPlanePoint = new Vector3(0.5f, 0, p_Camera.farClipPlane);
+        DOWN_MIDDLE_FarPlanePoint = p_Camera.ViewportToWorldPoint(DOWN_MIDDLE_FarPlanePoint);
+
         Vector3 UP_LEFT_NearPlanePoint = new Vector3(0, 1, p_Camera.nearClipPlane);
         UP_LEFT_NearPlanePoint = p_Camera.ViewportToWorldPoint(UP_LEFT_NearPlanePoint);
         Vector3 UP_LEFT_FarPlanePoint = new Vector3(0, 1, p_Camera.farClipPlane);
@@ -154,6 +164,8 @@ public class CameraController : MonoBehaviour
         Vector3 DOWN_RIGHT_FarPlanePoint = new Vector3(1, 0, p_Camera.farClipPlane);
         DOWN_RIGHT_FarPlanePoint = p_Camera.ViewportToWorldPoint(DOWN_RIGHT_FarPlanePoint);
 
+        Vector3 fieldOfViewVectorUP_MIDDLE = UP_MIDDLE_FarPlanePoint - UP_MIDDLE_NearPlanePoint;
+        Vector3 fieldOfViewVectorDOWN_MIDDLE = DOWN_MIDDLE_FarPlanePoint - DOWN_MIDDLE_NearPlanePoint;
         Vector3 fieldOfViewVectorUP_LEFT = UP_LEFT_FarPlanePoint - UP_LEFT_NearPlanePoint;
         Vector3 fieldOfViewVectorUP_RIGHT = UP_RIGHT_FarPlanePoint - UP_RIGHT_NearPlanePoint;
         Vector3 fieldOfViewVectorDOWN_LEFT = DOWN_LEFT_FarPlanePoint - DOWN_LEFT_NearPlanePoint;
@@ -161,22 +173,29 @@ public class CameraController : MonoBehaviour
 
         /*Debug.Log("Camera FieldOFView: " + p_Camera.fieldOfView);
         Debug.Log("FieldOFView UP_LEFT_vector: " + fieldOfViewVectorUP_LEFT);*/
-
+        Ray rayoUP_MIDDLE = new Ray(UP_MIDDLE_NearPlanePoint, fieldOfViewVectorUP_MIDDLE);
+        Ray rayoDOWN_MIDDLE = new Ray(DOWN_MIDDLE_NearPlanePoint, fieldOfViewVectorDOWN_MIDDLE);
         Ray rayoUP_LEFT = new Ray(UP_LEFT_NearPlanePoint, fieldOfViewVectorUP_LEFT);
         Ray rayoUP_RIGHT = new Ray(UP_RIGHT_NearPlanePoint, fieldOfViewVectorUP_RIGHT);
         Ray rayoDOWN_LEFT = new Ray(DOWN_LEFT_NearPlanePoint, fieldOfViewVectorDOWN_LEFT);
         Ray rayoDOWN_RIGHT = new Ray(DOWN_RIGHT_NearPlanePoint, fieldOfViewVectorDOWN_RIGHT);
 
+        RaycastHit rayoUP_MIDDLE_Hit;
+        RaycastHit rayoDOWN_MIDDLE_Hit;
         RaycastHit rayoUP_LEFT_Hit;
         RaycastHit rayoUP_RIGHT_Hit;
         RaycastHit rayoDOWN_LEFT_Hit;
         RaycastHit rayoDOWN_RIGHT_Hit;
 
+        Physics.Raycast(rayoUP_MIDDLE, out rayoUP_MIDDLE_Hit, 100, 1 << 8);
+        Physics.Raycast(rayoDOWN_MIDDLE, out rayoDOWN_MIDDLE_Hit, 100, 1 << 8);
         Physics.Raycast(rayoUP_LEFT, out rayoUP_LEFT_Hit, 100, 1 << 8);
         Physics.Raycast(rayoUP_RIGHT, out rayoUP_RIGHT_Hit, 100, 1 << 8);
         Physics.Raycast(rayoDOWN_LEFT, out rayoDOWN_LEFT_Hit, 100, 1 << 8);
         Physics.Raycast(rayoDOWN_RIGHT, out rayoDOWN_RIGHT_Hit, 100, 1 << 8);
 
+        Debug.DrawLine(UP_MIDDLE_NearPlanePoint, rayoUP_MIDDLE_Hit.point, Color.red);
+        Debug.DrawLine(DOWN_MIDDLE_NearPlanePoint, rayoDOWN_MIDDLE_Hit.point, Color.red);
         Debug.DrawLine(UP_LEFT_NearPlanePoint, rayoUP_LEFT_Hit.point, Color.red);
         Debug.DrawLine(UP_RIGHT_NearPlanePoint, rayoUP_RIGHT_Hit.point, Color.red);
         Debug.DrawLine(DOWN_LEFT_NearPlanePoint, rayoDOWN_LEFT_Hit.point, Color.red);
@@ -186,83 +205,141 @@ public class CameraController : MonoBehaviour
         Debug.DrawRay(UP_RIGHT_NearPlanePoint, fieldOfViewVectorUP_RIGHT, Color.red);
         Debug.DrawRay(DOWN_LEFT_NearPlanePoint, fieldOfViewVectorDOWN_LEFT, Color.green);
         Debug.DrawRay(DOWN_RIGHT_NearPlanePoint, fieldOfViewVectorDOWN_RIGHT, Color.black);*/
+        bool outOfBorderUP_MIDDLE = false;
+        bool outOfBorderDOWN_MIDDLE = false;
+        bool outOfBorderUP_LEFT = false;
+        bool outOfBorderUP_RIGHT = false;
+        bool outOfBorderDOWN_LEFT = false;
+        bool outOfBorderDOWN_RIGHT = false;
 
-        bool outOFBorderUP_LEFT = false;
-        bool outOFBorderUP_RIGHT = false;
-        bool outOFBorderDOWN_LEFT = false;
-        bool outOFBorderDOWN_RIGHT = false;
+        if (rayoUP_MIDDLE_Hit.collider != null && rayoUP_MIDDLE_Hit.collider.gameObject.GetComponentInParent<LevelControl>().IsActive())
+        {
+            outOfBorderUP_MIDDLE = false;
+        }
+        else
+        {
+            outOfBorderUP_MIDDLE = true;
+        }
+        if (rayoDOWN_MIDDLE_Hit.collider != null && rayoDOWN_MIDDLE_Hit.collider.gameObject.GetComponentInParent<LevelControl>().IsActive())
+        {
+            outOfBorderDOWN_MIDDLE = false;
+        }
+        else
+        {
+            outOfBorderDOWN_MIDDLE = true;
+        }
 
-        if (rayoUP_LEFT_Hit.collider != null && rayoUP_LEFT_Hit.collider.gameObject.GetComponent<LevelControl>().IsActive())
+        if (rayoUP_LEFT_Hit.collider != null && rayoUP_LEFT_Hit.collider.gameObject.GetComponentInParent<LevelControl>().IsActive())
         {
-            outOFBorderUP_LEFT = false;
+            outOfBorderUP_LEFT = false;
         }
         else
         {
-            outOFBorderUP_LEFT = true;
+            outOfBorderUP_LEFT = true;
         }
-        if (rayoUP_RIGHT_Hit.collider != null && rayoUP_RIGHT_Hit.collider.GetComponent<LevelControl>().IsActive())
+        if (rayoUP_RIGHT_Hit.collider != null && rayoUP_RIGHT_Hit.collider.gameObject.GetComponentInParent<LevelControl>().IsActive())
         {
-            outOFBorderUP_RIGHT = false;
-        }
-        else
-        {
-            outOFBorderUP_RIGHT = true;
-        }
-        if (rayoDOWN_LEFT_Hit.collider != null && rayoDOWN_LEFT_Hit.collider.GetComponent<LevelControl>().IsActive())
-        {
-            outOFBorderDOWN_LEFT = false;
+            outOfBorderUP_RIGHT = false;
         }
         else
         {
-            outOFBorderDOWN_LEFT = true;
+            outOfBorderUP_RIGHT = true;
         }
-        if (rayoDOWN_RIGHT_Hit.collider != null && rayoDOWN_RIGHT_Hit.collider.GetComponent<LevelControl>().IsActive())
+        if (rayoDOWN_LEFT_Hit.collider != null && rayoDOWN_LEFT_Hit.collider.gameObject.GetComponentInParent<LevelControl>().IsActive())
         {
-            outOFBorderDOWN_RIGHT = false;
+            outOfBorderDOWN_LEFT = false;
         }
         else
         {
-            outOFBorderDOWN_RIGHT = true;
+            outOfBorderDOWN_LEFT = true;
+        }
+        if (rayoDOWN_RIGHT_Hit.collider != null && rayoDOWN_RIGHT_Hit.collider.gameObject.GetComponentInParent<LevelControl>().IsActive())
+        {
+            outOfBorderDOWN_RIGHT = false;
+        }
+        else
+        {
+            outOfBorderDOWN_RIGHT = true;
         }
 
         //////////Limit Camera Movement///////////
-        if (outOFBorderUP_LEFT && outOFBorderUP_RIGHT)
+        if (outOfBorderUP_MIDDLE || outOfBorderDOWN_MIDDLE)
         {
-            if (relativeCameraMovementVector.y < 0)
+            if (outOfBorderUP_MIDDLE && !outOfBorderDOWN_MIDDLE)
             {
-                cameraMovement.z = Mathf.Lerp(p_Camera.transform.position.z, desiredPosition.z, smoothValue * Time.deltaTime);
-            }               
-        }
-        else if (outOFBorderDOWN_LEFT && outOFBorderDOWN_RIGHT)
-        {
-            if (relativeCameraMovementVector.y > 0)
+                if (relativeCameraMovementVector.y < 0)
+                    cameraMovement.z = Mathf.Lerp(p_Camera.transform.position.z, desiredPosition.z, smoothValue * Time.deltaTime);
+            }
+            
+            if (outOfBorderDOWN_MIDDLE && !outOfBorderUP_MIDDLE)
             {
-                cameraMovement.z = Mathf.Lerp(p_Camera.transform.position.z, desiredPosition.z, smoothValue * Time.deltaTime);
-            }         
+                if (relativeCameraMovementVector.y > 0)
+                    cameraMovement.z = Mathf.Lerp(p_Camera.transform.position.z, desiredPosition.z, smoothValue * Time.deltaTime);
+            }
         }
         else
         {
             cameraMovement.z = Mathf.Lerp(p_Camera.transform.position.z, desiredPosition.z, smoothValue * Time.deltaTime);
         }
-
-        if (outOFBorderUP_LEFT && outOFBorderDOWN_LEFT)
+        if (outOfBorderDOWN_LEFT || outOfBorderDOWN_RIGHT)
         {
-            if (relativeCameraMovementVector.x > 0)
+            if (outOfBorderDOWN_LEFT && !outOfBorderDOWN_RIGHT)
             {
-                cameraMovement.x = Mathf.Lerp(p_Camera.transform.position.x, desiredPosition.x, smoothValue * Time.deltaTime);
+                if (relativeCameraMovementVector.x > 0)
+                {
+                    cameraMovement.x = Mathf.Lerp(p_Camera.transform.position.x, desiredPosition.x, smoothValue * Time.deltaTime);
+                }
             }
-        }
-        else if (outOFBorderUP_RIGHT && outOFBorderDOWN_RIGHT)
-        {
-            if (relativeCameraMovementVector.x < 0)
+            if (outOfBorderDOWN_RIGHT && !outOfBorderDOWN_LEFT)
             {
-                cameraMovement.x = Mathf.Lerp(p_Camera.transform.position.x, desiredPosition.x, smoothValue * Time.deltaTime);
+                if (relativeCameraMovementVector.x < 0)
+                {
+                    cameraMovement.x = Mathf.Lerp(p_Camera.transform.position.x, desiredPosition.x, smoothValue * Time.deltaTime);
+                }
             }
-        }
+        }       
         else
         {
             cameraMovement.x = Mathf.Lerp(p_Camera.transform.position.x, desiredPosition.x, smoothValue * Time.deltaTime);
         }
+        
+        //if (outOfBorderUP_LEFT && outOfBorderUP_RIGHT)
+        //{
+        //    if (relativeCameraMovementVector.y < 0)
+        //    {
+        //        cameraMovement.z = Mathf.Lerp(p_Camera.transform.position.z, desiredPosition.z, smoothValue * Time.deltaTime);
+        //    }               
+        //}
+        //else if (outOfBorderDOWN_LEFT && outOfBorderDOWN_RIGHT)
+        //{
+        //    if (relativeCameraMovementVector.y > 0)
+        //    {
+        //        cameraMovement.z = Mathf.Lerp(p_Camera.transform.position.z, desiredPosition.z, smoothValue * Time.deltaTime);
+        //    }         
+        //}
+        //else
+        //{
+        //    cameraMovement.z = Mathf.Lerp(p_Camera.transform.position.z, desiredPosition.z, smoothValue * Time.deltaTime);
+        //}
+
+        //if (outOfBorderUP_LEFT && outOfBorderDOWN_LEFT)
+        //{
+        //    if (relativeCameraMovementVector.x > 0)
+        //    {
+        //        cameraMovement.x = Mathf.Lerp(p_Camera.transform.position.x, desiredPosition.x, smoothValue * Time.deltaTime);
+        //    }
+        //}
+        //else if (outOfBorderUP_RIGHT && outOfBorderDOWN_RIGHT)
+        //{
+        //    if (relativeCameraMovementVector.x < 0)
+        //    {
+        //        cameraMovement.x = Mathf.Lerp(p_Camera.transform.position.x, desiredPosition.x, smoothValue * Time.deltaTime);
+        //    }
+        //}
+        //else
+        //{
+        //    cameraMovement.x = Mathf.Lerp(p_Camera.transform.position.x, desiredPosition.x, smoothValue * Time.deltaTime);
+        //}
         cameraMovement.y = desiredPosition.y;
         
         //if (!outOFBorderUP_LEFT && !outOFBorderUP_RIGHT && !outOFBorderDOWN_LEFT && !outOFBorderDOWN_RIGHT) FaceTarget();
