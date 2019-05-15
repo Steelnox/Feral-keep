@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
         int random = Random.Range(0, liveUpPool.Length - 1);
         if (liveUpPool[random].collected)
         {
-            liveUpPool[random].collected = false;
+            //liveUpPool[random].collected = false;
             return liveUpPool[random];
         }
         else

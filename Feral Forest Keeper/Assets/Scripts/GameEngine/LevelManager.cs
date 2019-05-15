@@ -79,8 +79,10 @@ public class LevelManager : MonoBehaviour
             {
                 Debug.Log("After death, player on CheckPointPosition");
                 PlayerController.instance.actualPlayerLive = PlayerController.instance.playerLive;
+                PlayerController.instance.playerAlive = true;
                 PlayerController.instance.SetCanMove(true);
                 PlayerController.instance.p_controller.enabled = true;
+                CameraController.instance.SetActualBehavior(CameraController.Behavior.FOLLOW_PLAYER);
             }
         }
     }

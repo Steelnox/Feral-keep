@@ -138,7 +138,7 @@ public class PlayerController : MonoBehaviour
         {
             if (playerAlive != false) playerAlive = false;
         }
-        else if (actualPlayerLive > 0)
+        if (actualPlayerLive > 0)
         {
             if (playerAlive != true) playerAlive = true;
         }

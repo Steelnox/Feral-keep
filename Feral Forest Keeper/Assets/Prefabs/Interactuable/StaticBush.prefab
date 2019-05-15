@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bush_Pivot: {fileID: 1231396900553773013}
-  distanceInteraction: 1
+  distanceInteraction: 0.85
   smoothMovement: 10
   blendScale: 0.4
   hidePos: {x: 0, y: 0, z: 0}
@@ -135,6 +135,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 384729900975332856}
     m_Modifications:
+    - target: {fileID: 100004, guid: fb40975e843227f4bbc22dad27587f62, type: 3}
+      propertyPath: m_Name
+      value: Grass_Destruction
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: fb40975e843227f4bbc22dad27587f62, type: 3}
+      propertyPath: m_Name
+      value: BushUpperPart
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: fb40975e843227f4bbc22dad27587f62, type: 3}
+      propertyPath: m_Name
+      value: BushLog
+      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: fb40975e843227f4bbc22dad27587f62, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.441
@@ -179,10 +191,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: fb40975e843227f4bbc22dad27587f62, type: 3}
-      propertyPath: m_Name
-      value: Grass_Destruction
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: fb40975e843227f4bbc22dad27587f62, type: 3}
       propertyPath: m_LocalScale.z
       value: 1.48
@@ -194,14 +202,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: fb40975e843227f4bbc22dad27587f62, type: 3}
       propertyPath: m_LocalScale.y
       value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: fb40975e843227f4bbc22dad27587f62, type: 3}
-      propertyPath: m_Name
-      value: BushUpperPart
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: fb40975e843227f4bbc22dad27587f62, type: 3}
-      propertyPath: m_Name
-      value: BushLog
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: fb40975e843227f4bbc22dad27587f62, type: 3}
       propertyPath: m_Materials.Array.data[0]
