@@ -42,8 +42,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5686651, y: 1.2771597, z: 0.6584811}
-  m_Center: {x: 0.08878395, y: 0.8084991, z: -0.9336611}
+  m_Size: {x: 0.44, y: 0.8, z: 0.32}
+  m_Center: {x: 0, y: 0.35, z: 0}
 --- !u!1001 &5557210695063067704
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51,6 +51,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8444818195811632143}
     m_Modifications:
+    - target: {fileID: 100004, guid: e6a06d30cafd6a64db37adda1eadaf01, type: 3}
+      propertyPath: m_Name
+      value: Tree_Pino2
+      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: e6a06d30cafd6a64db37adda1eadaf01, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -107,10 +111,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: e6a06d30cafd6a64db37adda1eadaf01, type: 3}
-      propertyPath: m_Name
-      value: Tree_Pino2
-      objectReference: {fileID: 0}
+    - target: {fileID: 2300004, guid: e6a06d30cafd6a64db37adda1eadaf01, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4cdf01e74d306eb42b05cf9b8642d40e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6a06d30cafd6a64db37adda1eadaf01, type: 3}
 --- !u!1 &5557210695063165596 stripped

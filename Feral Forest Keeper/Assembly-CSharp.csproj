@@ -114,6 +114,7 @@
     <Compile Include="Assets\Scripts\Enemy\States\RangedMove\Projectile.cs" />
     <Compile Include="Assets\Scripts\FXs\Particles_Behavior.cs" />
     <Compile Include="Assets\Scripts\FXs\ParticlesFeedback_Control.cs" />
+    <Compile Include="Assets\Scripts\FXs\ShadersControl.cs" />
     <Compile Include="Assets\Scripts\GameEngine\GameManager.cs" />
     <Compile Include="Assets\Scripts\GameEngine\GenericSensUtilities.cs" />
     <Compile Include="Assets\Scripts\GameEngine\LevelControl.cs" />
@@ -148,6 +149,7 @@
     <None Include="Assets\ProCore\ProBuilder\Shader\DiffuseTextureBlend.shader" />
     <None Include="Assets\ProCore\ProBuilder\Shader\pb_StandardVertexColor.shader" />
     <None Include="Assets\ProCore\ProBuilder\Shader\pb_VertexPicker.shader" />
+    <None Include="Assets\Shaders\HeightLightDiffuse.shader" />
     <None Include="Assets\ProCore\ProBuilder\Shader\pb_HideVertices.shader" />
     <None Include="Assets\ProCore\ProBuilder\About\ThirdPartyLicenses.txt" />
     <None Include="Assets\ProCore\ProBuilder\Shader\pb_UnlitVertexColor.shader" />
