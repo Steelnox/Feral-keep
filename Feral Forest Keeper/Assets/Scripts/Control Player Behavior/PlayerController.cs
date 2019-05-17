@@ -280,14 +280,14 @@ public class PlayerController : MonoBehaviour
     {
         CheckInputs();
 
-        if (Input.GetMouseButtonDown(0) || Input.GetButtonDown("X") && !attacking /*&& targetLocked == null*/ && !dashing && !gettingHit)
+        if (PlayerManager.instance.branchWeaponSlot != null || PlayerManager.instance.leafSwordSlot != null)
         {
-            ChangeState(meleeState);
+            if (Input.GetMouseButtonDown(0) || Input.GetButtonDown("X") && !attacking /*&& targetLocked == null*/ && !dashing && !gettingHit)
+            {
+                ChangeState(meleeState);
+            }
         }
-        //if (Input.GetMouseButtonDown(1) || Input.GetButtonDown("Y") && !attacking /*&& !dart.IsShooted()*/ && !dashing && !gettingHit)
-        //{
-        //    ChangeState(slashState);
-        //}
+        
         if (Input.GetButtonDown("A") || Input.GetKeyDown(KeyCode.Space) && !attacking && imGrounded && !gettingHit)
         {
             if (!inSlowMovement && dashCooldown == dashCooldownTime) ChangeState(dashState);

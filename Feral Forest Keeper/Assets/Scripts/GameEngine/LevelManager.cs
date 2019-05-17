@@ -74,6 +74,7 @@ public class LevelManager : MonoBehaviour
             //PlayerController.instance.characterModel.transform.forward = levelList[activeLevelID].levelCheckPoint.transform.forward;
             PlayerController.instance.SetCanMove(false);
             PlayerController.instance.transform.position = levelList[activeLevelID].levelCheckPoint.transform.position;
+            CameraController.instance.SetActualBehavior(CameraController.Behavior.PLYER_DEATH);
 
             if (PlayerController.instance.transform.position == levelList[activeLevelID].levelCheckPoint.transform.position)
             {
@@ -82,7 +83,7 @@ public class LevelManager : MonoBehaviour
                 PlayerController.instance.playerAlive = true;
                 PlayerController.instance.SetCanMove(true);
                 PlayerController.instance.p_controller.enabled = true;
-                CameraController.instance.SetActualBehavior(CameraController.Behavior.FOLLOW_PLAYER);
+                //CameraController.instance.SetActualBehavior(CameraController.Behavior.FOLLOW_PLAYER);
             }
         }
     }

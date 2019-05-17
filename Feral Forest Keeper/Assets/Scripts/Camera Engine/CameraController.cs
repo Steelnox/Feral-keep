@@ -78,15 +78,12 @@ public class CameraController : MonoBehaviour
                 FollowTarget(scriptedTarget);
                 break;
             case Behavior.PLYER_DEATH:
+                if (transform.position == PlayerController.instance.transform.position + cameraOffSet) SetActualBehavior(Behavior.FOLLOW_PLAYER);
                 transform.position = PlayerController.instance.transform.position + cameraOffSet;
                 //if (PlayerController.instance.playerAlive) SetActualBehavior(Behavior.FOLLOW_PLAYER);
                 break;
             default:
                 break;
-        }
-        if (!PlayerController.instance.playerAlive)
-        {
-            SetActualBehavior(Behavior.PLYER_DEATH);
         }
 	}
     public void FaceTarget(Vector3 _target)
@@ -203,13 +200,13 @@ public class CameraController : MonoBehaviour
         RaycastHit rayoDOWN_LEFT_Hit;
         RaycastHit rayoDOWN_RIGHT_Hit;
 
-        Physics.Raycast(rayoUP_MIDDLE, out rayoUP_MIDDLE_Hit, 100, 1 << 8);
-        Physics.Raycast(rayoDOWN_MIDDLE, out rayoDOWN_MIDDLE_Hit, 100, 1 << 8);
-        Physics.Raycast(rayoDOWN_MIDDLE_Checker, out rayoDOWN_MIDDLE_Checker_Hit, 100, 1 << 8);
-        Physics.Raycast(rayoUP_LEFT, out rayoUP_LEFT_Hit, 100, 1 << 8);
-        Physics.Raycast(rayoUP_RIGHT, out rayoUP_RIGHT_Hit, 100, 1 << 8);
-        Physics.Raycast(rayoDOWN_LEFT, out rayoDOWN_LEFT_Hit, 100, 1 << 8);
-        Physics.Raycast(rayoDOWN_RIGHT, out rayoDOWN_RIGHT_Hit, 100, 1 << 8);
+        Physics.Raycast(rayoUP_MIDDLE, out rayoUP_MIDDLE_Hit, 100, 1 << 15);
+        Physics.Raycast(rayoDOWN_MIDDLE, out rayoDOWN_MIDDLE_Hit, 100, 1 << 15);
+        Physics.Raycast(rayoDOWN_MIDDLE_Checker, out rayoDOWN_MIDDLE_Checker_Hit, 100, 1 << 15);
+        Physics.Raycast(rayoUP_LEFT, out rayoUP_LEFT_Hit, 100, 1 << 15);
+        Physics.Raycast(rayoUP_RIGHT, out rayoUP_RIGHT_Hit, 100, 1 << 15);
+        Physics.Raycast(rayoDOWN_LEFT, out rayoDOWN_LEFT_Hit, 100, 1 << 15);
+        Physics.Raycast(rayoDOWN_RIGHT, out rayoDOWN_RIGHT_Hit, 100, 1 << 15);
 
         Debug.DrawLine(UP_MIDDLE_NearPlanePoint, rayoUP_MIDDLE_Hit.point, Color.red);
         Debug.DrawLine(DOWN_MIDDLE_NearPlanePoint, rayoDOWN_MIDDLE_Hit.point, Color.green);

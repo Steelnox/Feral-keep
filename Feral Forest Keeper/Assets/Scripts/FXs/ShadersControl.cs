@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class ShadersControl : MonoBehaviour
 {
-    private float heightMin = 0.0f;
+    private float heightMin = 1.00f;
     private float heightMax = 5.10f;
 
     public MeshRenderer heightDegradateLightingShader_Material;
 
     private float worldHeightRelativeToPlayer;
+    float min;
+    float max;
+    float randomAmplitude;
+    float randomSpeed;
 
     void Start()
     {
         heightDegradateLightingShader_Material = gameObject.GetComponent<MeshRenderer>();
+        randomAmplitude = Random.Range(0.05f, 0.01f);
+        randomSpeed = Random.Range(0.3f, 0.6f);
     }
 
     // Update is called once per frame
@@ -21,8 +27,10 @@ public class ShadersControl : MonoBehaviour
     {
         //heightDegradateLightingShader_Material = gameObject.GetComponent<MeshRenderer>();
         worldHeightRelativeToPlayer = PlayerAnimationController.instance.transform.position.y;
-
-        heightDegradateLightingShader_Material.material.SetFloat("_HeightMin", worldHeightRelativeToPlayer + heightMin);
-        heightDegradateLightingShader_Material.material.SetFloat("_HeightMax", worldHeightRelativeToPlayer + heightMax);
+        min = Mathf.Lerp(min, worldHeightRelativeToPlayer + heightMin, Time.deltaTime * 10);
+        max = Mathf.Lerp(max, worldHeightRelativeToPlayer + heightMax, Time.deltaTime * 10);
+        heightDegradateLightingShader_Material.material.SetFloat("_HeightMin", min);
+        heightDegradateLightingShader_Material.material.SetFloat("_HeightMax", max);
+        heightDegradateLightingShader_Material.material.SetFloat("_Amplitude", randomAmplitude);
     }
 }
