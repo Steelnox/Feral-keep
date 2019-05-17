@@ -12,7 +12,20 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.44709256, y: 0.8076163, z: 0.44709256}
-  m_Center: {x: 0, y: 0.27, z: 0}
+  m_Center: {x: 0, y: 0.39, z: 0}
+--- !u!114 &7378984915186606180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4880527394211969986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7ff1344f4bc832419f07116b67046b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heightDegradateLightingShader_Material: {fileID: 0}
 --- !u!1 &9138889900161447346
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,7 +72,7 @@ NavMeshObstacle:
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0.27, z: 0}
+  m_Center: {x: 0, y: 0.24, z: 0}
   m_TimeToStationary: 0.5
 --- !u!1001 &4880527394211937638
 PrefabInstance:
@@ -68,17 +81,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 306591790111655132}
     m_Modifications:
-    - target: {fileID: 100004, guid: 899776176c249374ca7bf1c0356a161c, type: 3}
-      propertyPath: m_Name
-      value: Tree_Pino1
-      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 899776176c249374ca7bf1c0356a161c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 899776176c249374ca7bf1c0356a161c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.135
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 899776176c249374ca7bf1c0356a161c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -116,10 +125,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 899776176c249374ca7bf1c0356a161c, type: 3}
+      propertyPath: m_Name
+      value: Tree_Pino1
+      objectReference: {fileID: 0}
     - target: {fileID: 2300004, guid: 899776176c249374ca7bf1c0356a161c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4cdf01e74d306eb42b05cf9b8642d40e, type: 2}
+      objectReference: {fileID: 2100000, guid: 2760b525e28e32f46b4ac6e57152d533, type: 2}
     - target: {fileID: 400002, guid: 899776176c249374ca7bf1c0356a161c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.038

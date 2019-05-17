@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
+    public Item branchItem;
+    public Item swordItem;
+    public Item gantletItem;
     public bool pause;
     public RectTransform provisionalGUIMenu;
     public Item[] liveUpPool;

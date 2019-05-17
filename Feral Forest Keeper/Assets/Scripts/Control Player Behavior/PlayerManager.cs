@@ -36,7 +36,9 @@ public class PlayerManager : MonoBehaviour
         powerGauntaletSlot = null;
         if (PlayerController.instance.startWithAllSkills)
         {
-            PlayerAnimationController.instance.SetWeaponAnim(true);
+            leafSwordSlot = GameManager.instance.swordItem;
+            CheckIfHaveLeafWeaponItem();
+            powerGauntaletSlot = GameManager.instance.gantletItem;
         }
     }
 

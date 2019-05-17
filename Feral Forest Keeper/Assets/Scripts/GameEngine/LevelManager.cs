@@ -71,7 +71,6 @@ public class LevelManager : MonoBehaviour
         {
             actualRespawnCoolDown = respawnCoolDown;
             PlayerController.instance.p_controller.enabled = false;
-            //PlayerController.instance.characterModel.transform.forward = levelList[activeLevelID].levelCheckPoint.transform.forward;
             PlayerController.instance.SetCanMove(false);
             PlayerController.instance.transform.position = levelList[activeLevelID].levelCheckPoint.transform.position;
             CameraController.instance.SetActualBehavior(CameraController.Behavior.PLYER_DEATH);
@@ -83,7 +82,6 @@ public class LevelManager : MonoBehaviour
                 PlayerController.instance.playerAlive = true;
                 PlayerController.instance.SetCanMove(true);
                 PlayerController.instance.p_controller.enabled = true;
-                //CameraController.instance.SetActualBehavior(CameraController.Behavior.FOLLOW_PLAYER);
             }
         }
     }
