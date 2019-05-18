@@ -17,6 +17,7 @@ public class ParticlesFeedback_Control : MonoBehaviour
     #endregion
 
     public Particles_Behavior[] bushParticles;
+    public ParticlesCompositeSystem[] hitEnemyParticles;
 
     //void Start()
     //{
@@ -38,8 +39,23 @@ public class ParticlesFeedback_Control : MonoBehaviour
         }
         return null;
     }
+    private ParticlesCompositeSystem FindFirstParticleCompositeNoActiveOnList(ParticlesCompositeSystem[] list)
+    {
+        for (int i = 0; i < list.Length; i++)
+        {
+            if (!list[i].IsCompositePlaying())
+            {
+                return list[i];
+            }
+        }
+        return null;
+    }
     public void SetBushParticlesOnScene(Vector3 _pos)
     {
         FindFirstParticleNoActiveOnList(bushParticles).SetParticlesOnScene(_pos);
+    }
+    public void SetHitEnemyParticlesOnScene(Vector3 _pos)
+    {
+        FindFirstParticleCompositeNoActiveOnList(hitEnemyParticles).PlayComposition(_pos);
     }
 }

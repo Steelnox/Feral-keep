@@ -86,6 +86,7 @@
     <Compile Include="Assets\Scripts\Control Player Behavior\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\Control Player Behavior\PlayerParticlesSystemController.cs" />
     <Compile Include="Assets\Scripts\Control Player Behavior\PlayerSensSystem.cs" />
+    <Compile Include="Assets\Scripts\Control Player Behavior\PlayerWeaponColliderChecker.cs" />
     <Compile Include="Assets\Scripts\Control Player Behavior\PushLog_State.cs" />
     <Compile Include="Assets\Scripts\Control Player Behavior\PushRock_State.cs" />
     <Compile Include="Assets\Scripts\Control Player Behavior\SlashAttack_PlayerState.cs" />

@@ -17,6 +17,8 @@ public class PlayerParticlesSystemController : MonoBehaviour
     #endregion
 
     public ParticlesCompositeSystem dashParticlesComposite;
+    public ParticlesCompositeSystem hitEnemiesParticlesComposite;
+    public ParticlesCompositeSystem hitWeaponParticlesComposite;
 
     void Start()
     {
@@ -31,5 +33,13 @@ public class PlayerParticlesSystemController : MonoBehaviour
     {
         dashParticlesComposite.PlayComposition(position);
         dashParticlesComposite.FaceComposite(PlayerController.instance.characterModel.transform.forward);
+    }
+    public void SetHitEnemiesParticlesOnScene(Vector3 position)
+    {
+        hitEnemiesParticlesComposite.PlayComposition(position);
+    }
+    public void SetHitWeaponParticlesOnScene(Vector3 position)
+    {
+        hitWeaponParticlesComposite.PlayComposition(position);
     }
 }

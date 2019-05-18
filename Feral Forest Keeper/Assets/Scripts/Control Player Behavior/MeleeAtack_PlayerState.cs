@@ -10,7 +10,6 @@ public class MeleeAtack_PlayerState : State
         PlayerController.instance.weaponCollider.enabled = true;
         PlayerController.instance.attackTrail.startColor = new Color(1, 1, 0);
         PlayerController.instance.attackTrail.endColor = new Color(1, 0, 1);
-        //PlayerController.instance.attackTrail.enabled = true;
         PlayerController.instance.attacking = true;
         PlayerAnimationController.instance.AttackAnim();
     }
@@ -22,7 +21,6 @@ public class MeleeAtack_PlayerState : State
     public override void Exit()
     {
         PlayerController.instance.weaponCollider.enabled = false;
-        //PlayerController.instance.attackTrail.enabled = false;
         PlayerController.instance.attacking = false;
     }
 }
