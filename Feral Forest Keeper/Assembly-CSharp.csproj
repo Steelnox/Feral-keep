@@ -114,6 +114,7 @@
     <Compile Include="Assets\Scripts\Enemy\States\RangedMove\PatrolRangedMove.cs" />
     <Compile Include="Assets\Scripts\Enemy\States\RangedMove\Projectile.cs" />
     <Compile Include="Assets\Scripts\FXs\Particles_Behavior.cs" />
+    <Compile Include="Assets\Scripts\FXs\ParticlesCompositeSystem.cs" />
     <Compile Include="Assets\Scripts\FXs\ParticlesFeedback_Control.cs" />
     <Compile Include="Assets\Scripts\FXs\ShadersControl.cs" />
     <Compile Include="Assets\Scripts\GameEngine\GameManager.cs" />

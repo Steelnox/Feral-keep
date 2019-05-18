@@ -23,7 +23,8 @@ public class GameManager : MonoBehaviour
     public RectTransform provisionalGUIMenu;
     public Item[] liveUpPool;
     private Vector2 provisionalGUIMenuOnScreenPos;
-    private Vector2 hidePos;
+    [HideInInspector]
+    public Vector2 hidePos;
 
     void Start()
     {

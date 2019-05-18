@@ -21,6 +21,7 @@ public class Dash_PlayerState : State
         PlayerController.instance.dashTrail.enabled = true;
         PlayerController.instance.dashCooldown = 0;
         PlayerController.instance.imGrounded = true;
+        PlayerParticlesSystemController.instance.SetDashParticlesOnScene(PlayerController.instance.transform.position);
     }
     public override void Execute()
     {
@@ -46,5 +47,6 @@ public class Dash_PlayerState : State
         dashDirection.z = 0;
         PlayerController.instance.dashTrail.enabled = false;
         PlayerController.instance.dashing = false;
+        //PlayerParticlesSystemController.instance.SetDashParticlesOnScene(PlayerController.instance.transform.position);
     }
 }

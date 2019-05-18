@@ -302,15 +302,15 @@ TrailRenderer:
   m_GameObject: {fileID: 4706931804084510607}
   m_Enabled: 1
   m_CastShadows: 0
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 0
+  m_MotionVectors: 2
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 7271f1c163963e54ea1800c741a5e711, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -330,7 +330,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.25
+  m_Time: 0.35
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -339,7 +339,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.2911377
+        value: 0.56140137
         inSlope: 1.362142
         outSlope: 1.362142
         tangentMode: 0
@@ -348,7 +348,7 @@ TrailRenderer:
         outWeight: 0.23232323
       - serializedVersion: 3
         time: 1
-        value: 0.06329346
+        value: 0.043022156
         inSlope: -0.85321873
         outSlope: -0.85321873
         tangentMode: 0
@@ -390,7 +390,7 @@ TrailRenderer:
     numCornerVertices: 3
     numCapVertices: 2
     alignment: 0
-    textureMode: 0
+    textureMode: 1
     shadowBias: 0.5
     generateLightingData: 0
   m_MinVertexDistance: 0.1
@@ -945,6 +945,7 @@ GameObject:
   - component: {fileID: 6842893140168500508}
   - component: {fileID: 4706931805604448393}
   - component: {fileID: 4706931804043738238}
+  - component: {fileID: 937265833}
   m_Layer: 0
   m_Name: PLAYER_ROOT_ALPHA_VERISON
   m_TagString: Player
@@ -1230,6 +1231,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pushingMovement: {x: 0, y: 0, z: 0}
+--- !u!114 &937265833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6842893140168500509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19ff36a7f53a94845938ee924889d7b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashParticlesComposite: {fileID: 0}
 --- !u!1 &7032083630905936146
 GameObject:
   m_ObjectHideFlags: 0
