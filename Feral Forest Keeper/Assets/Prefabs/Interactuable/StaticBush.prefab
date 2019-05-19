@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 9118165928552651761}
   m_Layer: 11
   m_Name: StaticBush
-  m_TagString: Untagged
+  m_TagString: StaticBush
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

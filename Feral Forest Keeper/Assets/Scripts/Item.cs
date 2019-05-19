@@ -13,12 +13,18 @@ public class Item : MonoBehaviour
     public bool collected;
     private Vector3 onScenPoition;
     private AnimationCurve curve;
+    private ParticlesCompositeSystem myParticles;
 
     public void Start()
     {
         onScenPoition = transform.position;
         curve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(1, 1));
         curve.postWrapMode = WrapMode.PingPong;
+        if (!collected)
+        {
+            myParticles = ParticlesFeedback_Control.instance.GetNOActiveCompoisteOnList(ParticlesFeedback_Control.instance.itemsScrollUpSparksParticlesPOOL);
+            myParticles.PlayComposition(transform.position);
+        }
     }
     public void Update()
     {
@@ -31,6 +37,8 @@ public class Item : MonoBehaviour
     {
         collected = true;
         transform.position = hidePos;
+        myParticles.HideComposition();
+        myParticles = null;
     }
     public void SetItem(Vector3 pos, Vector3 rot)
     {
@@ -38,5 +46,7 @@ public class Item : MonoBehaviour
         transform.position = pos;
         transform.rotation = Quaternion.Euler(rot);
         onScenPoition = pos;
+        myParticles = ParticlesFeedback_Control.instance.GetNOActiveCompoisteOnList(ParticlesFeedback_Control.instance.itemsScrollUpSparksParticlesPOOL);
+        myParticles.PlayComposition(transform.position);
     }
 }

@@ -19,6 +19,7 @@ public class Bush_Behavior : MonoBehaviour
     private bool isCutted;
     private bool justBeingCutted;
     private bool active;
+    private bool weaponBranchHit;
 
     void Start()
     {
@@ -28,6 +29,7 @@ public class Bush_Behavior : MonoBehaviour
         isCutted = false;
         justBeingCutted = true;
         active = true;
+        weaponBranchHit = false;
         HideParticles();
     }
 
@@ -49,9 +51,13 @@ public class Bush_Behavior : MonoBehaviour
                 {
                     blendVector = GenericSensUtilities.instance.Transform2DTo3DMovement(GenericSensUtilities.instance.Transform3DTo2DMovement(GenericSensUtilities.instance.GetDirectionFromTo_N(PlayerController.instance.gameObject.transform.position, bush_Pivot.transform.position)));
                     desiredBlendVector = Vector3.up + blendVector * ((1 - ((GenericSensUtilities.instance.DistanceBetween2Vectors(PlayerController.instance.playerRoot.transform.position, bush_Pivot.transform.position) / distanceInteraction))) * blendScale);
+                    if (weaponBranchHit)
+                    {
+                        desiredBlendVector *= 2;
+                    }
                     bush_Pivot.transform.up = Vector3.Lerp(bush_Pivot.transform.up, desiredBlendVector, smoothMovement * Time.deltaTime);
                 }
-                if (!playerInteraction && bush_Pivot.transform.up != initUpVector)
+                if (!playerInteraction && bush_Pivot.transform.up != initUpVector && !weaponBranchHit)
                 {
                     bush_Pivot.transform.up = Vector3.Lerp(bush_Pivot.transform.up, initUpVector, (smoothMovement * 2) * Time.deltaTime);
                 }
@@ -101,7 +107,28 @@ public class Bush_Behavior : MonoBehaviour
     {
         if (other.tag == "PlayerWeapon")
         {
-            if (PlayerManager.instance.leafSwordSlot != null)CutBush();
+            if (PlayerManager.instance.leafSwordSlot == null)
+            {
+                weaponBranchHit = true;
+            }
+            if (PlayerManager.instance.leafSwordSlot != null)
+            {
+                CutBush();
+            }
+        }
+    }
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "PlayerWeapon")
+        {
+            if (PlayerManager.instance.leafSwordSlot == null)
+            {
+                weaponBranchHit = false;
+            }
+            if (PlayerManager.instance.leafSwordSlot != null)
+            {
+               
+            }
         }
     }
 }

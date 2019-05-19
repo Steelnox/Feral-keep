@@ -37,4 +37,11 @@ public class ParticlesCompositeSystem : MonoBehaviour
             particles[i].transform.forward = direction;
         }
     }
+    public void HideComposition ()
+    {
+        for (int i = 0; i < particles.Length; i++)
+        {
+            particles[i].HideParticlesOutScene();
+        }
+    }
 }

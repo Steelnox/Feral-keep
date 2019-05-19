@@ -33,9 +33,10 @@ public class Particles_Behavior : MonoBehaviour
     {
         transform.position = _pos;
     }
-    private void HideParticlesOutScene()
+    public void HideParticlesOutScene()
     {
         SetParticlesPosition(hidePos);
+        particles.Stop();
     }
     public void SetParticlesOnScene(Vector3 location)
     {

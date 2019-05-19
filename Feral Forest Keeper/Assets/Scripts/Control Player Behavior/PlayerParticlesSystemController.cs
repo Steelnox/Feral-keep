@@ -18,7 +18,7 @@ public class PlayerParticlesSystemController : MonoBehaviour
 
     public ParticlesCompositeSystem dashParticlesComposite;
     public ParticlesCompositeSystem hitEnemiesParticlesComposite;
-    public ParticlesCompositeSystem hitWeaponParticlesComposite;
+
 
     void Start()
     {
@@ -37,9 +37,5 @@ public class PlayerParticlesSystemController : MonoBehaviour
     public void SetHitEnemiesParticlesOnScene(Vector3 position)
     {
         hitEnemiesParticlesComposite.PlayComposition(position);
-    }
-    public void SetHitWeaponParticlesOnScene(Vector3 position)
-    {
-        hitWeaponParticlesComposite.PlayComposition(position);
     }
 }

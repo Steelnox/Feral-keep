@@ -36,7 +36,15 @@ public class PlayerWeaponColliderChecker : MonoBehaviour
                 enemyContact = true;
                 ParticlesFeedback_Control.instance.SetHitEnemyParticlesOnScene(other.gameObject.transform.position + Vector3.up * 0.5f);
             }
-            PlayerParticlesSystemController.instance.SetHitWeaponParticlesOnScene(other.ClosestPoint(transform.position));
+            if (other.tag == "StaticBush")
+            {
+                if (PlayerManager.instance.leafSwordSlot == null)
+                {
+                    ParticlesFeedback_Control.instance.SetHitStaticBushParticlesOnScene(other.ClosestPoint(transform.position));
+                }
+                Debug.Log("Hitting StaticBush");
+            }
+            
         }
     }
     private void OnTriggerStay(Collider other)

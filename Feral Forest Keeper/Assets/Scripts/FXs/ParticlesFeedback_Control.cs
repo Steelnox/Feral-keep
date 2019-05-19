@@ -16,17 +16,19 @@ public class ParticlesFeedback_Control : MonoBehaviour
 
     #endregion
 
-    public Particles_Behavior[] bushParticles;
-    public ParticlesCompositeSystem[] hitEnemyParticles;
+    public Particles_Behavior[] bushParticlesPOOL;
+    public ParticlesCompositeSystem[] hitEnemyParticlesPOOL;
+    public ParticlesCompositeSystem[] itemsScrollUpSparksParticlesPOOL;
+    public ParticlesCompositeSystem[] hitStaticBushParticlesCompositePOOL;
 
     //void Start()
     //{
-        
+
     //}
 
     //void Update()
     //{
-        
+
     //}
     private Particles_Behavior FindFirstParticleNoActiveOnList(Particles_Behavior[] list)
     {
@@ -52,10 +54,26 @@ public class ParticlesFeedback_Control : MonoBehaviour
     }
     public void SetBushParticlesOnScene(Vector3 _pos)
     {
-        FindFirstParticleNoActiveOnList(bushParticles).SetParticlesOnScene(_pos);
+        FindFirstParticleNoActiveOnList(bushParticlesPOOL).SetParticlesOnScene(_pos);
     }
     public void SetHitEnemyParticlesOnScene(Vector3 _pos)
     {
-        FindFirstParticleCompositeNoActiveOnList(hitEnemyParticles).PlayComposition(_pos);
+        FindFirstParticleCompositeNoActiveOnList(hitEnemyParticlesPOOL).PlayComposition(_pos);
+    }
+    public void SetItemsScrollUpSparksCompositeOnScene(Vector3 _pos)
+    {
+        FindFirstParticleCompositeNoActiveOnList(itemsScrollUpSparksParticlesPOOL).PlayComposition(_pos);
+    }
+    public void SetHitStaticBushParticlesOnScene(Vector3 _pos)
+    {
+        FindFirstParticleCompositeNoActiveOnList(hitStaticBushParticlesCompositePOOL).PlayComposition(_pos);
+    }
+    public void HideComposite(ParticlesCompositeSystem composite)
+    {
+        composite.HideComposition();
+    }
+    public ParticlesCompositeSystem GetNOActiveCompoisteOnList(ParticlesCompositeSystem[] list)
+    {
+        return FindFirstParticleCompositeNoActiveOnList(list);
     }
 }

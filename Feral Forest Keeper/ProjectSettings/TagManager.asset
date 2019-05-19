@@ -12,6 +12,7 @@ TagManager:
   - MovableRock
   - BushParticle
   - Sanctuary
+  - StaticBush
   layers:
   - Default
   - TransparentFX
