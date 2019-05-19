@@ -68,7 +68,7 @@ public class AttackRangedFixed : State
                 bulletsShoot = 0;
             }
         }
-        if (distanceToPlayer > ranged.distanceToAttack) ranged.ChangeState(ranged.look);
+        if (distanceToPlayer > ranged.distanceToAttack || ranged.distanceY > ranged.distanceYForAttack) ranged.ChangeState(ranged.look);
 
     }
 

@@ -26,6 +26,7 @@ public class LookRangedFixed : State
 
     public override void Execute()
     {
+
         distanceToPlayer = ranged.GetDistance(ranged.player.transform.position);
 
         directionAttack = (ranged.enemy_navmesh.transform.position - ranged.player.transform.position).normalized;
@@ -34,7 +35,9 @@ public class LookRangedFixed : State
 
         transform.rotation = Quaternion.Slerp(transform.rotation, lookOnLook, 0.5f);
 
-        if (distanceToPlayer <= ranged.distanceToAttack) ranged.ChangeState(ranged.attack);
+
+
+        if (distanceToPlayer <= ranged.distanceToAttack && ranged.distanceY < ranged.distanceYForAttack) ranged.ChangeState(ranged.attack);
     }
 
 

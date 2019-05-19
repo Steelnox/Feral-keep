@@ -8,9 +8,17 @@ public class RangedFixed : Enemy
     public State look;
     public State attack;
     public State damaged;
+    public State fixAttack;
 
     public CapsuleCollider C_collider;
     public Projectile projectile;
+
+    public bool onedirectionAttack;
+
+    public float distanceY;
+
+    public float distanceYForAttack;
+
 
     void Start()
     {
@@ -27,14 +35,23 @@ public class RangedFixed : Enemy
 
         enemy_navmesh.isStopped = true;
 
-
-        ChangeState(look);
+        if (onedirectionAttack)
+        {
+            ChangeState(fixAttack);
+        }
+        else
+        {
+            ChangeState(look);
+        }
     }
 
     void Update()
     {
 
         stateMachine.ExecuteState();
+
+        distanceY = transform.position.y - player.transform.position.y;
+
 
 
     }
