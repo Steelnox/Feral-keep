@@ -19,6 +19,8 @@ public class RangedFixed : Enemy
 
     public float distanceYForAttack;
 
+    public float velocityRockToKill;
+
 
     void Start()
     {
@@ -64,6 +66,16 @@ public class RangedFixed : Enemy
             HealthBar.SetActive(true);
             float x = HealthBar.transform.localScale.x * 0.5f;
             HealthBar.transform.localScale = new Vector3(x, 1, 1);
+        }
+        
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        if (collision.gameObject.tag == "MovableRock" && collision.relativeVelocity.magnitude > velocityRockToKill)
+        {
+            gameObject.SetActive(false);
         }
     }
 }

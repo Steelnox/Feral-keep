@@ -87,8 +87,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6549901792006296709}
-  - component: {fileID: 6549901792006296710}
   - component: {fileID: 4085395567938847067}
+  - component: {fileID: 6549901792006296710}
   - component: {fileID: 6549901792006296827}
   - component: {fileID: 8872921556746959468}
   - component: {fileID: 8920518569486699649}
@@ -118,20 +118,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &6549901792006296710
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6549901792006296828}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.2835176
-  m_Height: 0.5670352
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.49400598, z: -0.02223754}
 --- !u!54 &4085395567938847067
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -148,6 +134,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!136 &6549901792006296710
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6549901792006296828}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.2835176
+  m_Height: 0.5670352
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.49400598, z: -0.02223754}
 --- !u!195 &6549901792006296827
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -208,7 +208,8 @@ MonoBehaviour:
     type: 3}
   onedirectionAttack: 0
   distanceY: 0
-  distanceYforAttack: 0.5
+  distanceYForAttack: 0
+  velocityRockToKill: 1
 --- !u!114 &8920518569486699649
 MonoBehaviour:
   m_ObjectHideFlags: 0
