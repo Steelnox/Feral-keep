@@ -9,6 +9,7 @@ public class RangedFixed : Enemy
     public State attack;
     public State damaged;
     public State fixAttack;
+    public State underground;
 
     public CapsuleCollider C_collider;
     public Projectile projectile;
@@ -25,6 +26,7 @@ public class RangedFixed : Enemy
     void Start()
     {
         player = PlayerController.instance;
+
         enemyType = EnemyType.MELEE;
 
         enemy_navmesh = GetComponent<NavMeshAgent>();
@@ -43,7 +45,7 @@ public class RangedFixed : Enemy
         }
         else
         {
-            ChangeState(look);
+            ChangeState(underground);
         }
     }
 

@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 6549901792006296827}
   - component: {fileID: 8872921556746959468}
   - component: {fileID: 8920518569486699649}
+  - component: {fileID: 2516511236141379887}
   - component: {fileID: 7948329713503075658}
   - component: {fileID: 7993237415266343801}
   - component: {fileID: 6548456758504554795}
@@ -203,6 +204,7 @@ MonoBehaviour:
   attack: {fileID: 6548456758504554795}
   damaged: {fileID: 7948329713503075658}
   fixAttack: {fileID: 8920518569486699649}
+  underground: {fileID: 2516511236141379887}
   C_collider: {fileID: 0}
   projectile: {fileID: 3622596446498762895, guid: 6a5561bf34a7a0e409bd1fe9baf1c320,
     type: 3}
@@ -224,6 +226,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerRecharge: 2
   bulletsCanShoot: 30
+--- !u!114 &2516511236141379887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6549901792006296828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1780dde5ddfb4049a6341e32c92cb83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7948329713503075658
 MonoBehaviour:
   m_ObjectHideFlags: 0
