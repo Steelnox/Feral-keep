@@ -18,16 +18,18 @@ public class PlayerParticlesSystemController : MonoBehaviour
 
     public ParticlesCompositeSystem dashParticlesComposite;
     public ParticlesCompositeSystem hitEnemiesParticlesComposite;
-
+    public ParticlesCompositeSystem liveUpFeedbackParticlesComposite;
 
     void Start()
     {
         
     }
-
     void Update()
     {
-        
+        if(liveUpFeedbackParticlesComposite.IsCompositePlaying())
+        {
+            liveUpFeedbackParticlesComposite.transform.position = PlayerController.instance.transform.position + Vector3.up * 0.5f;
+        }
     }
     public void SetDashParticlesOnScene(Vector3 position)
     {
@@ -37,5 +39,9 @@ public class PlayerParticlesSystemController : MonoBehaviour
     public void SetHitEnemiesParticlesOnScene(Vector3 position)
     {
         hitEnemiesParticlesComposite.PlayComposition(position);
+    }
+    public void SetLiveUpFeedbackParticlesOnScene(Vector3 position)
+    {
+        liveUpFeedbackParticlesComposite.PlayComposition(position);
     }
 }

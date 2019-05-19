@@ -78,6 +78,7 @@
     <Compile Include="Assets\Scripts\BushParts_Behavior.cs" />
     <Compile Include="Assets\Scripts\Camera Engine\CameraController.cs" />
     <Compile Include="Assets\Scripts\Control Player Behavior\Dash_PlayerState.cs" />
+    <Compile Include="Assets\Scripts\Control Player Behavior\DashTrail_Control.cs" />
     <Compile Include="Assets\Scripts\Control Player Behavior\MeleeAtack_PlayerState.cs" />
     <Compile Include="Assets\Scripts\Control Player Behavior\Movement_PlayerState.cs" />
     <Compile Include="Assets\Scripts\Control Player Behavior\Player_GUI_System.cs" />

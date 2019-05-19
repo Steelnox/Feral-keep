@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour
     public GameObject attackPivot;
     public GameObject shootPoint;
     public TrailRenderer attackTrail;
-    public TrailRenderer dashTrail;
     public CharacterController p_controller;
     //public DartBehavior dart;
     public MeleeAtack_PlayerState meleeState;
@@ -90,7 +89,6 @@ public class PlayerController : MonoBehaviour
     {
         playerAlive = true;
         attackPivot.transform.localRotation = Quaternion.Euler(0, -60, 0);
-        dashTrail.enabled = false;
         SetCanMove(true);
         ChangeState(movementState);
         actualSpeedMultipler = movementSpeed;
@@ -183,6 +181,7 @@ public class PlayerController : MonoBehaviour
                             PlayerManager.instance.AddItemToInventary(PlayerSensSystem.instance.nearestItem);
                             PlayerSensSystem.instance.nearestItem.CollectItem();
                             PlayerManager.instance.CheckIfHaveBranchWeaponItem();
+                            PlayerParticlesSystemController.instance.SetLiveUpFeedbackParticlesOnScene(transform.position + Vector3.up * 0.5f);
                         }
                         break;
                     case Item.ItemType.LEAF_WEAPON:
@@ -215,7 +214,11 @@ public class PlayerController : MonoBehaviour
                         break;
                     case Item.ItemType.LIVE_UP:
                         PlayerSensSystem.instance.nearestItem.CollectItem();
-                        if (actualPlayerLive < playerLive) actualPlayerLive += 1;
+                        if (actualPlayerLive < playerLive)
+                        {
+                            actualPlayerLive += 1;
+                            PlayerParticlesSystemController.instance.SetLiveUpFeedbackParticlesOnScene(transform.position + Vector3.up * 0.5f);
+                        }
                         break;
                 }
                 //Player_GUI_System.instance.SetOnScreenPickUpIcon(true);

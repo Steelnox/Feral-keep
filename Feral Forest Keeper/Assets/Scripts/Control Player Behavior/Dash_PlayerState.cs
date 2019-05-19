@@ -18,7 +18,6 @@ public class Dash_PlayerState : State
         PlayerController.instance.dashing = true;
         dashDirection = GenericSensUtilities.instance.Transform2DTo3DMovement(GenericSensUtilities.instance.Transform3DTo2DMovement(PlayerController.instance.characterModel.transform.forward)).normalized;
         dashDirection.y = 0;
-        PlayerController.instance.dashTrail.enabled = true;
         PlayerController.instance.dashCooldown = 0;
         PlayerController.instance.imGrounded = true;
         PlayerParticlesSystemController.instance.SetDashParticlesOnScene(PlayerController.instance.transform.position);
@@ -39,13 +38,14 @@ public class Dash_PlayerState : State
         }
         //PlayerController.instance.p_controller.Move(dashDirection * Mathf.Abs(dashForce - (dashSmooth * Mathf.Exp(Time.deltaTime))) * Time.deltaTime);
         PlayerController.instance.imGrounded = PlayerController.instance.p_controller.isGrounded;
+        DashTrail_Control.instance.SetTrailIOnScene(PlayerController.instance.characterModel.transform.position, PlayerController.instance.characterModel.transform.forward);
     }
     public override void Exit()
     {
         dashDirection.x = 0;
         dashDirection.y = 0;
         dashDirection.z = 0;
-        PlayerController.instance.dashTrail.enabled = false;
+        //PlayerController.instance.dashTrail.enabled = false;
         PlayerController.instance.dashing = false;
         //PlayerParticlesSystemController.instance.SetDashParticlesOnScene(PlayerController.instance.transform.position);
     }
