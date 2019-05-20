@@ -11,10 +11,10 @@ public class RangedMove : Enemy
     public State attack;
     public State flee;
     public State damaged;
+    public State rage;
 
     public CapsuleCollider C_collider;
     public Projectile projectile;
-    public float timeAttack;
 
     void Start()
     {

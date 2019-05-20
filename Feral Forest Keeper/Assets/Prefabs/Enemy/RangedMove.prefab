@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 285432525731412673}
   - component: {fileID: 1688598975400674458}
   - component: {fileID: 4507946412084314189}
+  - component: {fileID: 1215441941081513999}
   - component: {fileID: 3544253825773532793}
   - component: {fileID: 2664855832874518261}
   - component: {fileID: 5510113244144112258}
@@ -205,10 +206,10 @@ MonoBehaviour:
   attack: {fileID: 1688598975400674458}
   flee: {fileID: 2664855832874518261}
   damaged: {fileID: 3544253825773532793}
+  rage: {fileID: 1215441941081513999}
   C_collider: {fileID: 0}
   projectile: {fileID: 3622596446498762895, guid: 6a5561bf34a7a0e409bd1fe9baf1c320,
     type: 3}
-  timeAttack: 0.5
 --- !u!114 &1688598975400674458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,6 +236,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PosRight: {fileID: 0}
   PosLeft: {fileID: 0}
+--- !u!114 &1215441941081513999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6549901792006296828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2859455ed8bd8f4479fcdbd5a1e2aa37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 1
+  shotAccuracy: 0.5
 --- !u!114 &3544253825773532793
 MonoBehaviour:
   m_ObjectHideFlags: 0
