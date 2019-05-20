@@ -63,7 +63,6 @@ Feral Forest Keeper/Assembly-CSharp.csproj
 Feral Forest Keeper/Library/assetDatabase3
 *.dll
 Feral Forest Keeper/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
-Feral Forest Keeper/Assets/Scenes/Lvl 1.unity
 *.unity
 *.csproj
 *.dll
