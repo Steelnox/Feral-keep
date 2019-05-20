@@ -21,9 +21,11 @@ public class Bush_Behavior : MonoBehaviour
     private bool active;
     [SerializeField]
     private bool weaponBranchHit;
+    private bool justHitted;
 
     void Start()
     {
+        justHitted = true;
         initUpVector = bush_Pivot.transform.up;
         playerInteraction = false;
         hidePos = Vector3.down * 1000;
@@ -48,7 +50,7 @@ public class Bush_Behavior : MonoBehaviour
                 {
                     playerInteraction = false;
                 }
-                if (playerInteraction)
+                if (playerInteraction && !weaponBranchHit)
                 {
                     blendVector = GenericSensUtilities.instance.Transform2DTo3DMovement(GenericSensUtilities.instance.Transform3DTo2DMovement(GenericSensUtilities.instance.GetDirectionFromTo_N(PlayerController.instance.gameObject.transform.position, bush_Pivot.transform.position)));
                     desiredBlendVector = Vector3.up + blendVector * ((1 - ((GenericSensUtilities.instance.DistanceBetween2Vectors(PlayerController.instance.playerRoot.transform.position, bush_Pivot.transform.position) / distanceInteraction))) * blendScale);
@@ -57,6 +59,17 @@ public class Bush_Behavior : MonoBehaviour
                 if (!playerInteraction && bush_Pivot.transform.up != initUpVector && !weaponBranchHit)
                 {
                     bush_Pivot.transform.up = Vector3.Lerp(bush_Pivot.transform.up, initUpVector, (smoothMovement * 2) * Time.deltaTime);
+                }
+                //if (weaponBranchHit)
+                //{
+                //    justHitted = true;
+                //    weaponBranchHit = false;
+                //}
+
+                if (weaponBranchHit)
+                {
+                    bush_Pivot.transform.up = Vector3.Lerp(bush_Pivot.transform.up, desiredBlendVector, smoothMovement * Time.deltaTime);
+                    if (Vector3.Dot(bush_Pivot.transform.up, desiredBlendVector) > 0.9) weaponBranchHit = false;
                 }
             }
         }
@@ -67,7 +80,7 @@ public class Bush_Behavior : MonoBehaviour
         isCutted = true;
         HideBush();
         SetParticles(bushPos);
-        int random = Random.Range(1, 100);
+        int random = (Random.Range(1, 100) * Random.Range(1, 100)) / 3;
         if (random % 2 == 0)
         {
             GameManager.instance.GetRandomLiveUpItem().SetItem(bushPos + Vector3.up * 0.3f, transform.rotation.eulerAngles);
@@ -106,6 +119,8 @@ public class Bush_Behavior : MonoBehaviour
         {
             if (PlayerManager.instance.leafSwordSlot == null)
             {
+                blendVector = GenericSensUtilities.instance.Transform2DTo3DMovement(GenericSensUtilities.instance.Transform3DTo2DMovement(GenericSensUtilities.instance.GetDirectionFromTo_N(PlayerController.instance.gameObject.transform.position, bush_Pivot.transform.position)));
+                desiredBlendVector = Vector3.up + (blendVector * 1 * blendScale);
                 weaponBranchHit = true;
             }
             if (PlayerManager.instance.leafSwordSlot != null)
