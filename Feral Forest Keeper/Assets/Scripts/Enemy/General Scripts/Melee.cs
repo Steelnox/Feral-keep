@@ -10,6 +10,7 @@ public class Melee : Enemy
     public State attack;
     public State rest;
     public State damaged;
+    public State rage;
 
     public CapsuleCollider C_collider;
 

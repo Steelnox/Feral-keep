@@ -19,6 +19,7 @@ public class PlayerParticlesSystemController : MonoBehaviour
     public ParticlesCompositeSystem dashParticlesComposite;
     public ParticlesCompositeSystem hitEnemiesParticlesComposite;
     public ParticlesCompositeSystem liveUpFeedbackParticlesComposite;
+    public ParticlesCompositeSystem dashDuastTrailComposite;
 
     void Start()
     {
@@ -29,6 +30,7 @@ public class PlayerParticlesSystemController : MonoBehaviour
         if(liveUpFeedbackParticlesComposite.IsCompositePlaying())
         {
             liveUpFeedbackParticlesComposite.transform.position = PlayerController.instance.transform.position + Vector3.up * 0.5f;
+            liveUpFeedbackParticlesComposite.transform.rotation = PlayerController.instance.characterModel.transform.rotation;
         }
     }
     public void SetDashParticlesOnScene(Vector3 position)
@@ -43,5 +45,13 @@ public class PlayerParticlesSystemController : MonoBehaviour
     public void SetLiveUpFeedbackParticlesOnScene(Vector3 position)
     {
         liveUpFeedbackParticlesComposite.PlayComposition(position);
+    }
+    public void SetDashDustTrailParticlesOnScene(Vector3 position)
+    {
+        dashDuastTrailComposite.PlayComposition(position);
+    }
+    public ParticlesCompositeSystem GetDashTrailCOmposite()
+    {
+        return dashDuastTrailComposite;
     }
 }

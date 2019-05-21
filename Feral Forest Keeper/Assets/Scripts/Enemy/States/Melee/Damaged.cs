@@ -41,11 +41,12 @@ public class Damaged : State
         if (timer >= timeKnockback)
         {
             if (melee.currentHealth <= 0) this.gameObject.SetActive(false);
-            if(melee.currentHealth > 0)
-            {
-                if (melee.GetDistance(melee.player.transform.position) <= melee.distanceToChase) melee.ChangeState(melee.chase);
-                if (melee.GetDistance(melee.player.transform.position) <= melee.distanceToAttack) melee.ChangeState(melee.attack);
-            }
+            if (melee.currentHealth == 1) melee.ChangeState(melee.rage);
+            //if(melee.currentHealth > 0)
+            //{
+            //    if (melee.GetDistance(melee.player.transform.position) <= melee.distanceToChase) melee.ChangeState(melee.chase);
+            //    if (melee.GetDistance(melee.player.transform.position) <= melee.distanceToAttack) melee.ChangeState(melee.attack);
+            //}
         }
 
     }
