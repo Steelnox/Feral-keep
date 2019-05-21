@@ -10,6 +10,9 @@ public class FixedBoolAttack : State
 
     private Vector3 directionAttack;
 
+    private Projectile projectile;
+
+
     private float distanceToPlayer;
 
     public float timerRecharge;
@@ -20,12 +23,12 @@ public class FixedBoolAttack : State
 
     public float bulletsCanShoot;
 
-
     public override void Enter()
     {
 
         ranged = GetComponent<RangedFixed>();
 
+        ranged.gamemanagerScript = GameManager.instance;
         timerAttack = 0;
 
         timer = 0;
@@ -47,14 +50,14 @@ public class FixedBoolAttack : State
 
             if (bulletsShoot < bulletsCanShoot)
             {
-                if (timerAttack >= 0.1f)
-                {
-                    Vector3 positionProjectile = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z);
-                    Instantiate(ranged.projectile, positionProjectile, transform.rotation);
 
-                    bulletsShoot++;
-                    timerAttack = 0;
-                }
+                InvokeRepeating("Shoot", 0.5f, 0);
+
+                
+                /*if (timerAttack >= 0.1f)
+                {
+                   
+                }*/
 
             }
             else
@@ -68,6 +71,22 @@ public class FixedBoolAttack : State
                 }
             }
         }
+    }
+
+    private void Shoot()
+    {
+        Vector3 positionProjectile = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z);
+
+
+        projectile = ranged.gamemanagerScript.GetProjectileNotActive();
+        projectile.gameObject.SetActive(true);
+
+        projectile.transform.position = positionProjectile;
+        projectile.transform.rotation = transform.rotation;
+        //Instantiate(ranged.projectile, positionProjectile, transform.rotation);
+
+        bulletsShoot++;
+        timerAttack = 0;
     }
 
 }

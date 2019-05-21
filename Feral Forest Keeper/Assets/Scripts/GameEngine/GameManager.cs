@@ -26,6 +26,11 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public Vector2 hidePos;
 
+    public Enemy[] enemiesPool;
+    public Enemy[] enemiesEventPool;
+    public List<Projectile> projectilePool;
+
+    
     void Start()
     {
         provisionalGUIMenuOnScreenPos = provisionalGUIMenu.anchoredPosition;
@@ -72,5 +77,18 @@ public class GameManager : MonoBehaviour
         {
             return null;
         }
+    }
+
+    public Projectile GetProjectileNotActive()
+    {
+        for (int i = 0; i < projectilePool.Count; i++)
+        {
+            if(projectilePool[i].gameObject.activeInHierarchy == false)
+            {
+                return projectilePool[i];
+            }    
+        }
+
+        return null;
     }
 }

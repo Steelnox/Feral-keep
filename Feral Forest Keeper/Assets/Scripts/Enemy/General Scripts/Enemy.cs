@@ -21,6 +21,9 @@ public abstract class Enemy : MonoBehaviour
     public enum EnemyType { MELEE, RANGED } //If other types needed, just add
     public EnemyType enemyType;
 
+    public GameManager gamemanagerScript;
+
+
     #region Stats
 
     public int maxHealth;
@@ -46,6 +49,8 @@ public abstract class Enemy : MonoBehaviour
     private void Start()
     {
         player = PlayerController.instance;
+
+        gamemanagerScript = GameManager.instance;
 
     }
 

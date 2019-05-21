@@ -20,6 +20,8 @@ public class Projectile : MonoBehaviour
         timer = 0;
         myTransform = transform;
 
+        this.gameObject.SetActive(false);
+
     }
 
     void Update()
@@ -31,7 +33,8 @@ public class Projectile : MonoBehaviour
 
         if(timer >= deathTime)
         {
-            Destroy(this.gameObject);
+            timer = 0;
+            this.gameObject.SetActive(false);
         }
     }
 
@@ -40,13 +43,15 @@ public class Projectile : MonoBehaviour
         if(other.tag == "Player")
         {
             player.GetDamage(dmg);
-            Destroy(this.gameObject);
+            timer = 0;
+            this.gameObject.SetActive(false);
 
         }
 
         else if(other.tag == "MovableRock")
         {
-            Destroy(this.gameObject);
+            timer = 0;
+            this.gameObject.SetActive(false);
         }
 
     }

@@ -189,6 +189,7 @@ MonoBehaviour:
   enemy_navmesh: {fileID: 0}
   enemy_rb: {fileID: 0}
   enemyType: 1
+  gamemanagerScript: {fileID: 0}
   maxHealth: 2
   currentHealth: 0
   damage: 0
@@ -208,8 +209,7 @@ MonoBehaviour:
   damaged: {fileID: 3544253825773532793}
   rage: {fileID: 1215441941081513999}
   C_collider: {fileID: 0}
-  projectile: {fileID: 3622596446498762895, guid: 6a5561bf34a7a0e409bd1fe9baf1c320,
-    type: 3}
+  projectile: {fileID: 0}
 --- !u!114 &1688598975400674458
 MonoBehaviour:
   m_ObjectHideFlags: 0
