@@ -138,4 +138,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ProjectileSpeed: 4
   dmg: 1
-  deathTime: 3
+  deathTime: 1.5

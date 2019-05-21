@@ -23,6 +23,7 @@ public class FixedBoolAttack : State
 
     public float bulletsCanShoot;
 
+
     public override void Enter()
     {
 
@@ -32,6 +33,8 @@ public class FixedBoolAttack : State
         timerAttack = 0;
 
         timer = 0;
+
+        bulletsShoot = 0;
 
         // melee.enemy_animator.enabled = false;
 
@@ -50,15 +53,7 @@ public class FixedBoolAttack : State
 
             if (bulletsShoot < bulletsCanShoot)
             {
-
-                InvokeRepeating("Shoot", 0.5f, 0);
-
-                
-                /*if (timerAttack >= 0.1f)
-                {
-                   
-                }*/
-
+                Invoke("Shoot", 0.1f);
             }
             else
             {
@@ -71,19 +66,20 @@ public class FixedBoolAttack : State
                 }
             }
         }
+        else
+        {
+            bulletsShoot = 0;
+        }
     }
 
     private void Shoot()
     {
         Vector3 positionProjectile = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z);
-
-
+        //Instantiate(ranged.projectile, positionProjectile, transform.rotation);
         projectile = ranged.gamemanagerScript.GetProjectileNotActive();
         projectile.gameObject.SetActive(true);
-
         projectile.transform.position = positionProjectile;
         projectile.transform.rotation = transform.rotation;
-        //Instantiate(ranged.projectile, positionProjectile, transform.rotation);
 
         bulletsShoot++;
         timerAttack = 0;

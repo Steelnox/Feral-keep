@@ -13,6 +13,7 @@ public class Projectile : MonoBehaviour
     private float timer;
     public float deathTime;
 
+
     void Start()
     {
         player = PlayerController.instance;
@@ -21,6 +22,7 @@ public class Projectile : MonoBehaviour
         myTransform = transform;
 
         this.gameObject.SetActive(false);
+
 
     }
 
@@ -44,6 +46,7 @@ public class Projectile : MonoBehaviour
         {
             player.GetDamage(dmg);
             timer = 0;
+
             this.gameObject.SetActive(false);
 
         }
@@ -51,6 +54,7 @@ public class Projectile : MonoBehaviour
         else if(other.tag == "MovableRock")
         {
             timer = 0;
+
             this.gameObject.SetActive(false);
         }
 

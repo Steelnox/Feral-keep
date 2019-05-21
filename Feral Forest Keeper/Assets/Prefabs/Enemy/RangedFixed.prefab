@@ -207,7 +207,8 @@ MonoBehaviour:
   fixAttack: {fileID: 8920518569486699649}
   underground: {fileID: 2516511236141379887}
   C_collider: {fileID: 0}
-  projectile: {fileID: 0}
+  projectile: {fileID: 3622596446498762895, guid: 6a5561bf34a7a0e409bd1fe9baf1c320,
+    type: 3}
   onedirectionAttack: 0
   distanceY: 0
   distanceYForAttack: 0
