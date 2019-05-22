@@ -13,6 +13,7 @@ TagManager:
   - BushParticle
   - Sanctuary
   - StaticBush
+  - ColorRock
   layers:
   - Default
   - TransparentFX

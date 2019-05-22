@@ -2,7 +2,7 @@
  * Provides some additional functionality when the FbxSdk and FbxExporter packages
  * are available in the project.
  */
-
+ /*
 using UnityEngine;
 using UnityEditor;
 using ProBuilder2.Common;
@@ -19,10 +19,11 @@ using FbxExporters.Editor;
 #endif
 
 namespace ProBuilder2.Common
-{
+{*/
 	/*
 	* Options when exporting FBX files.
 	*/
+    /*
 	public class pb_FbxOptions
 	{
 		public bool quads;
@@ -96,3 +97,4 @@ namespace ProBuilder2.Common
 #endif
 	}
 }
+*/
