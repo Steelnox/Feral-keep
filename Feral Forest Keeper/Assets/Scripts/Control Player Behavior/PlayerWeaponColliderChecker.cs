@@ -15,6 +15,7 @@ public class PlayerWeaponColliderChecker : MonoBehaviour
     }
 
     #endregion
+
     [SerializeField]
     private bool enemyContact;
 
@@ -75,4 +76,5 @@ public class PlayerWeaponColliderChecker : MonoBehaviour
     {
         return enemyContact;
     }
+
 }

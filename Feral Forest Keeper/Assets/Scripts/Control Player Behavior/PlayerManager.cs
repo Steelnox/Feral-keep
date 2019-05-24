@@ -73,12 +73,12 @@ public class PlayerManager : MonoBehaviour
         if (branchWeaponSlot != null)
         {
             branchWeaponForAnimations.SetActive(true);
-            PlayerAnimationController.instance.SetWeaponAnim(true);
+            //PlayerAnimationController.instance.SetWeaponAnim(true);
             Player_GUI_System.instance.SetOnScreenBranchWeaponIcon(true);
         }
         else
         {
-            PlayerAnimationController.instance.SetWeaponAnim(false);
+            //PlayerAnimationController.instance.SetWeaponAnim(false);
             Player_GUI_System.instance.SetOnScreenBranchWeaponIcon(false);
         }
     }
@@ -97,12 +97,12 @@ public class PlayerManager : MonoBehaviour
             branchWeaponForAnimations.SetActive(false);
             leafWeaponForAnimations.SetActive(true);
             Player_GUI_System.instance.SetOnScreenBranchWeaponIcon(false);
-            PlayerAnimationController.instance.SetWeaponAnim(true);
+            //PlayerAnimationController.instance.SetWeaponAnim(true);
             Player_GUI_System.instance.SetOnScreenLeafWeaponIcon(true);
         }
         else
         {
-            PlayerAnimationController.instance.SetWeaponAnim(false);
+            //PlayerAnimationController.instance.SetWeaponAnim(false);
             Player_GUI_System.instance.SetOnScreenLeafWeaponIcon(false);
         }
     }

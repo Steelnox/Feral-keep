@@ -16,12 +16,14 @@ public class Dash_PlayerState : State
     {
         count = dashLifeTime;
         PlayerController.instance.dashing = true;
+        PlayerController.instance.SetCanMove(false);
         dashDirection = GenericSensUtilities.instance.Transform2DTo3DMovement(GenericSensUtilities.instance.Transform3DTo2DMovement(PlayerController.instance.characterModel.transform.forward)).normalized;
         dashDirection.y = 0;
         PlayerController.instance.dashCooldown = 0;
         PlayerController.instance.imGrounded = true;
         PlayerParticlesSystemController.instance.SetDashParticlesOnScene(PlayerController.instance.playerRoot.transform.position);
         PlayerParticlesSystemController.instance.SetDashDustTrailParticlesOnScene(PlayerController.instance.playerRoot.transform.position);
+        PlayerAnimationController.instance.DashAnim();
     }
     public override void Execute()
     {

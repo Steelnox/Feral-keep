@@ -43,17 +43,21 @@ public class PlayerAnimationController : MonoBehaviour
     {
         animator.SetTrigger("Attack");
     }
+    public void DashAnim()
+    {
+        animator.SetTrigger("Dash");
+    }
     public bool IsAnimationPlaying(string name)
     {
         return animator.GetCurrentAnimatorStateInfo(0).IsName(name);
     }
-    public void SetWeaponAnim(bool active)
-    {
-        if (animator.GetBool("Weapon") != active)
-        {
-            animator.SetBool("Weapon", active);
-        }
-    }
+    //public void SetWeaponAnim(bool active)
+    //{
+    //    if (animator.GetBool("Weapon") != active)
+    //    {
+    //        animator.SetBool("Weapon", active);
+    //    }
+    //}
     public void SetPushinAnim(bool active)
     {
         if(animator.GetBool("Pushing") != active)
