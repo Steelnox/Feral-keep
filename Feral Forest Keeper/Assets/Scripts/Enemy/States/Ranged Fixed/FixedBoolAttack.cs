@@ -53,7 +53,11 @@ public class FixedBoolAttack : State
 
             if (bulletsShoot < bulletsCanShoot)
             {
-                Invoke("Shoot", 0.1f);
+                if(timerAttack >= 0.1f)
+                {
+                    Shoot();
+                    timerAttack = 0;
+                }
             }
             else
             {
@@ -77,7 +81,7 @@ public class FixedBoolAttack : State
         Vector3 positionProjectile = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z);
         //Instantiate(ranged.projectile, positionProjectile, transform.rotation);
         projectile = ranged.gamemanagerScript.GetProjectileNotActive();
-        projectile.gameObject.SetActive(true);
+        //projectile.gameObject.SetActive(true);
         projectile.transform.position = positionProjectile;
         projectile.transform.rotation = transform.rotation;
 
