@@ -109,6 +109,8 @@ public class PlayerController : MonoBehaviour
         DoorsDetection();
         SanctuaryDetection();
         ColorRockDetection();
+        SimonRockDetection();
+
         if (gettingHit)
         {
             if (!PlayerAnimationController.instance.GetGettingHitAnimState())PlayerAnimationController.instance.SetGettingHitAnim(true);
@@ -267,6 +269,28 @@ public class PlayerController : MonoBehaviour
                 if (Input.GetButtonDown("B") || Input.GetKeyDown(KeyCode.F))
                 {
                     PlayerSensSystem.instance.nearestColorRock.ChangeColorRock();
+                }
+            }
+            else
+            {
+                Player_GUI_System.instance.SetOnScreenActivateSanctuaryIcon(false);
+            }
+        }
+        else
+        {
+            Player_GUI_System.instance.SetOnScreenActivateSanctuaryIcon(false);
+        }
+    }
+    private void SimonRockDetection()
+    {
+        if (PlayerSensSystem.instance.nearestSimonRock != null)
+        {
+            if (GenericSensUtilities.instance.DistanceBetween2Vectors(PlayerSensSystem.instance.nearestSimonRock.transform.position, PlayerController.instance.transform.position) < 2)
+            {
+                Player_GUI_System.instance.SetOnScreenActivateSanctuaryIcon(true);
+                if (Input.GetButtonDown("B") || Input.GetKeyDown(KeyCode.F))
+                {
+                    PlayerSensSystem.instance.nearestSimonRock.InteractWithSimonRock();
                 }
             }
             else
@@ -451,6 +475,7 @@ public class PlayerController : MonoBehaviour
         //    actualPlayerLive = 0;
         //}
     }
+
     public void SetCanMove(bool b)
     {
         canMove = b;
