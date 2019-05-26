@@ -25,6 +25,7 @@ public class PlayerSensSystem : MonoBehaviour
     public Item nearestItem;
     public OpenableDoors nearestDoor;
     public Sanctuary nearestSanctuary;
+    public ColorRockScript nearestColorRock;
     public bool overGrass;
 
     [SerializeField]
@@ -35,6 +36,8 @@ public class PlayerSensSystem : MonoBehaviour
     public List<Item> itemsList;
     public List<OpenableDoors> doorsList;
     public List<Sanctuary> sanctuaryList;
+    public List<ColorRockScript> colorRockList;
+
 
     void Start()
     {
@@ -49,6 +52,7 @@ public class PlayerSensSystem : MonoBehaviour
         GetNearestItem();
         GetNearestDoor();
         GetNearestSanctuary();
+        GetNearestColorRock();
     }     
 
     public void OnTriggerEnter(Collider other)
@@ -109,6 +113,15 @@ public class PlayerSensSystem : MonoBehaviour
                 if (!FindSameSanctuaryOnList(sanctuary))
                 {
                     sanctuaryList.Add(sanctuary);
+                }
+            }
+
+            ColorRockScript colorRock = other.GetComponent<ColorRockScript>();
+            if (colorRock != null)
+            {
+                if (!FindSameColorRockOnList(colorRock))
+                {
+                    colorRockList.Add(colorRock);
                 }
             }
         }
@@ -174,6 +187,15 @@ public class PlayerSensSystem : MonoBehaviour
                     sanctuaryList.Add(sanctuary);
                 }
             }
+            ColorRockScript colorRock = other.GetComponent<ColorRockScript>();
+            if (colorRock != null)
+            {
+                if (!FindSameColorRockOnList(colorRock))
+                {
+                    colorRockList.Add(colorRock);
+                }
+            }
+
         }
     }
     public void OnTriggerExit(Collider other)
@@ -260,6 +282,18 @@ public class PlayerSensSystem : MonoBehaviour
                     if (sanctuary == s)
                     {
                         sanctuaryList.Remove(s);
+                        return;
+                    }
+                }
+            }
+            ColorRockScript colorRock = other.GetComponent<ColorRockScript>();
+            if (colorRock != null)
+            {
+                foreach(ColorRockScript c in colorRockList)
+                {
+                    if (colorRock == c)
+                    {
+                        colorRockList.Remove(c);
                         return;
                     }
                 }
@@ -409,6 +443,29 @@ public class PlayerSensSystem : MonoBehaviour
         }
         nearestSanctuary = sanctuary;
     }
+    public void GetNearestColorRock()
+    {
+        ColorRockScript colorRock = null;
+
+        if (colorRockList.Count > 0)
+        {
+            foreach (ColorRockScript c in colorRockList)
+            {
+                if (colorRock == null)
+                {
+                    colorRock = c;
+                }
+                else
+                {
+                    if (GenericSensUtilities.instance.DistanceBetween2Vectors(transform.position, c.transform.position) < GenericSensUtilities.instance.DistanceBetween2Vectors(transform.position, colorRock.transform.position))
+                    {
+                        colorRock = c;
+                    }
+                }
+            }
+        }
+        nearestColorRock = colorRock;
+    }
     public bool CheckIfOverGrass()
     {
         foreach (BushGrass_Behavior g in grassesList)
@@ -482,6 +539,14 @@ public class PlayerSensSystem : MonoBehaviour
         foreach (Sanctuary s in sanctuaryList)
         {
             if (s == _mSanctuary) return true;
+        }
+        return false;
+    }
+    private bool FindSameColorRockOnList(ColorRockScript _mColorRock)
+    {
+        foreach (ColorRockScript c in colorRockList)
+        {
+            if (c == _mColorRock) return true;
         }
         return false;
     }

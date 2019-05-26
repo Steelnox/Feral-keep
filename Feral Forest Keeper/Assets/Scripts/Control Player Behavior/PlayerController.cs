@@ -108,6 +108,7 @@ public class PlayerController : MonoBehaviour
         ItemsDetection();
         DoorsDetection();
         SanctuaryDetection();
+        ColorRockDetection();
         if (gettingHit)
         {
             if (!PlayerAnimationController.instance.GetGettingHitAnimState())PlayerAnimationController.instance.SetGettingHitAnim(true);
@@ -244,6 +245,28 @@ public class PlayerController : MonoBehaviour
                 {
                     PlayerSensSystem.instance.nearestSanctuary.ActivateSanctuary();
                     Player_GUI_System.instance.SetOnScreenStrenfthForestIcon(true);
+                }
+            }
+            else
+            {
+                Player_GUI_System.instance.SetOnScreenActivateSanctuaryIcon(false);
+            }
+        }
+        else
+        {
+            Player_GUI_System.instance.SetOnScreenActivateSanctuaryIcon(false);
+        }
+    }
+    private void ColorRockDetection()
+    {
+        if (PlayerSensSystem.instance.nearestColorRock != null)
+        {
+            if (GenericSensUtilities.instance.DistanceBetween2Vectors(PlayerSensSystem.instance.nearestColorRock.transform.position, PlayerController.instance.transform.position) < 2)
+            {
+                Player_GUI_System.instance.SetOnScreenActivateSanctuaryIcon(true);
+                if (Input.GetButtonDown("B") || Input.GetKeyDown(KeyCode.F))
+                {
+                    PlayerSensSystem.instance.nearestColorRock.ChangeColorRock();
                 }
             }
             else

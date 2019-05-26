@@ -23,7 +23,7 @@ public class ColorRockScript : MonoBehaviour
     public void ChangeColorRock()
     {
         i++;
-        if (i >= materialColorRockList.Count - 1)
+        if (i >= materialColorRockList.Count)
         {
             i = 0;
         }
