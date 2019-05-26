@@ -12,7 +12,6 @@ public class RangedFixed : Enemy
     public State underground;
 
     public CapsuleCollider C_collider;
-    public Projectile projectile;
 
     public bool onedirectionAttack;
 
@@ -26,6 +25,9 @@ public class RangedFixed : Enemy
     void Start()
     {
         player = PlayerController.instance;
+
+        gamemanagerScript = GameManager.instance;
+
 
         enemyType = EnemyType.MELEE;
 

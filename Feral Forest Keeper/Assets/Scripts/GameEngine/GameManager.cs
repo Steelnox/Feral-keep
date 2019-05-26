@@ -83,6 +83,7 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < projectilePool.Count; i++)
         {
+
             if(projectilePool[i].activated == false)
             {
                 projectilePool[i].activated = true;

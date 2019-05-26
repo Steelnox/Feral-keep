@@ -29,7 +29,6 @@ public class FixedBoolAttack : State
 
         ranged = GetComponent<RangedFixed>();
 
-        ranged.gamemanagerScript = GameManager.instance;
         timerAttack = 0;
 
         timer = 0;
@@ -56,7 +55,6 @@ public class FixedBoolAttack : State
                 if(timerAttack >= 0.1f)
                 {
                     Shoot();
-                    timerAttack = 0;
                 }
             }
             else
@@ -79,9 +77,7 @@ public class FixedBoolAttack : State
     private void Shoot()
     {
         Vector3 positionProjectile = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z);
-        //Instantiate(ranged.projectile, positionProjectile, transform.rotation);
         projectile = ranged.gamemanagerScript.GetProjectileNotActive();
-        //projectile.gameObject.SetActive(true);
         projectile.transform.position = positionProjectile;
         projectile.transform.rotation = transform.rotation;
 

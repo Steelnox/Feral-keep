@@ -10,6 +10,9 @@ public class AttackRangedFixed : State
 
     private Vector3 directionAttack;
 
+    private Projectile projectile;
+
+
     private float distanceToPlayer;
 
     public float timerRecharge;
@@ -26,9 +29,12 @@ public class AttackRangedFixed : State
 
         ranged = GetComponent<RangedFixed>();
 
+
         timerAttack = 0;
 
         timer = 0;
+
+        bulletsShoot = 0;
 
         // melee.enemy_animator.enabled = false;
 
@@ -46,15 +52,12 @@ public class AttackRangedFixed : State
         Quaternion lookOnLook = Quaternion.LookRotation(-directionAttack);
 
         transform.rotation = Quaternion.Slerp(transform.rotation, lookOnLook, 0.5f);
+
         if(bulletsShoot < bulletsCanShoot)
         {
             if (timerAttack >= 0.1f)
             {
-                Vector3 positionProjectile = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z);
-                Instantiate(ranged.projectile, positionProjectile, transform.rotation);
-
-                bulletsShoot++;
-                timerAttack = 0;
+                Shoot();
             }
 
         }
@@ -68,16 +71,30 @@ public class AttackRangedFixed : State
                 bulletsShoot = 0;
             }
         }
-        if (distanceToPlayer > ranged.distanceToAttack || ranged.distanceY > ranged.distanceYForAttack) ranged.ChangeState(ranged.look);
+        if (distanceToPlayer > ranged.distanceToAttack || ranged.distanceY > ranged.distanceYForAttack)
+        {
+            bulletsShoot = 0;
+            ranged.ChangeState(ranged.look);
+
+        }
 
     }
-
-
 
     public override void Exit()
     {
 
 
 
+    }
+
+    private void Shoot()
+    {
+        Vector3 positionProjectile = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z);
+        projectile = ranged.gamemanagerScript.GetProjectileNotActive();
+        projectile.transform.position = positionProjectile;
+        projectile.transform.rotation = transform.rotation;
+
+        bulletsShoot++;
+        timerAttack = 0;
     }
 }

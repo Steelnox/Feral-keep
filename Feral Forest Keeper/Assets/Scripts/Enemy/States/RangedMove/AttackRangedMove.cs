@@ -12,6 +12,7 @@ public class AttackRangedMove : State
 
     private Vector3 directionAttack;
 
+    private Projectile projectile;
 
 
 
@@ -41,13 +42,8 @@ public class AttackRangedMove : State
 
         if (!projectile_done && timerAttack >= 1)
         {
-            Vector3 positionProjectile = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z);
-            Instantiate(ranged.projectile, positionProjectile, transform.rotation);
-            projectile_done = true;
-            ranged.ChangeState(ranged.chase);
+            Shoot();
         }
-
-
 
     }
 
@@ -66,5 +62,16 @@ public class AttackRangedMove : State
 
     }
 
-   
+    private void Shoot()
+    {
+        Vector3 positionProjectile = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z);
+        projectile = ranged.gamemanagerScript.GetProjectileNotActive();
+        projectile.transform.position = positionProjectile;
+        projectile.transform.rotation = transform.rotation;
+        projectile_done = true;
+        ranged.ChangeState(ranged.chase);
+
+    }
+
+
 }

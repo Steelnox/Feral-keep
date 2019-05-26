@@ -19,6 +19,9 @@ public class RangedMove : Enemy
     void Start()
     {
         player = PlayerController.instance;
+
+        gamemanagerScript = GameManager.instance;
+
         enemyType = EnemyType.MELEE;
 
         enemy_navmesh = GetComponent<NavMeshAgent>();
