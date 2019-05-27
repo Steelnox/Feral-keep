@@ -10,6 +10,8 @@ public abstract class Enemy : MonoBehaviour
     protected StateMachine stateMachine = new StateMachine();
     public State currentState;
 
+    public Animator enemy_animator;
+
     //public Animator enemy_animator;
 
     public PlayerController player;
@@ -51,6 +53,7 @@ public abstract class Enemy : MonoBehaviour
         player = PlayerController.instance;
 
         gamemanagerScript = GameManager.instance;
+
 
     }
 

@@ -9,8 +9,10 @@ public class Chase : State
     public override void Enter()
     {
         melee = GetComponent<Melee>();
-        //melee.enemy_animator.SetBool("Run", true);
+
         //melee.enemy_navmesh.speed = melee.speed * 2;
+
+        melee.enemy_animator.SetFloat("Speed", melee.enemy_navmesh.speed);
 
     }
 

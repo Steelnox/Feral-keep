@@ -21,6 +21,7 @@ public class Melee : Enemy
     void Start()
     {
         player = PlayerController.instance;
+
         enemyType = EnemyType.MELEE;
 
         enemy_navmesh = GetComponent<NavMeshAgent>();
@@ -31,8 +32,6 @@ public class Melee : Enemy
         enemy_rb = GetComponent<Rigidbody>();
 
         currentHealth = maxHealth;
-
-
 
         ChangeState(patrol);
     }

@@ -27,8 +27,11 @@ public class Patrol : State
         distanceToPoint = 1.0f;
 
         //melee.enemy_animator.SetTrigger("Walk");
+
         AssignRandom();
         melee.enemy_navmesh.speed = melee.speed;
+
+        melee.enemy_animator.SetFloat("Speed", melee.enemy_navmesh.speed);
 
         timer = 0;
     }
