@@ -5,9 +5,9 @@ using UnityEngine;
 public class Switch_Behavior : MonoBehaviour
 {
     [SerializeField]
-    private bool switched;
+    public bool switched;
     [SerializeField]
-    private bool holdedSwitched;
+    public bool holdedSwitched;
 
     public void OnTriggerEnter(Collider other)
     {

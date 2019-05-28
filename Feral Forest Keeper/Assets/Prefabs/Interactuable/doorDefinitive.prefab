@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8679686125829701008}
-  - component: {fileID: 725678749730258314}
+  - component: {fileID: 4959968765802349882}
   m_Layer: 0
   m_Name: doorDefinitive
   m_TagString: Untagged
@@ -33,33 +33,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &725678749730258314
-MonoBehaviour:
+--- !u!111 &4959968765802349882
+Animation:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1848019314048509217}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5141d25fd746bd41bd04dc8791c424c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movableDoorPivot: {fileID: 0}
-  doorBody: {fileID: 0}
-  doorKeys: []
-  activationSwitch: {fileID: 0}
-  interactionDistance: 0
-  setupTimeLaps: 0
-  scripteMovementsRepetitions: 0
-  smoothmovement: 0
-  cameraFeedback: 0
-  startOpened: 0
-  holdSwitchToOpen: 0
-  lockState: 0
-  axisPivot: 0
-  maxGrades: 0
-  actualSetupTimeLaps: 0
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 087107f4cd745e744bfebad49dc8749b, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1001 &8541959910688579110
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -116,16 +104,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b2f1fcc1bd590a946b2fedcd55ce60e6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: b2f1fcc1bd590a946b2fedcd55ce60e6, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.5000005
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b2f1fcc1bd590a946b2fedcd55ce60e6, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: b2f1fcc1bd590a946b2fedcd55ce60e6, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2f1fcc1bd590a946b2fedcd55ce60e6, type: 3}
@@ -152,7 +140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f6fd9a2902b332948a72d14e27aaf6cf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.48
+      value: 6.458
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f6fd9a2902b332948a72d14e27aaf6cf, type: 3}
       propertyPath: m_LocalPosition.z
@@ -191,16 +179,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f6fd9a2902b332948a72d14e27aaf6cf, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f6fd9a2902b332948a72d14e27aaf6cf, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.5000005
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f6fd9a2902b332948a72d14e27aaf6cf, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: f6fd9a2902b332948a72d14e27aaf6cf, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6fd9a2902b332948a72d14e27aaf6cf, type: 3}
