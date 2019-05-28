@@ -146,6 +146,7 @@ MonoBehaviour:
   flee: {fileID: 2664855832874518261}
   damaged: {fileID: 3544253825773532793}
   rage: {fileID: 1215441941081513999}
+  shoot: 0
   C_collider: {fileID: 0}
   projectile: {fileID: 0}
 --- !u!114 &1688598975400674458
@@ -300,7 +301,7 @@ PrefabInstance:
     - target: {fileID: 1099174526880630178, guid: 28575bf9bf5978545b5b7639f30050d2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.574
+      value: 0.835
       objectReference: {fileID: 0}
     - target: {fileID: 1099174526880630178, guid: 28575bf9bf5978545b5b7639f30050d2,
         type: 3}
