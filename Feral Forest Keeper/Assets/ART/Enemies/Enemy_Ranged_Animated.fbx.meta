@@ -208,7 +208,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0
-        functionName: Move
+        functionName: StopMove
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -312,7 +312,7 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.1016
+    previousCalculatedGlobalScale: 0.0762
     hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60

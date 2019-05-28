@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AttackRangedMove : State
 {
-    private float timerAttack;
 
     private bool projectile_done;
 
@@ -21,7 +20,6 @@ public class AttackRangedMove : State
 
         ranged = GetComponent<RangedMove>();
 
-        timerAttack = 0;
 
         projectile_done = false;
 
@@ -29,14 +27,10 @@ public class AttackRangedMove : State
         
         ranged.enemy_animator.SetBool("Attack", true);
 
-        // melee.enemy_animator.enabled = false;
-
     }
 
     public override void Execute()
     {
-        //timerAttack += Time.deltaTime;
-
         directionAttack = (ranged.enemy_navmesh.transform.position - ranged.player.transform.position).normalized;
 
         Quaternion lookOnLook = Quaternion.LookRotation(-directionAttack);
@@ -54,8 +48,6 @@ public class AttackRangedMove : State
 
     public override void Exit()
     {
-        timerAttack = 0;
-
 
         ranged.enemy_animator.SetBool("Attack", false);
 

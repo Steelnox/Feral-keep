@@ -45,7 +45,7 @@ public class DamagedRanged : State
                 ranged.ChangeState(ranged.rage);
             }
             if (ranged.currentHealth <= 0) this.gameObject.SetActive(false);
-           if (ranged.currentHealth > 0)
+            if (ranged.currentHealth > 1 )
             {
                 if (ranged.GetDistance(ranged.player.transform.position) <= ranged.distanceToChase) ranged.ChangeState(ranged.chase);
                 if (ranged.GetDistance(ranged.player.transform.position) <= ranged.distanceToAttack) ranged.ChangeState(ranged.attack);
