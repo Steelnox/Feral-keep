@@ -25,14 +25,17 @@ public class AttackRangedMove : State
 
         projectile_done = false;
 
+        ranged.shoot = false;
+        
+        ranged.enemy_animator.SetBool("Attack", true);
+
         // melee.enemy_animator.enabled = false;
 
-        ranged.enemy_navmesh.isStopped = true;
     }
 
     public override void Execute()
     {
-        timerAttack += Time.deltaTime;
+        //timerAttack += Time.deltaTime;
 
         directionAttack = (ranged.enemy_navmesh.transform.position - ranged.player.transform.position).normalized;
 
@@ -40,7 +43,7 @@ public class AttackRangedMove : State
 
         transform.rotation = Quaternion.Slerp(transform.rotation, lookOnLook, 0.5f);
 
-        if (!projectile_done && timerAttack >= 1)
+        if (!projectile_done && ranged.shoot)
         {
             Shoot();
         }
@@ -54,17 +57,14 @@ public class AttackRangedMove : State
         timerAttack = 0;
 
 
-        // melee.enemy_animator.SetBool("Attack", false);
-
-        ranged.enemy_navmesh.isStopped = false;
-
+        ranged.enemy_animator.SetBool("Attack", false);
 
 
     }
 
     private void Shoot()
     {
-        Vector3 positionProjectile = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z);
+        Vector3 positionProjectile = new Vector3(transform.position.x, transform.position.y + 0.2f, transform.position.z);
         projectile = ranged.gamemanagerScript.GetProjectileNotActive();
         projectile.transform.position = positionProjectile;
         projectile.transform.rotation = transform.rotation;

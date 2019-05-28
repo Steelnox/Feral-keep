@@ -13,6 +13,8 @@ public class RangedMove : Enemy
     public State damaged;
     public State rage;
 
+    public bool shoot;
+
     public CapsuleCollider C_collider;
     public Projectile projectile;
 
@@ -22,7 +24,7 @@ public class RangedMove : Enemy
 
         gamemanagerScript = GameManager.instance;
 
-        enemyType = EnemyType.MELEE;
+        enemyType = EnemyType.RANGED;
 
         enemy_navmesh = GetComponent<NavMeshAgent>();
 
@@ -32,14 +34,27 @@ public class RangedMove : Enemy
 
         currentHealth = maxHealth;
 
+        shoot = false;
+
         ChangeState(patrol);
     }
 
     void Update()
     {
 
+        enemy_animator.SetFloat("Speed", enemy_navmesh.speed);
+
+        if (move)
+        {
+            enemy_navmesh.isStopped = false;
+        }
+
+        else
+        {
+            enemy_navmesh.isStopped = true;
+
+        }
         stateMachine.ExecuteState();
-        //Debug.Log(currentState);
 
     }
 
@@ -53,4 +68,5 @@ public class RangedMove : Enemy
             HealthBar.transform.localScale = new Vector3(x, 1, 1);
         }
     }
+
 }

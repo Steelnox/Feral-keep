@@ -26,9 +26,11 @@ public class PatrolRangedMove : State
         ranged = GetComponent<RangedMove>();
         distanceToPoint = 1.0f;
 
-        //melee.enemy_animator.SetTrigger("Walk");
-        AssignRandom();
         ranged.enemy_navmesh.speed = ranged.speed;
+
+        ranged.enemy_animator.SetBool("Walk", true);
+
+        AssignRandom();
 
         timer = 0;
     }
@@ -51,6 +53,12 @@ public class PatrolRangedMove : State
         if (distanceToPlayer <= ranged.distanceToChase && distanceToPlayer > ranged.distanceToAttack) ranged.ChangeState(ranged.chase);
         if (distanceToPlayer <= ranged.distanceToFlee) ranged.ChangeState(ranged.flee);
         if (distanceToPlayer <= ranged.distanceToAttack && distanceToPlayer > ranged.distanceToFlee) ranged.ChangeState(ranged.attack);
+
+    }
+
+    public override void Exit()
+    {
+        ranged.enemy_animator.SetBool("Walk", false);
 
     }
 

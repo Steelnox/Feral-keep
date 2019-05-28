@@ -11,6 +11,8 @@ public class Flee : State
     {
         ranged = GetComponent<RangedMove>();
 
+        ranged.enemy_animator.SetBool("Run", true);
+
     }
 
     public override void Execute()
@@ -31,7 +33,10 @@ public class Flee : State
 
     public override void Exit()
     {
+        ranged.enemy_animator.SetBool("Run", false);
 
 
     }
+
+
 }

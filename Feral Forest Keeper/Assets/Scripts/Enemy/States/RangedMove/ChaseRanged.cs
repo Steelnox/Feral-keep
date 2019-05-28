@@ -12,9 +12,12 @@ public class ChaseRanged : State
     {
         ranged = GetComponent<RangedMove>();
 
+        ranged.enemy_animator.SetBool("Walk", true);
+
         timer = 0;
 
         ranged.enemy_navmesh.ResetPath();
+
     }
 
     public override void Execute()
@@ -26,8 +29,6 @@ public class ChaseRanged : State
             ranged.enemy_navmesh.SetDestination(ranged.player.transform.position);
         }
      
-
-
         timer += Time.deltaTime;
         distanceToPlayer = ranged.GetDistance(ranged.player.transform.position);
         if (distanceToPlayer <= ranged.distanceToFlee) ranged.ChangeState(ranged.flee);
@@ -39,7 +40,7 @@ public class ChaseRanged : State
 
     public override void Exit()
     {
-        
+        ranged.enemy_animator.SetBool("Walk", false);
 
     }
 }

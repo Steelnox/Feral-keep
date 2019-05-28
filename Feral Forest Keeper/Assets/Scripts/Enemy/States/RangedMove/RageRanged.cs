@@ -29,7 +29,7 @@ public class RageRanged : State
 
         timerAttack = 0;
 
-
+        ranged.enemy_animator.SetBool("Attack", true);
 
     }
 
@@ -57,7 +57,8 @@ public class RageRanged : State
 
     public override void Exit()
     {
-       
+
+        ranged.enemy_animator.SetBool("Attack", false);
 
     }
 }

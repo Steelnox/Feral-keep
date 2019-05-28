@@ -25,8 +25,8 @@ public class DamagedRanged : State
 
         timer = 0;
 
+        ranged.enemy_animator.SetBool("Hit", true);
 
-        ranged.enemy_navmesh.isStopped = true;
 
         ranged.enemy_rb.isKinematic = false;
 
@@ -40,19 +40,18 @@ public class DamagedRanged : State
         timer += Time.deltaTime;
         if (timer >= timeKnockback)
         {
-            if(ranged.currentHealth == 1)
+            if(ranged.currentHealth <= 1 && ranged.currentHealth > 0)
             {
                 ranged.ChangeState(ranged.rage);
             }
             if (ranged.currentHealth <= 0) this.gameObject.SetActive(false);
-           /* if (ranged.currentHealth > 0)
+           if (ranged.currentHealth > 0)
             {
                 if (ranged.GetDistance(ranged.player.transform.position) <= ranged.distanceToChase) ranged.ChangeState(ranged.chase);
-                //if (ranged.GetDistance(ranged.player.transform.position) <= ranged.distanceToAttack) ranged.ChangeState(ranged.attack);
-            }*/
+                if (ranged.GetDistance(ranged.player.transform.position) <= ranged.distanceToAttack) ranged.ChangeState(ranged.attack);
+            }
             
         }
-        Debug.Log(ranged.currentHealth);
 
     }
 
@@ -60,7 +59,7 @@ public class DamagedRanged : State
     {
         if (ranged.currentHealth > 0)
         {
-            ranged.enemy_navmesh.isStopped = false;
+            ranged.enemy_animator.SetBool("Hit", false);
 
             ranged.enemy_rb.isKinematic = true;
         }

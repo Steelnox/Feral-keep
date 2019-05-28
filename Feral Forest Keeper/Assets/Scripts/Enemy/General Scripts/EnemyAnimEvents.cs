@@ -4,31 +4,30 @@ using UnityEngine;
 
 public class EnemyAnimEvents : MonoBehaviour
 {
+
     public Melee melee_Main;
 
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
+    public RangedMove move_Main;
 
     public void Move()
     {
-        melee_Main.move = true;
+        if (melee_Main != null) melee_Main.move = true;
+        if (move_Main != null) move_Main.move = true;
     }
 
     public void StopMove()
     {
-        melee_Main.move = false;
+        if (melee_Main != null) melee_Main.move = false;
+        if (move_Main != null) move_Main.move = false;
     }
 
     public void FinishAttack()
     {
         melee_Main.finishAttack = true;
+    }
+
+    public void Shoot()
+    {
+        move_Main.shoot = true;
     }
 }
