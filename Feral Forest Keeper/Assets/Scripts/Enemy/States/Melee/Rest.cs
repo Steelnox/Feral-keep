@@ -13,13 +13,11 @@ public class Rest : State
     {
         melee = GetComponent<Melee>();
 
-        transform.localScale = new Vector3(1, 0.5f, 1);
         timer = 0;
 
-        melee.enemy_navmesh.isStopped = true;
+        melee.move = false;
 
-
-    }
+     }
 
     public override void Execute()
     {
@@ -33,10 +31,9 @@ public class Rest : State
 
     public override void Exit()
     {
-        transform.localScale = new Vector3(1, 1, 1);
 
+        melee.move = true;
 
-        melee.enemy_navmesh.isStopped = false;
 
     }
 }

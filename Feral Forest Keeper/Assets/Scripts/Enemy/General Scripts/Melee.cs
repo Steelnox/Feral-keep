@@ -14,9 +14,7 @@ public class Melee : Enemy
 
     public CapsuleCollider C_collider;
 
-
-
-
+    public bool finishAttack;
 
     void Start()
     {
@@ -33,13 +31,23 @@ public class Melee : Enemy
 
         currentHealth = maxHealth;
 
+
         ChangeState(patrol);
     }
 
     void Update()
     {
 
-        
+        if (move)
+        {
+            enemy_navmesh.isStopped = false;
+        }
+
+        else
+        {
+            enemy_navmesh.isStopped = true;
+
+        }
 
         stateMachine.ExecuteState();
         //Debug.Log(currentState);

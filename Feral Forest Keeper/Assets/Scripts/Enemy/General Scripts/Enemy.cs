@@ -25,6 +25,8 @@ public abstract class Enemy : MonoBehaviour
 
     public GameManager gamemanagerScript;
 
+    public bool move;
+
 
     #region Stats
 
@@ -53,6 +55,8 @@ public abstract class Enemy : MonoBehaviour
         player = PlayerController.instance;
 
         gamemanagerScript = GameManager.instance;
+
+        move = false;
 
 
     }

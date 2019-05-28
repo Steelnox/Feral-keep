@@ -29,7 +29,11 @@ public class MeleeAttack : State
 
         dmg_done = false;
 
-       // melee.enemy_animator.enabled = false;
+        // melee.enemy_animator.enabled = false;
+
+        melee.enemy_animator.SetBool("Attack", true);
+
+        melee.finishAttack = false;
 
         melee.enemy_navmesh.isStopped = true;
     }
@@ -44,7 +48,7 @@ public class MeleeAttack : State
 
 
 
-        if (timerAttack >= 0.5f)
+        if (melee.move)
         {
 
             timerDash += Time.deltaTime;
@@ -53,7 +57,7 @@ public class MeleeAttack : State
 
             melee.enemy_navmesh.isStopped = false;
 
-            melee.enemy_navmesh.Move(-directionAttack * 0.25f);
+            melee.enemy_navmesh.Move(-directionAttack * 0.1f);
 
             //  melee.enemy_animator.SetBool("Attack", true);
 
@@ -73,7 +77,7 @@ public class MeleeAttack : State
                 }
             }
 
-            if(timerDash >= 0.25f)
+            if(melee.finishAttack)
             {
                 FinishAttack();
             }
@@ -89,7 +93,7 @@ public class MeleeAttack : State
         timerDash = 0;
         dmg_done = false;
 
-       // melee.enemy_animator.SetBool("Attack", false);
+       melee.enemy_animator.SetBool("Attack", false);
 
         melee.enemy_navmesh.isStopped = false;
 

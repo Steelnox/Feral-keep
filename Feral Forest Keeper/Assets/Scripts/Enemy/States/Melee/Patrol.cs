@@ -38,6 +38,7 @@ public class Patrol : State
 
     public override void Execute()
     {
+
         timer += Time.deltaTime;
         if(timer >= 5.0f)
         {
