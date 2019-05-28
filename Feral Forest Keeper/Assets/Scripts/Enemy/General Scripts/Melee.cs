@@ -37,7 +37,7 @@ public class Melee : Enemy
 
     void Update()
     {
-
+        
         if (move)
         {
             enemy_navmesh.isStopped = false;

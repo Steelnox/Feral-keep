@@ -27,8 +27,8 @@ public class PushRock_State : State
     {
         actualContactDistance = GenericSensUtilities.instance.DistanceBetween2Vectors(PlayerController.instance.transform.position, PlayerSensSystem.instance.nearestRock.FindContactPoint(PlayerController.instance.transform.position));
         
-        Debug.Log("First Contact Distance = " + constactDistance);
-        Debug.Log("Actual Contact Distance = " + GenericSensUtilities.instance.DistanceBetween2Vectors(PlayerController.instance.transform.position, PlayerSensSystem.instance.nearestRock.FindContactPoint(PlayerController.instance.transform.position)));
+        //Debug.Log("First Contact Distance = " + constactDistance);
+        //Debug.Log("Actual Contact Distance = " + GenericSensUtilities.instance.DistanceBetween2Vectors(PlayerController.instance.transform.position, PlayerSensSystem.instance.nearestRock.FindContactPoint(PlayerController.instance.transform.position)));
         if (Input.GetButtonUp("RB") || Input.GetKeyUp(KeyCode.E) || PlayerSensSystem.instance.CheckGroundDistance() > 0.4f || PlayerSensSystem.instance.nearestRock.CheckIfFalling() || actualContactDistance < constactDistance - 0.1f || actualContactDistance > constactDistance + 0.1f || lastMovableRock != PlayerSensSystem.instance.nearestRock)
         {
             //Debug.Log("GroundDistance = " + PlayerSensSystem.instance.CheckGroundDistance());
@@ -41,7 +41,7 @@ public class PushRock_State : State
             //PlayerAnimationController.instance.SetPushinAnim(true);
             if (PlayerController.instance.pushDirection.z < 0)
             {
-                Debug.Log("pushDirection.y < 0");
+                //Debug.Log("pushDirection.y < 0");
                 PlayerSensSystem.instance.nearestRock.PushRock(PlayerController.instance.pushDirection * -PlayerController.instance.Z_Input);
                 pushingMovement = (PlayerController.instance.pushDirection * -PlayerController.instance.Z_Input) * (Time.deltaTime / PlayerSensSystem.instance.nearestRock.weight);
                 pushingMovement = new Vector3(pushingMovement.x, PlayerController.instance.movement.y, pushingMovement.z);
@@ -50,7 +50,7 @@ public class PushRock_State : State
             else
             if (PlayerController.instance.pushDirection.z > 0)
             {
-                Debug.Log("pushDirection.y > 0");
+                //Debug.Log("pushDirection.y > 0");
                 PlayerSensSystem.instance.nearestRock.PushRock(PlayerController.instance.pushDirection * PlayerController.instance.Z_Input);
                 pushingMovement = (PlayerController.instance.pushDirection * PlayerController.instance.Z_Input) * (Time.deltaTime / PlayerSensSystem.instance.nearestRock.weight);
                 pushingMovement = new Vector3(pushingMovement.x, PlayerController.instance.movement.y, pushingMovement.z);
@@ -59,7 +59,7 @@ public class PushRock_State : State
 
             if (PlayerController.instance.pushDirection.x < 0)
             {
-                Debug.Log("pushDirection.x < 0");
+                //Debug.Log("pushDirection.x < 0");
                 PlayerSensSystem.instance.nearestRock.PushRock(PlayerController.instance.pushDirection * -PlayerController.instance.X_Input);
                 pushingMovement = (PlayerController.instance.pushDirection * -PlayerController.instance.X_Input) * (Time.deltaTime / PlayerSensSystem.instance.nearestRock.weight);
                 pushingMovement = new Vector3(pushingMovement.x, PlayerController.instance.movement.y, pushingMovement.z);
@@ -68,7 +68,7 @@ public class PushRock_State : State
             else
             if (PlayerController.instance.pushDirection.x > 0)
             {
-                Debug.Log("pushDirection.x > 0");
+                //Debug.Log("pushDirection.x > 0");
                 PlayerSensSystem.instance.nearestRock.PushRock(PlayerController.instance.pushDirection * PlayerController.instance.X_Input);
                 pushingMovement = (PlayerController.instance.pushDirection * PlayerController.instance.X_Input) * (Time.deltaTime / PlayerSensSystem.instance.nearestRock.weight);
                 pushingMovement = new Vector3(pushingMovement.x, PlayerController.instance.movement.y, pushingMovement.z);
@@ -79,9 +79,9 @@ public class PushRock_State : State
         //{
         //    PlayerSensSystem.instance.nearestRock.SetLastNoPushPosition(PlayerSensSystem.instance.nearestRock.transform.position);
         //}
-        Debug.Log("Push Direction = " + PlayerController.instance.pushDirection);
-        Debug.Log("Rock-Grass Direction = " + GenericSensUtilities.instance.GetDirectionFromTo_N(PlayerSensSystem.instance.nearestRock.bodyMeshrenderer.bounds.ClosestPoint(PlayerSensSystem.instance.FindNearestGrassBushToPushingRock(PlayerSensSystem.instance.nearestRock).transform.position), PlayerSensSystem.instance.FindNearestGrassBushToPushingRock(PlayerSensSystem.instance.nearestRock).transform.position));
-        Debug.Log("Player-Rock Direction = " + GenericSensUtilities.instance.GetDirectionFromTo_N(PlayerController.instance.playerRoot.transform.position, PlayerSensSystem.instance.nearestRock.bodyMeshrenderer.bounds.ClosestPoint(PlayerController.instance.transform.position)));
+        //Debug.Log("Push Direction = " + PlayerController.instance.pushDirection);
+        //Debug.Log("Rock-Grass Direction = " + GenericSensUtilities.instance.GetDirectionFromTo_N(PlayerSensSystem.instance.nearestRock.bodyMeshrenderer.bounds.ClosestPoint(PlayerSensSystem.instance.FindNearestGrassBushToPushingRock(PlayerSensSystem.instance.nearestRock).transform.position), PlayerSensSystem.instance.FindNearestGrassBushToPushingRock(PlayerSensSystem.instance.nearestRock).transform.position));
+        //Debug.Log("Player-Rock Direction = " + GenericSensUtilities.instance.GetDirectionFromTo_N(PlayerController.instance.playerRoot.transform.position, PlayerSensSystem.instance.nearestRock.bodyMeshrenderer.bounds.ClosestPoint(PlayerController.instance.transform.position)));
         Debug.DrawLine(PlayerSensSystem.instance.nearestRock.transform.position, PlayerSensSystem.instance.FindNearestGrassBushToPushingRock(PlayerSensSystem.instance.nearestRock).transform.position, Color.black);
         Debug.DrawLine(PlayerController.instance.playerRoot.transform.position, PlayerSensSystem.instance.nearestRock.transform.position, Color.yellow);
     }

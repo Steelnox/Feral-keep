@@ -54,7 +54,7 @@ public class MovableRocks : MonoBehaviour
 
         if (GenericSensUtilities.instance.DistanceBetween2Vectors(PlayerController.instance.characterModel.transform.position, transform.position) < attachDistance)
         {
-            Debug.Log("PLAYER ON FORWARD: " + angleBetweenPlayerForwardAndContactPointForward);
+            //Debug.Log("PLAYER ON FORWARD: " + angleBetweenPlayerForwardAndContactPointForward);
             localDirection = GenericSensUtilities.instance.Transform3DTo2DMovement(GenericSensUtilities.instance.GetDirectionFromTo_N(PlayerAnimationController.instance.transform.position, FindContactPoint(PlayerAnimationController.instance.transform.position)));
             if (angleBetweenPlayerForwardAndContactPointForward < angleToContact && angleBetweenPlayerForwardAndContactPointForward > 0)
                 attchAviable = true;
@@ -102,8 +102,8 @@ public class MovableRocks : MonoBehaviour
             //    Debug.Log("PLAYER ON LEFT SIDE " + angleBetweenRight);
             //}
         }
-        Debug.Log("Rock Body Center Bonunds: " + bodyMeshrenderer.bounds.center);
-        Debug.Log("LocalDirection on rock: " + localDirection);
+        //Debug.Log("Rock Body Center Bonunds: " + bodyMeshrenderer.bounds.center);
+        //Debug.Log("LocalDirection on rock: " + localDirection);
         return localDirection;
     }
     public void PushRock(Vector3 force)
