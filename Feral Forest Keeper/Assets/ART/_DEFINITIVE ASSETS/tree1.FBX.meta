@@ -1,14 +1,14 @@
 fileFormatVersion: 2
-guid: 31f7a19921660d341b5b8f816c79d7a9
+guid: f4c38a112cf9cad40b1d3ab1d22412ea
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: 'Material #8'
+    2100000: 'Material #2'
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Box009
+    4300000: Pyramid011
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -40,7 +40,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 2
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
