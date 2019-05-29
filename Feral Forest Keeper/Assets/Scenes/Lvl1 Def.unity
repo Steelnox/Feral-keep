@@ -29694,6 +29694,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0dd8c01eb1f5cbf4aa1bc8f3451d9900, type: 3}
+--- !u!114 &1176430553 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4344928693500764146, guid: 91fea390807afda4d93964840a60e884,
+    type: 3}
+  m_PrefabInstance: {fileID: 873739078}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11cb0e97b913bdb4fb5e2a87e878ffbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1177181073
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36777,16 +36789,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6192863307056368020, guid: 8e52fd05cb55bd94092e690405ff1bd9,
-        type: 3}
-      propertyPath: weaponCollider
-      value: 
-      objectReference: {fileID: 1468726740}
-    - target: {fileID: 6192863307056368020, guid: 8e52fd05cb55bd94092e690405ff1bd9,
-        type: 3}
-      propertyPath: deathHeight
-      value: 2.2
-      objectReference: {fileID: 0}
     - target: {fileID: 2932923199096577224, guid: 8e52fd05cb55bd94092e690405ff1bd9,
         type: 3}
       propertyPath: healthBar
@@ -36819,16 +36821,6 @@ PrefabInstance:
       objectReference: {fileID: 1640534939}
     - target: {fileID: 2932923199096577224, guid: 8e52fd05cb55bd94092e690405ff1bd9,
         type: 3}
-      propertyPath: keysCount
-      value: 
-      objectReference: {fileID: 1025669174}
-    - target: {fileID: 2932923199096577224, guid: 8e52fd05cb55bd94092e690405ff1bd9,
-        type: 3}
-      propertyPath: strengthForestIcon
-      value: 
-      objectReference: {fileID: 3874002572180920700}
-    - target: {fileID: 2932923199096577224, guid: 8e52fd05cb55bd94092e690405ff1bd9,
-        type: 3}
       propertyPath: leafWeaponIcon
       value: 
       objectReference: {fileID: 578006284}
@@ -36837,16 +36829,21 @@ PrefabInstance:
       propertyPath: branchWeaponIcon
       value: 
       objectReference: {fileID: 2031888233}
+    - target: {fileID: 2932923199096577224, guid: 8e52fd05cb55bd94092e690405ff1bd9,
+        type: 3}
+      propertyPath: strengthForestIcon
+      value: 
+      objectReference: {fileID: 3874002572180920700}
+    - target: {fileID: 2932923199096577224, guid: 8e52fd05cb55bd94092e690405ff1bd9,
+        type: 3}
+      propertyPath: keysCount
+      value: 
+      objectReference: {fileID: 1025669174}
     - target: {fileID: 7629581098136133352, guid: 8e52fd05cb55bd94092e690405ff1bd9,
         type: 3}
-      propertyPath: dashDuastTrailComposite
+      propertyPath: dashParticlesComposite
       value: 
-      objectReference: {fileID: 2123188345996380825}
-    - target: {fileID: 7629581098136133352, guid: 8e52fd05cb55bd94092e690405ff1bd9,
-        type: 3}
-      propertyPath: liveUpFeedbackParticlesComposite
-      value: 
-      objectReference: {fileID: 1348202182}
+      objectReference: {fileID: 6962507682117824988}
     - target: {fileID: 7629581098136133352, guid: 8e52fd05cb55bd94092e690405ff1bd9,
         type: 3}
       propertyPath: hitEnemiesParticlesComposite
@@ -36854,14 +36851,14 @@ PrefabInstance:
       objectReference: {fileID: 1552164095}
     - target: {fileID: 7629581098136133352, guid: 8e52fd05cb55bd94092e690405ff1bd9,
         type: 3}
-      propertyPath: dashParticlesComposite
+      propertyPath: liveUpFeedbackParticlesComposite
       value: 
-      objectReference: {fileID: 6962507682117824988}
-    - target: {fileID: 7648120891021759258, guid: 8e52fd05cb55bd94092e690405ff1bd9,
+      objectReference: {fileID: 1348202182}
+    - target: {fileID: 7629581098136133352, guid: 8e52fd05cb55bd94092e690405ff1bd9,
         type: 3}
-      propertyPath: m_CollisionDetection
-      value: 3
-      objectReference: {fileID: 0}
+      propertyPath: dashDuastTrailComposite
+      value: 
+      objectReference: {fileID: 2123188345996380825}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e52fd05cb55bd94092e690405ff1bd9, type: 3}
 --- !u!1001 &1415963556
@@ -38721,12 +38718,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2705396663543239658, guid: 53df84b5fb74d274fae2ab89665f1163,
     type: 3}
   m_PrefabInstance: {fileID: 778062540}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &1468726740 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 316019337, guid: 8e52fd05cb55bd94092e690405ff1bd9,
-    type: 3}
-  m_PrefabInstance: {fileID: 1413979382}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1468955294
 PrefabInstance:
@@ -65774,8 +65765,10 @@ MonoBehaviour:
   startOpened: 0
   holdSwitchToOpen: 0
   lockState: 1
+  displacementType: 0
   axisPivot: 2
   maxGrades: 70
+  maxDisplacement: 0
   actualSetupTimeLaps: 0
 --- !u!65 &107195934817395515
 BoxCollider:
@@ -94666,6 +94659,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: f345ae2278d2b0f42930b217477d7ed5, type: 2}
+    - target: {fileID: 3178280401009620621, guid: e8c391df59a1c064fb1e4fcacefe6cb4,
+        type: 3}
+      propertyPath: activationSwitch
+      value: 
+      objectReference: {fileID: 1176430553}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8c391df59a1c064fb1e4fcacefe6cb4, type: 3}
 --- !u!114 &6896972301641944210 stripped
