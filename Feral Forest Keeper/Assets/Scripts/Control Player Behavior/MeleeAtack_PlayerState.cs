@@ -15,7 +15,7 @@ public class MeleeAtack_PlayerState : State
     }
     public override void Execute()
     {
-        if (!PlayerAnimationController.instance.IsAnimationPlaying("Attack")) PlayerController.instance.ChangeState(PlayerController.instance.movementState);
+        if (!PlayerAnimationController.instance.IsAnimationPlaying("MeleeAttak_Anim")) PlayerController.instance.ChangeState(PlayerController.instance.movementState);
         PlayerController.instance.imGrounded = PlayerController.instance.p_controller.isGrounded;
     }
     public override void Exit()

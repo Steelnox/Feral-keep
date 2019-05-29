@@ -31,6 +31,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5541415575974854627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8607373562679080350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7ff1344f4bc832419f07116b67046b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heightDegradateLightingShader_Material: {fileID: 0}
 --- !u!1001 &8607373562679046974
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -89,9 +102,15 @@ PrefabInstance:
     - target: {fileID: 2300000, guid: d2e086a4a611a5e4b9ff8d66a11d5a7c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 13dd8bfdf3cc4b148bd451a80bf8df11, type: 2}
+      objectReference: {fileID: 2100000, guid: 2aab8ab1d6802fc46b82cdc579587227, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2e086a4a611a5e4b9ff8d66a11d5a7c, type: 3}
+--- !u!1 &8607373562679080350 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: d2e086a4a611a5e4b9ff8d66a11d5a7c,
+    type: 3}
+  m_PrefabInstance: {fileID: 8607373562679046974}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8607373562679175614 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: d2e086a4a611a5e4b9ff8d66a11d5a7c,

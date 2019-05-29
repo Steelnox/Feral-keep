@@ -18,10 +18,13 @@ public class PlayerAnimationController : MonoBehaviour
 
     public Animator animator;
 
-    /*void Start()
+    private int dashID;
+
+    void Start()
     {
-        
-    }*/
+        int runId = Animator.StringToHash("Run");
+        int jumpId = Animator.StringToHash("Jump");
+    }
 
     void Update()
     {
@@ -31,6 +34,7 @@ public class PlayerAnimationController : MonoBehaviour
         animator.SetFloat("PushDirection_X", PlayerController.instance.pushDirection.x);
         animator.SetFloat("PushDirection_Y", PlayerController.instance.pushDirection.z);
         SetPushinAnim(PlayerController.instance.pushing);
+        animator.SetBool("Falling", PlayerController.instance.falling);
     }
     public void SetTargetLockAnim(bool blocked)
     {
@@ -51,13 +55,13 @@ public class PlayerAnimationController : MonoBehaviour
     {
         return animator.GetCurrentAnimatorStateInfo(0).IsName(name);
     }
-    //public void SetWeaponAnim(bool active)
-    //{
-    //    if (animator.GetBool("Weapon") != active)
-    //    {
-    //        animator.SetBool("Weapon", active);
-    //    }
-    //}
+    public void SetWeaponAnim(bool active)
+    {
+        if (animator.GetBool("Weapon") != active)
+        {
+            animator.SetBool("Weapon", active);
+        }
+    }
     public void SetPushinAnim(bool active)
     {
         if(animator.GetBool("Pushing") != active)

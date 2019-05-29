@@ -24,17 +24,13 @@ public class PlayerController : MonoBehaviour
     public GameObject shootPoint;
     public TrailRenderer attackTrail;
     public CharacterController p_controller;
-    //public DartBehavior dart;
     public MeleeAtack_PlayerState meleeState;
-    //public SlashAttack_PlayerState slashState;
     public Movement_PlayerState movementState;
-    //public TargetLock_PlayerState targetState;
     public PushRock_State pushRockState;
     public PushLog_State pushLogState;
     public Dash_PlayerState dashState;
-    //public GameObject targetLocked;
-    public BoxCollider weaponCollider;
     public GameObject meleeWeaponRoot;
+    public BoxCollider weaponCollider;
 
     public int playerLive;
     public int dashCharges;
@@ -49,7 +45,6 @@ public class PlayerController : MonoBehaviour
     public float actualPlayerLive;
     public float smoothAttackTrail;
     public float attackCoolDown;
-    //public float lockTargetDistance;
     public int damagePlayer;
     public float deathHeight;
     public float hitCooldownTime;
@@ -74,6 +69,7 @@ public class PlayerController : MonoBehaviour
     public bool startWithAllSkills;
     public bool playerAlive;
     public bool pushing;
+    public bool falling;
 
     [SerializeField]
     public float dashCooldown;
@@ -144,6 +140,7 @@ public class PlayerController : MonoBehaviour
             if (playerAlive != true) playerAlive = true;
         }
         p_StateMachine.ExecuteState();
+
     }
     private void DoorsDetection()
     {
@@ -310,8 +307,9 @@ public class PlayerController : MonoBehaviour
             gravity += Mathf.Exp(gravityForce);
 
             movement.y = movement.y - (gravity * Time.deltaTime);
-            if (PlayerSensSystem.instance.CheckGroundDistance() < 0.5f)
+            if (PlayerSensSystem.instance.CheckGroundDistance() > 0.5f)
             {
+                if (!dashing) falling = true;
                 //Debug.Log("Player almost touching the ground");
                 if (GenericSensUtilities.instance.DistanceBetween2Vectors(initFallingPosition, this.transform.position) > deathHeight && actualPlayerLive > 0)
                 {
@@ -324,6 +322,7 @@ public class PlayerController : MonoBehaviour
         {
             if (gravity > 0 || gravity < 0)
                 gravity = 0;
+            falling = false;
         }
     }
     private void CheckInputsConditions()
