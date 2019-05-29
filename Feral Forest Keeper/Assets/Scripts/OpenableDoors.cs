@@ -16,9 +16,12 @@ public class OpenableDoors : MonoBehaviour
     public bool startOpened;
     public bool holdSwitchToOpen;
     public bool lockState;
+    public enum DisplacementType { Traslation, Rotation};
+    public DisplacementType displacementType;
     public enum AxisPivot { X, Y, Z}
     public AxisPivot axisPivot;
     public int maxGrades;
+    public int maxDisplacement;
 
     private bool activated;
     private bool opened;
@@ -38,17 +41,25 @@ public class OpenableDoors : MonoBehaviour
 
         if (doorKeys.Length > 0 && activationSwitch == null)
         {
-            closeRot = movableDoorPivot.transform.localRotation.eulerAngles;
-            switch (axisPivot)
+            switch (displacementType)
             {
-                case AxisPivot.X:
-                    openRot = new Vector3(maxGrades, 0, 0);
+                case DisplacementType.Rotation:
+                    closeRot = movableDoorPivot.transform.localRotation.eulerAngles;
+                    switch (axisPivot)
+                    {
+                        case AxisPivot.X:
+                            openRot = new Vector3(maxGrades, 0, 0);
+                            break;
+                        case AxisPivot.Y:
+                            openRot = new Vector3(0, maxGrades, 0);
+                            break;
+                        case AxisPivot.Z:
+                            openRot = new Vector3(0, 0, maxGrades);
+                            break;
+                    }
                     break;
-                case AxisPivot.Y:
-                    openRot = new Vector3(0, maxGrades, 0);
-                    break;
-                case AxisPivot.Z:
-                    openRot = new Vector3(0, 0, maxGrades);
+                case DisplacementType.Traslation:
+
                     break;
             }
 
@@ -59,20 +70,28 @@ public class OpenableDoors : MonoBehaviour
         }
         if (activationSwitch != null && doorKeys.Length == 0)
         {
-            closeRot = movableDoorPivot.transform.localRotation.eulerAngles;
-            switch (axisPivot)
+            switch (displacementType)
             {
-                case AxisPivot.X:
-                    openRot = new Vector3(maxGrades, 0, 0);
+                case DisplacementType.Rotation:
+                    closeRot = movableDoorPivot.transform.localRotation.eulerAngles;
+                    switch (axisPivot)
+                    {
+                        case AxisPivot.X:
+                            openRot = new Vector3(maxGrades, 0, 0);
+                            break;
+                        case AxisPivot.Y:
+                            openRot = new Vector3(0, maxGrades, 0);
+                            break;
+                        case AxisPivot.Z:
+                            openRot = new Vector3(0, 0, maxGrades);
+                            break;
+                    }
                     break;
-                case AxisPivot.Y:
-                    openRot = new Vector3(0, maxGrades, 0);
-                    break;
-                case AxisPivot.Z:
-                    openRot = new Vector3(0, 0, maxGrades);
+                case DisplacementType.Traslation:
+
                     break;
             }
-
+            
             if (startOpened)
             {
                 movableDoorPivot.transform.localRotation = Quaternion.Euler(openRot);
