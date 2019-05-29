@@ -15,6 +15,7 @@ public class Melee : Enemy
     public CapsuleCollider C_collider;
 
     public bool finishAttack;
+    public bool startexplosion;
 
     void Start()
     {
@@ -31,6 +32,7 @@ public class Melee : Enemy
 
         currentHealth = maxHealth;
 
+        startexplosion = false;
 
         ChangeState(patrol);
     }

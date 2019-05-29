@@ -18,8 +18,8 @@ public class LookRangedFixed : State
 
         ranged = GetComponent<RangedFixed>();
 
+        ranged.enemy_animator.SetBool("Idle", true);
 
-        // melee.enemy_animator.enabled = false;
 
         ranged.enemy_navmesh.isStopped = true;
     }
@@ -43,9 +43,10 @@ public class LookRangedFixed : State
 
 
     public override void Exit()
-    { 
+    {
 
 
+        ranged.enemy_animator.SetBool("Idle", false);
 
 
     }

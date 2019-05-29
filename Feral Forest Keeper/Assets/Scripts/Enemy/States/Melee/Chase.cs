@@ -11,7 +11,7 @@ public class Chase : State
         melee = GetComponent<Melee>();
 
 
-        melee.enemy_animator.SetFloat("Speed", melee.enemy_navmesh.speed);
+        melee.enemy_animator.SetBool("Move", true);
 
     }
 
@@ -27,6 +27,7 @@ public class Chase : State
 
     public override void Exit()
     {
+        melee.enemy_animator.SetBool("Move", false);
 
 
     }

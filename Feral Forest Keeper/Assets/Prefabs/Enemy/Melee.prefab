@@ -158,7 +158,7 @@ MonoBehaviour:
   enemyType: 0
   gamemanagerScript: {fileID: 0}
   move: 0
-  maxHealth: 2
+  maxHealth: 3
   currentHealth: 0
   damage: 1
   speed: 1
@@ -178,6 +178,7 @@ MonoBehaviour:
   rage: {fileID: 2474524400179603869}
   C_collider: {fileID: 0}
   finishAttack: 0
+  startexplosion: 0
 --- !u!114 &6278065757567714868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,6 +384,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7329879508661132758, guid: f9e07e76f1ad6fc458e1714759a209d5,
+        type: 3}
+      propertyPath: melee_enemy
+      value: 
+      objectReference: {fileID: 6549901792006296828}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9e07e76f1ad6fc458e1714759a209d5, type: 3}
 --- !u!1 &1015817464870472025 stripped

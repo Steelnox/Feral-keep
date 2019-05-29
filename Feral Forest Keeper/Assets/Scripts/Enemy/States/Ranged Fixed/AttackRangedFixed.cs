@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class AttackRangedFixed : State
 {
-    private float timerAttack;
-
     private RangedFixed ranged;
 
     private Vector3 directionAttack;
@@ -30,8 +28,6 @@ public class AttackRangedFixed : State
         ranged = GetComponent<RangedFixed>();
 
 
-        timerAttack = 0;
-
         timer = 0;
 
         bulletsShoot = 0;
@@ -39,12 +35,12 @@ public class AttackRangedFixed : State
         // melee.enemy_animator.enabled = false;
 
         ranged.enemy_navmesh.isStopped = true;
+        ranged.enemy_animator.SetBool("Attack", true);
+
     }
 
     public override void Execute()
     {
-        timerAttack += Time.deltaTime;
-
         distanceToPlayer = ranged.GetDistance(ranged.player.transform.position);
 
         directionAttack = (ranged.enemy_navmesh.transform.position - ranged.player.transform.position).normalized;
@@ -55,7 +51,8 @@ public class AttackRangedFixed : State
 
         if(bulletsShoot < bulletsCanShoot)
         {
-            if (timerAttack >= 0.1f)
+
+            if (ranged.shoot)
             {
                 Shoot();
             }
@@ -64,11 +61,18 @@ public class AttackRangedFixed : State
         else
         {
             timer += Time.deltaTime;
+            ranged.enemy_animator.SetBool("Idle", true);
+            ranged.enemy_animator.SetBool("Attack", false);
+
 
             if (timer >= timerRecharge)
             {
                 timer = 0;
                 bulletsShoot = 0;
+                ranged.enemy_animator.SetBool("Attack", true);
+
+                ranged.enemy_animator.SetBool("Idle", false);
+
             }
         }
         if (distanceToPlayer > ranged.distanceToAttack || ranged.distanceY > ranged.distanceYForAttack)
@@ -82,19 +86,18 @@ public class AttackRangedFixed : State
 
     public override void Exit()
     {
-
-
-
+        ranged.enemy_animator.SetBool("Attack", false);
     }
 
     private void Shoot()
     {
-        Vector3 positionProjectile = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z);
+        Vector3 positionProjectile = new Vector3(transform.position.x, transform.position.y + 0.2f, transform.position.z);
         projectile = ranged.gamemanagerScript.GetProjectileNotActive();
         projectile.transform.position = positionProjectile;
         projectile.transform.rotation = transform.rotation;
 
         bulletsShoot++;
-        timerAttack = 0;
+        ranged.shoot = false;
+
     }
 }

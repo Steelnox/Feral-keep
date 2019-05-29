@@ -25,8 +25,7 @@ public class Damaged : State
 
         timer = 0;
 
-
-        melee.enemy_navmesh.isStopped = true;
+        melee.enemy_animator.SetBool("Hit", true);
 
         melee.enemy_rb.isKinematic = false;
 
@@ -41,22 +40,23 @@ public class Damaged : State
         if (timer >= timeKnockback)
         {
             if (melee.currentHealth <= 0) this.gameObject.SetActive(false);
-            if (melee.currentHealth == 1) melee.ChangeState(melee.rage);
-            //if(melee.currentHealth > 0)
-            //{
-            //    if (melee.GetDistance(melee.player.transform.position) <= melee.distanceToChase) melee.ChangeState(melee.chase);
-            //    if (melee.GetDistance(melee.player.transform.position) <= melee.distanceToAttack) melee.ChangeState(melee.attack);
-            //}
+            if (melee.currentHealth <= 1 && melee.currentHealth > 0) melee.ChangeState(melee.rage);
+            if (melee.currentHealth > 1)
+            {
+                if (melee.GetDistance(melee.player.transform.position) <= melee.distanceToChase) melee.ChangeState(melee.chase);
+                if (melee.GetDistance(melee.player.transform.position) <= melee.distanceToAttack) melee.ChangeState(melee.attack);
+            }
+           
         }
 
     }
 
     public override void Exit()
     {
-        if(melee.currentHealth > 0)
-        {
-            melee.enemy_navmesh.isStopped = false;
+        melee.enemy_animator.SetBool("Hit", false);
 
+        if (melee.currentHealth > 0)
+        {
             melee.enemy_rb.isKinematic = true;
         }
         

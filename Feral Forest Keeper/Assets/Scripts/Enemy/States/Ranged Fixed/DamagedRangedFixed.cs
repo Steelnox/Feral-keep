@@ -20,6 +20,10 @@ public class DamagedRangedFixed : State
 
         ranged.enemy_rb.isKinematic = false;
 
+        ranged.enemy_animator.SetBool("Hit", true);
+
+        ranged.finishHit = false;
+
 
     }
 
@@ -28,13 +32,17 @@ public class DamagedRangedFixed : State
 
         distanceToPlayer = ranged.GetDistance(ranged.player.transform.position);
 
-        if (ranged.currentHealth <= 0) this.gameObject.SetActive(false);
-        if (ranged.currentHealth > 0)
+        if (ranged.finishHit)
         {
-            if (distanceToPlayer <= ranged.distanceToAttack) ranged.ChangeState(ranged.attack);
-            if (distanceToPlayer > ranged.distanceToAttack) ranged.ChangeState(ranged.look);
+            if (ranged.currentHealth <= 0) this.gameObject.SetActive(false);
+            if (ranged.currentHealth > 0)
+            {
+                if (distanceToPlayer <= ranged.distanceToAttack) ranged.ChangeState(ranged.attack);
+                if (distanceToPlayer > ranged.distanceToAttack) ranged.ChangeState(ranged.look);
 
+            }
         }
+        
 
     }
 
@@ -42,6 +50,7 @@ public class DamagedRangedFixed : State
     {
         if (ranged.currentHealth > 0)
         {
+            ranged.enemy_animator.SetBool("Hit", false);
 
             ranged.enemy_rb.isKinematic = true;
         }

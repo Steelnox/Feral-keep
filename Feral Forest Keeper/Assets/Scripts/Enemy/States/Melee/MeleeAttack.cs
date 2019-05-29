@@ -35,7 +35,6 @@ public class MeleeAttack : State
 
         melee.finishAttack = false;
 
-        melee.enemy_navmesh.isStopped = true;
     }
 
     public override void Execute()
@@ -48,21 +47,13 @@ public class MeleeAttack : State
 
 
 
-        if (melee.move)
+        if (!melee.finishAttack)
         {
-
-            timerDash += Time.deltaTime;
 
             melee.C_collider.enabled = false;
 
-            melee.enemy_navmesh.isStopped = false;
 
             melee.enemy_navmesh.Move(-directionAttack * 0.1f);
-
-            //  melee.enemy_animator.SetBool("Attack", true);
-
-
-            //   melee.enemy_animator.enabled = true;
 
 
             Collider[] entities = Physics.OverlapSphere(transform.position, 0.5f);
@@ -76,12 +67,11 @@ public class MeleeAttack : State
                     AddDamage(); 
                 }
             }
+        }
 
-            if(melee.finishAttack)
-            {
-                FinishAttack();
-            }
-
+        else
+        {
+            FinishAttack();
         }
     }
 
@@ -93,9 +83,7 @@ public class MeleeAttack : State
         timerDash = 0;
         dmg_done = false;
 
-       melee.enemy_animator.SetBool("Attack", false);
-
-        melee.enemy_navmesh.isStopped = false;
+        melee.enemy_animator.SetBool("Attack", false);
 
         melee.C_collider.enabled = true;
 

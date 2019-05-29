@@ -17,6 +17,8 @@ public class Rest : State
 
         melee.move = false;
 
+        melee.enemy_animator.SetBool("Idle", true);
+
      }
 
     public override void Execute()
@@ -33,6 +35,8 @@ public class Rest : State
     {
 
         melee.move = true;
+        melee.enemy_animator.SetBool("Idle", false);
+
 
 
     }

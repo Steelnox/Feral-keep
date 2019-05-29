@@ -20,11 +20,12 @@ public class RageMelee : State
 
         melee.enemy_navmesh.isStopped = true;
 
-        capsuleMesh.SetActive(false);
 
         explosionScript = explosion.GetComponent<ExplosionScript>();
 
-        if(explosionScript.dmg_done)
+        melee.enemy_animator.SetBool("Destruction", true);
+
+        if(explosionScript.dmg_done )
         {
             explosionScript.dmg_done = false;
         }
@@ -33,11 +34,12 @@ public class RageMelee : State
     public override void Execute()
     {
 
-        explosion.SetActive(true);
-        timerforDisabled += Time.deltaTime;
-        if(timerforDisabled >= 1.2f)
+        if (melee.startexplosion)
         {
-            this.gameObject.SetActive(false);
+            explosion.SetActive(true);
+
+            capsuleMesh.SetActive(false);
+
         }
     }
 
@@ -45,7 +47,6 @@ public class RageMelee : State
     {
         explosion.SetActive(false);
         capsuleMesh.SetActive(true);
-
     }
 
 }

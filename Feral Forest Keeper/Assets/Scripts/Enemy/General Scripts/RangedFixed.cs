@@ -21,6 +21,10 @@ public class RangedFixed : Enemy
 
     public float velocityRockToKill;
 
+    public bool shoot;
+
+    public bool finishHit;
+
 
     void Start()
     {
@@ -41,6 +45,10 @@ public class RangedFixed : Enemy
 
         enemy_navmesh.isStopped = true;
 
+        shoot = false;
+
+        finishHit = false;
+
         if (onedirectionAttack)
         {
             ChangeState(fixAttack);
@@ -57,8 +65,6 @@ public class RangedFixed : Enemy
         stateMachine.ExecuteState();
 
         distanceY = transform.position.y - player.transform.position.y;
-
-
 
     }
 

@@ -9,6 +9,9 @@ public class EnemyAnimEvents : MonoBehaviour
 
     public RangedMove move_Main;
 
+    public RangedFixed fixed_Main;
+
+
     public void Move()
     {
         if (melee_Main != null) melee_Main.move = true;
@@ -21,6 +24,10 @@ public class EnemyAnimEvents : MonoBehaviour
         if (move_Main != null) move_Main.move = false;
     }
 
+    public void StartExplosion()
+    {
+        melee_Main.startexplosion = true;
+    }
     public void FinishAttack()
     {
         melee_Main.finishAttack = true;
@@ -28,6 +35,13 @@ public class EnemyAnimEvents : MonoBehaviour
 
     public void Shoot()
     {
-        move_Main.shoot = true;
+        if(move_Main!= null) move_Main.shoot = true;
+        if (fixed_Main != null) fixed_Main.shoot = true;
+
+    }
+
+    public void FinishHit()
+    {
+        fixed_Main.finishHit = true;
     }
 }

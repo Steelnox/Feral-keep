@@ -8,6 +8,9 @@ public class ExplosionScript : MonoBehaviour
 
     public bool dmg_done;
 
+    public float timer;
+
+    public GameObject melee_enemy;
     
 
     void Start()
@@ -15,9 +18,18 @@ public class ExplosionScript : MonoBehaviour
         player = PlayerController.instance;
         dmg_done = false;
 
-
+        timer = 0;
     }
 
+    private void Update()
+    {
+        timer += Time.deltaTime;
+
+        if(timer >= 0.7f)
+        {
+            melee_enemy.SetActive(false);
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {

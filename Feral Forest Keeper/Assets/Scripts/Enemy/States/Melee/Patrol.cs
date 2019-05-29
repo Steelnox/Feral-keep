@@ -31,7 +31,8 @@ public class Patrol : State
         AssignRandom();
         melee.enemy_navmesh.speed = melee.speed;
 
-        melee.enemy_animator.SetFloat("Speed", melee.enemy_navmesh.speed);
+        melee.enemy_animator.SetBool("Move", true);
+
 
         timer = 0;
     }
@@ -52,6 +53,11 @@ public class Patrol : State
         }
 
         if (melee.GetDistance(melee.player.transform.position) <= melee.distanceToChase) melee.ChangeState(melee.chase);
+    }
+
+    public override void Exit()
+    {
+        melee.enemy_animator.SetBool("Move", false);
     }
 
     public void AssignRandom()
