@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShadersControl : MonoBehaviour
 {
-    private float heightMin = 0.0f;
+    private float heightMin = 0.00f;
     private float heightMax = 7.05f;
 
     public MeshRenderer heightDegradateLightingShader_Material;

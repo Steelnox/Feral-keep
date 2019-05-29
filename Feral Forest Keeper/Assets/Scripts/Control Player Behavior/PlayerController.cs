@@ -317,12 +317,13 @@ public class PlayerController : MonoBehaviour
                     actualPlayerLive = 0;
                 }
             }
+            else if (PlayerSensSystem.instance.CheckGroundDistance() < 0.5f) falling = false;
         }
         else
         {
             if (gravity > 0 || gravity < 0)
                 gravity = 0;
-            falling = false;
+            //falling = false;
         }
     }
     private void CheckInputsConditions()
