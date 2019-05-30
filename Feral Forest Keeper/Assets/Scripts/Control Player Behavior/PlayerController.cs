@@ -263,20 +263,21 @@ public class PlayerController : MonoBehaviour
         {
             if (GenericSensUtilities.instance.DistanceBetween2Vectors(PlayerSensSystem.instance.nearestColorRock.transform.position, PlayerController.instance.transform.position) < 2)
             {
-                Player_GUI_System.instance.SetOnScreenActivateSanctuaryIcon(true);
-                if (Input.GetButtonDown("B") || Input.GetKeyDown(KeyCode.F))
+                Player_GUI_System.instance.SetOnScreenButtonBColor(true);
+
+                if (Input.GetButtonDown("B") ||  Input.GetKeyDown(KeyCode.F))
                 {
                     PlayerSensSystem.instance.nearestColorRock.ChangeColorRock();
                 }
             }
             else
             {
-                Player_GUI_System.instance.SetOnScreenActivateSanctuaryIcon(false);
+                Player_GUI_System.instance.SetOnScreenButtonBColor(false);
             }
         }
         else
         {
-            Player_GUI_System.instance.SetOnScreenActivateSanctuaryIcon(false);
+            Player_GUI_System.instance.SetOnScreenButtonBColor(false);
         }
     }
     private void SimonRockDetection()
@@ -285,7 +286,9 @@ public class PlayerController : MonoBehaviour
         {
             if (GenericSensUtilities.instance.DistanceBetween2Vectors(PlayerSensSystem.instance.nearestSimonRock.transform.position, PlayerController.instance.transform.position) < 2)
             {
-                Player_GUI_System.instance.SetOnScreenActivateSanctuaryIcon(true);
+                //Player_GUI_System.instance.SetOnScreenActivateSanctuaryIcon(true);
+                Player_GUI_System.instance.SetOnScreenButtonBSimon(true);
+
                 if (Input.GetButtonDown("B") || Input.GetKeyDown(KeyCode.F))
                 {
                     PlayerSensSystem.instance.nearestSimonRock.InteractWithSimonRock();
@@ -293,12 +296,12 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                Player_GUI_System.instance.SetOnScreenActivateSanctuaryIcon(false);
+                Player_GUI_System.instance.SetOnScreenButtonBSimon(false);
             }
         }
         else
         {
-            Player_GUI_System.instance.SetOnScreenActivateSanctuaryIcon(false);
+            Player_GUI_System.instance.SetOnScreenButtonBSimon(false);
         }
     }
     private void ApplyGravity()
