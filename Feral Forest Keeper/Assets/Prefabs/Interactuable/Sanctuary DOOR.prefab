@@ -31,6 +31,19 @@ Transform:
   m_Father: {fileID: 8996376213397266871}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8652506246310133933
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5476314860167406837}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.6197567, y: 0.32607624, z: 1.6739597}
+  m_Center: {x: 0, y: 0, z: 0.83697987}
 --- !u!1 &7033793626430386301
 GameObject:
   m_ObjectHideFlags: 0
@@ -41,7 +54,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8996376213397266871}
   - component: {fileID: 2335712981301172671}
-  m_Layer: 0
+  - component: {fileID: 7157596463335421964}
+  m_Layer: 10
   m_Name: Sanctuary DOOR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +92,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movableDoorPivot: {fileID: 2955680402031017486}
   doorBody: {fileID: 5476314860167406837}
-  doorKeys: []
+  doorKeys:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   activationSwitch: {fileID: 0}
   interactionDistance: 1
   setupTimeLaps: 1
@@ -95,6 +112,19 @@ MonoBehaviour:
   actualSetupTimeLaps: 0
   maxTraslationVector: {x: 0, y: 0, z: 0}
   closePositionTraslationVector: {x: 0, y: 0, z: 0}
+--- !u!65 &7157596463335421964
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7033793626430386301}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 8.068615, y: 1.7196484, z: 1.9873023}
+  m_Center: {x: -0.4970522, y: 0.35982418, z: -0.49365115}
 --- !u!64 &7217155576200360036
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -120,6 +150,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PortaPorta
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: a6bc795ebfa172d498244213511bb2ed, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 973006f5a5a632f4e977d54b783e4ffa, type: 2}
     - target: {fileID: 400000, guid: a6bc795ebfa172d498244213511bb2ed, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.36
@@ -172,10 +206,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2.186654
       objectReference: {fileID: 0}
-    - target: {fileID: 2300000, guid: a6bc795ebfa172d498244213511bb2ed, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 973006f5a5a632f4e977d54b783e4ffa, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6bc795ebfa172d498244213511bb2ed, type: 3}
 --- !u!1 &5476314860167406837 stripped
@@ -197,6 +227,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8996376213397266871}
     m_Modifications:
+    - target: {fileID: 100000, guid: cf87544da4969f347ab861d35473e03e, type: 3}
+      propertyPath: m_Name
+      value: Marc_porta
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cf87544da4969f347ab861d35473e03e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -240,10 +274,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: cf87544da4969f347ab861d35473e03e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: cf87544da4969f347ab861d35473e03e, type: 3}
-      propertyPath: m_Name
-      value: Marc_porta
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: cf87544da4969f347ab861d35473e03e, type: 3}
       propertyPath: m_Materials.Array.data[0]
