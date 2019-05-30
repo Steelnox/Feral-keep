@@ -215,29 +215,29 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.2926952
+      - time: 0.4236035
         functionName: EnableWeaponTrail
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.4725739
+      - time: 0.4300234
         functionName: EnableWeaponCollider
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.85790884
-        functionName: DisableWeaponTrail
+      - time: 0.5836497
+        functionName: DisableWeaponCollider
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.92225206
-        functionName: DisableWeaponCollider
+      - time: 0.62847155
+        functionName: DisableWeaponTrail
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

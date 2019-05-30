@@ -67,23 +67,33 @@ public class LevelManager : MonoBehaviour
             }
         }
         /////// PLAYER DEATH CONTROLER ////////
-        if (!PlayerController.instance.playerAlive)
+        ///By FALLING
+        if (PlayerController.instance.deathByFall)
         {
-            actualRespawnCoolDown = respawnCoolDown;
-            PlayerController.instance.p_controller.enabled = false;
-            PlayerController.instance.SetCanMove(false);
-            PlayerController.instance.transform.position = levelList[activeLevelID].levelCheckPoint.transform.position;
-            CameraController.instance.SetActualBehavior(CameraController.Behavior.PLYER_DEATH);
-
+            actualRespawnCoolDown -= Time.deltaTime;
+            if(actualRespawnCoolDown <= 0)
+            {
+                PlayerController.instance.p_controller.enabled = false;
+                PlayerController.instance.SetCanMove(false);
+                PlayerController.instance.transform.position = levelList[activeLevelID].levelCheckPoint.transform.position;
+                CameraController.instance.SetActualBehavior(CameraController.Behavior.PLYER_DEATH);
+            }
+            
             if (PlayerController.instance.transform.position == levelList[activeLevelID].levelCheckPoint.transform.position)
             {
                 //Debug.Log("After death, player on CheckPointPosition");
-                PlayerController.instance.actualPlayerLive = PlayerController.instance.playerLive;
-                PlayerController.instance.playerAlive = true;
+                //PlayerController.instance.actualPlayerLive = PlayerController.instance.playerLive;
+                //PlayerController.instance.playerAlive = true;
+                PlayerAnimationController.instance.SetDeathByFall(false);
+                actualRespawnCoolDown = respawnCoolDown;
+                PlayerController.instance.actualPlayerLive--;
                 PlayerController.instance.SetCanMove(true);
                 PlayerController.instance.p_controller.enabled = true;
+                PlayerController.instance.deathByFall = false;
             }
         }
+        ///By DIYNG
+        
     }
 
     public void NextLevel()

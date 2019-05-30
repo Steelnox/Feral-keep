@@ -76,6 +76,13 @@ public class PlayerAnimationController : MonoBehaviour
             animator.SetBool("GettingHit", active);
         }
     }
+    public void SetDeathByFall(bool active)
+    {
+        if (animator.GetBool("DeathByFall") != active)
+        {
+            animator.SetBool("DeathByFall", active);
+        }
+    }
     public bool GetGettingHitAnimState()
     {
         return animator.GetBool("GettingHit");

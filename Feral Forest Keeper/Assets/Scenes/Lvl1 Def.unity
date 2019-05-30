@@ -19459,7 +19459,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelList:
   - {fileID: 2158524895695891992}
-  respawnCoolDown: 0
+  respawnCoolDown: 0.2
   activeLevelID: 0
   nextLevelGateIN: {fileID: 0}
   actualLevelGateOUT: {fileID: 0}

@@ -354,7 +354,7 @@ MonoBehaviour:
   dashState: {fileID: 1821888145164792668}
   meleeWeaponRoot: {fileID: 980944915}
   weaponCollider: {fileID: 316019337}
-  playerLive: 10
+  playerLive: 6
   dashCharges: 1
   dashCooldownTime: 2
   dashCooldownSmoothRecover: 2
@@ -394,6 +394,7 @@ MonoBehaviour:
   dashCooldown: 0
   dashChargesRemind: 0
   pushDirection: {x: 0, y: 0, z: 0}
+  deathByFall: 0
 --- !u!114 &7438189426164054405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -498,6 +499,8 @@ MonoBehaviour:
   pickupIcon: {fileID: 0}
   unlockDoorIcon: {fileID: 0}
   activateSanctuaryIcon: {fileID: 0}
+  buttonBColor: {fileID: 0}
+  buttonBSimon: {fileID: 0}
   leafWeaponIcon: {fileID: 0}
   branchWeaponIcon: {fileID: 0}
   strengthForestIcon: {fileID: 0}
@@ -678,24 +681,72 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 96648479012581830, guid: 8336ffec17a2e134ca47e3a67a0613ab,
         type: 3}
-      propertyPath: m_Autodestruct
-      value: 0
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7271f1c163963e54ea1800c741a5e711, type: 2}
+    - target: {fileID: 96648479012581830, guid: 8336ffec17a2e134ca47e3a67a0613ab,
+        type: 3}
+      propertyPath: m_Time
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 96648479012581830, guid: 8336ffec17a2e134ca47e3a67a0613ab,
+        type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.19766998
+      objectReference: {fileID: 0}
+    - target: {fileID: 96648479012581830, guid: 8336ffec17a2e134ca47e3a67a0613ab,
+        type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].value
+      value: 0.061349705
+      objectReference: {fileID: 0}
+    - target: {fileID: 96648479012581830, guid: 8336ffec17a2e134ca47e3a67a0613ab,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.r
+      value: 0.9988034
+      objectReference: {fileID: 0}
+    - target: {fileID: 96648479012581830, guid: 8336ffec17a2e134ca47e3a67a0613ab,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.r
+      value: 0.8301887
+      objectReference: {fileID: 0}
+    - target: {fileID: 96648479012581830, guid: 8336ffec17a2e134ca47e3a67a0613ab,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.g
+      value: 0.8301887
+      objectReference: {fileID: 0}
+    - target: {fileID: 96648479012581830, guid: 8336ffec17a2e134ca47e3a67a0613ab,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.b
+      value: 0.5991456
+      objectReference: {fileID: 0}
+    - target: {fileID: 96648479012581830, guid: 8336ffec17a2e134ca47e3a67a0613ab,
+        type: 3}
+      propertyPath: m_MinVertexDistance
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4889028055671192, guid: 8336ffec17a2e134ca47e3a67a0613ab, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.121
+      objectReference: {fileID: 0}
+    - target: {fileID: 4889028055671192, guid: 8336ffec17a2e134ca47e3a67a0613ab, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4889028055671192, guid: 8336ffec17a2e134ca47e3a67a0613ab, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.166
       objectReference: {fileID: 0}
     - target: {fileID: 4532983272567272, guid: 8336ffec17a2e134ca47e3a67a0613ab, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.35369757
+      value: 0.375
       objectReference: {fileID: 0}
     - target: {fileID: 4532983272567272, guid: 8336ffec17a2e134ca47e3a67a0613ab, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0630062
+      value: 0.095
       objectReference: {fileID: 0}
     - target: {fileID: 4532983272567272, guid: 8336ffec17a2e134ca47e3a67a0613ab, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.24965058
+      value: -0.462
       objectReference: {fileID: 0}
     - target: {fileID: 4532983272567272, guid: 8336ffec17a2e134ca47e3a67a0613ab, type: 3}
       propertyPath: m_LocalRotation.x

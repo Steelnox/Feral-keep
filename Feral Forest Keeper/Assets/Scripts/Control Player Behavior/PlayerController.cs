@@ -78,6 +78,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 initFallingPosition;
     public Vector3 pushDirection;
     private float actualHitCooldown;
+    [HideInInspector]
+    public bool deathByFall;
 
     protected StateMachine p_StateMachine = new StateMachine();
 
@@ -95,6 +97,7 @@ public class PlayerController : MonoBehaviour
         pushing = false;
         actualHitCooldown = hitCooldownTime;
         attackTrail.enabled = false;
+        deathByFall = false;
     }
 
     void Update()
@@ -318,7 +321,9 @@ public class PlayerController : MonoBehaviour
                 if (GenericSensUtilities.instance.DistanceBetween2Vectors(initFallingPosition, this.transform.position) > deathHeight && actualPlayerLive > 0)
                 {
                     //Debug.Log("Player die Falling down: " + GenericSensUtilities.instance.DistanceBetween2Vectors(initFallingPosition, this.transform.position));
-                    actualPlayerLive = 0;
+                    //actualPlayerLive--;
+                    PlayerAnimationController.instance.SetDeathByFall(true);
+                    deathByFall = true;
                 }
             }
             else if (PlayerSensSystem.instance.CheckGroundDistance() < 0.5f) falling = false;
@@ -327,7 +332,7 @@ public class PlayerController : MonoBehaviour
         {
             if (gravity > 0 || gravity < 0)
                 gravity = 0;
-            //falling = false;
+            falling = false;
         }
     }
     private void CheckInputsConditions()

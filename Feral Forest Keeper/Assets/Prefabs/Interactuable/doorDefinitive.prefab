@@ -83,7 +83,7 @@ MonoBehaviour:
   interactionDistance: 1
   setupTimeLaps: 1
   scripteMovementsRepetitions: 1
-  smoothmovement: 1
+  smoothmovement: 0.5
   cameraFeedback: 1
   startOpened: 0
   holdSwitchToOpen: 0
@@ -144,7 +144,7 @@ Animator:
   m_GameObject: {fileID: 9006587791054432909}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ec24142b80e248248861bb6890ce31b9, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
