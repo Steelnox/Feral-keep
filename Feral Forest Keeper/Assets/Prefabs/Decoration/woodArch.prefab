@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4366302988757057203
 Transform:
@@ -43,7 +43,7 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 0.505, y: 0.63100004, z: 1.9850001}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: -0.054, z: 0.38700002}
   m_TimeToStationary: 0.5
@@ -57,6 +57,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: ee60794789e5f5b429cfb65b5980f4cd, type: 3}
       propertyPath: m_Name
       value: Arco_Tronco_Big
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ee60794789e5f5b429cfb65b5980f4cd, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ee60794789e5f5b429cfb65b5980f4cd, type: 3}
       propertyPath: m_LocalPosition.x

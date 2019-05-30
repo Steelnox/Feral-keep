@@ -43,7 +43,7 @@ public class PlayerWeaponColliderChecker : MonoBehaviour
                 {
                     ParticlesFeedback_Control.instance.SetHitStaticBushParticlesOnScene(other.ClosestPoint(transform.position));
                 }
-                Debug.Log("Hitting StaticBush");
+                //Debug.Log("Hitting StaticBush");
             }
             
         }

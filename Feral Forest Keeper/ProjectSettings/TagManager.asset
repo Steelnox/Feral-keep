@@ -16,6 +16,7 @@ TagManager:
   - ColorRock
   - SimonRock
   - SimonPuzzle
+  - ChangeScene
   layers:
   - Default
   - TransparentFX

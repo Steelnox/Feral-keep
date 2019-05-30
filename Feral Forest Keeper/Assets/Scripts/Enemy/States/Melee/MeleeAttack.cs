@@ -95,7 +95,7 @@ public class MeleeAttack : State
 
     private void AddDamage()
     {
-        Debug.Log("dmgdone");
+        //Debug.Log("dmgdone");
         melee.player.GetDamage(melee.damage);
         dmg_done = true;
     }

@@ -26,7 +26,7 @@ public class Sanctuary : MonoBehaviour
         playerManager = PlayerManager.instance;
         activatedSanctuary = false;
         actionDone = false;
-        positionCheckpoint = new Vector3(transform.position.x, transform.position.y, transform.position.z - 5);
+        positionCheckpoint = new Vector3(transform.position.x, transform.position.y , transform.position.z - 1 );
         renderer = GetComponent<Renderer>();
     }
 
