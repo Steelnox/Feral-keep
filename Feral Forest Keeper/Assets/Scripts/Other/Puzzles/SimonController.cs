@@ -10,10 +10,18 @@ public class SimonController : MonoBehaviour
 
     public List<Vector3> enemyPositionList;
 
+    public Switch_Behavior switch_Act;
+
+    public GameObject key;
+
     public bool puzzleActivated;
     private bool randomPatronActivated;
     private bool randomDone;
     public bool sequenceDone;
+    public bool resetDone;
+    public bool fail;
+    public bool win;
+    public bool spawnkey;
 
     public int i;
     public int randomNumber;
@@ -40,11 +48,17 @@ public class SimonController : MonoBehaviour
     {
         puzzleActivated = false;
         randomDone = false;
+        resetDone = true;
         randomPatronActivated = false;
         i = 0;
         timesGood = 0;
         timer = 0;
         sequenceCount = 0;
+        fail = false;
+        win = false;
+        spawnkey = false;
+
+        key.SetActive(false);
 
         foreach (GameObject enemy in enemySimonList)
         {
@@ -55,22 +69,78 @@ public class SimonController : MonoBehaviour
 
     void Update()
     {
-        if (puzzleActivated && !randomDone)
+        if (!win)
         {
-            GenerateRandomPatron();
-        }
-        if(puzzleActivated && randomDone && !sequenceDone)
-        {
-            DoSequence();
-        }
-        if (puzzleActivated && randomDone && sequenceDone && i >= numList.Count)
-        {
-            timesGood++;
-
-            if(timesGood < 3)
+            if (puzzleActivated && !randomDone)
             {
-                AddNewColor();
+                GenerateRandomPatron();
             }
+            if (puzzleActivated && randomDone && !sequenceDone)
+            {
+                DoSequence();
+            }
+            if (puzzleActivated && randomDone && sequenceDone && i >= numList.Count)
+            {
+                timesGood++;
+
+                if (timesGood < 3)
+                {
+                    AddNewColor();
+                }
+
+                else
+                {
+                    win = true;
+                }
+            }
+
+            if (switch_Act.holdedSwitched)
+            {
+                puzzleActivated = true;
+                resetDone = false;
+            }
+
+            else
+            {
+                if (!resetDone)
+                {
+                    puzzleActivated = false;
+                    randomDone = false;
+                    sequenceDone = false;
+                    countRandom = 0;
+                    timesGood = 0;
+                    timer = 0;
+                    i = 0;
+                    sequenceCount = 0;
+
+                    ChangeColorBlack();
+
+                    numList.Clear();
+
+                    resetDone = true;
+                }
+            }
+
+            if (fail && puzzleActivated)
+            {
+                for (int count = 0; count < enemySimonList.Count; count++)
+                {
+                    if (enemySimonList[count].GetComponent<Enemy>().currentHealth <= 0)
+                    {
+                        sequenceDone = false;
+                        fail = false;
+                    }
+                }
+            }
+        }
+        else
+        {
+            if (!spawnkey)
+            {
+                key.SetActive(true);
+                spawnkey = true;
+            }
+            
         }
     }
 
@@ -87,38 +157,23 @@ public class SimonController : MonoBehaviour
             else
             {
                 i = 0;
+                sequenceCount = 0;
+                fail = true;
                 for (int count = 0; count < enemySimonList.Count; count++)
                 {
                     enemySimonList[count].SetActive(true);
                     enemySimonList[count].GetComponent<Enemy>().currentHealth = enemySimonList[count].GetComponent<Enemy>().maxHealth;
+                    enemySimonList[count].GetComponent<RangedMove>().currentState = enemySimonList[count].GetComponent<RangedMove>().patrol;
                     enemySimonList[count].transform.position = enemyPositionList[count];
                 }
             }
         }
 
+
+
         Invoke("ChangeColorBlack", 0.2f);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "NewPlayer")
-        {
-            puzzleActivated = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            puzzleActivated = false;
-            randomDone = false;
-            timesGood = 0;
-            i = 0;
-            sequenceCount = 0;
-
-        }
-    }
 
     private void GenerateRandomPatron()
     {

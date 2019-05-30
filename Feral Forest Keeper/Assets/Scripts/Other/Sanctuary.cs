@@ -43,14 +43,15 @@ public class Sanctuary : MonoBehaviour
                 {
                     rock.SetActive(true);
                 }
+
+                foreach (GameObject enemy in enemy_list)
+                {
+                    enemy.SetActive(true);
+                }
             }
 
-            foreach (GameObject enemy in enemy_list)
-            {
-                enemy.SetActive(true);
-            }
 
-            if(playerManager.powerGauntaletSlot == null)
+            if (playerManager.powerGauntaletSlot == null)
             {
                 playerManager.powerGauntaletSlot = gauntlet;
             }

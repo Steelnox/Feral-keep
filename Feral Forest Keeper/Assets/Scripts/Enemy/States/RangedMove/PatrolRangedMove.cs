@@ -59,7 +59,6 @@ public class PatrolRangedMove : State
     public override void Exit()
     {
         ranged.enemy_animator.SetBool("Walk", false);
-
     }
 
     public void AssignRandom()
@@ -71,8 +70,6 @@ public class PatrolRangedMove : State
 
         ranged.enemy_navmesh.SetDestination(patrolPoint);
     }
-
-
 
     public float GetDistance(Vector3 patrolPoint)
     {
