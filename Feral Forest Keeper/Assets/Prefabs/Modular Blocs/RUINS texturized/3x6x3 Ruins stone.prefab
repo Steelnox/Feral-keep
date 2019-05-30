@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1899855921733364632
 Transform:
@@ -51,10 +51,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1899855921733364632}
     m_Modifications:
-    - target: {fileID: 100000, guid: ba75afab7fe41f84886283ca0a21289a, type: 3}
-      propertyPath: m_Name
-      value: Modulo_3x6x3
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ba75afab7fe41f84886283ca0a21289a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -106,6 +102,14 @@ PrefabInstance:
     - target: {fileID: 400000, guid: ba75afab7fe41f84886283ca0a21289a, type: 3}
       propertyPath: m_LocalScale.z
       value: 1.0000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ba75afab7fe41f84886283ca0a21289a, type: 3}
+      propertyPath: m_Name
+      value: Modulo_3x6x3
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ba75afab7fe41f84886283ca0a21289a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: ba75afab7fe41f84886283ca0a21289a, type: 3}
       propertyPath: m_Materials.Array.data[0]
