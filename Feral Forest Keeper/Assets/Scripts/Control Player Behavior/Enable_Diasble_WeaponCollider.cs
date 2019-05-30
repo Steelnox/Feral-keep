@@ -19,11 +19,17 @@ public class Enable_Diasble_WeaponCollider : MonoBehaviour
     public void EnableWeaponCollider()
     {
         weaponCollider.enabled = true;
-        PlayerController.instance.attackTrail.enabled = true;
     }
     public void DisableWeaponCollider()
     {
         weaponCollider.enabled = false;
+    }
+    public void EnableWeaponTrail()
+    {
+        PlayerController.instance.attackTrail.enabled = true;
+    }
+    public void DisableWeaponTrail()
+    {
         PlayerController.instance.attackTrail.enabled = false;
     }
     public void PlayerCanMove()

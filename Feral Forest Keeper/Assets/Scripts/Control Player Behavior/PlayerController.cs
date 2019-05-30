@@ -94,6 +94,7 @@ public class PlayerController : MonoBehaviour
         initFallingPosition = this.transform.position;
         pushing = false;
         actualHitCooldown = hitCooldownTime;
+        attackTrail.enabled = false;
     }
 
     void Update()
