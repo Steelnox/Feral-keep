@@ -161,10 +161,16 @@ public class SimonController : MonoBehaviour
                 fail = true;
                 for (int count = 0; count < enemySimonList.Count; count++)
                 {
-                    enemySimonList[count].SetActive(true);
-                    enemySimonList[count].GetComponent<Enemy>().currentHealth = enemySimonList[count].GetComponent<Enemy>().maxHealth;
-                    enemySimonList[count].GetComponent<RangedMove>().currentState = enemySimonList[count].GetComponent<RangedMove>().patrol;
+
+                    enemySimonList[count].GetComponent<Enemy>().currentHealth = 3;
+                    enemySimonList[count].GetComponent<Enemy>().HealthBar.transform.localScale = new Vector3(1,1,1);
+                    enemySimonList[count].GetComponent<Enemy>().HealthBar.SetActive(false);
+
+
                     enemySimonList[count].transform.position = enemyPositionList[count];
+                    enemySimonList[count].SetActive(true);
+
+
                 }
             }
         }

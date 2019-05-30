@@ -49,13 +49,17 @@ public class RageRanged : State
 
         if (currentRotation >= 359.0f)
         {
-            this.gameObject.SetActive(false);
+            ranged.ChangeState(ranged.chase);
+
+
         }
     }
 
     public override void Exit()
     {
 
+        currentRotation = 0;
+        ranged.currentHealth = 0;
         ranged.enemy_animator.SetBool("Attack", false);
 
     }

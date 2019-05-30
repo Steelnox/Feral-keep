@@ -97,8 +97,6 @@ public class FixedBoolAttack : State
         }
         else
         {
-
-            Debug.Log("Hola");
             bulletsShoot = 0;
 
             ranged.enemy_animator.SetBool("Attack", false);

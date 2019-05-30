@@ -56,6 +56,11 @@ public class RangedMove : Enemy
         }
         stateMachine.ExecuteState();
 
+        if(currentHealth <= 0)
+        {
+            this.gameObject.SetActive(false);
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)
