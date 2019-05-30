@@ -27,14 +27,14 @@ public class MovableRocks : MonoBehaviour
         //CheckSideToPush();
         if (beingPushed)
         {
-            if (CheckGroundDistance() > bodyMeshrenderer.bounds.extents.y + 1 || rockBody.transform.position.y < lastNoPushingPos.y - 0.5f)
-            {
-                falling = true;
-            }
-            else
-            {
-                falling = false;
-            }
+            //if (CheckGroundDistance() > bodyMeshrenderer.bounds.extents.y + 1 || rockBody.transform.position.y < lastNoPushingPos.y - 0.5f)
+            //{
+            //    falling = true;
+            //}
+            //else
+            //{
+            //    falling = false;
+            //}
         }
         else
         {

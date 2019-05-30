@@ -12,7 +12,7 @@ public class PushLog_State : State
     {
         PlayerController.instance.pushDirection = GenericSensUtilities.instance.Transform2DTo3DMovement(PlayerSensSystem.instance.nearestLog.CheckSideToPush()).normalized;
         PlayerController.instance.pushDirection = GenericSensUtilities.instance.Transform2DTo3DMovement(GenericSensUtilities.instance.Transform3DTo2DMovement(PlayerController.instance.pushDirection));
-        PlayerController.instance.characterModel.transform.forward = PlayerController.instance.pushDirection;
+        //PlayerController.instance.characterModel.transform.forward = PlayerController.instance.pushDirection;
         PlayerController.instance.imGrounded = true;
         PlayerSensSystem.instance.nearestLog.SetLastNoPushPosition(PlayerSensSystem.instance.nearestLog.transform.position);
         PlayerSensSystem.instance.nearestLog.SetBeingPushed(true);
