@@ -20,7 +20,7 @@ public class MeleeAtack_PlayerState : State
     }
     public override void Exit()
     {
-        Debug.Log("Exit Atacking State");
+        //Debug.Log("Exit Atacking State");
         //PlayerController.instance.weaponCollider.enabled = false;
         PlayerController.instance.attacking = false;
     }

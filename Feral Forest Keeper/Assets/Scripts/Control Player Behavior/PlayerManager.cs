@@ -29,17 +29,24 @@ public class PlayerManager : MonoBehaviour
 
     void Start()
     {
-        branchWeaponForAnimations.SetActive(false);
+        branchWeaponSlot = GameManager.instance.branchItem;
+        CheckIfHaveBranchWeaponItem();
+
+        //branchWeaponForAnimations.SetActive(false);
         leafWeaponForAnimations.SetActive(false);
-        branchWeaponSlot = null;
+        //branchWeaponSlot = null;
         leafSwordSlot = null;
         powerGauntaletSlot = null;
         if (PlayerController.instance.startWithAllSkills)
         {
             leafSwordSlot = GameManager.instance.swordItem;
             CheckIfHaveLeafWeaponItem();
+
+            Player_GUI_System.instance.SetOnScreenStrenfthForestIcon(true);
+
             powerGauntaletSlot = GameManager.instance.gantletItem;
         }
+
     }
 
     void Update()

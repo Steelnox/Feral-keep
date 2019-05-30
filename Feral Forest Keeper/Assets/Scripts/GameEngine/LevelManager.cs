@@ -77,7 +77,7 @@ public class LevelManager : MonoBehaviour
 
             if (PlayerController.instance.transform.position == levelList[activeLevelID].levelCheckPoint.transform.position)
             {
-                Debug.Log("After death, player on CheckPointPosition");
+                //Debug.Log("After death, player on CheckPointPosition");
                 PlayerController.instance.actualPlayerLive = PlayerController.instance.playerLive;
                 PlayerController.instance.playerAlive = true;
                 PlayerController.instance.SetCanMove(true);

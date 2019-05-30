@@ -41,9 +41,9 @@ public class OpenableDoors : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("Bounds X = " + doorBody.GetComponent<MeshRenderer>().bounds.size.x);
-        Debug.Log("Bounds Y = " + doorBody.GetComponent<MeshRenderer>().bounds.size.y);
-        Debug.Log("Bounds Z = " + doorBody.GetComponent<MeshRenderer>().bounds.size.z);
+        //Debug.Log("Bounds X = " + doorBody.GetComponent<MeshRenderer>().bounds.size.x);
+        //Debug.Log("Bounds Y = " + doorBody.GetComponent<MeshRenderer>().bounds.size.y);
+        //Debug.Log("Bounds Z = " + doorBody.GetComponent<MeshRenderer>().bounds.size.z);
         actualSetupTimeLaps = setupTimeLaps;
 
         switch (displacementType)

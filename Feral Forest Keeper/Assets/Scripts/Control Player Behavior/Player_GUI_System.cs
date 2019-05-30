@@ -9,11 +9,10 @@ public class Player_GUI_System : MonoBehaviour
 
     public static Player_GUI_System instance;
 
-    private void Awake()
-    {
-        if (instance == null) instance = this;
-        if (instance != this) Destroy(this);
-    }
+    //private void Awake()
+    //{
+        
+    //}
 
     #endregion
 
@@ -23,6 +22,9 @@ public class Player_GUI_System : MonoBehaviour
     public RectTransform pickupIcon;
     public RectTransform unlockDoorIcon;
     public RectTransform activateSanctuaryIcon;
+    public RectTransform buttonBColor;
+    public RectTransform buttonBSimon;
+
     public RectTransform leafWeaponIcon;
     public RectTransform branchWeaponIcon;
     public RectTransform strengthForestIcon;
@@ -33,11 +35,15 @@ public class Player_GUI_System : MonoBehaviour
     private Vector2 strengthIconOnScreenPos;
     private Vector2 hidePos;
 
-    void Start()
+    void Awake()
     {
+        if (instance == null) instance = this;
+        if (instance != this) Destroy(this);
+
         leafWeaponIconOnScrenPos = leafWeaponIcon.anchoredPosition;
-        actionIconOnScreenPos = pushIcon.anchoredPosition;
+        actionIconOnScreenPos = buttonBColor.anchoredPosition;
         strengthIconOnScreenPos = strengthForestIcon.anchoredPosition;
+
         hidePos = Vector2.right * 1000;
         SetOnScreenPushIcon(false);
         SetOnScreenPickUpIcon(false);
@@ -128,6 +134,30 @@ public class Player_GUI_System : MonoBehaviour
         else
         {
             strengthForestIcon.anchoredPosition = hidePos;
+        }
+    }
+
+    public void SetOnScreenButtonBColor(bool b)
+    {
+        if (b)
+        {
+            buttonBColor.anchoredPosition = actionIconOnScreenPos;
+        }
+        else
+        {
+            buttonBColor.anchoredPosition = hidePos;
+        }
+    }
+
+    public void SetOnScreenButtonBSimon(bool b)
+    {
+        if (b)
+        {
+            buttonBSimon.anchoredPosition = actionIconOnScreenPos;
+        }
+        else
+        {
+            buttonBSimon.anchoredPosition = hidePos;
         }
     }
     public void SetKeysCount(int keys)
