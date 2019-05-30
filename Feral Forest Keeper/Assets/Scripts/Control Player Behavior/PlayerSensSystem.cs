@@ -534,6 +534,13 @@ public class PlayerSensSystem : MonoBehaviour
                 && PlayerController.instance.playerRoot.transform.position.y >= g.transform.position.y - 0.2f
                 && PlayerController.instance.playerRoot.transform.position.y < g.transform.position.y + 0.2f)
             {
+                //for (int i = 0; i < g.numOfParts; i++)
+                //{
+                //    if (GenericSensUtilities.instance.DistanceBetween2Vectors(PlayerController.instance.playerRoot.transform.position, g.parts[i].transform.position) < 0.05f)
+                //    {
+                //        return true;
+                //    }
+                //}
                 return true;
             }
         }

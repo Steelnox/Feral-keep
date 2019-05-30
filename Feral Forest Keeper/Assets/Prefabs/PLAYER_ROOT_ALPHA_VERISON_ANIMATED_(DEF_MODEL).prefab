@@ -676,6 +676,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AttackParticles
       objectReference: {fileID: 0}
+    - target: {fileID: 96648479012581830, guid: 8336ffec17a2e134ca47e3a67a0613ab,
+        type: 3}
+      propertyPath: m_Autodestruct
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4889028055671192, guid: 8336ffec17a2e134ca47e3a67a0613ab, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0

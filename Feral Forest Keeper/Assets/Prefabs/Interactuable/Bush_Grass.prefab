@@ -96,6 +96,7 @@ MonoBehaviour:
   - {fileID: 3242181794148365806}
   - {fileID: 3582090573031776125}
   - {fileID: 8420560229956568396}
+  numOfParts: 25
   playerOver: 0
   grassContactDistance: 0.6
   bushContactDistance: 0.8

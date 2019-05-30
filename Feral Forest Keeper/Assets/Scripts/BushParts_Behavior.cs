@@ -23,6 +23,7 @@ public class BushParts_Behavior : MonoBehaviour
         if (playerInRange && GenericSensUtilities.instance.DistanceBetween2Vectors(PlayerController.instance.playerRoot.transform.position, bodyPivot.transform.position) < interactionDistance)
         {
             if (playerInteraction != true)playerInteraction = true;
+            //PlayerController.instance.MovingInSlowZone(true);
         }
         else
         {
