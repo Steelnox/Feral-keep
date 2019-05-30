@@ -87,7 +87,7 @@ public class AttackRangedFixed : State
             ranged.ChangeState(ranged.look);
         }
 
-        else if (!ranged.enemyUnder && ranged.distanceY > 0)
+        else if (!ranged.enemyUnder && ranged.distanceY > ranged.distanceToAttack)
         {
             bulletsShoot = 0;
             ranged.ChangeState(ranged.look);

@@ -43,7 +43,7 @@ public class LookRangedFixed : State
                 ranged.ChangeState(ranged.attack);
             }
 
-            else if (!ranged.enemyUnder && ranged.distanceY < 0)
+            else if (!ranged.enemyUnder && ranged.distanceY < ranged.distanceYForAttack)
             {
                 ranged.ChangeState(ranged.attack);
             }
