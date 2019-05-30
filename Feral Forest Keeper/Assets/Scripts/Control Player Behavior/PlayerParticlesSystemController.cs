@@ -30,7 +30,7 @@ public class PlayerParticlesSystemController : MonoBehaviour
         if(liveUpFeedbackParticlesComposite.IsCompositePlaying())
         {
             liveUpFeedbackParticlesComposite.transform.position = PlayerController.instance.transform.position + Vector3.up * 0.5f;
-            liveUpFeedbackParticlesComposite.transform.rotation = PlayerController.instance.characterModel.transform.rotation;
+            //liveUpFeedbackParticlesComposite.transform.rotation = PlayerController.instance.characterModel.transform.rotation;
         }
     }
     public void SetDashParticlesOnScene(Vector3 position)

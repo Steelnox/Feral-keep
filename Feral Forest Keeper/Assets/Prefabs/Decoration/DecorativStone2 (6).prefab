@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6062274792381093015}
   - component: {fileID: 6062274792379798711}
   - component: {fileID: 6062274792378799735}
+  - component: {fileID: 3092235241448865230}
   m_Layer: 0
   m_Name: DecorativStone2 (6)
   m_TagString: Untagged
@@ -77,3 +78,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &3092235241448865230
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6062274792380795063}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5613108, y: 0.8828333, z: 0.7089719}
+  m_Center: {x: -0.05978699, y: -0.015752522, z: -0.000028732016}
