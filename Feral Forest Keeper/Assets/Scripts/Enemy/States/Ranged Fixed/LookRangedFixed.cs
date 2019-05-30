@@ -36,8 +36,20 @@ public class LookRangedFixed : State
         transform.rotation = Quaternion.Slerp(transform.rotation, lookOnLook, 0.5f);
 
 
+        if (distanceToPlayer <= ranged.distanceToAttack)
+        {
+            if (ranged.enemyUnder && ranged.distanceY > ranged.distanceYForAttack)
+            {
+                ranged.ChangeState(ranged.attack);
+            }
 
-        if (distanceToPlayer <= ranged.distanceToAttack && ranged.distanceY < ranged.distanceYForAttack) ranged.ChangeState(ranged.attack);
+            else if (!ranged.enemyUnder && ranged.distanceY < ranged.distanceYForAttack)
+            {
+                ranged.ChangeState(ranged.attack);
+            }
+        }
+
+
     }
 
 

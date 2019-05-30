@@ -75,11 +75,22 @@ public class AttackRangedFixed : State
 
             }
         }
-        if (distanceToPlayer > ranged.distanceToAttack || ranged.distanceY > ranged.distanceYForAttack)
+        if (distanceToPlayer > ranged.distanceToAttack)
         {
             bulletsShoot = 0;
             ranged.ChangeState(ranged.look);
+        }
 
+        if (ranged.enemyUnder && ranged.distanceY < ranged.distanceYForAttack)
+        {
+            bulletsShoot = 0;
+            ranged.ChangeState(ranged.look);
+        }
+
+        else if (!ranged.enemyUnder && ranged.distanceY > ranged.distanceYForAttack)
+        {
+            bulletsShoot = 0;
+            ranged.ChangeState(ranged.look);
         }
 
     }

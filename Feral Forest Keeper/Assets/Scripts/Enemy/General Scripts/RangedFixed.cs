@@ -25,6 +25,8 @@ public class RangedFixed : Enemy
 
     public bool finishHit;
 
+    public bool enemyUnder;
+
 
     void Start()
     {
