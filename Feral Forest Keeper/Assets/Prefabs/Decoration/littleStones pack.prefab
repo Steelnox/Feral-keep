@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 706620399021303554}
   - component: {fileID: 706620399017912098}
   - component: {fileID: 706620399018878434}
+  - component: {fileID: 451235078736006092}
   m_Layer: 0
   m_Name: DecorativStone2 (4)
   m_TagString: Untagged
@@ -77,6 +78,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &451235078736006092
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706620399021079330}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5613112, y: 0.8828338, z: 0.70897144}
+  m_Center: {x: -0.05978701, y: -0.015752407, z: -0.000028719174}
 --- !u!1 &707780309927019070
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,6 +102,7 @@ GameObject:
   - component: {fileID: 707780309926600222}
   - component: {fileID: 707780309923700286}
   - component: {fileID: 707780309924830462}
+  - component: {fileID: 1347575691853885368}
   m_Layer: 0
   m_Name: DecorativStone2 (11)
   m_TagString: Untagged
@@ -154,6 +169,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &1347575691853885368
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707780309927019070}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5613105, y: 0.8828336, z: 0.7089711}
+  m_Center: {x: -0.05978602, y: -0.015753001, z: -0.00002895112}
 --- !u!1 &1068236464685914327
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,6 +193,7 @@ GameObject:
   - component: {fileID: 1068236464686269687}
   - component: {fileID: 1068236464682878167}
   - component: {fileID: 1068236464683976215}
+  - component: {fileID: 3960166587740711567}
   m_Layer: 0
   m_Name: DecorativStone2 (9)
   m_TagString: Untagged
@@ -231,6 +260,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &3960166587740711567
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068236464685914327}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5613109, y: 0.8828336, z: 0.7089711}
+  m_Center: {x: -0.05978507, y: -0.015752047, z: -0.000028712737}
 --- !u!1 &2340944925973768155
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,6 +284,7 @@ GameObject:
   - component: {fileID: 2340944925973871611}
   - component: {fileID: 2340944925972544475}
   - component: {fileID: 2340944925971577115}
+  - component: {fileID: 827021205347152599}
   m_Layer: 0
   m_Name: DecorativStone2 (10)
   m_TagString: Untagged
@@ -308,6 +351,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &827021205347152599
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2340944925973768155}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5613105, y: 0.8828336, z: 0.7089711}
+  m_Center: {x: -0.05978316, y: -0.015753001, z: -0.00002895112}
 --- !u!1 &5326257267208025498
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,6 +375,7 @@ GameObject:
   - component: {fileID: 5326257267207662010}
   - component: {fileID: 5326257267211053466}
   - component: {fileID: 5326257267209956186}
+  - component: {fileID: 3717050609497810700}
   m_Layer: 0
   m_Name: DecorativStone2 (5)
   m_TagString: Untagged
@@ -334,7 +391,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5326257267208025498}
   m_LocalRotation: {x: 0.29821318, y: 0.6389029, z: -0.64114636, w: 0.3029906}
-  m_LocalPosition: {x: 0.0467, y: -0.0101, z: -0.054512}
+  m_LocalPosition: {x: 0.0467, y: -0.0092, z: -0.0545}
   m_LocalScale: {x: 0.02091493, y: 0.026566966, z: -0.019160343}
   m_Children: []
   m_Father: {fileID: 7618675196932128022}
@@ -385,6 +442,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &3717050609497810700
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5326257267208025498}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5613105, y: 0.8828335, z: 0.7089711}
+  m_Center: {x: -0.05978709, y: -0.015752284, z: -0.00002871456}
 --- !u!1 &6323450196259351128
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,7 +464,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7618675196932128022}
-  - component: {fileID: 3472835896692410902}
+  - component: {fileID: 2411872010825029693}
   m_Layer: 0
   m_Name: littleStones pack
   m_TagString: Untagged
@@ -411,7 +481,7 @@ Transform:
   m_GameObject: {fileID: 6323450196259351128}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 8, y: 8, z: 8}
+  m_LocalScale: {x: 30, y: 30, z: 30}
   m_Children:
   - {fileID: 8991219235748824048}
   - {fileID: 706620399021303554}
@@ -424,19 +494,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3472835896692410902
-BoxCollider:
+--- !u!208 &2411872010825029693
+NavMeshObstacle:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6323450196259351128}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.1, z: 0.1}
-  m_Center: {x: 0.12, y: 0.03, z: -0.06}
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.05, y: 0.025, z: 0.06}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.1, y: 0, z: -0.04}
+  m_TimeToStationary: 0.5
 --- !u!1 &7230449889547880962
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,6 +521,7 @@ GameObject:
   - component: {fileID: 7230449889547916834}
   - component: {fileID: 7230449889550816770}
   - component: {fileID: 7230449889549817026}
+  - component: {fileID: 4532192708443224534}
   m_Layer: 0
   m_Name: DecorativStone2 (8)
   m_TagString: Untagged
@@ -514,6 +588,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &4532192708443224534
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7230449889547880962}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5613109, y: 0.8828336, z: 0.7089711}
+  m_Center: {x: -0.059786025, y: -0.015752643, z: -0.000028831946}
 --- !u!1 &8602852086466893095
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,6 +612,7 @@ GameObject:
   - component: {fileID: 8602852086466595079}
   - component: {fileID: 8602852086467889447}
   - component: {fileID: 8602852086468889575}
+  - component: {fileID: 8738940814232768401}
   m_Layer: 0
   m_Name: DecorativStone2 (7)
   m_TagString: Untagged
@@ -591,6 +679,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &8738940814232768401
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8602852086466893095}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5613108, y: 0.8828334, z: 0.7089711}
+  m_Center: {x: -0.059786506, y: -0.015752524, z: -0.000028742508}
 --- !u!1 &8991219235748339664
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,6 +703,7 @@ GameObject:
   - component: {fileID: 8991219235748824048}
   - component: {fileID: 8991219235745399760}
   - component: {fileID: 8991219235746398480}
+  - component: {fileID: 34965741564934530}
   m_Layer: 0
   m_Name: DecorativStone2 (3)
   m_TagString: Untagged
@@ -668,3 +770,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &34965741564934530
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8991219235748339664}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5613109, y: 0.8828336, z: 0.7089711}
+  m_Center: {x: -0.059786025, y: -0.015752403, z: -0.000028714323}

@@ -152,7 +152,7 @@ public class PlayerController : MonoBehaviour
         {
             if (GenericSensUtilities.instance.DistanceBetween2Vectors(PlayerSensSystem.instance.nearestDoor.transform.position, characterModel.transform.position) < PlayerSensSystem.instance.nearestDoor.interactionDistance && PlayerManager.instance.FindKeysInInventory(PlayerSensSystem.instance.nearestDoor.doorKeys) && PlayerSensSystem.instance.nearestDoor.GetLockedActualState() == true)
             {
-                Debug.Log("HAVE THE AMOUNT OF KEYS?: " + PlayerManager.instance.FindKeysInInventory(PlayerSensSystem.instance.nearestDoor.doorKeys));
+                //Debug.Log("HAVE THE AMOUNT OF KEYS?: " + PlayerManager.instance.FindKeysInInventory(PlayerSensSystem.instance.nearestDoor.doorKeys));
                 Player_GUI_System.instance.SetOnScreenUnlockDoorIcon(true);
                 if (Input.GetButtonDown("B") || Input.GetKeyDown(KeyCode.F))
                 {

@@ -26,6 +26,7 @@ public class Melee : Enemy
         enemy_navmesh = GetComponent<NavMeshAgent>();
 
 
+
         C_collider = GetComponent<CapsuleCollider>();
 
         enemy_rb = GetComponent<Rigidbody>();

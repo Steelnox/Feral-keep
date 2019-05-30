@@ -62,7 +62,7 @@ public class Projectile : MonoBehaviour
             activated = false;
         }
 
-        else if(other.tag == "MovableRock")
+        else if(other.tag == "MovableRock" || other.tag == "StaticBush")
         {
             timer = 0;
 

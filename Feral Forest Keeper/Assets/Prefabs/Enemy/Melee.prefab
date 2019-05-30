@@ -84,9 +84,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.19427204
-  m_Height: 0.49
+  m_Height: 0.7712461
   m_Direction: 1
-  m_Center: {x: 0, y: 0.5, z: 0.0009031296}
+  m_Center: {x: 0, y: 0.64062303, z: 0.0009031296}
 --- !u!54 &4085395567938847067
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee4f2e14cc87457469c873e357f0e2ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 0}
+  explosion: {fileID: 6533689050094500054}
   capsuleMesh: {fileID: 1840880658192408372}
   explosionScript: {fileID: 0}
 --- !u!195 &6549901792006296827
@@ -480,6 +480,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Explosion
       objectReference: {fileID: 0}
+    - target: {fileID: 1224196771332019023, guid: 79c2881a2e6f06d42ae40d677d84585b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1224196771332019018, guid: 79c2881a2e6f06d42ae40d677d84585b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -488,12 +493,12 @@ PrefabInstance:
     - target: {fileID: 1224196771332019018, guid: 79c2881a2e6f06d42ae40d677d84585b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.475
       objectReference: {fileID: 0}
     - target: {fileID: 1224196771332019018, guid: 79c2881a2e6f06d42ae40d677d84585b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1224196771332019018, guid: 79c2881a2e6f06d42ae40d677d84585b,
         type: 3}
