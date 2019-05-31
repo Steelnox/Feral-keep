@@ -220,7 +220,7 @@ public class PlayerController : MonoBehaviour
                         PlayerSensSystem.instance.nearestItem.CollectItem();
                         if (actualPlayerLive < playerLive)
                         {
-                            actualPlayerLive += 1;
+                            actualPlayerLive++;
                             PlayerParticlesSystemController.instance.SetLiveUpFeedbackParticlesOnScene(transform.position + Vector3.up * 0.5f);
                         }
                         break;
