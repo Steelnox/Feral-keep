@@ -511,8 +511,11 @@ public class PlayerController : MonoBehaviour
     {
         if (!gettingHit)
         {
-            actualPlayerLive -= damage;
-            gettingHit = true;
+            if (actualPlayerLive > 0)
+            {
+                actualPlayerLive -= damage;
+                gettingHit = true;
+            }
         }
     }
     public void MovingInSlowZone(bool b)
