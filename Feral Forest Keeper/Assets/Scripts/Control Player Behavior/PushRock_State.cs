@@ -15,7 +15,7 @@ public class PushRock_State : State
         PlayerController.instance.pushing = true;
         PlayerController.instance.pushDirection = GenericSensUtilities.instance.Transform2DTo3DMovement(PlayerSensSystem.instance.nearestRock.CheckSideToPush()).normalized;
         PlayerController.instance.pushDirection = GenericSensUtilities.instance.Transform2DTo3DMovement(GenericSensUtilities.instance.Transform3DTo2DMovement(PlayerController.instance.pushDirection));
-        PlayerController.instance.characterModel.transform.forward = PlayerController.instance.pushDirection;
+        //PlayerController.instance.characterModel.transform.forward = PlayerController.instance.pushDirection;
         PlayerController.instance.imGrounded = true;
         PlayerSensSystem.instance.nearestRock.SetLastNoPushPosition(PlayerSensSystem.instance.nearestRock.transform.position);
         PlayerSensSystem.instance.nearestRock.SetBeingPushed(true);

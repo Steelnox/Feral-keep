@@ -17,7 +17,7 @@ public class FixedBoolAttack : State
 
     private float timer;
 
-    private float bulletsShoot;
+    public float bulletsShoot;
 
     public float bulletsCanShoot;
 
@@ -37,18 +37,7 @@ public class FixedBoolAttack : State
 
         ranged.enemy_navmesh.isStopped = true;
 
-        if (distanceToPlayer <= ranged.distanceToAttack)
-        {
-            ranged.enemy_animator.SetBool("Attack", true);
-            ranged.enemy_animator.SetBool("Idle", false);
-
-        }
-        else
-        {
-            ranged.enemy_animator.SetBool("Attack", false);
-            ranged.enemy_animator.SetBool("Idle", true);
-        }
-
+        ranged.enemy_animator.SetBool("Attack", true);
 
     }
 
@@ -62,13 +51,8 @@ public class FixedBoolAttack : State
         {
             if (bulletsShoot < bulletsCanShoot)
             {
-                if (firstTime)
-                {
-                    ranged.enemy_animator.SetBool("Attack", true);
-                    ranged.enemy_animator.SetBool("Idle", false);
-                    firstTime = false;
-                }
-                
+                ranged.enemy_animator.SetBool("Attack", true);
+                ranged.enemy_animator.SetBool("Idle", false);
 
                 if (ranged.shoot)
                 {
