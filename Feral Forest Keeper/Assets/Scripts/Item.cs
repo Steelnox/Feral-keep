@@ -47,6 +47,6 @@ public class Item : MonoBehaviour
         transform.rotation = Quaternion.Euler(rot);
         onScenPoition = pos;
         myParticles = ParticlesFeedback_Control.instance.GetNOActiveCompoisteOnList(ParticlesFeedback_Control.instance.itemsScrollUpSparksParticlesPOOL);
-        myParticles.PlayComposition(transform.position);
+        if (myParticles != null) myParticles.PlayComposition(transform.position);
     }
 }

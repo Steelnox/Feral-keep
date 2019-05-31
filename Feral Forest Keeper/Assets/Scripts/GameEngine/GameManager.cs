@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
     }
     public Item GetRandomLiveUpItem()
     {
-        int random = Random.Range(0, liveUpPool.Length - 1);
+        int random = Random.Range(0, liveUpPool.Length);
         if (liveUpPool[random].collected)
         {
             //liveUpPool[random].collected = false;

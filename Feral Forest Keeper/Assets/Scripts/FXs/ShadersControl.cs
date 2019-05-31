@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ShadersControl : MonoBehaviour
 {
-    private float heightMin = 0.00f;
-    private float heightMax = 7.05f;
+    private float heightMin = -5.13f;
+    private float heightMax = 0.0f;
 
     public MeshRenderer heightDegradateLightingShader_Material;
 
@@ -26,7 +26,7 @@ public class ShadersControl : MonoBehaviour
     void Update()
     {
         //heightDegradateLightingShader_Material = gameObject.GetComponent<MeshRenderer>();
-        worldHeightRelativeToPlayer = PlayerAnimationController.instance.transform.position.y;
+        worldHeightRelativeToPlayer = PlayerController.instance.characterModel.transform.position.y;
         min = Mathf.Lerp(min, worldHeightRelativeToPlayer + heightMin, Time.deltaTime * 10);
         max = Mathf.Lerp(max, worldHeightRelativeToPlayer + heightMax, Time.deltaTime * 10);
         heightDegradateLightingShader_Material.material.SetFloat("_HeightMin", min);

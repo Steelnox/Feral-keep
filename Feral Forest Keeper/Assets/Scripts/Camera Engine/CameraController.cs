@@ -368,7 +368,7 @@ public class CameraController : MonoBehaviour
         //{
         //    cameraMovement.x = Mathf.Lerp(p_Camera.transform.position.x, desiredPosition.x, smoothValue * Time.deltaTime);
         //}
-        cameraMovement.y = desiredPosition.y;
+        cameraMovement.y = Mathf.Lerp(cameraMovement.y, desiredPosition.y, (smoothValue/2) * Time.deltaTime);
         
         //if (!outOFBorderUP_LEFT && !outOFBorderUP_RIGHT && !outOFBorderDOWN_LEFT && !outOFBorderDOWN_RIGHT) FaceTarget();
         return false;

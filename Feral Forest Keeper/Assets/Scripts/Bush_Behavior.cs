@@ -17,7 +17,7 @@ public class Bush_Behavior : MonoBehaviour
     private Vector3 initUpVector;
     private bool playerInteraction;
     private bool isCutted;
-    private bool justBeingCutted;
+    //private bool justBeingCutted;
     private bool active;
     [SerializeField]
     private bool weaponBranchHit;
@@ -30,7 +30,7 @@ public class Bush_Behavior : MonoBehaviour
         playerInteraction = false;
         hidePos = Vector3.down * 1000;
         isCutted = false;
-        justBeingCutted = true;
+        //justBeingCutted = true;
         active = true;
         weaponBranchHit = false;
         HideParticles();
@@ -83,7 +83,12 @@ public class Bush_Behavior : MonoBehaviour
         int random = (Random.Range(1, 100) * Random.Range(1, 100)) / 3;
         if (random % 2 == 0)
         {
-            GameManager.instance.GetRandomLiveUpItem().SetItem(bushPos + Vector3.up * 0.3f, transform.rotation.eulerAngles);
+            Item _item = null;
+            while(_item == null)
+            {
+                _item = GameManager.instance.GetRandomLiveUpItem();
+            }
+            _item.SetItem(bushPos + Vector3.up * 0.3f, transform.rotation.eulerAngles);
         }
     }
     private void SetParticles(Vector3 pos)
@@ -102,7 +107,7 @@ public class Bush_Behavior : MonoBehaviour
     {
         active = true;
         isCutted = false;
-        justBeingCutted = true;
+        //justBeingCutted = true;
         this.transform.position = _pos;
     }
     private void PlayParticles()
