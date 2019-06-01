@@ -41,7 +41,7 @@ MonoBehaviour:
     value: 0.15
   size:
     overrideState: 1
-    value: 1
+    value: 0.48
   lumContrib:
     overrideState: 1
     value: 0.8
@@ -109,7 +109,7 @@ MonoBehaviour:
     value: 0.22
   color:
     overrideState: 1
-    value: {r: 0.8773585, g: 0.028969401, b: 0.2466154, a: 1}
+    value: {r: 0.617498, g: 0.8784314, b: 0.02745098, a: 1}
   fastMode:
     overrideState: 1
     value: 0
