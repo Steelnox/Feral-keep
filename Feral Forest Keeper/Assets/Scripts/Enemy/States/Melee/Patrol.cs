@@ -33,7 +33,7 @@ public class Patrol : State
 
         melee.enemy_animator.SetBool("Move", true);
 
-
+        melee.chasing = false;
         timer = 0;
     }
 

@@ -27,6 +27,7 @@ public abstract class Enemy : MonoBehaviour
 
     public bool move;
 
+    public bool chasing;
 
     #region Stats
 
@@ -78,6 +79,11 @@ public abstract class Enemy : MonoBehaviour
     public float GetDistance(Vector3 targetpos)
     {
         return Vector3.Distance(targetpos, transform.position);
+    }
+
+    public bool IsChasing()
+    {
+        return chasing;
     }
 
     public bool SeesPlayer()

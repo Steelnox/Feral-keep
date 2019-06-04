@@ -13,6 +13,9 @@ public class Flee : State
 
         ranged.enemy_animator.SetBool("Run", true);
 
+        ranged.chasing = true;
+
+
     }
 
     public override void Execute()

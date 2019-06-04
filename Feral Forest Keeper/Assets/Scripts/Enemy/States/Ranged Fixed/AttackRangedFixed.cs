@@ -37,6 +37,9 @@ public class AttackRangedFixed : State
         ranged.enemy_navmesh.isStopped = true;
         ranged.enemy_animator.SetBool("Attack", true);
 
+        ranged.chasing = true;
+
+
     }
 
     public override void Execute()

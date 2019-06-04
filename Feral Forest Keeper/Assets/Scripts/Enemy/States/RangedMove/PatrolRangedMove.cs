@@ -32,6 +32,8 @@ public class PatrolRangedMove : State
 
         AssignRandom();
 
+        ranged.chasing = false;
+
         timer = 0;
     }
 

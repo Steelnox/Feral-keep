@@ -27,6 +27,9 @@ public class AttackRangedMove : State
         
         ranged.enemy_animator.SetBool("Attack", true);
 
+        ranged.chasing = true;
+
+
     }
 
     public override void Execute()

@@ -18,6 +18,9 @@ public class ChaseRanged : State
 
         ranged.enemy_navmesh.ResetPath();
 
+        ranged.chasing = true;
+
+
     }
 
     public override void Execute()

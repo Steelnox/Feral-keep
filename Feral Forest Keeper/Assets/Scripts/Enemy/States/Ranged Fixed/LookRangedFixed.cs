@@ -22,6 +22,9 @@ public class LookRangedFixed : State
 
 
         ranged.enemy_navmesh.isStopped = true;
+
+        ranged.chasing = false;
+
     }
 
     public override void Execute()

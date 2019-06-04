@@ -13,6 +13,8 @@ public class Chase : State
 
         melee.enemy_animator.SetBool("Move", true);
 
+        melee.chasing = true;
+
     }
 
     public override void Execute()

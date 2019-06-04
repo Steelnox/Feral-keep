@@ -35,6 +35,9 @@ public class MeleeAttack : State
 
         melee.finishAttack = false;
 
+        melee.chasing = true;
+
+
     }
 
     public override void Execute()
