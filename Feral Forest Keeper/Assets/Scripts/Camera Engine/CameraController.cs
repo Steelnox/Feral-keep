@@ -39,7 +39,7 @@ public class CameraController : MonoBehaviour
     
     void Start ()
     {
-        player = PlayerController.instance.playerRoot;
+        //player = PlayerController.instance.playerRoot;
         desiredPosition = player.transform.position + cameraOffSet;
         transform.position = desiredPosition;
         SetActualBehavior(Behavior.FOLLOW_PLAYER);

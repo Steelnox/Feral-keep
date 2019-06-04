@@ -41,8 +41,6 @@ public class PlayerSensSystem : MonoBehaviour
     public List<ColorRockScript> colorRockList;
     public List<SimonRock> simonRockList;
 
-
-
     void Start()
     {
         colliderSens.radius = sensRange;
@@ -58,7 +56,6 @@ public class PlayerSensSystem : MonoBehaviour
         GetNearestSanctuary();
         GetNearestColorRock();
         GetNearestSimonRock();
-
     }
 
     public void OnTriggerEnter(Collider other)
@@ -218,7 +215,6 @@ public class PlayerSensSystem : MonoBehaviour
                     simonRockList.Add(simonRock);
                 }
             }
-
         }
     }
     public void OnTriggerExit(Collider other)

@@ -93,7 +93,10 @@ public class LevelManager : MonoBehaviour
             }
         }
         ///By DIYNG
-        
+        if (PlayerController.instance.actualPlayerLive <= 0)
+        {
+            //GameManager.instance.
+        }
     }
 
     public void NextLevel()

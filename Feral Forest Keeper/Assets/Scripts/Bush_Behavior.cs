@@ -11,6 +11,7 @@ public class Bush_Behavior : MonoBehaviour
     public Vector3 hidePos;
     public GameObject particlesPivot;
     public ParticleSystem cutParticles;
+    public GameObject cutDecal;
 
     private Vector3 desiredBlendVector;
     private Vector3 blendVector;
@@ -22,9 +23,11 @@ public class Bush_Behavior : MonoBehaviour
     [SerializeField]
     private bool weaponBranchHit;
     private bool justHitted;
+    private Vector3 bushScenePos;
 
     void Start()
     {
+        bushScenePos = bush_Pivot.transform.position;
         justHitted = true;
         initUpVector = bush_Pivot.transform.up;
         playerInteraction = false;
@@ -34,6 +37,7 @@ public class Bush_Behavior : MonoBehaviour
         active = true;
         weaponBranchHit = false;
         HideParticles();
+        cutDecal.transform.position = hidePos;
     }
 
     void Update()
@@ -73,13 +77,20 @@ public class Bush_Behavior : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            if (GenericSensUtilities.instance.DistanceBetween2Vectors(bushScenePos, PlayerController.instance.transform.position) > PlayerSensSystem.instance.sensRange)
+            {
+                SetBush(bushScenePos);
+            }
+        }
     }
     public void CutBush()
     {
-        Vector3 bushPos = bush_Pivot.transform.position;
         isCutted = true;
         HideBush();
-        SetParticles(bushPos);
+        cutDecal.transform.position = bushScenePos;
+        SetParticles(bushScenePos);
         int random = (Random.Range(1, 100) * Random.Range(1, 100)) / 3;
         if (random % 2 == 0)
         {
@@ -88,8 +99,9 @@ public class Bush_Behavior : MonoBehaviour
             {
                 _item = GameManager.instance.GetRandomLiveUpItem();
             }
-            _item.SetItem(bushPos + Vector3.up * 0.3f, transform.rotation.eulerAngles);
+            _item.SetItem(bushScenePos + Vector3.up * 0.3f, transform.rotation.eulerAngles);
         }
+        active = false;
     }
     private void SetParticles(Vector3 pos)
     {
@@ -109,6 +121,7 @@ public class Bush_Behavior : MonoBehaviour
         isCutted = false;
         //justBeingCutted = true;
         this.transform.position = _pos;
+        cutDecal.transform.position = hidePos;
     }
     private void PlayParticles()
     {
