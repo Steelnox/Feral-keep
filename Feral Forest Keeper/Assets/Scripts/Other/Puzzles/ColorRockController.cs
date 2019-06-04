@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ColorRockController : MonoBehaviour
 {
-    public Sanctuary sanctuary;
+    public GameObject sword;
 
     public ColorRockPrincipalScript cristal1;
     public ColorRockPrincipalScript cristal2;
@@ -13,6 +13,6 @@ public class ColorRockController : MonoBehaviour
 
     void Update()
     {
-        if (cristal1.activated && cristal2.activated && cristal3.activated) sanctuary.ActivateSanctuary();
+        if (cristal1.activated && cristal2.activated && cristal3.activated) sword.SetActive(true);
     }
 }
