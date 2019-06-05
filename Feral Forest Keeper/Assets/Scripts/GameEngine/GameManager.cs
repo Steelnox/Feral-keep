@@ -29,12 +29,16 @@ public class GameManager : MonoBehaviour
     public Enemy[] enemiesPool;
     public Enemy[] enemiesEventPool;
     public List<Projectile> projectilePool;
+    public float respawnCoolDown;
+    [SerializeField]
+    private float actualRespawnCoolDown;
+    public GameObject levelCheckPoint;
 
-    
     void Start()
     {
+        actualRespawnCoolDown = respawnCoolDown;
         provisionalGUIMenuOnScreenPos = provisionalGUIMenu.anchoredPosition;
-        hidePos = Vector2.right * 1000;
+        hidePos = Vector2.down * 1000;
     }
 
     void Update()
@@ -64,6 +68,44 @@ public class GameManager : MonoBehaviour
             PlayerController.instance.SetCanMove(true);
             if (provisionalGUIMenu.anchoredPosition != hidePos) provisionalGUIMenu.anchoredPosition = hidePos;
         }
+        /////// PLAYER DEATH CONTROLER ////////
+        ///By FALLING
+        if (PlayerController.instance.deathByFall)
+        {
+            if (actualRespawnCoolDown == respawnCoolDown)
+            {
+                //PlayerController.instance.p_controller.enabled = false;
+                PlayerController.instance.SetCanMove(false);
+                //PlayerController.instance.transform.position = hidePos;
+                CameraController.instance.SetActualBehavior(CameraController.Behavior.PLAYER_DEATH);
+            }
+            actualRespawnCoolDown -= Time.deltaTime;
+            if (actualRespawnCoolDown <= 0)
+            {
+                //PlayerController.instance.p_controller.enabled = false;
+                //PlayerController.instance.SetCanMove(false);
+                PlayerController.instance.transform.position = levelCheckPoint.transform.position;
+                //CameraController.instance.SetActualBehavior(CameraController.Behavior.PLAYER_DEATH);
+                if (PlayerController.instance.transform.position == levelCheckPoint.transform.position)
+                {
+                    Debug.Log("After death, player on CheckPointPosition");
+                    //PlayerController.instance.actualPlayerLive = PlayerController.instance.playerLive;
+                    //PlayerController.instance.playerAlive = true;
+                    //PlayerAnimationController.instance.SetDeathByFall(false);
+                    actualRespawnCoolDown = respawnCoolDown;
+                    PlayerController.instance.actualPlayerLive--;
+                    PlayerController.instance.SetCanMove(true);
+                    //PlayerController.instance.p_controller.enabled = true;
+                    PlayerController.instance.deathByFall = false;
+                    CameraController.instance.SetActualBehavior(CameraController.Behavior.FOLLOW_PLAYER);
+                }
+            }            
+        }
+        ///By DIYNG
+        if (PlayerController.instance.actualPlayerLive <= 0)
+        {
+            
+        }
     }
     public Item GetRandomLiveUpItem()
     {
@@ -92,5 +134,9 @@ public class GameManager : MonoBehaviour
         }
 
         return null;
+    }
+    public float GetActualRespawnCooldown()
+    {
+        return actualRespawnCoolDown;
     }
 }

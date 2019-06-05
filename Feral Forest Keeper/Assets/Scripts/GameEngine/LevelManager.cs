@@ -76,7 +76,7 @@ public class LevelManager : MonoBehaviour
                 PlayerController.instance.p_controller.enabled = false;
                 PlayerController.instance.SetCanMove(false);
                 PlayerController.instance.transform.position = levelList[activeLevelID].levelCheckPoint.transform.position;
-                CameraController.instance.SetActualBehavior(CameraController.Behavior.PLYER_DEATH);
+                CameraController.instance.SetActualBehavior(CameraController.Behavior.PLAYER_DEATH);
             }
             
             if (PlayerController.instance.transform.position == levelList[activeLevelID].levelCheckPoint.transform.position)

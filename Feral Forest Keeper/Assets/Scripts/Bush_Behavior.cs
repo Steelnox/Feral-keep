@@ -79,7 +79,7 @@ public class Bush_Behavior : MonoBehaviour
         }
         else
         {
-            if (GenericSensUtilities.instance.DistanceBetween2Vectors(bushScenePos, PlayerController.instance.transform.position) > PlayerSensSystem.instance.sensRange)
+            if (!PlayerController.instance.deathByFall && PlayerController.instance.playerAlive && GenericSensUtilities.instance.DistanceBetween2Vectors(bushScenePos, PlayerController.instance.transform.position) > PlayerSensSystem.instance.sensRange)
             {
                 SetBush(bushScenePos);
             }
@@ -89,7 +89,7 @@ public class Bush_Behavior : MonoBehaviour
     {
         isCutted = true;
         HideBush();
-        cutDecal.transform.position = bushScenePos;
+        cutDecal.transform.position = bushScenePos + Vector3.up * 0.01f;
         SetParticles(bushScenePos);
         int random = (Random.Range(1, 100) * Random.Range(1, 100)) / 3;
         if (random % 2 == 0)

@@ -78,7 +78,6 @@ public class PlayerController : MonoBehaviour
     private Vector3 initFallingPosition;
     public Vector3 pushDirection;
     private float actualHitCooldown;
-    [HideInInspector]
     public bool deathByFall;
 
     protected StateMachine p_StateMachine = new StateMachine();
@@ -218,7 +217,7 @@ public class PlayerController : MonoBehaviour
                         break;
                     case Item.ItemType.LIVE_UP:
                         PlayerSensSystem.instance.nearestItem.CollectItem();
-                        if (actualPlayerLive < playerLive)
+                        if (actualPlayerLive < playerLive && !deathByFall)
                         {
                             actualPlayerLive++;
                             PlayerParticlesSystemController.instance.SetLiveUpFeedbackParticlesOnScene(transform.position + Vector3.up * 0.5f);
@@ -322,11 +321,14 @@ public class PlayerController : MonoBehaviour
                 {
                     //Debug.Log("Player die Falling down: " + GenericSensUtilities.instance.DistanceBetween2Vectors(initFallingPosition, this.transform.position));
                     //actualPlayerLive--;
-                    PlayerAnimationController.instance.SetDeathByFall(true);
+                    //PlayerAnimationController.instance.SetDeathByFall(true);
                     deathByFall = true;
                 }
             }
-            else if (PlayerSensSystem.instance.CheckGroundDistance() < 0.5f) falling = false;
+            else if (PlayerSensSystem.instance.CheckGroundDistance() < 0.5f)
+            {
+                falling = false;
+            }
         }
         else
         {

@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 7442327346382589532}
   - component: {fileID: 7493980762626117628}
   - component: {fileID: 7380328722814154813}
+  - component: {fileID: 4367583827182339146}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: Main Camera_GOLD_VERSION
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7380328722814154786}
-  m_LocalRotation: {x: 0.5, y: -0, z: -0, w: 0.8660254}
+  m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
   m_LocalPosition: {x: 2.3, y: 4.6, z: -105.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -107,7 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   p_Camera: {fileID: 7359244190116884736}
-  player: {fileID: 0}
+  target: {fileID: 0}
   cameraOffSet: {x: 0, y: 4.5, z: -2.5}
   smoothValue: 5
   standardFOV: 57
@@ -118,6 +119,7 @@ MonoBehaviour:
   scriptedCooldownTime: 4
   actualBehavior: 0
   scriptedTarget: {fileID: 0}
+  deathCount: 0
 --- !u!114 &7380328722814154813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,6 +180,33 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &4367583827182339146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7380328722814154786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab31ad31394e01244b9cd12058ffb4aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetTarget: {fileID: 0}
+  x_MaxOffset_Standard: 2
+  y_MaxOffset_Standard: 2
+  x_MaxOffset_Pushing: 0.5
+  y_MaxOffset_Pushing: 0.3
+  smoothness: 5
+  distanceTreshold: 0.1
+  retractCoolDown: 2
+  combatDistance: 3
+  desiredPos: {x: 0, y: 0, z: 0}
+  count: 0
+  actual_X_MaxOffset: 0
+  actual_Y_MaxOffset: 0
+  actualState: 0
+  actualPlayerVelocity: {x: 0, y: 0, z: 0}
 --- !u!1001 &7379298764434664733
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -294,26 +323,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2516344794576430412, guid: 6eff1c99a84085a43a3e77e1a24b1561,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2516344794596673542, guid: 6eff1c99a84085a43a3e77e1a24b1561,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2516344795046082861, guid: 6eff1c99a84085a43a3e77e1a24b1561,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2516344795176607780, guid: 6eff1c99a84085a43a3e77e1a24b1561,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6eff1c99a84085a43a3e77e1a24b1561, type: 3}

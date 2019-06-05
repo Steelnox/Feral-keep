@@ -35,6 +35,7 @@ public class PlayerAnimationController : MonoBehaviour
         animator.SetFloat("PushDirection_Y", PlayerController.instance.pushDirection.z);
         SetPushinAnim(PlayerController.instance.pushing);
         animator.SetBool("Falling", PlayerController.instance.falling);
+        SetDeathByFall(PlayerController.instance.deathByFall);
     }
     public void SetTargetLockAnim(bool blocked)
     {

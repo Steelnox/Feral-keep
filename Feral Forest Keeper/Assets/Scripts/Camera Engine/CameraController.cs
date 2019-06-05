@@ -15,7 +15,7 @@ public class CameraController : MonoBehaviour
     #endregion
 
     public Camera p_Camera;
-    public GameObject player;
+    public GameObject target;
     public Vector3 cameraOffSet;
     public float smoothValue;
     public float standardFOV;
@@ -25,7 +25,7 @@ public class CameraController : MonoBehaviour
     public Quaternion initCameraRotation;
     public float scriptedCooldownTime;
 
-    public enum Behavior {FOLLOW_PLAYER, CHANGE_LEVEL, SCRIPT_MOVEMENT, PLYER_DEATH};
+    public enum Behavior {FOLLOW_PLAYER, CHANGE_LEVEL, SCRIPT_MOVEMENT, PLAYER_DEATH};
     [SerializeField]
     private Behavior actualBehavior;
     private Vector3 desiredPosition;
@@ -36,16 +36,20 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private GameObject scriptedTarget;
     private float actualScriptedCooldown;
+    private Vector3 verticalSliderVector;
+    [SerializeField]
+    private float deathCount;
     
     void Start ()
     {
         //player = PlayerController.instance.playerRoot;
-        desiredPosition = player.transform.position + cameraOffSet;
+        desiredPosition = target.transform.position + cameraOffSet;
         transform.position = desiredPosition;
         SetActualBehavior(Behavior.FOLLOW_PLAYER);
         initCameraRotation = p_Camera.transform.rotation;
         p_Camera.fieldOfView = standardFOV;
         actualScriptedCooldown = scriptedCooldownTime;
+        deathCount = 0;
 	}
 	
 	void Update ()
@@ -54,10 +58,10 @@ public class CameraController : MonoBehaviour
         {
             case Behavior.FOLLOW_PLAYER:
                 //FaceTarget();
-                FollowTarget(player);
+                FollowTarget(target);
                 break;
             case Behavior.CHANGE_LEVEL:
-                desiredPosition = player.transform.position + cameraOffSet;
+                desiredPosition = target.transform.position + cameraOffSet;
                 cameraMovement = Vector3.Slerp(cameraMovement, desiredPosition, (smoothValue / 2) * Time.deltaTime);
                 p_Camera.transform.position = cameraMovement;
                 //Debug.Log("Camera Movement = " + cameraMovement);
@@ -77,9 +81,10 @@ public class CameraController : MonoBehaviour
                 PlayerController.instance.ChangeState(PlayerController.instance.movementState);
                 FollowTarget(scriptedTarget);
                 break;
-            case Behavior.PLYER_DEATH:
-                if (transform.position == PlayerController.instance.transform.position + cameraOffSet) SetActualBehavior(Behavior.FOLLOW_PLAYER);
-                transform.position = PlayerController.instance.transform.position + cameraOffSet;
+            case Behavior.PLAYER_DEATH:
+                deathCount += Time.deltaTime;
+                //if (deathCount > 2) SetActualBehavior(Behavior.FOLLOW_PLAYER);
+                transform.position = Vector3.Lerp(transform.position, transform.position + (verticalSliderVector * (-deathCount)), Time.deltaTime);//PlayerController.instance.transform.position + cameraOffSet;
                 //if (PlayerController.instance.playerAlive) SetActualBehavior(Behavior.FOLLOW_PLAYER);
                 break;
             default:
@@ -126,7 +131,7 @@ public class CameraController : MonoBehaviour
     {
         Vector3 mov3D;
         mov3D.x = movVect.x;
-        mov3D.y = player.transform.position.y + cameraOffSet.y;
+        mov3D.y = target.transform.position.y + cameraOffSet.y;
         mov3D.z = movVect.y;
 
         return mov3D;
@@ -375,6 +380,42 @@ public class CameraController : MonoBehaviour
     }
     public void SetActualBehavior(Behavior b)
     {
+        //EXIT BEHAVIOR
+        switch (actualBehavior)
+        {
+            case Behavior.FOLLOW_PLAYER:
+                
+                break;
+            case Behavior.CHANGE_LEVEL:
+                
+                break;
+            case Behavior.SCRIPT_MOVEMENT:
+               
+                break;
+            case Behavior.PLAYER_DEATH:
+                deathCount = 0;
+                break;
+            default:
+                break;
+        }
+        //ENTER BEHAVIOR
+        switch (b)
+        {
+            case Behavior.FOLLOW_PLAYER:
+
+                break;
+            case Behavior.CHANGE_LEVEL:
+
+                break;
+            case Behavior.SCRIPT_MOVEMENT:
+
+                break;
+            case Behavior.PLAYER_DEATH:
+                verticalSliderVector = GenericSensUtilities.instance.GetDirectionFromTo_N(transform.position, PlayerController.instance.transform.position);
+                break;
+            default:
+                break;
+        }
         actualBehavior = b;
     }
     public Behavior GetActualBehavior()

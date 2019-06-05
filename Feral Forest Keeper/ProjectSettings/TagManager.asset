@@ -17,6 +17,7 @@ TagManager:
   - SimonRock
   - SimonPuzzle
   - ChangeScene
+  - StaticCameraZone
   layers:
   - Default
   - TransparentFX
