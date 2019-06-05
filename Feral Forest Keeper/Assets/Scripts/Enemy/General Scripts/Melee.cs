@@ -16,6 +16,7 @@ public class Melee : Enemy
 
     public bool finishAttack;
     public bool startexplosion;
+    EnemyHitFeedbackController feedbackController;
 
     void Start()
     {
@@ -36,6 +37,9 @@ public class Melee : Enemy
         startexplosion = false;
 
         ChangeState(patrol);
+
+        feedbackController = GetComponentInChildren<EnemyHitFeedbackController>();
+        if (feedbackController == null) Debug.Log("Cant find EnemyFeedbackController");
     }
 
     void Update()
@@ -65,7 +69,7 @@ public class Melee : Enemy
             HealthBar.SetActive(true);
             float x = HealthBar.transform.localScale.x * 0.5f;
             HealthBar.transform.localScale = new Vector3(x, 1, 1);
-
+            feedbackController.Hit();
         }
     }
 

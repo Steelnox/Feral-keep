@@ -4,7 +4,7 @@ Shader "Projector/ShadowDropProjection"
 {
 	Properties
 	{
-		_ShadowTex("Cookie", 2D) = "white" { TexGen ObjectLinear }
+		_ShadowTex("Cookie", 2D) = "white" { }
 	}
 
 		Subshader
@@ -30,10 +30,9 @@ Shader "Projector/ShadowDropProjection"
 
 			struct v2f
 			{
-				float4 pos      : SV_POSITION;
-				float4 uv       : TEXCOORD0;
+				float4 pos : SV_POSITION;
+				float4 uv : TEXCOORD0;
 			};
-
 				sampler2D _ShadowTex;
 				float4x4 unity_Projector;
 				float4 _Color;

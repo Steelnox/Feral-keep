@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
         actualRespawnCoolDown = respawnCoolDown;
         provisionalGUIMenuOnScreenPos = provisionalGUIMenu.anchoredPosition;
         hidePos = Vector2.down * 1000;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
@@ -74,6 +75,7 @@ public class GameManager : MonoBehaviour
         {
             if (actualRespawnCoolDown == respawnCoolDown)
             {
+                PlayerHitFeedbackController.instance.FallHit();
                 //PlayerController.instance.p_controller.enabled = false;
                 PlayerController.instance.SetCanMove(false);
                 //PlayerController.instance.transform.position = hidePos;

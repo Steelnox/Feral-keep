@@ -29,6 +29,7 @@ public abstract class Enemy : MonoBehaviour
 
     public bool chasing;
 
+
     #region Stats
 
     public int maxHealth;
@@ -58,7 +59,6 @@ public abstract class Enemy : MonoBehaviour
         gamemanagerScript = GameManager.instance;
 
         move = false;
-
 
     }
 

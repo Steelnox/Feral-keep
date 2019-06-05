@@ -15,6 +15,22 @@ MonoBehaviour:
   melee_Main: {fileID: 6549901792006296711}
   move_Main: {fileID: 0}
   fixed_Main: {fileID: 0}
+--- !u!114 &6211158982819334642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840880658192408378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bbe4e24fa61aec448cb51b505e30f77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myMeshRenderer: {fileID: 1840880658195583532}
+  me: {fileID: 6549901792006296711}
+  feedbackLenght: 1
+  hitFactor: 0
 --- !u!114 &6324320849211378109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,6 +190,7 @@ MonoBehaviour:
   enemyType: 0
   gamemanagerScript: {fileID: 0}
   move: 0
+  chasing: 0
   maxHealth: 3
   currentHealth: 0
   damage: 1
@@ -329,6 +346,18 @@ Transform:
 --- !u!95 &1840880658199833836 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 9500000, guid: 0d34115092fbd614ab8e1e80b75496f7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1840880658192505228}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1840880658192408378 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100022, guid: 0d34115092fbd614ab8e1e80b75496f7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1840880658192505228}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &1840880658195583532 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 13700000, guid: 0d34115092fbd614ab8e1e80b75496f7,
     type: 3}
   m_PrefabInstance: {fileID: 1840880658192505228}
   m_PrefabAsset: {fileID: 0}

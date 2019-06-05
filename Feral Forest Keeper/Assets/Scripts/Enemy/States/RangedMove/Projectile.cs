@@ -16,6 +16,8 @@ public class Projectile : MonoBehaviour
     public bool activated;
 
     public Vector3 startPosition;
+    public Particles_Behavior trailParticles;
+
     void Start()
     {
         player = PlayerController.instance;
@@ -33,6 +35,7 @@ public class Projectile : MonoBehaviour
     {
         if (activated)
         {
+            if (trailParticles.active != true) trailParticles.SetParticlesOnScene(transform.position);
             timer += Time.deltaTime;
 
             float Move = ProjectileSpeed * Time.deltaTime;
@@ -49,6 +52,7 @@ public class Projectile : MonoBehaviour
         else
         {
             transform.position = startPosition;
+            if (trailParticles.active != false) trailParticles.HideParticlesOutScene();
         }
     }
 

@@ -113,6 +113,7 @@ MonoBehaviour:
   enemyType: 0
   gamemanagerScript: {fileID: 0}
   move: 0
+  chasing: 0
   maxHealth: 2
   currentHealth: 0
   damage: 0
@@ -137,6 +138,7 @@ MonoBehaviour:
   velocityRockToKill: 1
   shoot: 0
   finishHit: 0
+  enemyUnder: 0
 --- !u!114 &8920518569486699649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,6 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerRecharge: 2
+  bulletsShoot: 0
   bulletsCanShoot: 30
   firstTime: 1
 --- !u!114 &2516511236141379887
@@ -202,6 +205,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerRecharge: 2
   bulletsCanShoot: 30
+--- !u!114 &529479905805133019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7186434073248625954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bbe4e24fa61aec448cb51b505e30f77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myMeshRenderer: {fileID: 7186434073243416610}
+  me: {fileID: 8872921556746959468}
+  feedbackLenght: 2
+  hitFactor: 0
 --- !u!114 &951745819125671582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -433,6 +452,18 @@ Transform:
 --- !u!95 &7186434073239095010 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 9500000, guid: 5fa33bb3f3ad4b04485504864ee97d2d,
+    type: 3}
+  m_PrefabInstance: {fileID: 7186434073248592770}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7186434073248625954 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 5fa33bb3f3ad4b04485504864ee97d2d,
+    type: 3}
+  m_PrefabInstance: {fileID: 7186434073248592770}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &7186434073243416610 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 13700000, guid: 5fa33bb3f3ad4b04485504864ee97d2d,
     type: 3}
   m_PrefabInstance: {fileID: 7186434073248592770}
   m_PrefabAsset: {fileID: 0}

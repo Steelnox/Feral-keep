@@ -3,6 +3,8 @@
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+		_HitColor ("HitColor", Color) = (1,1,1,1)
+		_HitTintFactor ("HitTintFactor", float) = 0.0
     }
     SubShader
     {
@@ -34,6 +36,8 @@
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
+			fixed4 _HitColor;
+			float _HitTintFactor;
 
             v2f vert (appdata v)
             {
@@ -48,6 +52,7 @@
             {
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
+				col = col * (_HitColor * _HitTintFactor);
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
                 return col;

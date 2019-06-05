@@ -113,6 +113,7 @@ public class PlayerController : MonoBehaviour
         if (gettingHit)
         {
             if (!PlayerAnimationController.instance.GetGettingHitAnimState())PlayerAnimationController.instance.SetGettingHitAnim(true);
+            PlayerHitFeedbackController.instance.Hit();
             actualHitCooldown -= Time.deltaTime;
             if (actualHitCooldown <= 0)
             {

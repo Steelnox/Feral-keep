@@ -27,6 +27,7 @@ public class RangedFixed : Enemy
 
     public bool enemyUnder;
 
+    EnemyHitFeedbackController feedbackController;
 
     void Start()
     {
@@ -59,6 +60,9 @@ public class RangedFixed : Enemy
         {
             ChangeState(underground);
         }
+
+        feedbackController = GetComponentInChildren<EnemyHitFeedbackController>();
+        if (feedbackController == null) Debug.Log("Cant find EnemyFeedbackController");
     }
 
     void Update()
@@ -78,6 +82,7 @@ public class RangedFixed : Enemy
             HealthBar.SetActive(true);
             float x = HealthBar.transform.localScale.x * 0.5f;
             HealthBar.transform.localScale = new Vector3(x, 1, 1);
+            feedbackController.Hit();
         }
         
     }

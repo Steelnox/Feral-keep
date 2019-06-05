@@ -394,6 +394,7 @@ public class CameraController : MonoBehaviour
                 break;
             case Behavior.PLAYER_DEATH:
                 deathCount = 0;
+                transform.position = target.transform.position + cameraOffSet;
                 break;
             default:
                 break;
