@@ -143,6 +143,7 @@ MonoBehaviour:
   activated: 0
   startPosition: {x: 0, y: 0, z: 0}
   trailParticles: {fileID: 5937436095787252180}
+  impactParticlesComposite: {fileID: 0}
 --- !u!1001 &3418327549811439071
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -153,7 +154,7 @@ PrefabInstance:
     - target: {fileID: 3596808879732383192, guid: 129a62264e5c2de4cb87f003f70bbf89,
         type: 3}
       propertyPath: m_Name
-      value: Projectile_PS
+      value: Projectile_Trail_PS
       objectReference: {fileID: 0}
     - target: {fileID: 3233557444674273652, guid: 129a62264e5c2de4cb87f003f70bbf89,
         type: 3}

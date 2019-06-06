@@ -20,6 +20,7 @@ public class ParticlesFeedback_Control : MonoBehaviour
     public ParticlesCompositeSystem[] hitEnemyParticlesPOOL;
     public ParticlesCompositeSystem[] itemsScrollUpSparksParticlesPOOL;
     public ParticlesCompositeSystem[] hitStaticBushParticlesCompositePOOL;
+    public ParticlesCompositeSystem[] projectileImpactCompositePOOL;
 
     //void Start()
     //{
