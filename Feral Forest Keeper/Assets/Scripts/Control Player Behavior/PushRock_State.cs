@@ -6,7 +6,9 @@ public class PushRock_State : State
 {
     [SerializeField]
     private Vector3 pushingMovement;
+    [SerializeField]
     private float constactDistance;
+    [SerializeField]
     private float actualContactDistance;
     private MovableRocks lastMovableRock;
 
@@ -15,7 +17,6 @@ public class PushRock_State : State
         PlayerController.instance.pushing = true;
         PlayerController.instance.pushDirection = GenericSensUtilities.instance.Transform2DTo3DMovement(PlayerSensSystem.instance.nearestRock.CheckSideToPush()).normalized;
         PlayerController.instance.pushDirection = GenericSensUtilities.instance.Transform2DTo3DMovement(GenericSensUtilities.instance.Transform3DTo2DMovement(PlayerController.instance.pushDirection));
-        //PlayerController.instance.characterModel.transform.forward = PlayerController.instance.pushDirection;
         PlayerController.instance.imGrounded = true;
         PlayerSensSystem.instance.nearestRock.SetLastNoPushPosition(PlayerSensSystem.instance.nearestRock.transform.position);
         PlayerSensSystem.instance.nearestRock.SetBeingPushed(true);
@@ -38,7 +39,6 @@ public class PushRock_State : State
         if (Input.GetButton("RB") || Input.GetKey(KeyCode.E))
         {
             //Debug.Log("pushDirection: " + pushDirection);
-            //PlayerAnimationController.instance.SetPushinAnim(true);
             if (PlayerController.instance.pushDirection.z < 0)
             {
                 //Debug.Log("pushDirection.y < 0");
@@ -90,8 +90,6 @@ public class PushRock_State : State
         PlayerController.instance.no_Y_Input = false;
         PlayerController.instance.no_X_Input = false;
         PlayerController.instance.pushDirection = Vector3.zero;
-        //PlayerAnimationController.instance.SetPushinAnim(false);
-        //PlayerSensSystem.instance.nearestRock.ResetLastNoPushingPos();
         PlayerSensSystem.instance.nearestRock.SetBeingPushed(false);
         PlayerController.instance.MovingInSlowZone(false);
         PlayerController.instance.pushing = false;

@@ -17,7 +17,6 @@ public class Projectile : MonoBehaviour
 
     public Vector3 startPosition;
     public Particles_Behavior trailParticles;
-    public ParticlesCompositeSystem impactParticlesComposite;
 
     void Start()
     {
@@ -63,15 +62,14 @@ public class Projectile : MonoBehaviour
         {
             player.GetDamage(dmg);
             timer = 0;
-
+            ParticlesFeedback_Control.instance.SetProjectileImpactCompositeOnScene(transform.position, transform.forward);
             activated = false;
-            impactParticlesComposite.PlayComposition(other.bounds.ClosestPoint(this.transform.position));
         }
 
         else if(other.tag == "MovableRock" || other.tag == "StaticBush")
         {
             timer = 0;
-
+            ParticlesFeedback_Control.instance.SetProjectileImpactCompositeOnScene(transform.position, transform.forward);
             activated = false;
         }
     }

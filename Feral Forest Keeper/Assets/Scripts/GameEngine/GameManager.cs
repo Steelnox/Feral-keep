@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
         provisionalGUIMenuOnScreenPos = provisionalGUIMenu.anchoredPosition;
         hidePos = Vector2.down * 1000;
         Cursor.lockState = CursorLockMode.Locked;
+        PlayerController.instance.transform.position = levelCheckPoint.transform.position;
     }
 
     void Update()

@@ -69,6 +69,15 @@ public class ParticlesFeedback_Control : MonoBehaviour
     {
         FindFirstParticleCompositeNoActiveOnList(hitStaticBushParticlesCompositePOOL).PlayComposition(_pos);
     }
+    public void SetProjectileImpactCompositeOnScene(Vector3 _pos, Vector3 _dir)
+    {
+        ParticlesCompositeSystem projImp = GetNOActiveCompoisteOnList(projectileImpactCompositePOOL);
+        if (projImp != null)
+        {
+            projImp.FaceComposite(_dir);
+            projImp.PlayComposition(_pos);
+        }
+    }
     public void HideComposite(ParticlesCompositeSystem composite)
     {
         composite.HideComposition();

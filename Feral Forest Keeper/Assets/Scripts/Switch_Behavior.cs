@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Switch_Behavior : MonoBehaviour
 {
-    [SerializeField]
+    public bool playerInteraction;
+    public bool rockInteraction;
+
     public bool switched;
-    [SerializeField]
     public bool holdedSwitched;
 
     public void OnTriggerEnter(Collider other)
@@ -15,7 +16,12 @@ public class Switch_Behavior : MonoBehaviour
         {
             PlayerController player = other.GetComponent<PlayerController>();
             MovableRocks rock = other.GetComponent<MovableRocks>();
-            if (player != null || rock != null)
+            if (playerInteraction && player != null)
+            {
+                switched = true;
+                holdedSwitched = true;
+            }
+            if (rockInteraction && rock != null)
             {
                 switched = true;
                 holdedSwitched = true;
@@ -28,7 +34,12 @@ public class Switch_Behavior : MonoBehaviour
         {
             PlayerController player = other.GetComponent<PlayerController>();
             MovableRocks rock = other.GetComponent<MovableRocks>();
-            if (player != null || rock != null)
+
+            if (playerInteraction && player != null)
+            {
+                holdedSwitched = false;
+            }
+            if (rockInteraction && rock != null)
             {
                 holdedSwitched = false;
             }

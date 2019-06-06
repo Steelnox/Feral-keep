@@ -25,7 +25,7 @@ public class CameraController : MonoBehaviour
     public Quaternion initCameraRotation;
     public float scriptedCooldownTime;
 
-    public enum Behavior {FOLLOW_PLAYER, CHANGE_LEVEL, SCRIPT_MOVEMENT, PLAYER_DEATH};
+    public enum Behavior {FOLLOW_PLAYER, CHANGE_LEVEL, SCRIPT_MOVEMENT, PLAYER_DEATH, STATIC_CAMERA_ZONE, TRANSITION_TO_FOLLOW};
     [SerializeField]
     private Behavior actualBehavior;
     private Vector3 desiredPosition;
@@ -39,6 +39,7 @@ public class CameraController : MonoBehaviour
     private Vector3 verticalSliderVector;
     [SerializeField]
     private float deathCount;
+    private float scriptedHighDistance;
     
     void Start ()
     {
@@ -87,6 +88,17 @@ public class CameraController : MonoBehaviour
                 transform.position = Vector3.Lerp(transform.position, transform.position + (verticalSliderVector * (-deathCount)), Time.deltaTime);//PlayerController.instance.transform.position + cameraOffSet;
                 //if (PlayerController.instance.playerAlive) SetActualBehavior(Behavior.FOLLOW_PLAYER);
                 break;
+            case Behavior.STATIC_CAMERA_ZONE:
+                //if (GenericSensUtilities.instance.DistanceBetween2Vectors(transform.position, scriptedTarget.transform.position) < scriptedHighDistance)
+                transform.position = Vector3.Lerp(transform.position, scriptedTarget.transform.position + (verticalSliderVector * scriptedHighDistance), Time.deltaTime * smoothValue / 2);
+                break;
+            case Behavior.TRANSITION_TO_FOLLOW:
+                if (GenericSensUtilities.instance.DistanceBetween2Vectors(target.transform.position, transform.position) < 0.1f)
+                {
+                    SetActualBehavior(Behavior.FOLLOW_PLAYER);
+                }
+                transform.position = Vector3.Lerp(transform.position, target.transform.position + cameraOffSet, Time.deltaTime * smoothValue / 2);
+                break;
             default:
                 break;
         }
@@ -117,6 +129,12 @@ public class CameraController : MonoBehaviour
     {
         scriptedTarget = tempTarget;
         SetActualBehavior(Behavior.SCRIPT_MOVEMENT);
+    }
+    public void StaticCameraZone(GameObject tempTarget, float highDistance)
+    {
+        scriptedTarget = tempTarget;
+        scriptedHighDistance = highDistance;
+        SetActualBehavior(Behavior.STATIC_CAMERA_ZONE);
     }
 
     Vector2 TransformTo2DMovement(Vector3 movVect)
@@ -396,6 +414,10 @@ public class CameraController : MonoBehaviour
                 deathCount = 0;
                 transform.position = target.transform.position + cameraOffSet;
                 break;
+            case Behavior.STATIC_CAMERA_ZONE:
+                break;
+            case Behavior.TRANSITION_TO_FOLLOW:
+                break;
             default:
                 break;
         }
@@ -413,6 +435,11 @@ public class CameraController : MonoBehaviour
                 break;
             case Behavior.PLAYER_DEATH:
                 verticalSliderVector = GenericSensUtilities.instance.GetDirectionFromTo_N(transform.position, PlayerController.instance.transform.position);
+                break;
+            case Behavior.STATIC_CAMERA_ZONE:
+                verticalSliderVector = cameraOffSet.normalized;
+                break;
+            case Behavior.TRANSITION_TO_FOLLOW:
                 break;
             default:
                 break;

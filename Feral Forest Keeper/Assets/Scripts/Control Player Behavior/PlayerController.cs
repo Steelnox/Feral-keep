@@ -486,6 +486,22 @@ public class PlayerController : MonoBehaviour
         //    if (playerAlive)
         //    actualPlayerLive = 0;
         //}
+        StaticCameraZone scz = other.gameObject.GetComponent<StaticCameraZone>();
+        if (scz != null)
+        {
+            if (CameraController.instance.GetActualBehavior() != CameraController.Behavior.STATIC_CAMERA_ZONE)
+            {
+                CameraController.instance.StaticCameraZone(scz.cameraTarget, scz.cameraDistance);
+            }
+        }
+    }
+    public void OnTriggerExit(Collider other)
+    {
+        StaticCameraZone scz = other.gameObject.GetComponent<StaticCameraZone>();
+        if (scz != null)
+        {
+            CameraController.instance.SetActualBehavior(CameraController.Behavior.TRANSITION_TO_FOLLOW);
+        }
     }
 
     public void SetCanMove(bool b)
