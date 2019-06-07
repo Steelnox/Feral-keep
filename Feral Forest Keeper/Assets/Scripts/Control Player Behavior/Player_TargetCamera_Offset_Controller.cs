@@ -20,7 +20,7 @@ public class Player_TargetCamera_Offset_Controller : MonoBehaviour
     public float actual_X_MaxOffset;
     public float actual_Y_MaxOffset;
 
-    public enum TargetCamera_Offset_State { STANDARD, COMBAT, PLAYER_DEATH};
+    public enum TargetCamera_Offset_State { STANDARD, COMBAT, PLAYER_DEATH, TRANSLATE_TO_TARGET};
     public TargetCamera_Offset_State actualState;
     [SerializeField]
     private Vector3 actualPlayerVelocity;
@@ -31,7 +31,7 @@ public class Player_TargetCamera_Offset_Controller : MonoBehaviour
         count = 0;
         actual_X_MaxOffset = x_MaxOffset_Standard;
         actual_Y_MaxOffset = y_MaxOffset_Standard;
-        ChangeState(TargetCamera_Offset_State.STANDARD);
+        ChangeState(TargetCamera_Offset_State.TRANSLATE_TO_TARGET);
     }
 
     void Update()
@@ -126,6 +126,11 @@ public class Player_TargetCamera_Offset_Controller : MonoBehaviour
                 desiredPos = GameManager.instance.levelCheckPoint.transform.position;
                 if (!PlayerController.instance.deathByFall) ChangeState(TargetCamera_Offset_State.STANDARD);
                 break;
+            case TargetCamera_Offset_State.TRANSLATE_TO_TARGET:
+                transform.position = desiredPos;
+                if (transform.position == desiredPos) ChangeState(TargetCamera_Offset_State.STANDARD);                
+                break;
+               
         }
         offsetTarget.transform.position = Vector3.Lerp(offsetTarget.transform.position, desiredPos, Time.deltaTime * smoothness);
     }
@@ -140,6 +145,8 @@ public class Player_TargetCamera_Offset_Controller : MonoBehaviour
             case TargetCamera_Offset_State.PLAYER_DEATH:
                 count = 0;
                 break;
+            case TargetCamera_Offset_State.TRANSLATE_TO_TARGET:
+                break;
         }
         switch (newState)
         {
@@ -148,6 +155,8 @@ public class Player_TargetCamera_Offset_Controller : MonoBehaviour
             case TargetCamera_Offset_State.COMBAT:
                 break;
             case TargetCamera_Offset_State.PLAYER_DEATH:
+                break;
+            case TargetCamera_Offset_State.TRANSLATE_TO_TARGET:
                 break;
         }
         actualState = newState;

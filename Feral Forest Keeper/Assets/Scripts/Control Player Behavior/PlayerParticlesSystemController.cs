@@ -20,6 +20,9 @@ public class PlayerParticlesSystemController : MonoBehaviour
     public ParticlesCompositeSystem hitEnemiesParticlesComposite;
     public ParticlesCompositeSystem liveUpFeedbackParticlesComposite;
     public ParticlesCompositeSystem dashDuastTrailComposite;
+    public Particles_Behavior walk_Dust_Trail_R;
+    public Particles_Behavior walk_Dust_Trail_L;
+
 
     void Start()
     {
@@ -50,8 +53,16 @@ public class PlayerParticlesSystemController : MonoBehaviour
     {
         dashDuastTrailComposite.PlayComposition(position);
     }
-    public ParticlesCompositeSystem GetDashTrailCOmposite()
+    public ParticlesCompositeSystem GetDashTrailComposite()
     {
         return dashDuastTrailComposite;
+    }
+    public void SetWalkDustTrail_R_ParticlesOnScene(Vector3 position)
+    {
+        walk_Dust_Trail_R.SetParticlesOnScene(position);
+    }
+    public void SetWalkDustTrail_L_ParticlesOnScene(Vector3 position)
+    {
+        walk_Dust_Trail_L.SetParticlesOnScene(position);
     }
 }

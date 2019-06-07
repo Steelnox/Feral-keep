@@ -63,7 +63,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.159
     - _GlossyReflections: 1
-    - _HitColorIntensity: 3
+    - _HitColorIntensity: 5
     - _HitTintFactor: 0
     - _Metallic: 0
     - _Mode: 0

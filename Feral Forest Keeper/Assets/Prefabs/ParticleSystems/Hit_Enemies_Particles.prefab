@@ -649,7 +649,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 5
+    maxNumParticles: 10
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -679,8 +679,8 @@ ParticleSystem:
           inWeight: 0.33401218
           outWeight: 0.2470908
         - serializedVersion: 3
-          time: 0.41480044
-          value: 0.18092568
+          time: 0.4115642
+          value: 0.5019133
           inSlope: 0.014016128
           outSlope: 0.014016128
           tangentMode: 0
@@ -688,8 +688,8 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.21476676
         - serializedVersion: 3
-          time: 1
-          value: 0.18092568
+          time: 0.99676377
+          value: 0.5019133
           inSlope: 0.0000013836082
           outSlope: 0.0000013836082
           tangentMode: 0
@@ -1124,8 +1124,8 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.24094543
         - serializedVersion: 3
-          time: 0.97672194
-          value: 0.47240725
+          time: 0.86994094
+          value: 0.48887148
           inSlope: -0.10732016
           outSlope: -0.10732016
           tangentMode: 0
@@ -1463,7 +1463,7 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 49922
+        atime1: 31997
         atime2: 65535
         atime3: 0
         atime4: 0

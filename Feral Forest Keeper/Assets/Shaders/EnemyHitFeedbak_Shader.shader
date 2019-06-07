@@ -7,7 +7,7 @@
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
 		_HitColor("HitColor", Color) = (1,1,1,1)
-		_HitColorIntensity ("HitCOlorIntensity", float) = 0.0
+		_HitColorIntensity ("HitColorIntensity", float) = 0.0
 		_HitTintFactor("HitTintFactor", Range(0,1)) = 0.0
     }
     SubShader

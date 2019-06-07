@@ -29,7 +29,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myMeshRenderer: {fileID: 1966469140754771287}
   me: {fileID: 285432525731412673}
-  feedbackLenght: 2
+  feedbackLenght: 0.5
   hitFactor: 0
 --- !u!1 &6549901792006296828
 GameObject:

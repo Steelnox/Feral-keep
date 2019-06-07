@@ -219,7 +219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myMeshRenderer: {fileID: 7186434073243416610}
   me: {fileID: 8872921556746959468}
-  feedbackLenght: 2
+  feedbackLenght: 0.5
   hitFactor: 0
 --- !u!114 &951745819125671582
 MonoBehaviour:
