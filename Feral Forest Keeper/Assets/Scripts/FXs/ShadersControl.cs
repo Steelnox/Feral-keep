@@ -14,6 +14,7 @@ public class ShadersControl : MonoBehaviour
     float max;
     float randomAmplitude;
     float randomSpeed;
+    bool rafa = true;
 
     void Start()
     {
@@ -25,12 +26,16 @@ public class ShadersControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //heightDegradateLightingShader_Material = gameObject.GetComponent<MeshRenderer>();
-        worldHeightRelativeToPlayer = PlayerController.instance.characterModel.transform.position.y;
-        min = Mathf.Lerp(min, worldHeightRelativeToPlayer + heightMin, Time.deltaTime * 10);
-        max = Mathf.Lerp(max, worldHeightRelativeToPlayer + heightMax, Time.deltaTime * 10);
-        heightDegradateLightingShader_Material.material.SetFloat("_HeightMin", min);
-        heightDegradateLightingShader_Material.material.SetFloat("_HeightMax", max);
-        heightDegradateLightingShader_Material.material.SetFloat("_Amplitude", randomAmplitude);
+        if (rafa)
+        {
+            //heightDegradateLightingShader_Material = gameObject.GetComponent<MeshRenderer>();
+            worldHeightRelativeToPlayer = PlayerController.instance.characterModel.transform.position.y;
+            min = Mathf.Lerp(min, worldHeightRelativeToPlayer + heightMin, Time.deltaTime * 10);
+            max = Mathf.Lerp(max, worldHeightRelativeToPlayer + heightMax, Time.deltaTime * 10);
+            heightDegradateLightingShader_Material.material.SetFloat("_HeightMin", min);
+            heightDegradateLightingShader_Material.material.SetFloat("_HeightMax", max);
+            heightDegradateLightingShader_Material.material.SetFloat("_Amplitude", randomAmplitude);
+            rafa = false;
+        }
     }
 }

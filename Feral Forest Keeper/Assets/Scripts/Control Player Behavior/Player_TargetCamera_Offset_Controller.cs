@@ -55,7 +55,7 @@ public class Player_TargetCamera_Offset_Controller : MonoBehaviour
                     actual_X_MaxOffset = x_MaxOffset_Standard;
                     actual_Y_MaxOffset = y_MaxOffset_Standard;
                 }
-                Debug.Log("Player Velocity = " + PlayerController.instance.p_controller.velocity);
+                //Debug.Log("Player Velocity = " + PlayerController.instance.p_controller.velocity);
                 if (!PlayerController.instance.dashing)
                 {
                     if (actualPlayerVelocity.z > distanceTreshold)

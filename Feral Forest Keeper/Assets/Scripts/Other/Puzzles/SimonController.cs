@@ -32,6 +32,9 @@ public class SimonController : MonoBehaviour
     public float timeColored;
     public float timer;
 
+    public Material originalMaterial;
+    public Material colorMaterial;
+
     #region Singleton
 
     public static SimonController instance;
@@ -77,7 +80,7 @@ public class SimonController : MonoBehaviour
             }
             if (puzzleActivated && randomDone && !sequenceDone)
             {
-                DoSequence();
+                Invoke("DoSequence", 2f);
             }
             if (puzzleActivated && randomDone && sequenceDone && i >= numList.Count)
             {
@@ -146,7 +149,9 @@ public class SimonController : MonoBehaviour
 
     public void CheckSimon(GameObject selectedRock)
     {
-        selectedRock.GetComponent<SimonRock>().materialRock.color =  selectedRock.GetComponent<SimonRock>().colorRock;
+        selectedRock.GetComponent<Renderer>().material = colorMaterial;
+        selectedRock.GetComponent<Renderer>().material.color = selectedRock.GetComponent<SimonRock>().colorRock;
+
 
         if (i < numList.Count)
         {
@@ -221,11 +226,13 @@ public class SimonController : MonoBehaviour
     {
         if(sequenceCount < numList.Count)
         {
-            colorRocks[numList[sequenceCount]].GetComponent<SimonRock>().materialRock.color = colorRocks[numList[sequenceCount]].GetComponent<SimonRock>().colorRock;
+            colorRocks[numList[sequenceCount]].GetComponent<Renderer>().material = colorMaterial;
+            colorRocks[numList[sequenceCount]].GetComponent<Renderer>().material.color = colorRocks[numList[sequenceCount]].GetComponent<SimonRock>().colorRock;
             timer += Time.deltaTime;
             if (timer >= timeColored)
             {
-                colorRocks[numList[sequenceCount]].GetComponent<SimonRock>().materialRock.color = Color.black;
+                colorRocks[numList[sequenceCount]].GetComponent<Renderer>().material = originalMaterial;
+                colorRocks[numList[sequenceCount]].GetComponent<Renderer>().material.color = Color.white;
                 sequenceCount++;
                 timer = 0;
             }
@@ -242,7 +249,8 @@ public class SimonController : MonoBehaviour
     {
         foreach (GameObject rock in colorRocks)
         {
-            rock.GetComponent<Renderer>().material.color = Color.black;
+            rock.GetComponent<Renderer>().material = originalMaterial;
+            rock.GetComponent<Renderer>().material.color = Color.white;
         }
     }
 }
