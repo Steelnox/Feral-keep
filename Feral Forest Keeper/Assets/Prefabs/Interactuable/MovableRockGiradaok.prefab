@@ -16,6 +16,19 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0.010000001, y: 0.009000001, z: 0.09}
   m_TimeToStationary: 0.5
+--- !u!65 &5856009325001161186
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2649497889632616893}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5356325, y: 0.5407313, z: 0.4868235}
+  m_Center: {x: 0.009952024, y: 0.009492012, z: 0.09047683}
 --- !u!1 &5100646625096202894
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,7 +171,8 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d89f4b5bfbe82134fbb7325e9e3c14b4, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7717637476235358988, guid: d46aa41aa244a0c4a888cf12495eaed6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d46aa41aa244a0c4a888cf12495eaed6, type: 3}
 --- !u!1 &2649497889632616893 stripped
 GameObject:
