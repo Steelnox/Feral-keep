@@ -17,8 +17,8 @@ public class PlayerAnimationController : MonoBehaviour
     #endregion
 
     public Animator animator;
-
-    private int dashID;
+    public FinishAnimationController finishAnimationController;
+    public GameObject modelRootBone;
 
     void Start()
     {
@@ -36,6 +36,7 @@ public class PlayerAnimationController : MonoBehaviour
         SetPushinAnim(PlayerController.instance.pushing);
         animator.SetBool("Falling", PlayerController.instance.falling);
         SetDeathByFall(PlayerController.instance.deathByFall);
+        animator.SetBool("Dashing", PlayerController.instance.dashing);
     }
     public void SetTargetLockAnim(bool blocked)
     {

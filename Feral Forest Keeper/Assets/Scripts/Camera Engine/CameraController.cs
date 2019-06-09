@@ -43,7 +43,6 @@ public class CameraController : MonoBehaviour
     
     void Start ()
     {
-        //player = PlayerController.instance.playerRoot;
         desiredPosition = target.transform.position + cameraOffSet;
         transform.position = desiredPosition;
         SetActualBehavior(Behavior.FOLLOW_PLAYER);
@@ -84,12 +83,9 @@ public class CameraController : MonoBehaviour
                 break;
             case Behavior.PLAYER_DEATH:
                 deathCount += Time.deltaTime;
-                //if (deathCount > 2) SetActualBehavior(Behavior.FOLLOW_PLAYER);
-                transform.position = Vector3.Lerp(transform.position, transform.position + (verticalSliderVector * (-deathCount)), Time.deltaTime);//PlayerController.instance.transform.position + cameraOffSet;
-                //if (PlayerController.instance.playerAlive) SetActualBehavior(Behavior.FOLLOW_PLAYER);
+                transform.position = Vector3.Lerp(transform.position, transform.position + (-verticalSliderVector * (-deathCount * 0.5f)), Time.deltaTime);
                 break;
             case Behavior.STATIC_CAMERA_ZONE:
-                //if (GenericSensUtilities.instance.DistanceBetween2Vectors(transform.position, scriptedTarget.transform.position) < scriptedHighDistance)
                 transform.position = Vector3.Lerp(transform.position, scriptedTarget.transform.position + (verticalSliderVector * scriptedHighDistance), Time.deltaTime * smoothValue / 2);
                 break;
             case Behavior.TRANSITION_TO_FOLLOW:

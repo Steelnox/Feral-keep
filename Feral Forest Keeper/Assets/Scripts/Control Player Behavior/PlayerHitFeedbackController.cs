@@ -19,23 +19,36 @@ public class PlayerHitFeedbackController : MonoBehaviour
 
     public PostProcessVolume globalVolume;
     public float feedbackLength;
+    public AnimationCurve fadeInFallDeathCurveTime;
+    public AnimationCurve fadeOutFallDeathCurveTime;
     [SerializeField]
     private float vignetteFactor;
     [SerializeField]
     private Vignette vignette;
     [SerializeField]
     private bool fallHit;
-    // Start is called before the first frame update
+    [SerializeField]
+    private ColorGrading colorGrading;
+    [SerializeField]
+    private float evaluateTime;
+    [SerializeField]
+    private float initialPostExposureValue;
+    float curveValue;
+
     void Start()
     {
         fallHit = false;
         if (globalVolume != null)
         {
             globalVolume.profile.TryGetSettings(out vignette);
+            globalVolume.profile.TryGetSettings(out colorGrading);
         }
+        if (colorGrading != null)
+        {
+            initialPostExposureValue = colorGrading.postExposure.value;
+        }
+        curveValue = 0;
     }
-
-    // Update is called once per frame
     void Update()
     {
         if (vignette != null)
@@ -45,19 +58,39 @@ public class PlayerHitFeedbackController : MonoBehaviour
         
         if (fallHit)
         {
-            vignetteFactor = GameManager.instance.GetActualRespawnCooldown() / (GameManager.instance.respawnCoolDown * 2);
-            if (GameManager.instance.GetActualRespawnCooldown() < 0.1f)
+            if (GameManager.instance.GetActualRespawnCooldown() == GameManager.instance.respawnCoolDown)
             {
-                fallHit = false;
-                vignetteFactor = 0;
+                curveValue += Time.deltaTime;
+                float time = curveValue / 1.0f;
+                if (curveValue < 1.0f)
+                {
+                    colorGrading.postExposure.value = fadeOutFallDeathCurveTime.Evaluate(time);
+                }
+                else
+                {
+                    colorGrading.postExposure.value = initialPostExposureValue;
+                    fallHit = false;
+                    evaluateTime = 0;
+                    curveValue = 0;
+                }
+            }
+            else
+            if (colorGrading != null && GameManager.instance.GetActualRespawnCooldown() < GameManager.instance.respawnCoolDown)
+            {
+                evaluateTime += Time.deltaTime;
+                float time = evaluateTime / GameManager.instance.respawnCoolDown;
+                colorGrading.postExposure.value = fadeInFallDeathCurveTime.Evaluate(time);
             }
         }
         else
         {
-            if (vignetteFactor > 0)
+            if (vignetteFactor > 0.1f)
             {
-                if (vignetteFactor <= 0.1) vignetteFactor = 0;
                 vignetteFactor -= Time.deltaTime / feedbackLength;
+            }
+            else
+            {
+                if (vignetteFactor != 0) vignetteFactor = 0;
             }
         }
     }
@@ -68,5 +101,6 @@ public class PlayerHitFeedbackController : MonoBehaviour
     public void FallHit()
     {
         fallHit = true;
+        fadeInFallDeathCurveTime.postWrapMode = WrapMode.ClampForever;
     }
 }

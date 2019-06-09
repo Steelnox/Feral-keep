@@ -100,9 +100,13 @@ public class GameManager : MonoBehaviour
                     PlayerController.instance.SetCanMove(true);
                     //PlayerController.instance.p_controller.enabled = true;
                     PlayerController.instance.deathByFall = false;
-                    CameraController.instance.SetActualBehavior(CameraController.Behavior.FOLLOW_PLAYER);
+                    //CameraController.instance.SetActualBehavior(CameraController.Behavior.FOLLOW_PLAYER);
                 }
-            }            
+            }  
+            if (actualRespawnCoolDown < 0.1f)
+            {
+                CameraController.instance.SetActualBehavior(CameraController.Behavior.FOLLOW_PLAYER);
+            }
         }
         ///By DIYNG
         if (PlayerController.instance.actualPlayerLive <= 0)

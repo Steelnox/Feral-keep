@@ -43,4 +43,8 @@ public class Particles_Behavior : MonoBehaviour
         SetParticlesPosition(location);
         PlayParticleSystem();
     }
+    public void StopParticles()
+    {
+        particles.Stop();
+    }
 }

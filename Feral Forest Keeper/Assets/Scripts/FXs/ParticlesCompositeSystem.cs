@@ -44,4 +44,11 @@ public class ParticlesCompositeSystem : MonoBehaviour
             particles[i].HideParticlesOutScene();
         }
     }
+    public void StopComposite()
+    {
+        for (int i = 0; i < particles.Length; i++)
+        {
+            particles[i].StopParticles();
+        }
+    }
 }
