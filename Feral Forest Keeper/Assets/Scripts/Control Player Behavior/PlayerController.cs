@@ -86,6 +86,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 showingWeaponInitForward;
     [SerializeField]
     private Vector3 showingDirection;
+    public bool flyingDashFinished;
 
     protected StateMachine p_StateMachine = new StateMachine();
 
@@ -106,6 +107,7 @@ public class PlayerController : MonoBehaviour
         deathByFall = false;
         showingWeapon = false;
         showingWeaponCount = 0;
+        flyingDashFinished = false;
     }
 
     void Update()
@@ -134,7 +136,7 @@ public class PlayerController : MonoBehaviour
         /////INPUTS CHECK////
         //XboxGamePadKeyTest();
 
-        //imGrounded = p_controller.isGrounded; //Now each State setup imGrounded.
+        imGrounded = p_controller.isGrounded; //Now each State setup imGrounded.
         if (imGrounded) initFallingPosition = this.transform.position;
         /////////END OF MOVEMENT LOGIC////////
 
@@ -337,38 +339,48 @@ public class PlayerController : MonoBehaviour
     }
     public void ApplyGravity()
     {
-        if (!imGrounded /*&& currentState != pushRockState*/)
+        if (!imGrounded /*flyingDashFinished/*&& currentState != pushRockState*/)
         {
             gravity += Mathf.Exp(gravityForce);
 
             movement.y = movement.y - (gravity * Time.deltaTime);
+            if (PlayerSensSystem.instance.CheckGroundDistance() >= deathHeight)
+            {
+                fallingToDeath = true;
+                deathByFall = true;
+            }
+            else
             if (PlayerSensSystem.instance.CheckGroundDistance() > 0.5f)
             {
-                //if (!dashing)
-                //{
-                //    falling = true;
-                //}
-                if (PlayerSensSystem.instance.CheckGroundDistance() >= deathHeight)
-                {
-                    fallingToDeath = true;
-                    deathByFall = true;
-                }
-                else
-                {
-                    falling = true;
-                }
-                //Debug.Log("Player almost touching the ground");
+                falling = true;
+            }
+            //if (PlayerSensSystem.instance.CheckGroundDistance() > 0.5f)
+            //{
+            //    //if (!dashing)
+            //    //{
+            //    //    falling = true;
+            //    //}
+            //    if (PlayerSensSystem.instance.CheckGroundDistance() >= deathHeight)
+            //    {
+            //        fallingToDeath = true;
+            //        deathByFall = true;
+            //    }
+            //    else
+            //    {
+            //        falling = true;
+            //    }
+            //    //Debug.Log("Player almost touching the ground");
 
-                //if (GenericSensUtilities.instance.DistanceBetween2Vectors(initFallingPosition, this.transform.position) > deathHeight && actualPlayerLive > 0)
-                //{
-                //    deathByFall = true;
-                //}
-            }
-            else if (PlayerSensSystem.instance.CheckGroundDistance() < 0.5f)
-            {
-                falling = false;
-                fallingToDeath = false;
-            }
+            //    //if (GenericSensUtilities.instance.DistanceBetween2Vectors(initFallingPosition, this.transform.position) > deathHeight && actualPlayerLive > 0)
+            //    //{
+            //    //    deathByFall = true;
+            //    //}
+            //}
+            //else if (PlayerSensSystem.instance.CheckGroundDistance() < 0.5f)
+            //{
+            //    falling = false;
+            //    fallingToDeath = false;
+            //}
         }
         else
         {

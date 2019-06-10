@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7751341903902629756}
   - component: {fileID: 3829858799742243190}
   - component: {fileID: 6488090959052359980}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: TablonMadera (23)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

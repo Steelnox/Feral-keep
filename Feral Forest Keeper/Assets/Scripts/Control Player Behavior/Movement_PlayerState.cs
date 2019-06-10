@@ -18,7 +18,7 @@ public class Movement_PlayerState : State
         }
         CameraController.instance.p_Camera.transform.rotation = Quaternion.Lerp(CameraController.instance.p_Camera.transform.rotation, CameraController.instance.initCameraRotation, CameraController.instance.smoothValue * Time.deltaTime);
         //Debug.Log("Player Velocity: " + movement.magnitude);
-        PlayerController.instance.p_controller.Move(PlayerController.instance.movement * Time.deltaTime);
+        if (PlayerController.instance.GetCanMove())PlayerController.instance.p_controller.Move(PlayerController.instance.movement * Time.deltaTime);
         PlayerController.instance.imGrounded = PlayerController.instance.p_controller.isGrounded;
     }
     public override void Exit()

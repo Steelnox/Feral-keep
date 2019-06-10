@@ -25,11 +25,11 @@ public class Dash_PlayerState : State
         count = dashLifeTime;
         PlayerController.instance.dashing = true;
         PlayerAnimationController.instance.SetDashing(true);
-        PlayerController.instance.SetCanMove(false);
+        //PlayerController.instance.SetCanMove(false);
         dashDirection = GenericSensUtilities.instance.Transform2DTo3DMovement(GenericSensUtilities.instance.Transform3DTo2DMovement(PlayerController.instance.characterModel.transform.forward)).normalized;
         dashDirection.y = 0;
         PlayerController.instance.dashCooldown = 0;
-        //PlayerController.instance.imGrounded = true;
+        PlayerController.instance.imGrounded = true;
         PlayerParticlesSystemController.instance.SetDashParticlesOnScene(PlayerController.instance.playerRoot.transform.position);
         PlayerParticlesSystemController.instance.SetDashDustTrailParticlesOnScene(PlayerController.instance.playerRoot.transform.position);
         PlayerAnimationController.instance.DashAnim();
@@ -73,6 +73,7 @@ public class Dash_PlayerState : State
             //{
             //    PlayerController.instance.falling = true;
             //}
+            if (PlayerController.instance.flyingDashFinished != true) PlayerController.instance.flyingDashFinished = true;
             PlayerAnimationController.instance.SetDashing(false);
             if (PlayerAnimationController.instance.finishAnimationController.GetDashArriveIsDone())
             {
@@ -103,6 +104,8 @@ public class Dash_PlayerState : State
         dashDirection.z = 0;
         //PlayerController.instance.dashTrail.enabled = false;
         PlayerController.instance.dashing = false;
+        PlayerController.instance.flyingDashFinished = false;
+        //PlayerController.instance.SetCanMove(true);
         //PlayerParticlesSystemController.instance.SetDashParticlesOnScene(PlayerController.instance.transform.position);
         PlayerParticlesSystemController.instance.GetDashTrailComposite().StopComposite();
     }
