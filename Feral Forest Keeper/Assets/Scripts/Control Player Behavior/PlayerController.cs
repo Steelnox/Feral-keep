@@ -82,6 +82,10 @@ public class PlayerController : MonoBehaviour
     private float actualHitCooldown;
     public bool deathByFall;
     private float showingWeaponCount;
+    [SerializeField]
+    private Vector3 showingWeaponInitForward;
+    [SerializeField]
+    private Vector3 showingDirection;
 
     protected StateMachine p_StateMachine = new StateMachine();
 
@@ -152,7 +156,8 @@ public class PlayerController : MonoBehaviour
         {
             showingWeaponCount += Time.deltaTime;
             SetCanMove(false);
-            playerRoot.transform.forward = Vector3.Lerp(playerRoot.transform.forward, GenericSensUtilities.instance.GetDirectionFromTo_N(playerRoot.transform.position, GenericSensUtilities.instance.Transform2DTo3DMovement(GenericSensUtilities.instance.Transform3DTo2DMovement(CameraController.instance.transform.position))), Time.deltaTime * 5.0f);
+            float time = showingWeaponCount / 0.5f;
+            playerRoot.transform.forward = Vector3.Lerp(showingWeaponInitForward, showingDirection, time);
             if (showingWeaponCount > 2.0f)
             {
                 SetCanMove(true);
@@ -202,6 +207,8 @@ public class PlayerController : MonoBehaviour
                             PlayerManager.instance.AddItemToInventary(PlayerSensSystem.instance.nearestItem);
                             PlayerSensSystem.instance.nearestItem.CollectItem();
                             PlayerManager.instance.CheckIfHaveBranchWeaponItem();
+                            showingWeaponInitForward = playerRoot.transform.forward;
+                            showingDirection = GenericSensUtilities.instance.Transform2DTo3DMovement(GenericSensUtilities.instance.Transform3DTo2DMovement(GenericSensUtilities.instance.GetDirectionFromTo_N(transform.position, CameraController.instance.transform.position)));
                             showingWeapon = true;
                             //PlayerParticlesSystemController.instance.SetLiveUpFeedbackParticlesOnScene(transform.position + Vector3.up * 0.5f);
                         }
@@ -213,6 +220,8 @@ public class PlayerController : MonoBehaviour
                             PlayerManager.instance.AddItemToInventary(PlayerSensSystem.instance.nearestItem);
                             PlayerSensSystem.instance.nearestItem.CollectItem();
                             PlayerManager.instance.CheckIfHaveLeafWeaponItem();
+                            showingWeaponInitForward = playerRoot.transform.forward;
+                            showingDirection = GenericSensUtilities.instance.Transform2DTo3DMovement(GenericSensUtilities.instance.Transform3DTo2DMovement(GenericSensUtilities.instance.GetDirectionFromTo_N(transform.position, CameraController.instance.transform.position)));
                             showingWeapon = true;
                         }
                         break;

@@ -399,6 +399,8 @@ MonoBehaviour:
   dashChargesRemind: 0
   pushDirection: {x: 0, y: 0, z: 0}
   deathByFall: 0
+  showingWeaponInitForward: {x: 0, y: 0, z: 0}
+  showingDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &7438189426164054405
 MonoBehaviour:
   m_ObjectHideFlags: 0
