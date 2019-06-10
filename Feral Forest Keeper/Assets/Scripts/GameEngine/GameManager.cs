@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
         }
         if (pause)
         {
-            PlayerController.instance.SetCanMove(false);
+            PlayerController.instance.noInput = true;
             if (provisionalGUIMenu.anchoredPosition != provisionalGUIMenuOnScreenPos) provisionalGUIMenu.anchoredPosition = provisionalGUIMenuOnScreenPos;
             if (Input.GetButtonDown("Back") || Input.GetKeyDown(KeyCode.Q))
             {
@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            PlayerController.instance.SetCanMove(true);
+            PlayerController.instance.noInput = false;
             if (provisionalGUIMenu.anchoredPosition != hidePos) provisionalGUIMenu.anchoredPosition = hidePos;
         }
         /////// PLAYER DEATH CONTROLER ////////

@@ -164,6 +164,13 @@ public class Player_TargetCamera_Offset_Controller : MonoBehaviour
     private void SetActualVelocityInp()
     {
         //actualVelocity = Vector3.Lerp(actualVelocity, PlayerController.instance.p_controller.velocity, Time.deltaTime * smoothness);
-        actualPlayerVelocity = PlayerController.instance.p_controller.velocity;
+        if (!PlayerController.instance.dashing)
+        {
+            actualPlayerVelocity = PlayerController.instance.p_controller.velocity;
+        }
+        else
+        {
+            actualPlayerVelocity = Vector3.zero;
+        }
     }
 }

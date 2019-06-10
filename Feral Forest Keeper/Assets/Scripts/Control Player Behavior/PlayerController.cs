@@ -157,7 +157,7 @@ public class PlayerController : MonoBehaviour
         if (showingWeapon)
         {
             showingWeaponCount += Time.deltaTime;
-            SetCanMove(false);
+            if(GetCanMove())SetCanMove(false);
             float time = showingWeaponCount / 0.5f;
             playerRoot.transform.forward = Vector3.Lerp(showingWeaponInitForward, showingDirection, time);
             if (showingWeaponCount > 2.0f)
@@ -339,7 +339,7 @@ public class PlayerController : MonoBehaviour
     }
     public void ApplyGravity()
     {
-        if (!imGrounded /*flyingDashFinished/*&& currentState != pushRockState*/)
+        if (!imGrounded  && !dashing/*flyingDashFinished/*&& currentState != pushRockState*/)
         {
             gravity += Mathf.Exp(gravityForce);
 
@@ -483,7 +483,7 @@ public class PlayerController : MonoBehaviour
     }
     public void CheckInputs()
     {
-        if (noInput || !canMove)
+        if (noInput)
         {
             X_Input = 0;
             Z_Input = 0;

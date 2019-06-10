@@ -61,7 +61,7 @@ public class Dash_PlayerState : State
         //    PlayerController.instance.ChangeState(PlayerController.instance.movementState);
         //}
 
-        if (GenericSensUtilities.instance.DistanceBetween2Vectors(PlayerController.instance.transform.position, endPosition) < 0.1f 
+        if (GenericSensUtilities.instance.DistanceBetween2Vectors(GenericSensUtilities.instance.Transform2DTo3DMovement(GenericSensUtilities.instance.Transform3DTo2DMovement(PlayerController.instance.transform.position)), GenericSensUtilities.instance.Transform2DTo3DMovement(GenericSensUtilities.instance.Transform3DTo2DMovement(endPosition))) < 0.1f 
             || (PlayerController.instance.p_controller.collisionFlags & CollisionFlags.Sides) != 0)
         {
             //if (PlayerSensSystem.instance.CheckGroundDistance() > PlayerController.instance.deathHeight)
@@ -85,7 +85,8 @@ public class Dash_PlayerState : State
             actualDashTime += Time.deltaTime;
             evaluateTime = actualDashTime / dashTime;
             evaluateTime = Mathf.Clamp(evaluateTime, 0, 1);
-            PlayerController.instance.transform.position = Vector3.Lerp(startPosition, endPosition, evaluateTime);
+            //PlayerController.instance.transform.position = Vector3.Lerp(startPosition, endPosition, evaluateTime);
+            PlayerController.instance.p_controller.Move(GenericSensUtilities.instance.GetDirectionFromTo_N(startPosition, endPosition) * 0.3f);
         }
         //actualDashTime += Time.deltaTime;
         //evaluateTime = actualDashTime / dashTime;
@@ -99,6 +100,7 @@ public class Dash_PlayerState : State
     }
     public override void Exit()
     {
+        PlayerController.instance.p_controller.Move(Vector3.zero);
         dashDirection.x = 0;
         dashDirection.y = 0;
         dashDirection.z = 0;
