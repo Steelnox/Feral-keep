@@ -70,6 +70,8 @@ public class PlayerController : MonoBehaviour
     public bool playerAlive;
     public bool pushing;
     public bool falling;
+    public bool fallingToDeath;
+    public bool showingWeapon;
 
     [SerializeField]
     public float dashCooldown;
@@ -79,6 +81,7 @@ public class PlayerController : MonoBehaviour
     public Vector3 pushDirection;
     private float actualHitCooldown;
     public bool deathByFall;
+    private float showingWeaponCount;
 
     protected StateMachine p_StateMachine = new StateMachine();
 
@@ -97,6 +100,8 @@ public class PlayerController : MonoBehaviour
         actualHitCooldown = hitCooldownTime;
         attackTrail.enabled = false;
         deathByFall = false;
+        showingWeapon = false;
+        showingWeaponCount = 0;
     }
 
     void Update()
@@ -143,8 +148,20 @@ public class PlayerController : MonoBehaviour
         {
             if (playerAlive != true) playerAlive = true;
         }
+        if (showingWeapon)
+        {
+            showingWeaponCount += Time.deltaTime;
+            SetCanMove(false);
+            playerRoot.transform.forward = Vector3.Lerp(playerRoot.transform.forward, GenericSensUtilities.instance.GetDirectionFromTo_N(playerRoot.transform.position, GenericSensUtilities.instance.Transform2DTo3DMovement(GenericSensUtilities.instance.Transform3DTo2DMovement(CameraController.instance.transform.position))), Time.deltaTime * 5.0f);
+            if (showingWeaponCount > 2.0f)
+            {
+                SetCanMove(true);
+                showingWeapon = false;
+                showingWeaponCount = 0;
+            }
+        }
         p_StateMachine.ExecuteState();
-
+        
     }
     private void DoorsDetection()
     {
@@ -185,7 +202,8 @@ public class PlayerController : MonoBehaviour
                             PlayerManager.instance.AddItemToInventary(PlayerSensSystem.instance.nearestItem);
                             PlayerSensSystem.instance.nearestItem.CollectItem();
                             PlayerManager.instance.CheckIfHaveBranchWeaponItem();
-                            PlayerParticlesSystemController.instance.SetLiveUpFeedbackParticlesOnScene(transform.position + Vector3.up * 0.5f);
+                            showingWeapon = true;
+                            //PlayerParticlesSystemController.instance.SetLiveUpFeedbackParticlesOnScene(transform.position + Vector3.up * 0.5f);
                         }
                         break;
                     case Item.ItemType.LEAF_WEAPON:
@@ -195,6 +213,7 @@ public class PlayerController : MonoBehaviour
                             PlayerManager.instance.AddItemToInventary(PlayerSensSystem.instance.nearestItem);
                             PlayerSensSystem.instance.nearestItem.CollectItem();
                             PlayerManager.instance.CheckIfHaveLeafWeaponItem();
+                            showingWeapon = true;
                         }
                         break;
                     case Item.ItemType.POWER_GANTLET:
@@ -307,7 +326,7 @@ public class PlayerController : MonoBehaviour
             Player_GUI_System.instance.SetOnScreenButtonBSimon(false);
         }
     }
-    private void ApplyGravity()
+    public void ApplyGravity()
     {
         if (!imGrounded /*&& currentState != pushRockState*/)
         {
@@ -316,19 +335,30 @@ public class PlayerController : MonoBehaviour
             movement.y = movement.y - (gravity * Time.deltaTime);
             if (PlayerSensSystem.instance.CheckGroundDistance() > 0.5f)
             {
-                if (!dashing) falling = true;
-                //Debug.Log("Player almost touching the ground");
-                if (GenericSensUtilities.instance.DistanceBetween2Vectors(initFallingPosition, this.transform.position) > deathHeight && actualPlayerLive > 0)
+                //if (!dashing)
+                //{
+                //    falling = true;
+                //}
+                if (PlayerSensSystem.instance.CheckGroundDistance() >= deathHeight)
                 {
-                    //Debug.Log("Player die Falling down: " + GenericSensUtilities.instance.DistanceBetween2Vectors(initFallingPosition, this.transform.position));
-                    //actualPlayerLive--;
-                    //PlayerAnimationController.instance.SetDeathByFall(true);
+                    fallingToDeath = true;
                     deathByFall = true;
                 }
+                else
+                {
+                    falling = true;
+                }
+                //Debug.Log("Player almost touching the ground");
+
+                //if (GenericSensUtilities.instance.DistanceBetween2Vectors(initFallingPosition, this.transform.position) > deathHeight && actualPlayerLive > 0)
+                //{
+                //    deathByFall = true;
+                //}
             }
             else if (PlayerSensSystem.instance.CheckGroundDistance() < 0.5f)
             {
                 falling = false;
+                fallingToDeath = false;
             }
         }
         else
@@ -336,6 +366,7 @@ public class PlayerController : MonoBehaviour
             if (gravity > 0 || gravity < 0)
                 gravity = 0;
             falling = false;
+            fallingToDeath = false;
         }
     }
     private void CheckInputsConditions()
@@ -431,7 +462,7 @@ public class PlayerController : MonoBehaviour
     }
     public void CheckInputs()
     {
-        if (noInput)
+        if (noInput || !canMove)
         {
             X_Input = 0;
             Z_Input = 0;

@@ -4,43 +4,23 @@ using UnityEngine;
 
 public class FinishAnimationController : MonoBehaviour
 {
-    public string animationName;
-    [SerializeField]
-    private bool isDone;
-    [SerializeField]
-    private bool isPlaying;
+    private bool dashArriveIsDone;
 
     void Start()
     {
-        isDone = true;
-        isPlaying = false;
+        dashArriveIsDone = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    public bool GetDashArriveIsDone()
     {
-        
+        return dashArriveIsDone;
     }
-    public void FinishAnimation()
+    public void DashArriveFinish()
     {
-        isDone = true;
-        isPlaying = false;
+        dashArriveIsDone = true;
     }
-    public void InitiateAnimation()
+    public void StartDashing()
     {
-        isDone = false;
-        isPlaying = true;
-    }
-    public bool GetIsDone()
-    {
-        return isDone;
-    }
-    public bool GetIsPlaying()
-    {
-        return isPlaying;
-    }
-    public string GetAnimationName()
-    {
-        return animationName;
+        dashArriveIsDone = false;
     }
 }

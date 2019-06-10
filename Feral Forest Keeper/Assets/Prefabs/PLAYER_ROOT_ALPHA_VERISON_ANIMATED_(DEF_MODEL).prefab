@@ -389,10 +389,12 @@ MonoBehaviour:
   noInput: 0
   no_X_Input: 0
   no_Y_Input: 0
-  startWithAllSkills: 1
+  startWithAllSkills: 0
   playerAlive: 0
   pushing: 0
   falling: 0
+  fallingToDeath: 0
+  showingWeapon: 0
   dashCooldown: 0
   dashChargesRemind: 0
   pushDirection: {x: 0, y: 0, z: 0}
@@ -487,8 +489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 6667978497718287969}
-  finishAnimationController: {fileID: 0}
-  modelRootBone: {fileID: 0}
+  finishAnimationController: {fileID: 1511914538}
 --- !u!114 &2932923199096577224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -686,9 +687,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8e61ec822c285946bbb405c1b07808e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationName: Dash
-  isDone: 0
-  isPlaying: 0
 --- !u!114 &1778750443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -702,20 +700,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponCollider: {fileID: 316019337}
---- !u!114 &1473734842297927240
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6667978497725664709}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63075e573f80b514db40943eda0d540e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rightFoot: {fileID: 6667978497725664699}
-  leftFoot: {fileID: 6667978497725664695}
 --- !u!136 &6667978497725664714
 CapsuleCollider:
   m_ObjectHideFlags: 0

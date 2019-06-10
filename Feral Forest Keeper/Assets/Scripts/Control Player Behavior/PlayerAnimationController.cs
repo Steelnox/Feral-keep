@@ -18,7 +18,6 @@ public class PlayerAnimationController : MonoBehaviour
 
     public Animator animator;
     public FinishAnimationController finishAnimationController;
-    public GameObject modelRootBone;
 
     void Start()
     {
@@ -35,8 +34,9 @@ public class PlayerAnimationController : MonoBehaviour
         animator.SetFloat("PushDirection_Y", PlayerController.instance.pushDirection.z);
         SetPushinAnim(PlayerController.instance.pushing);
         animator.SetBool("Falling", PlayerController.instance.falling);
+        animator.SetBool("FallingToDeath", PlayerController.instance.fallingToDeath);
+        animator.SetBool("ShowWeapon", PlayerController.instance.showingWeapon);
         SetDeathByFall(PlayerController.instance.deathByFall);
-        animator.SetBool("Dashing", PlayerController.instance.dashing);
     }
     public void SetTargetLockAnim(bool blocked)
     {
@@ -52,6 +52,10 @@ public class PlayerAnimationController : MonoBehaviour
     public void DashAnim()
     {
         animator.SetTrigger("Dash");
+    }
+    public void SetDashing(bool b)
+    {
+        animator.SetBool("Dashing", b);
     }
     public bool IsAnimationPlaying(string name)
     {

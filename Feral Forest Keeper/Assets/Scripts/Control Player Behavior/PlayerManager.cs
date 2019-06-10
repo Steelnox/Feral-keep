@@ -29,12 +29,12 @@ public class PlayerManager : MonoBehaviour
 
     void Start()
     {
-        branchWeaponSlot = GameManager.instance.branchItem;
-        CheckIfHaveBranchWeaponItem();
+        //branchWeaponSlot = GameManager.instance.branchItem;
+        //CheckIfHaveBranchWeaponItem();
 
-        //branchWeaponForAnimations.SetActive(false);
+        branchWeaponForAnimations.SetActive(false);
         leafWeaponForAnimations.SetActive(false);
-        //branchWeaponSlot = null;
+        branchWeaponSlot = null;
         leafSwordSlot = null;
         powerGauntaletSlot = null;
         if (PlayerController.instance.startWithAllSkills)

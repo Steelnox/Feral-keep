@@ -635,7 +635,10 @@ public class PlayerSensSystem : MonoBehaviour
             //Debug.Log("Ground Distance = " + dis);
             return dis;
         }
-        return 0;
+        else
+        {
+            return 0;
+        }
     }
     public BushGrass_Behavior FindNearestGrassBushToPushingRock(MovableRocks _rock)
     {

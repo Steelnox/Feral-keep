@@ -111,7 +111,7 @@ MonoBehaviour:
   p_Camera: {fileID: 7359244190116884736}
   target: {fileID: 0}
   cameraOffSet: {x: 0, y: 4.5, z: -2.5}
-  smoothValue: 5
+  smoothValue: 7
   standardFOV: 57
   lockTargetFOV: 42
   pushFOV: 60

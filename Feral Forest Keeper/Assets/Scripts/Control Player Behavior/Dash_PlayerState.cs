@@ -24,11 +24,12 @@ public class Dash_PlayerState : State
     {
         count = dashLifeTime;
         PlayerController.instance.dashing = true;
+        PlayerAnimationController.instance.SetDashing(true);
         PlayerController.instance.SetCanMove(false);
         dashDirection = GenericSensUtilities.instance.Transform2DTo3DMovement(GenericSensUtilities.instance.Transform3DTo2DMovement(PlayerController.instance.characterModel.transform.forward)).normalized;
         dashDirection.y = 0;
         PlayerController.instance.dashCooldown = 0;
-        PlayerController.instance.imGrounded = true;
+        //PlayerController.instance.imGrounded = true;
         PlayerParticlesSystemController.instance.SetDashParticlesOnScene(PlayerController.instance.playerRoot.transform.position);
         PlayerParticlesSystemController.instance.SetDashDustTrailParticlesOnScene(PlayerController.instance.playerRoot.transform.position);
         PlayerAnimationController.instance.DashAnim();
@@ -59,26 +60,41 @@ public class Dash_PlayerState : State
         //    PlayerController.instance.transform.position = PlayerAnimationController.instance.modelRootBone.transform.position;
         //    PlayerController.instance.ChangeState(PlayerController.instance.movementState);
         //}
-        PlayerController.instance.p_controller.Move(Vector3.zero);
 
         if (GenericSensUtilities.instance.DistanceBetween2Vectors(PlayerController.instance.transform.position, endPosition) < 0.1f 
             || (PlayerController.instance.p_controller.collisionFlags & CollisionFlags.Sides) != 0)
         {
-            PlayerController.instance.ChangeState(PlayerController.instance.movementState);
+            //if (PlayerSensSystem.instance.CheckGroundDistance() > PlayerController.instance.deathHeight)
+            //{
+            //    PlayerController.instance.fallingToDeath = true;
+            //}
+            //else
+            //    if (PlayerSensSystem.instance.CheckGroundDistance() > 0.5f)
+            //{
+            //    PlayerController.instance.falling = true;
+            //}
+            PlayerAnimationController.instance.SetDashing(false);
+            if (PlayerAnimationController.instance.finishAnimationController.GetDashArriveIsDone())
+            {
+                PlayerController.instance.ChangeState(PlayerController.instance.movementState);
+            }
         }
-        actualDashTime += Time.deltaTime;
-        evaluateTime = actualDashTime / dashTime;
-        evaluateTime = Mathf.Clamp(evaluateTime, 0, 1);
-        PlayerController.instance.transform.position = Vector3.Lerp(startPosition, endPosition, evaluateTime);
+        else
+        {
+            actualDashTime += Time.deltaTime;
+            evaluateTime = actualDashTime / dashTime;
+            evaluateTime = Mathf.Clamp(evaluateTime, 0, 1);
+            PlayerController.instance.transform.position = Vector3.Lerp(startPosition, endPosition, evaluateTime);
+        }
+        //actualDashTime += Time.deltaTime;
+        //evaluateTime = actualDashTime / dashTime;
+        //evaluateTime = Mathf.Clamp(evaluateTime, 0, 1);
+        //PlayerController.instance.transform.position = Vector3.Lerp(startPosition, endPosition, evaluateTime);
 
         PlayerController.instance.imGrounded = PlayerController.instance.p_controller.isGrounded;
         DashTrail_Control.instance.SetTrailIOnScene(PlayerController.instance.characterModel.transform.position, PlayerController.instance.characterModel.transform.forward);
         PlayerParticlesSystemController.instance.GetDashTrailComposite().transform.position = PlayerController.instance.playerRoot.transform.position;
-        //if ((PlayerController.instance.p_controller.collisionFlags & CollisionFlags.CollidedSides) != 0)
-        //{
-        //    endPosition.y++;
-        //}
-        
+        //PlayerController.instance.ApplyGravity();
     }
     public override void Exit()
     {
