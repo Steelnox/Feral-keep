@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2394925957181825619}
   - component: {fileID: 2394925957180498547}
   - component: {fileID: 2394925957179400371}
+  - component: {fileID: 949062140624839906}
   m_Layer: 0
   m_Name: Laberinto_Medio
   m_TagString: Untagged
@@ -77,3 +78,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &949062140624839906
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2394925957181406835}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.84367895, y: 1.1727988, z: 0.9950408}
+  m_Center: {x: 0.000000074505806, y: 0.00000038743025, z: 0.000000029802326}
