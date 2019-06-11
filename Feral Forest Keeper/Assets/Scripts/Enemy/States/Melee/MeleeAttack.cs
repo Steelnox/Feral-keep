@@ -13,7 +13,6 @@ public class MeleeAttack : State
 
     private Vector3 directionAttack;
 
-    private float timerDash;
 
 
     public override void Enter()
@@ -25,7 +24,6 @@ public class MeleeAttack : State
 
         timerAttack = 0;
 
-        timerDash = 0;
 
         dmg_done = false;
 
@@ -38,6 +36,7 @@ public class MeleeAttack : State
         melee.chasing = true;
 
 
+
     }
 
     public override void Execute()
@@ -46,18 +45,17 @@ public class MeleeAttack : State
 
         Quaternion lookOnLook = Quaternion.LookRotation(-directionAttack);
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookOnLook, 0.5f);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookOnLook, 2f);
 
 
 
-        if (!melee.finishAttack)
+        if (timerAttack < 0.5f)
         {
 
             melee.C_collider.enabled = false;
 
 
             melee.enemy_navmesh.Move(-directionAttack * 0.1f);
-
 
             Collider[] entities = Physics.OverlapSphere(transform.position, 0.5f);
             
@@ -83,7 +81,6 @@ public class MeleeAttack : State
     public override void Exit()
     {
         timerAttack = 0;
-        timerDash = 0;
         dmg_done = false;
 
         melee.enemy_animator.SetBool("Attack", false);

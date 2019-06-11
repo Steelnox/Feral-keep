@@ -240,7 +240,6 @@ public class SimonController : MonoBehaviour
 
         else
         {
-            ChangeColorBlack();
             sequenceDone = true;
         }
     }

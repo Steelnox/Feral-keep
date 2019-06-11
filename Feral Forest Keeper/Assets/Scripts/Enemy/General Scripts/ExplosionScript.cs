@@ -8,7 +8,7 @@ public class ExplosionScript : MonoBehaviour
 
     public bool dmg_done;
 
-    public float timer;
+    private float timer;
 
     public GameObject melee_enemy;
     
