@@ -224,7 +224,7 @@ public class SimonController : MonoBehaviour
 
     private void DoSequence()
     {
-        if(sequenceCount < numList.Count)
+        if(sequenceCount < numList.Count && !sequenceDone)
         {
             colorRocks[numList[sequenceCount]].GetComponent<Renderer>().material = colorMaterial;
             colorRocks[numList[sequenceCount]].GetComponent<Renderer>().material.color = colorRocks[numList[sequenceCount]].GetComponent<SimonRock>().colorRock;

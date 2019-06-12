@@ -39,7 +39,11 @@ public class Damaged : State
         timer += Time.deltaTime;
         if (timer >= timeKnockback)
         {
-            if (melee.currentHealth <= 0) this.gameObject.SetActive(false);
+            if (melee.currentHealth <= 0)
+            {
+                melee.chasing = false;
+                this.gameObject.SetActive(false);
+            }
             if (melee.currentHealth <= 1 && melee.currentHealth > 0) melee.ChangeState(melee.rage);
             if (melee.currentHealth > 1)
             {

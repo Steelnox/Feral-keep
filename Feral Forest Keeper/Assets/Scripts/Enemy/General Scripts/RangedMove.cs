@@ -40,6 +40,7 @@ public class RangedMove : Enemy
 
         ChangeState(patrol);
 
+
         feedbackController = GetComponentInChildren<EnemyHitFeedbackController>();
         if (feedbackController == null) Debug.Log("Cant find EnemyFeedbackController");
     }

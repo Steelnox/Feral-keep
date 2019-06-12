@@ -34,7 +34,12 @@ public class DamagedRangedFixed : State
 
         if (ranged.finishHit)
         {
-            if (ranged.currentHealth <= 0) this.gameObject.SetActive(false);
+            if (ranged.currentHealth <= 0)
+            {
+                ranged.chasing = false;
+                this.gameObject.SetActive(false);
+            }
+
             if (ranged.currentHealth > 0)
             {
                 if (distanceToPlayer <= ranged.distanceToAttack) ranged.ChangeState(ranged.attack);

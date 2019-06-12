@@ -24,6 +24,7 @@ public class Player_GUI_System : MonoBehaviour
     public RectTransform activateSanctuaryIcon;
     public RectTransform buttonBColor;
     public RectTransform buttonBSimon;
+    public RectTransform buttonBWoodSign;
 
     public RectTransform leafWeaponIcon;
     public RectTransform branchWeaponIcon;
@@ -160,6 +161,19 @@ public class Player_GUI_System : MonoBehaviour
             buttonBSimon.anchoredPosition = hidePos;
         }
     }
+
+    public void SetOnScreenButtonBWoodSign(bool b)
+    {
+        if (b)
+        {
+            buttonBWoodSign.anchoredPosition = actionIconOnScreenPos;
+        }
+        else
+        {
+            buttonBWoodSign.anchoredPosition = hidePos;
+        }
+    }
+
     public void SetKeysCount(int keys)
     {
         keysCount.text = "" + keys;

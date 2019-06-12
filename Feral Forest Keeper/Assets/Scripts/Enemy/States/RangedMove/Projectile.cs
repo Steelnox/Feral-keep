@@ -66,11 +66,12 @@ public class Projectile : MonoBehaviour
             activated = false;
         }
 
-        else if(other.tag == "MovableRock" || other.tag == "StaticBush")
+        else if(other.gameObject.layer != 12 && other.gameObject.layer != 11)
         {
             timer = 0;
             ParticlesFeedback_Control.instance.SetProjectileImpactCompositeOnScene(transform.position, transform.forward);
             activated = false;
         }
+
     }
 }

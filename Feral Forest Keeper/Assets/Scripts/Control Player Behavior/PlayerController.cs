@@ -123,6 +123,7 @@ public class PlayerController : MonoBehaviour
         SanctuaryDetection();
         ColorRockDetection();
         SimonRockDetection();
+        WoodSignDetection();
 
         if (gettingHit)
         {
@@ -334,6 +335,31 @@ public class PlayerController : MonoBehaviour
         else
         {
             Player_GUI_System.instance.SetOnScreenButtonBSimon(false);
+        }
+    }
+
+    private void WoodSignDetection()
+    {
+        if (PlayerSensSystem.instance.nearestWoodSign != null)
+        {
+            if (GenericSensUtilities.instance.DistanceBetween2Vectors(PlayerSensSystem.instance.nearestWoodSign.transform.position, PlayerController.instance.transform.position) < 2)
+            {
+                //Player_GUI_System.instance.SetOnScreenActivateSanctuaryIcon(true);
+                Player_GUI_System.instance.SetOnScreenButtonBWoodSign(true);
+
+                if (Input.GetButtonDown("B") || Input.GetKeyDown(KeyCode.F))
+                {
+                    PlayerSensSystem.instance.nearestWoodSign.ActivateLetterScript();
+                }
+            }
+            else
+            {
+                Player_GUI_System.instance.SetOnScreenButtonBWoodSign(false);
+            }
+        }
+        else
+        {
+            Player_GUI_System.instance.SetOnScreenButtonBWoodSign(false);
         }
     }
     public void ApplyGravity()

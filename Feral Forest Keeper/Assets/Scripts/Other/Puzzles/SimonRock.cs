@@ -17,7 +17,7 @@ public class SimonRock : MonoBehaviour
 
     public void InteractWithSimonRock()
     {
-        if (simonMaster.sequenceDone)
+        if (simonMaster.sequenceDone && !simonMaster.fail)
         {
             simonMaster.CheckSimon(this.gameObject);
         }
