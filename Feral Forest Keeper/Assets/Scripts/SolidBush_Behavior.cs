@@ -17,7 +17,7 @@ public class SolidBush_Behavior : MonoBehaviour
     private Vector3 initUpVector;
     private bool playerInteraction;
     private bool isCutted;
-    private bool justBeingCutted;
+    //private bool justBeingCutted;
     private bool active;
 
     void Start()
@@ -26,7 +26,7 @@ public class SolidBush_Behavior : MonoBehaviour
         playerInteraction = false;
         hidePos = Vector3.down * 1000;
         isCutted = false;
-        justBeingCutted = true;
+        //justBeingCutted = true;
         active = true;
         HideParticles();
     }
@@ -94,7 +94,7 @@ public class SolidBush_Behavior : MonoBehaviour
     {
         active = true;
         isCutted = false;
-        justBeingCutted = true;
+        //justBeingCutted = true;
         this.transform.position = _pos;
     }
     private void PlayParticles()

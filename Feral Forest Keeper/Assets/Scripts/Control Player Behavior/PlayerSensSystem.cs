@@ -43,6 +43,11 @@ public class PlayerSensSystem : MonoBehaviour
     public List<SimonRock> simonRockList;
     public List<WoodSign> woodSignList;
 
+    public bool differentY;
+
+    private float actualY;
+    private float previousY;
+
     void Start()
     {
         colliderSens.radius = sensRange;
@@ -50,6 +55,9 @@ public class PlayerSensSystem : MonoBehaviour
 
     void Update()
     {
+        actualY = transform.position.y;
+        differentY = IsPlayerHeighDiferent();
+
         GetNearestEnemy();
         GetNearestRock();
         GetNearestLog();
@@ -59,6 +67,8 @@ public class PlayerSensSystem : MonoBehaviour
         GetNearestColorRock();
         GetNearestSimonRock();
         GetNearestWoodSign();
+
+        previousY = transform.position.y;
     }
 
     public void OnTriggerEnter(Collider other)
@@ -698,6 +708,7 @@ public class PlayerSensSystem : MonoBehaviour
 
         if (rayHit.collider != null)
         {
+            Debug.DrawLine(PlayerController.instance.characterModel.transform.position, rayHit.point, Color.red);
             dis = GenericSensUtilities.instance.DistanceBetween2Vectors(transform.position, rayHit.point);
             //Debug.Log("Ground Distance = " + dis);
             return dis;
@@ -750,5 +761,9 @@ public class PlayerSensSystem : MonoBehaviour
             }
         }
         return bushGrass;
+    }
+    public bool IsPlayerHeighDiferent()
+    {
+        return actualY != previousY;
     }
 }

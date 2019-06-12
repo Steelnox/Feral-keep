@@ -22,13 +22,14 @@ public class Bush_Behavior : MonoBehaviour
     private bool active;
     [SerializeField]
     private bool weaponBranchHit;
-    private bool justHitted;
+    //private bool justHitted;
     private Vector3 bushScenePos;
+    private float respawnTimer;
 
     void Start()
     {
         bushScenePos = bush_Pivot.transform.position;
-        justHitted = true;
+        //justHitted = true;
         initUpVector = bush_Pivot.transform.up;
         playerInteraction = false;
         hidePos = Vector3.down * 1000;
@@ -38,6 +39,7 @@ public class Bush_Behavior : MonoBehaviour
         weaponBranchHit = false;
         HideParticles();
         cutDecal.transform.position = hidePos;
+        respawnTimer = 0;
     }
 
     void Update()
@@ -79,7 +81,9 @@ public class Bush_Behavior : MonoBehaviour
         }
         else
         {
-            if (!PlayerController.instance.deathByFall && PlayerController.instance.playerAlive && GenericSensUtilities.instance.DistanceBetween2Vectors(bushScenePos, PlayerController.instance.transform.position) > PlayerSensSystem.instance.sensRange)
+            respawnTimer += Time.deltaTime;
+
+            if (respawnTimer > 60 && !PlayerController.instance.deathByFall && PlayerController.instance.playerAlive && GenericSensUtilities.instance.DistanceBetween2Vectors(bushScenePos, PlayerController.instance.transform.position) > PlayerSensSystem.instance.sensRange * 3)
             {
                 SetBush(bushScenePos);
             }
@@ -122,7 +126,7 @@ public class Bush_Behavior : MonoBehaviour
     {
         active = true;
         isCutted = false;
-        //justBeingCutted = true;
+        respawnTimer = 0;
         this.transform.position = _pos;
         cutDecal.transform.position = hidePos;
     }

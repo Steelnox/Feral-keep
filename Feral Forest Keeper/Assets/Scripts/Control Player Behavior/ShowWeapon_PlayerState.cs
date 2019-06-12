@@ -32,6 +32,7 @@ public class ShowWeapon_PlayerState : State
             float time = showingWeaponCount / 0.5f;
             PlayerController.instance.playerRoot.transform.forward = Vector3.Lerp(showingWeaponInitForward, showingDirection, time);
         }
+        PlayerController.instance.p_controller.Move(Vector3.zero);
     }
     public override void Exit()
     {

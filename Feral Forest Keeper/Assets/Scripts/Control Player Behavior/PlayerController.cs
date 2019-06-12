@@ -82,7 +82,6 @@ public class PlayerController : MonoBehaviour
     public Vector3 pushDirection;
     private float actualHitCooldown;
     public bool deathByFall;
-    private float showingWeaponCount;
     [SerializeField]
     private Vector3 showingWeaponInitForward;
     [SerializeField]
@@ -108,7 +107,6 @@ public class PlayerController : MonoBehaviour
         attackTrail.enabled = false;
         deathByFall = false;
         showingWeapon = false;
-        showingWeaponCount = 0;
         flyingDashFinished = false;
         checkDistanceOffset = GenericSensUtilities.instance.DistanceBetween2Vectors(playerRoot.transform.position, characterModel.transform.position);
     }
@@ -337,7 +335,6 @@ public class PlayerController : MonoBehaviour
             Player_GUI_System.instance.SetOnScreenButtonBSimon(false);
         }
     }
-
     private void WoodSignDetection()
     {
         if (PlayerSensSystem.instance.nearestWoodSign != null)
@@ -425,7 +422,7 @@ public class PlayerController : MonoBehaviour
 
         if (PlayerManager.instance.branchWeaponSlot != null || PlayerManager.instance.leafSwordSlot != null)
         {
-            if (Input.GetMouseButtonDown(0) || Input.GetButtonDown("X") && !attacking /*&& targetLocked == null*/ && !dashing && !gettingHit)
+            if (Input.GetMouseButtonDown(0) || Input.GetButtonDown("X") && !attacking && !dashing && !gettingHit && !falling && !fallingToDeath)
             {
                 ChangeState(meleeState);
             }
@@ -581,7 +578,7 @@ public class PlayerController : MonoBehaviour
         StaticCameraZone scz = other.gameObject.GetComponent<StaticCameraZone>();
         if (scz != null)
         {
-            CameraController.instance.SetActualBehavior(CameraController.Behavior.TRANSITION_TO_FOLLOW);
+            if (CameraController.instance.GetActualBehavior() != CameraController.Behavior.TRANSITION_TO_FOLLOW) CameraController.instance.SetActualBehavior(CameraController.Behavior.TRANSITION_TO_FOLLOW);
         }
     }
 

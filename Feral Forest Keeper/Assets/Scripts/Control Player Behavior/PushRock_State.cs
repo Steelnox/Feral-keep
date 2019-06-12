@@ -82,7 +82,7 @@ public class PushRock_State : State
         //Debug.Log("Push Direction = " + PlayerController.instance.pushDirection);
         //Debug.Log("Rock-Grass Direction = " + GenericSensUtilities.instance.GetDirectionFromTo_N(PlayerSensSystem.instance.nearestRock.bodyMeshrenderer.bounds.ClosestPoint(PlayerSensSystem.instance.FindNearestGrassBushToPushingRock(PlayerSensSystem.instance.nearestRock).transform.position), PlayerSensSystem.instance.FindNearestGrassBushToPushingRock(PlayerSensSystem.instance.nearestRock).transform.position));
         //Debug.Log("Player-Rock Direction = " + GenericSensUtilities.instance.GetDirectionFromTo_N(PlayerController.instance.playerRoot.transform.position, PlayerSensSystem.instance.nearestRock.bodyMeshrenderer.bounds.ClosestPoint(PlayerController.instance.transform.position)));
-        Debug.DrawLine(PlayerSensSystem.instance.nearestRock.transform.position, PlayerSensSystem.instance.FindNearestGrassBushToPushingRock(PlayerSensSystem.instance.nearestRock).transform.position, Color.black);
+        //Debug.DrawLine(PlayerSensSystem.instance.nearestRock.transform.position, PlayerSensSystem.instance.FindNearestGrassBushToPushingRock(PlayerSensSystem.instance.nearestRock).transform.position, Color.black);
         Debug.DrawLine(PlayerController.instance.playerRoot.transform.position, PlayerSensSystem.instance.nearestRock.transform.position, Color.yellow);
     }
     public override void Exit()

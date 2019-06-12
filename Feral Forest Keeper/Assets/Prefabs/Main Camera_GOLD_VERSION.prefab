@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 7481602930027699604}
   - component: {fileID: 7442327346382589532}
   - component: {fileID: 7493980762626117628}
-  - component: {fileID: 7380328722814154813}
   - component: {fileID: 4367583827182339146}
+  - component: {fileID: 7380328722814154813}
   - component: {fileID: 621845967}
   m_Layer: 8
   m_Name: Main Camera_GOLD_VERSION
@@ -121,6 +121,33 @@ MonoBehaviour:
   actualBehavior: 0
   scriptedTarget: {fileID: 0}
   deathCount: 0
+--- !u!114 &4367583827182339146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7380328722814154786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab31ad31394e01244b9cd12058ffb4aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetTarget: {fileID: 0}
+  x_MaxOffset_Standard: 2
+  y_MaxOffset_Standard: 2
+  x_MaxOffset_Pushing: 0.5
+  y_MaxOffset_Pushing: 0.5
+  smoothness: 5
+  distanceTreshold: 0.1
+  retractCoolDown: 2
+  combatDistance: 3
+  desiredPos: {x: 0, y: 0, z: 0}
+  count: 0
+  actual_X_MaxOffset: 0
+  actual_Y_MaxOffset: 0
+  actualState: 0
+  actualPlayerVelocity: {x: 0, y: 0, z: 0}
 --- !u!114 &7380328722814154813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,33 +208,6 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
---- !u!114 &4367583827182339146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7380328722814154786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab31ad31394e01244b9cd12058ffb4aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offsetTarget: {fileID: 0}
-  x_MaxOffset_Standard: 2
-  y_MaxOffset_Standard: 2
-  x_MaxOffset_Pushing: 0.5
-  y_MaxOffset_Pushing: 0.5
-  smoothness: 5
-  distanceTreshold: 0.1
-  retractCoolDown: 2
-  combatDistance: 3
-  desiredPos: {x: 0, y: 0, z: 0}
-  count: 0
-  actual_X_MaxOffset: 0
-  actual_Y_MaxOffset: 0
-  actualState: 0
-  actualPlayerVelocity: {x: 0, y: 0, z: 0}
 --- !u!114 &621845967
 MonoBehaviour:
   m_ObjectHideFlags: 0

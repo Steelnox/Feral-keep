@@ -38,7 +38,7 @@ public class CameraController : MonoBehaviour
     private float actualScriptedCooldown;
     private Vector3 frontBackTravellingSliderVector;
     [SerializeField]
-    private float deathCount;
+    //private float deathCount;
     private float scriptedHighDistance;
     private Vector3 startPosition;
     private Vector3 endPosition;
@@ -53,7 +53,7 @@ public class CameraController : MonoBehaviour
         initCameraRotation = p_Camera.transform.rotation;
         p_Camera.fieldOfView = standardFOV;
         actualScriptedCooldown = scriptedCooldownTime;
-        deathCount = 0;
+        //deathCount = 0;
         blendTime = 0;
 	}
 	
@@ -101,16 +101,21 @@ public class CameraController : MonoBehaviour
                 transform.position = Vector3.Lerp(startPosition, endPosition, time);
                 break;
             case Behavior.TRANSITION_TO_FOLLOW:
+                Debug.Log("Distance Between Camera and Target = " + GenericSensUtilities.instance.DistanceBetween2Vectors(target.transform.position + cameraOffSet, p_Camera.transform.position));
                 if (GenericSensUtilities.instance.DistanceBetween2Vectors(target.transform.position + cameraOffSet, p_Camera.transform.position) < 0.1f)
                 {
                     SetActualBehavior(Behavior.FOLLOW_PLAYER);
                 }
-                p_Camera.transform.position = Vector3.Lerp(p_Camera.transform.position, target.transform.position + cameraOffSet, Time.time * smoothValue / 2);
+                else
+                {
+                    p_Camera.transform.position = Vector3.Lerp(p_Camera.transform.position, target.transform.position + cameraOffSet, Time.deltaTime * smoothValue / 2);
+                }
                 break;
             case Behavior.PLAYER_SHOW_WEAPON:
                 //FollowTarget(PlayerController.instance.gameObject);
                 time += Time.deltaTime;
-                blendTime = time / 1.0f;
+                blendTime = time / 0.5f;
+                blendTime = Mathf.Clamp(blendTime, 0, 1);
                 transform.position = Vector3.Lerp(startPosition, endPosition, blendTime);
                 break;
             default:
@@ -181,25 +186,25 @@ public class CameraController : MonoBehaviour
         Vector3 UP_MIDDLE_FarPlanePoint = new Vector3(0.5f, 1, p_Camera.farClipPlane);
         UP_MIDDLE_FarPlanePoint = p_Camera.ViewportToWorldPoint(UP_MIDDLE_FarPlanePoint);
 
-        Vector3 DOWN_MIDDLE_NearPlanePoint = new Vector3(0.5f, 0.1f, p_Camera.nearClipPlane);
-        DOWN_MIDDLE_NearPlanePoint = p_Camera.ViewportToWorldPoint(DOWN_MIDDLE_NearPlanePoint);
-        Vector3 DOWN_MIDDLE_FarPlanePoint = new Vector3(0.5f, 0.1f, p_Camera.farClipPlane);
-        DOWN_MIDDLE_FarPlanePoint = p_Camera.ViewportToWorldPoint(DOWN_MIDDLE_FarPlanePoint);
+        //Vector3 DOWN_MIDDLE_NearPlanePoint = new Vector3(0.5f, 0.1f, p_Camera.nearClipPlane);
+        //DOWN_MIDDLE_NearPlanePoint = p_Camera.ViewportToWorldPoint(DOWN_MIDDLE_NearPlanePoint);
+        //Vector3 DOWN_MIDDLE_FarPlanePoint = new Vector3(0.5f, 0.1f, p_Camera.farClipPlane);
+        //DOWN_MIDDLE_FarPlanePoint = p_Camera.ViewportToWorldPoint(DOWN_MIDDLE_FarPlanePoint);
 
         Vector3 DOWN_MIDDLE_Checker_NearPlanePoint = new Vector3(0.5f, 0, p_Camera.nearClipPlane);
         DOWN_MIDDLE_Checker_NearPlanePoint = p_Camera.ViewportToWorldPoint(DOWN_MIDDLE_Checker_NearPlanePoint);
         Vector3 DOWN_MIDDLE_Checker_FarPlanePoint = new Vector3(0.5f, 0, p_Camera.farClipPlane);
         DOWN_MIDDLE_Checker_FarPlanePoint = p_Camera.ViewportToWorldPoint(DOWN_MIDDLE_Checker_FarPlanePoint);
 
-        Vector3 UP_LEFT_NearPlanePoint = new Vector3(0, 1, p_Camera.nearClipPlane);
-        UP_LEFT_NearPlanePoint = p_Camera.ViewportToWorldPoint(UP_LEFT_NearPlanePoint);
-        Vector3 UP_LEFT_FarPlanePoint = new Vector3(0, 1, p_Camera.farClipPlane);
-        UP_LEFT_FarPlanePoint = p_Camera.ViewportToWorldPoint(UP_LEFT_FarPlanePoint);
+        //Vector3 UP_LEFT_NearPlanePoint = new Vector3(0, 1, p_Camera.nearClipPlane);
+        //UP_LEFT_NearPlanePoint = p_Camera.ViewportToWorldPoint(UP_LEFT_NearPlanePoint);
+        //Vector3 UP_LEFT_FarPlanePoint = new Vector3(0, 1, p_Camera.farClipPlane);
+        //UP_LEFT_FarPlanePoint = p_Camera.ViewportToWorldPoint(UP_LEFT_FarPlanePoint);
 
-        Vector3 UP_RIGHT_NearPlanePoint = new Vector3(1, 1, p_Camera.nearClipPlane);
-        UP_RIGHT_NearPlanePoint = p_Camera.ViewportToWorldPoint(UP_RIGHT_NearPlanePoint);
-        Vector3 UP_RIGHT_FarPlanePoint = new Vector3(1, 1, p_Camera.farClipPlane);
-        UP_RIGHT_FarPlanePoint = p_Camera.ViewportToWorldPoint(UP_RIGHT_FarPlanePoint);
+        //Vector3 UP_RIGHT_NearPlanePoint = new Vector3(1, 1, p_Camera.nearClipPlane);
+        //UP_RIGHT_NearPlanePoint = p_Camera.ViewportToWorldPoint(UP_RIGHT_NearPlanePoint);
+        //Vector3 UP_RIGHT_FarPlanePoint = new Vector3(1, 1, p_Camera.farClipPlane);
+        //UP_RIGHT_FarPlanePoint = p_Camera.ViewportToWorldPoint(UP_RIGHT_FarPlanePoint);
 
         Vector3 DOWN_LEFT_NearPlanePoint = new Vector3(0, 0.1f, p_Camera.nearClipPlane);
         DOWN_LEFT_NearPlanePoint = p_Camera.ViewportToWorldPoint(DOWN_LEFT_NearPlanePoint);
@@ -212,44 +217,44 @@ public class CameraController : MonoBehaviour
         DOWN_RIGHT_FarPlanePoint = p_Camera.ViewportToWorldPoint(DOWN_RIGHT_FarPlanePoint);
 
         Vector3 fieldOfViewVectorUP_MIDDLE = UP_MIDDLE_FarPlanePoint - UP_MIDDLE_NearPlanePoint;
-        Vector3 fieldOfViewVectorDOWN_MIDDLE = DOWN_MIDDLE_FarPlanePoint - DOWN_MIDDLE_NearPlanePoint;
+        //Vector3 fieldOfViewVectorDOWN_MIDDLE = DOWN_MIDDLE_FarPlanePoint - DOWN_MIDDLE_NearPlanePoint;
         Vector3 fieldOfViewVectorDOWN_MIDDLE_Checker = DOWN_MIDDLE_Checker_FarPlanePoint - DOWN_MIDDLE_Checker_NearPlanePoint;
-        Vector3 fieldOfViewVectorUP_LEFT = UP_LEFT_FarPlanePoint - UP_LEFT_NearPlanePoint;
-        Vector3 fieldOfViewVectorUP_RIGHT = UP_RIGHT_FarPlanePoint - UP_RIGHT_NearPlanePoint;
+        //Vector3 fieldOfViewVectorUP_LEFT = UP_LEFT_FarPlanePoint - UP_LEFT_NearPlanePoint;
+        //Vector3 fieldOfViewVectorUP_RIGHT = UP_RIGHT_FarPlanePoint - UP_RIGHT_NearPlanePoint;
         Vector3 fieldOfViewVectorDOWN_LEFT = DOWN_LEFT_FarPlanePoint - DOWN_LEFT_NearPlanePoint;
         Vector3 fieldOfViewVectorDOWN_RIGHT = DOWN_RIGHT_FarPlanePoint - DOWN_RIGHT_NearPlanePoint;
 
         /*Debug.Log("Camera FieldOFView: " + p_Camera.fieldOfView);
         Debug.Log("FieldOFView UP_LEFT_vector: " + fieldOfViewVectorUP_LEFT);*/
         Ray rayoUP_MIDDLE = new Ray(UP_MIDDLE_NearPlanePoint, fieldOfViewVectorUP_MIDDLE);
-        Ray rayoDOWN_MIDDLE = new Ray(DOWN_MIDDLE_NearPlanePoint, fieldOfViewVectorDOWN_MIDDLE);
+        //Ray rayoDOWN_MIDDLE = new Ray(DOWN_MIDDLE_NearPlanePoint, fieldOfViewVectorDOWN_MIDDLE);
         Ray rayoDOWN_MIDDLE_Checker = new Ray(DOWN_MIDDLE_Checker_NearPlanePoint, fieldOfViewVectorDOWN_MIDDLE_Checker);
-        Ray rayoUP_LEFT = new Ray(UP_LEFT_NearPlanePoint, fieldOfViewVectorUP_LEFT);
-        Ray rayoUP_RIGHT = new Ray(UP_RIGHT_NearPlanePoint, fieldOfViewVectorUP_RIGHT);
+        //Ray rayoUP_LEFT = new Ray(UP_LEFT_NearPlanePoint, fieldOfViewVectorUP_LEFT);
+        //Ray rayoUP_RIGHT = new Ray(UP_RIGHT_NearPlanePoint, fieldOfViewVectorUP_RIGHT);
         Ray rayoDOWN_LEFT = new Ray(DOWN_LEFT_NearPlanePoint, fieldOfViewVectorDOWN_LEFT);
         Ray rayoDOWN_RIGHT = new Ray(DOWN_RIGHT_NearPlanePoint, fieldOfViewVectorDOWN_RIGHT);
 
         RaycastHit rayoUP_MIDDLE_Hit;
-        RaycastHit rayoDOWN_MIDDLE_Hit;
+        //RaycastHit rayoDOWN_MIDDLE_Hit;
         RaycastHit rayoDOWN_MIDDLE_Checker_Hit;
-        RaycastHit rayoUP_LEFT_Hit;
-        RaycastHit rayoUP_RIGHT_Hit;
+        //RaycastHit rayoUP_LEFT_Hit;
+        //RaycastHit rayoUP_RIGHT_Hit;
         RaycastHit rayoDOWN_LEFT_Hit;
         RaycastHit rayoDOWN_RIGHT_Hit;
 
         Physics.Raycast(rayoUP_MIDDLE, out rayoUP_MIDDLE_Hit, 100, 1 << 15);
-        Physics.Raycast(rayoDOWN_MIDDLE, out rayoDOWN_MIDDLE_Hit, 100, 1 << 15);
+        //Physics.Raycast(rayoDOWN_MIDDLE, out rayoDOWN_MIDDLE_Hit, 100, 1 << 15);
         Physics.Raycast(rayoDOWN_MIDDLE_Checker, out rayoDOWN_MIDDLE_Checker_Hit, 100, 1 << 15);
-        Physics.Raycast(rayoUP_LEFT, out rayoUP_LEFT_Hit, 100, 1 << 15);
-        Physics.Raycast(rayoUP_RIGHT, out rayoUP_RIGHT_Hit, 100, 1 << 15);
+        //Physics.Raycast(rayoUP_LEFT, out rayoUP_LEFT_Hit, 100, 1 << 15);
+        //Physics.Raycast(rayoUP_RIGHT, out rayoUP_RIGHT_Hit, 100, 1 << 15);
         Physics.Raycast(rayoDOWN_LEFT, out rayoDOWN_LEFT_Hit, 100, 1 << 15);
         Physics.Raycast(rayoDOWN_RIGHT, out rayoDOWN_RIGHT_Hit, 100, 1 << 15);
 
         Debug.DrawLine(UP_MIDDLE_NearPlanePoint, rayoUP_MIDDLE_Hit.point, Color.red);
-        Debug.DrawLine(DOWN_MIDDLE_NearPlanePoint, rayoDOWN_MIDDLE_Hit.point, Color.green);
+        //Debug.DrawLine(DOWN_MIDDLE_NearPlanePoint, rayoDOWN_MIDDLE_Hit.point, Color.green);
         Debug.DrawLine(DOWN_MIDDLE_Checker_NearPlanePoint, rayoDOWN_MIDDLE_Checker_Hit.point, Color.red);
-        Debug.DrawLine(UP_LEFT_NearPlanePoint, rayoUP_LEFT_Hit.point, Color.red);
-        Debug.DrawLine(UP_RIGHT_NearPlanePoint, rayoUP_RIGHT_Hit.point, Color.red);
+        //Debug.DrawLine(UP_LEFT_NearPlanePoint, rayoUP_LEFT_Hit.point, Color.red);
+        //Debug.DrawLine(UP_RIGHT_NearPlanePoint, rayoUP_RIGHT_Hit.point, Color.red);
         Debug.DrawLine(DOWN_LEFT_NearPlanePoint, rayoDOWN_LEFT_Hit.point, Color.yellow);
         Debug.DrawLine(DOWN_RIGHT_NearPlanePoint, rayoDOWN_RIGHT_Hit.point, Color.yellow);
 
@@ -258,7 +263,7 @@ public class CameraController : MonoBehaviour
         Debug.DrawRay(DOWN_LEFT_NearPlanePoint, fieldOfViewVectorDOWN_LEFT, Color.green);
         Debug.DrawRay(DOWN_RIGHT_NearPlanePoint, fieldOfViewVectorDOWN_RIGHT, Color.black);*/
         bool outOfBorderUP_MIDDLE = false;
-        bool outOfBorderDOWN_MIDDLE = false;
+        //bool outOfBorderDOWN_MIDDLE = false;
         bool outOfBorderDOWN_MIDDLE_Checker = false;
         //bool outOfBorderUP_LEFT = false;
         //bool outOfBorderUP_RIGHT = false;
@@ -274,14 +279,14 @@ public class CameraController : MonoBehaviour
             outOfBorderUP_MIDDLE = true;
         }
 
-        if (rayoDOWN_MIDDLE_Hit.collider != null && rayoDOWN_MIDDLE_Hit.collider.gameObject.GetComponentInParent<LevelControl>().IsActive())
-        {
-            outOfBorderDOWN_MIDDLE = false;
-        }
-        else
-        {
-            outOfBorderDOWN_MIDDLE = true;
-        }
+        //if (rayoDOWN_MIDDLE_Hit.collider != null && rayoDOWN_MIDDLE_Hit.collider.gameObject.GetComponentInParent<LevelControl>().IsActive())
+        //{
+        //    outOfBorderDOWN_MIDDLE = false;
+        //}
+        //else
+        //{
+        //    outOfBorderDOWN_MIDDLE = true;
+        //}
 
         if (rayoDOWN_MIDDLE_Checker_Hit.collider != null && rayoDOWN_MIDDLE_Checker_Hit.collider.gameObject.GetComponentInParent<LevelControl>().IsActive())
         {
@@ -425,7 +430,7 @@ public class CameraController : MonoBehaviour
                
                 break;
             case Behavior.PLAYER_DEATH:
-                deathCount = 0;
+                //deathCount = 0;
                 p_Camera.transform.position = target.transform.position + cameraOffSet;
                 break;
             case Behavior.STATIC_CAMERA_ZONE:

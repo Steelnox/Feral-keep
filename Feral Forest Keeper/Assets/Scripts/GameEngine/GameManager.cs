@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
         }
         if (pause)
         {
+            //Debug.Log("Entering Pause");
             PlayerController.instance.noInput = true;
             if (provisionalGUIMenu.anchoredPosition != provisionalGUIMenuOnScreenPos) provisionalGUIMenu.anchoredPosition = provisionalGUIMenuOnScreenPos;
             if (Input.GetButtonDown("Back") || Input.GetKeyDown(KeyCode.Q))
@@ -74,6 +75,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            //Debug.Log("Entering Quiting Pause");
             PlayerController.instance.noInput = false;
             if (provisionalGUIMenu.anchoredPosition != hidePos) provisionalGUIMenu.anchoredPosition = hidePos;
         }
@@ -81,44 +83,40 @@ public class GameManager : MonoBehaviour
         ///By FALLING
         if (PlayerController.instance.actualPlayerLive > 0 && PlayerController.instance.deathByFall)
         {
+            
             if (actualRespawnCoolDown == respawnCoolDown)
             {
                 PlayerHitFeedbackController.instance.FallHit();
-                //PlayerController.instance.p_controller.enabled = false;
                 PlayerController.instance.SetCanMove(false);
-                //PlayerController.instance.transform.position = hidePos;
                 CameraController.instance.SetActualBehavior(CameraController.Behavior.PLAYER_DEATH);
             }
+
             actualRespawnCoolDown -= Time.deltaTime;
+
             if (actualRespawnCoolDown <= 0)
             {
-                //PlayerController.instance.p_controller.enabled = false;
-                //PlayerController.instance.SetCanMove(false);
                 PlayerController.instance.transform.position = levelCheckPoint.transform.position;
-                //CameraController.instance.SetActualBehavior(CameraController.Behavior.PLAYER_DEATH);
                 if (PlayerController.instance.transform.position == levelCheckPoint.transform.position)
                 {
-                    Debug.Log("After death, player on CheckPointPosition");
-                    //PlayerController.instance.actualPlayerLive = PlayerController.instance.playerLive;
-                    //PlayerController.instance.playerAlive = true;
-                    //PlayerAnimationController.instance.SetDeathByFall(false);
+                    //Debug.Log("After death, player on CheckPointPosition");
                     actualRespawnCoolDown = respawnCoolDown;
                     PlayerController.instance.actualPlayerLive--;
-                    PlayerController.instance.SetCanMove(true);
-                    //PlayerController.instance.p_controller.enabled = true;
                     PlayerController.instance.deathByFall = false;
-                    //CameraController.instance.SetActualBehavior(CameraController.Behavior.FOLLOW_PLAYER);
+                    PlayerController.instance.SetCanMove(true);
                 }
-            }  
+            }
+
             if (actualRespawnCoolDown < 0.1f)
             {
                 CameraController.instance.SetActualBehavior(CameraController.Behavior.FOLLOW_PLAYER);
             }
+            
         }
         else
         ///By DIYNG
         if (PlayerController.instance.actualPlayerLive <= 0)
         {
+            //Debug.Log("Entering Death by Dying");
             PlayerController.instance.noInput = true;
             if (provisionalGUIMenu.anchoredPosition != provisionalGUIMenuOnScreenPos) provisionalGUIMenu.anchoredPosition = provisionalGUIMenuOnScreenPos;
             if (Input.GetButtonDown("Back") || Input.GetKeyDown(KeyCode.Q))
