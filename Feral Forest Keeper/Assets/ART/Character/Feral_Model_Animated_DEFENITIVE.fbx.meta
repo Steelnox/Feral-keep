@@ -615,7 +615,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.6548346
+      - time: 0.89471006
         functionName: DashArriveFinish
         data: 
         objectReferenceParameter: {instanceID: 0}

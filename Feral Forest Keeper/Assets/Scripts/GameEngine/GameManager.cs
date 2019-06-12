@@ -34,6 +34,10 @@ public class GameManager : MonoBehaviour
     private float actualRespawnCoolDown;
     public GameObject levelCheckPoint;
 
+    private Vector3 startCheckPointPosition;
+    private Vector3 branchItem_InitLocation;
+    private Vector3 swordItem_InitLocation;
+
     void Start()
     {
         actualRespawnCoolDown = respawnCoolDown;
@@ -41,6 +45,9 @@ public class GameManager : MonoBehaviour
         hidePos = Vector2.down * 1000;
         Cursor.lockState = CursorLockMode.Locked;
         PlayerController.instance.transform.position = levelCheckPoint.transform.position;
+        startCheckPointPosition = levelCheckPoint.transform.position;
+        branchItem_InitLocation = branchItem.transform.position;
+        swordItem_InitLocation = swordItem.transform.position;
     }
 
     void Update()
@@ -72,7 +79,7 @@ public class GameManager : MonoBehaviour
         }
         /////// PLAYER DEATH CONTROLER ////////
         ///By FALLING
-        if (PlayerController.instance.deathByFall)
+        if (PlayerController.instance.actualPlayerLive > 0 && PlayerController.instance.deathByFall)
         {
             if (actualRespawnCoolDown == respawnCoolDown)
             {
@@ -108,10 +115,20 @@ public class GameManager : MonoBehaviour
                 CameraController.instance.SetActualBehavior(CameraController.Behavior.FOLLOW_PLAYER);
             }
         }
+        else
         ///By DIYNG
         if (PlayerController.instance.actualPlayerLive <= 0)
         {
-            
+            PlayerController.instance.noInput = true;
+            if (provisionalGUIMenu.anchoredPosition != provisionalGUIMenuOnScreenPos) provisionalGUIMenu.anchoredPosition = provisionalGUIMenuOnScreenPos;
+            if (Input.GetButtonDown("Back") || Input.GetKeyDown(KeyCode.Q))
+            {
+                Application.Quit();
+            }
+            if (Input.GetButtonDown("X") || Input.GetKeyDown(KeyCode.E))
+            {
+                ResetGame();
+            }
         }
     }
     public Item GetRandomLiveUpItem()
@@ -145,5 +162,32 @@ public class GameManager : MonoBehaviour
     public float GetActualRespawnCooldown()
     {
         return actualRespawnCoolDown;
+    }
+    private void ResetGame()
+    {
+        levelCheckPoint.transform.position = startCheckPointPosition;
+        PlayerController.instance.transform.position = levelCheckPoint.transform.position;
+        PlayerController.instance.SetCanMove(true);
+        PlayerController.instance.deathByFall = false;
+        PlayerController.instance.actualPlayerLive = PlayerController.instance.playerLive;
+
+        PlayerAnimationController.instance.SetWeaponAnim(true);
+
+        PlayerManager.instance.branchWeaponForAnimations.SetActive(false);
+        PlayerManager.instance.leafWeaponForAnimations.SetActive(false);
+
+        Player_GUI_System.instance.SetOnScreenBranchWeaponIcon(false);
+        Player_GUI_System.instance.SetOnScreenLeafWeaponIcon(false);
+        Player_GUI_System.instance.SetOnScreenStrenfthForestIcon(false);
+
+        PlayerManager.instance.branchWeaponSlot = null;
+        PlayerManager.instance.leafSwordSlot = null;
+        PlayerManager.instance.powerGauntaletSlot = null;
+
+        PlayerAnimationController.instance.SetWeaponAnim(false);
+        CameraController.instance.p_Camera.transform.position = PlayerController.instance.transform.position + CameraController.instance.cameraOffSet;
+
+        branchItem.SetItem(branchItem_InitLocation, Vector3.up * 45);
+        swordItem.SetItem(swordItem_InitLocation, Vector3.up * 45);
     }
 }

@@ -87,21 +87,24 @@ public class Bush_Behavior : MonoBehaviour
     }
     public void CutBush()
     {
-        isCutted = true;
-        HideBush();
-        cutDecal.transform.position = bushScenePos + Vector3.up * 0.01f;
-        SetParticles(bushScenePos);
-        int random = (Random.Range(1, 100) * Random.Range(1, 100)) / 3;
-        if (random % 2 == 0)
+        if (!isCutted)
         {
-            Item _item = null;
-            while(_item == null)
+            isCutted = true;
+            HideBush();
+            cutDecal.transform.position = bushScenePos + Vector3.up * 0.01f;
+            SetParticles(bushScenePos);
+            int random = (Random.Range(1, 100) * Random.Range(1, 100)) / 3;
+            if (random % 2 == 0)
             {
-                _item = GameManager.instance.GetRandomLiveUpItem();
+                Item _item = null;
+                while (_item == null)
+                {
+                    _item = GameManager.instance.GetRandomLiveUpItem();
+                }
+                _item.SetItem(bushScenePos + Vector3.up * 0.3f, transform.rotation.eulerAngles);
             }
-            _item.SetItem(bushScenePos + Vector3.up * 0.3f, transform.rotation.eulerAngles);
+            active = false;
         }
-        active = false;
     }
     private void SetParticles(Vector3 pos)
     {

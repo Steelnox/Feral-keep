@@ -25,7 +25,7 @@ public class CameraController : MonoBehaviour
     public Quaternion initCameraRotation;
     public float scriptedCooldownTime;
 
-    public enum Behavior {FOLLOW_PLAYER, CHANGE_LEVEL, SCRIPT_MOVEMENT, PLAYER_DEATH, STATIC_CAMERA_ZONE, TRANSITION_TO_FOLLOW};
+    public enum Behavior {FOLLOW_PLAYER, CHANGE_LEVEL, SCRIPT_MOVEMENT, PLAYER_DEATH, STATIC_CAMERA_ZONE, TRANSITION_TO_FOLLOW, PLAYER_SHOW_WEAPON};
     [SerializeField]
     private Behavior actualBehavior;
     private Vector3 desiredPosition;
@@ -36,10 +36,14 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private GameObject scriptedTarget;
     private float actualScriptedCooldown;
-    private Vector3 verticalSliderVector;
+    private Vector3 frontBackTravellingSliderVector;
     [SerializeField]
     private float deathCount;
     private float scriptedHighDistance;
+    private Vector3 startPosition;
+    private Vector3 endPosition;
+    private float time;
+    private float blendTime;
     
     void Start ()
     {
@@ -50,6 +54,7 @@ public class CameraController : MonoBehaviour
         p_Camera.fieldOfView = standardFOV;
         actualScriptedCooldown = scriptedCooldownTime;
         deathCount = 0;
+        blendTime = 0;
 	}
 	
 	void Update ()
@@ -82,18 +87,31 @@ public class CameraController : MonoBehaviour
                 FollowTarget(scriptedTarget);
                 break;
             case Behavior.PLAYER_DEATH:
-                deathCount += Time.deltaTime;
-                transform.position = Vector3.Lerp(transform.position, transform.position + (-verticalSliderVector * (-deathCount * 0.5f)), Time.deltaTime);
+                //deathCount += Time.deltaTime;
+                time += Time.deltaTime;
+                blendTime = time / GameManager.instance.respawnCoolDown;
+                endPosition = startPosition + (frontBackTravellingSliderVector * 0.5f);
+                //transform.position = Vector3.Lerp(startPosition, endPosition + (-frontBackTravellingSliderVector * (-deathCount * 0.5f)), Time.deltaTime);
+                p_Camera.transform.position = Vector3.Lerp(startPosition, endPosition, time);
                 break;
             case Behavior.STATIC_CAMERA_ZONE:
-                transform.position = Vector3.Lerp(transform.position, scriptedTarget.transform.position + (verticalSliderVector * scriptedHighDistance), Time.deltaTime * smoothValue / 2);
+                time += Time.deltaTime;
+                blendTime = time / 1.0f;
+                //transform.position = Vector3.Lerp(startPosition, endPosition, Time.time * smoothValue / 2);
+                transform.position = Vector3.Lerp(startPosition, endPosition, time);
                 break;
             case Behavior.TRANSITION_TO_FOLLOW:
-                if (GenericSensUtilities.instance.DistanceBetween2Vectors(target.transform.position, transform.position) < 0.1f)
+                if (GenericSensUtilities.instance.DistanceBetween2Vectors(target.transform.position + cameraOffSet, p_Camera.transform.position) < 0.1f)
                 {
                     SetActualBehavior(Behavior.FOLLOW_PLAYER);
                 }
-                transform.position = Vector3.Lerp(transform.position, target.transform.position + cameraOffSet, Time.deltaTime * smoothValue / 2);
+                p_Camera.transform.position = Vector3.Lerp(p_Camera.transform.position, target.transform.position + cameraOffSet, Time.time * smoothValue / 2);
+                break;
+            case Behavior.PLAYER_SHOW_WEAPON:
+                //FollowTarget(PlayerController.instance.gameObject);
+                time += Time.deltaTime;
+                blendTime = time / 1.0f;
+                transform.position = Vector3.Lerp(startPosition, endPosition, blendTime);
                 break;
             default:
                 break;
@@ -408,11 +426,13 @@ public class CameraController : MonoBehaviour
                 break;
             case Behavior.PLAYER_DEATH:
                 deathCount = 0;
-                transform.position = target.transform.position + cameraOffSet;
+                p_Camera.transform.position = target.transform.position + cameraOffSet;
                 break;
             case Behavior.STATIC_CAMERA_ZONE:
                 break;
             case Behavior.TRANSITION_TO_FOLLOW:
+                break;
+            case Behavior.PLAYER_SHOW_WEAPON:
                 break;
             default:
                 break;
@@ -430,12 +450,27 @@ public class CameraController : MonoBehaviour
 
                 break;
             case Behavior.PLAYER_DEATH:
-                verticalSliderVector = GenericSensUtilities.instance.GetDirectionFromTo_N(transform.position, PlayerController.instance.transform.position);
+                time = -0.5f;
+                blendTime = 0;
+                frontBackTravellingSliderVector = GenericSensUtilities.instance.GetDirectionFromTo_N(p_Camera.transform.position, PlayerController.instance.transform.position);
+                startPosition = p_Camera.transform.position;
                 break;
             case Behavior.STATIC_CAMERA_ZONE:
-                verticalSliderVector = cameraOffSet.normalized;
+                time = 0;
+                blendTime = 0;
+                frontBackTravellingSliderVector = cameraOffSet.normalized;
+                startPosition = p_Camera.transform.position;
+                endPosition = scriptedTarget.transform.position + (frontBackTravellingSliderVector * scriptedHighDistance);
                 break;
             case Behavior.TRANSITION_TO_FOLLOW:
+                break;
+            case Behavior.PLAYER_SHOW_WEAPON:
+                time = 0;
+                blendTime = 0;
+                scriptedHighDistance = 2.0f;
+                frontBackTravellingSliderVector = GenericSensUtilities.instance.GetDirectionFromTo_N(p_Camera.transform.position, PlayerController.instance.transform.position);
+                startPosition = p_Camera.transform.position;
+                endPosition = startPosition + (frontBackTravellingSliderVector * scriptedHighDistance);
                 break;
             default:
                 break;

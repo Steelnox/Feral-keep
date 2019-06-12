@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     public PushRock_State pushRockState;
     public PushLog_State pushLogState;
     public Dash_PlayerState dashState;
+    public ShowWeapon_PlayerState showingWeaponState;
     public GameObject meleeWeaponRoot;
     public BoxCollider weaponCollider;
 
@@ -87,6 +88,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Vector3 showingDirection;
     public bool flyingDashFinished;
+    private float checkDistanceOffset;
 
     protected StateMachine p_StateMachine = new StateMachine();
 
@@ -108,6 +110,7 @@ public class PlayerController : MonoBehaviour
         showingWeapon = false;
         showingWeaponCount = 0;
         flyingDashFinished = false;
+        checkDistanceOffset = GenericSensUtilities.instance.DistanceBetween2Vectors(playerRoot.transform.position, characterModel.transform.position);
     }
 
     void Update()
@@ -154,19 +157,19 @@ public class PlayerController : MonoBehaviour
         {
             if (playerAlive != true) playerAlive = true;
         }
-        if (showingWeapon)
-        {
-            showingWeaponCount += Time.deltaTime;
-            if(GetCanMove())SetCanMove(false);
-            float time = showingWeaponCount / 0.5f;
-            playerRoot.transform.forward = Vector3.Lerp(showingWeaponInitForward, showingDirection, time);
-            if (showingWeaponCount > 2.0f)
-            {
-                SetCanMove(true);
-                showingWeapon = false;
-                showingWeaponCount = 0;
-            }
-        }
+        //if (showingWeapon)
+        //{
+        //    showingWeaponCount += Time.deltaTime;
+        //    if(GetCanMove())SetCanMove(false);
+        //    float time = showingWeaponCount / 0.5f;
+        //    playerRoot.transform.forward = Vector3.Lerp(showingWeaponInitForward, showingDirection, time);
+        //    if (showingWeaponCount > 2.0f)
+        //    {
+        //        SetCanMove(true);
+        //        showingWeapon = false;
+        //        showingWeaponCount = 0;
+        //    }
+        //}
         p_StateMachine.ExecuteState();
         
     }
@@ -209,10 +212,7 @@ public class PlayerController : MonoBehaviour
                             PlayerManager.instance.AddItemToInventary(PlayerSensSystem.instance.nearestItem);
                             PlayerSensSystem.instance.nearestItem.CollectItem();
                             PlayerManager.instance.CheckIfHaveBranchWeaponItem();
-                            showingWeaponInitForward = playerRoot.transform.forward;
-                            showingDirection = GenericSensUtilities.instance.Transform2DTo3DMovement(GenericSensUtilities.instance.Transform3DTo2DMovement(GenericSensUtilities.instance.GetDirectionFromTo_N(transform.position, CameraController.instance.transform.position)));
-                            showingWeapon = true;
-                            //PlayerParticlesSystemController.instance.SetLiveUpFeedbackParticlesOnScene(transform.position + Vector3.up * 0.5f);
+                            ChangeState(showingWeaponState);
                         }
                         break;
                     case Item.ItemType.LEAF_WEAPON:
@@ -222,9 +222,8 @@ public class PlayerController : MonoBehaviour
                             PlayerManager.instance.AddItemToInventary(PlayerSensSystem.instance.nearestItem);
                             PlayerSensSystem.instance.nearestItem.CollectItem();
                             PlayerManager.instance.CheckIfHaveLeafWeaponItem();
-                            showingWeaponInitForward = playerRoot.transform.forward;
-                            showingDirection = GenericSensUtilities.instance.Transform2DTo3DMovement(GenericSensUtilities.instance.Transform3DTo2DMovement(GenericSensUtilities.instance.GetDirectionFromTo_N(transform.position, CameraController.instance.transform.position)));
-                            showingWeapon = true;
+                            ChangeState(showingWeaponState);
+
                         }
                         break;
                     case Item.ItemType.POWER_GANTLET:
@@ -248,7 +247,7 @@ public class PlayerController : MonoBehaviour
                         break;
                     case Item.ItemType.LIVE_UP:
                         PlayerSensSystem.instance.nearestItem.CollectItem();
-                        if (actualPlayerLive < playerLive && !deathByFall)
+                        if (actualPlayerLive < playerLive && actualPlayerLive > 0 && !deathByFall)
                         {
                             actualPlayerLive++;
                             PlayerParticlesSystemController.instance.SetLiveUpFeedbackParticlesOnScene(transform.position + Vector3.up * 0.5f);
@@ -350,7 +349,7 @@ public class PlayerController : MonoBehaviour
                 deathByFall = true;
             }
             else
-            if (PlayerSensSystem.instance.CheckGroundDistance() > 0.5f)
+            if (PlayerSensSystem.instance.CheckGroundDistance() > checkDistanceOffset + 0.5f)
             {
                 falling = true;
             }

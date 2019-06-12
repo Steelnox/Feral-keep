@@ -58,7 +58,7 @@ public class PlayerHitFeedbackController : MonoBehaviour
         
         if (fallHit)
         {
-            if (GameManager.instance.GetActualRespawnCooldown() == GameManager.instance.respawnCoolDown)
+            if (GameManager.instance.GetActualRespawnCooldown() == GameManager.instance.respawnCoolDown && PlayerController.instance.actualPlayerLive > 0)
             {
                 curveValue += Time.deltaTime;
                 float time = curveValue / 1.0f;
