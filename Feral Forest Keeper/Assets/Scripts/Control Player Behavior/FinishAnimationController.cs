@@ -5,6 +5,7 @@ using UnityEngine;
 public class FinishAnimationController : MonoBehaviour
 {
     private bool dashArriveIsDone;
+    private bool attackFinish;
 
     void Start()
     {
@@ -22,5 +23,17 @@ public class FinishAnimationController : MonoBehaviour
     public void StartDashing()
     {
         dashArriveIsDone = false;
+    }
+    public void FinishAttack()
+    {
+        attackFinish = true;
+    }
+    public void StartAttack()
+    {
+        attackFinish = false;
+    }
+    public bool GetAttackFinish()
+    {
+        return attackFinish;
     }
 }
