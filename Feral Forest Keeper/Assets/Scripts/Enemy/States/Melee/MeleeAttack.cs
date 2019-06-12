@@ -55,7 +55,7 @@ public class MeleeAttack : State
             melee.C_collider.enabled = false;
 
 
-            melee.enemy_navmesh.Move(-directionAttack * 0.1f);
+            melee.enemy_navmesh.Move(transform.forward * 0.1f);
 
             Collider[] entities = Physics.OverlapSphere(transform.position, 0.5f);
             
