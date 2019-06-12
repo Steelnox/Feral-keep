@@ -171,23 +171,26 @@ public class GameManager : MonoBehaviour
         PlayerController.instance.deathByFall = false;
         PlayerController.instance.actualPlayerLive = PlayerController.instance.playerLive;
 
-        PlayerAnimationController.instance.SetWeaponAnim(true);
+        if (!PlayerController.instance.startWithAllSkills)
+        {
+            PlayerAnimationController.instance.SetWeaponAnim(true);
 
-        PlayerManager.instance.branchWeaponForAnimations.SetActive(false);
-        PlayerManager.instance.leafWeaponForAnimations.SetActive(false);
+            PlayerManager.instance.branchWeaponForAnimations.SetActive(false);
+            PlayerManager.instance.leafWeaponForAnimations.SetActive(false);
 
-        Player_GUI_System.instance.SetOnScreenBranchWeaponIcon(false);
-        Player_GUI_System.instance.SetOnScreenLeafWeaponIcon(false);
-        Player_GUI_System.instance.SetOnScreenStrenfthForestIcon(false);
+            Player_GUI_System.instance.SetOnScreenBranchWeaponIcon(false);
+            Player_GUI_System.instance.SetOnScreenLeafWeaponIcon(false);
+            Player_GUI_System.instance.SetOnScreenStrenfthForestIcon(false);
 
-        PlayerManager.instance.branchWeaponSlot = null;
-        PlayerManager.instance.leafSwordSlot = null;
-        PlayerManager.instance.powerGauntaletSlot = null;
+            PlayerManager.instance.branchWeaponSlot = null;
+            PlayerManager.instance.leafSwordSlot = null;
+            PlayerManager.instance.powerGauntaletSlot = null;
 
-        PlayerAnimationController.instance.SetWeaponAnim(false);
+            PlayerAnimationController.instance.SetWeaponAnim(false);
+        }
         CameraController.instance.p_Camera.transform.position = PlayerController.instance.transform.position + CameraController.instance.cameraOffSet;
 
-        branchItem.SetItem(branchItem_InitLocation, Vector3.up * 45);
-        swordItem.SetItem(swordItem_InitLocation, Vector3.up * 45);
+        if (branchItem.collected) branchItem.SetItem(branchItem_InitLocation, Vector3.up * 45);
+        if (swordItem.collected) swordItem.SetItem(swordItem_InitLocation, Vector3.up * 45);
     }
 }

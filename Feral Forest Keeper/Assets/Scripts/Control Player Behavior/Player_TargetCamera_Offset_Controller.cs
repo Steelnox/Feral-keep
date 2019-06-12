@@ -138,7 +138,7 @@ public class Player_TargetCamera_Offset_Controller : MonoBehaviour
         }
         else
         {
-            transform.position = PlayerController.instance.transform.position;
+            transform.position = PlayerController.instance.transform.position + CameraController.instance.cameraOffSet;
         }
     }
     public void ChangeState(TargetCamera_Offset_State newState)

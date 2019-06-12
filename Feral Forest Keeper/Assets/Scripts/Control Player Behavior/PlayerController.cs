@@ -369,16 +369,20 @@ public class PlayerController : MonoBehaviour
             gravity += Mathf.Exp(gravityForce);
 
             movement.y = movement.y - (gravity * Time.deltaTime);
-            if (PlayerSensSystem.instance.CheckGroundDistance() >= deathHeight)
+            if (GenericSensUtilities.instance.DistanceBetween2Vectors(initFallingPosition, transform.position) > 0.5f)
             {
-                fallingToDeath = true;
-                deathByFall = true;
+                if (PlayerSensSystem.instance.CheckGroundDistance() >= deathHeight)
+                {
+                    fallingToDeath = true;
+                    deathByFall = true;
+                }
+                else
+                if (PlayerSensSystem.instance.CheckGroundDistance() > checkDistanceOffset + 0.5f)
+                {
+                    falling = true;
+                }
             }
-            else
-            if (PlayerSensSystem.instance.CheckGroundDistance() > checkDistanceOffset + 0.5f)
-            {
-                falling = true;
-            }
+            
             //if (PlayerSensSystem.instance.CheckGroundDistance() > 0.5f)
             //{
             //    //if (!dashing)
