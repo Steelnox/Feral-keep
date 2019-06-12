@@ -9,6 +9,7 @@ public class Rest : State
     private Melee melee;
 
 
+
     public override void Enter()
     {
         melee = GetComponent<Melee>();
@@ -19,12 +20,20 @@ public class Rest : State
 
         melee.enemy_animator.SetBool("Idle", true);
 
-     }
+
+
+    }
 
     public override void Execute()
     {
         timer += Time.deltaTime;
-       if(timer >= timeRest)
+
+        transform.LookAt(melee.player.transform.position);
+
+
+    
+
+        if (timer >= timeRest)
         {
             if (melee.GetDistance(melee.player.transform.position) <= melee.distanceToChase) melee.ChangeState(melee.chase);
             if (melee.GetDistance(melee.player.transform.position) <= melee.distanceToAttack) melee.ChangeState(melee.attack);

@@ -27,6 +27,7 @@ public class ExplosionScript : MonoBehaviour
 
         if(timer >= 0.7f)
         {
+            melee_enemy.GetComponent<Melee>().chasing = false;
             melee_enemy.SetActive(false);
         }
     }

@@ -13,6 +13,12 @@ public class MeleeAttack : State
 
     private Vector3 directionAttack;
 
+    private Vector3 startPosition;
+    private Vector3 endPosition;
+
+    public float dashLength;
+
+    private bool dashDone;
 
 
     public override void Enter()
@@ -23,6 +29,12 @@ public class MeleeAttack : State
         directionAttack = (melee.enemy_navmesh.transform.position - melee.player.transform.position).normalized;
 
         timerAttack = 0;
+
+        dashDone = false;
+
+        startPosition = transform.position;
+
+        endPosition = startPosition + (-directionAttack * dashLength);
 
 
         dmg_done = false;
@@ -46,31 +58,37 @@ public class MeleeAttack : State
         Quaternion lookOnLook = Quaternion.LookRotation(-directionAttack);
 
         transform.rotation = Quaternion.Slerp(transform.rotation, lookOnLook, 2f);
+        
+
+        melee.C_collider.enabled = false;
 
 
-
-        if (timerAttack < 0.5f)
+        //melee.enemy_navmesh.Move(transform.forward * 0.1f);
+        if (!melee.finishAttack)
         {
 
-            melee.C_collider.enabled = false;
+            melee.enemy_navmesh.Move(GenericSensUtilities.instance.GetDirectionFromTo_N(startPosition, endPosition) * 0.05f);
 
-
-            melee.enemy_navmesh.Move(transform.forward * 0.1f);
-
-            Collider[] entities = Physics.OverlapSphere(transform.position, 0.5f);
-            
-            
-            foreach (Collider col in entities)
-            {
-                
-                if (col.gameObject.tag == "Player" && !dmg_done)
-                {
-                    AddDamage(); 
-                }
-            }
+            dashDone = true;
         }
 
-        else
+
+
+
+        Collider[] entities = Physics.OverlapSphere(transform.position, 0.5f);
+            
+            
+        foreach (Collider col in entities)
+        {
+                
+            if (col.gameObject.tag == "Player" && !dmg_done)
+            {
+                AddDamage(); 
+            }
+        }
+        
+
+        if(melee.finishAttack)
         {
             FinishAttack();
         }
