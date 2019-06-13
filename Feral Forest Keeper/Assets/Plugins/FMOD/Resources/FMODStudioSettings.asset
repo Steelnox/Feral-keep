@@ -20,7 +20,7 @@ MonoBehaviour:
   SourceProjectPathUnformatted: Assets\Plugins\forestKeeper FMOD project\forestKeeper
     FMOD project.fspro
   SourceBankPathUnformatted: Assets\Plugins\forestKeeper FMOD project\Build\Desktop
-  AutomaticEventLoading: 1
+  AutomaticEventLoading: 0
   BankLoadType: 0
   AutomaticSampleLoading: 0
   EncryptionKey: 
