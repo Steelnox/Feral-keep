@@ -10,17 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eef8d824ea7b63742966aaa0e94ac383, type: 3}
-  m_Name: FMODStudioSettings
+  m_Name: 
   m_EditorClassIdentifier: 
   SwitchSettingsMigration: 1
   HasSourceProject: 0
   HasPlatforms: 0
-  sourceProjectPath: D:\Uni\3r any\Projecte\Feral-keep\Feral Forest Keeper\Assets\Audio\forestKeeper
-    FMOD project\forestKeeper FMOD project.fspro
-  SourceProjectPathUnformatted: Assets\Audio\forestKeeper FMOD project\forestKeeper
-    FMOD project.fspro
+  sourceProjectPath: 
+  SourceProjectPathUnformatted: 
   SourceBankPathUnformatted: Assets\Audio\forestKeeper FMOD project\Build\Desktop
-  AutomaticEventLoading: 0
+  AutomaticEventLoading: 1
   BankLoadType: 0
   AutomaticSampleLoading: 0
   EncryptionKey: 
@@ -31,8 +29,6 @@ MonoBehaviour:
   - Platform: 2
     Value: 3
   - Platform: 20
-    Value: 3
-  - Platform: 1
     Value: 3
   SampleRateSettings:
   - Platform: 1
@@ -62,11 +58,7 @@ MonoBehaviour:
     Value: 0
   - Platform: 20
     Value: 0
-  BankDirectorySettings:
-  - Platform: 2
-    Value: Desktop
-  - Platform: 1
-    Value: Desktop
+  BankDirectorySettings: []
   VirtualChannelSettings:
   - Platform: 1
     Value: 1024
