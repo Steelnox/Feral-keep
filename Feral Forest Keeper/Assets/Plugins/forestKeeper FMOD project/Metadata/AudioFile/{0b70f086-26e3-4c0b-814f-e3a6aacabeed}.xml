@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{0b70f086-26e3-4c0b-814f-e3a6aacabeed}">
+		<property name="assetPath">
+			<value>grup_PAULA/E_Distance_hit_wood_v2.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.6293333333333333</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{4dd5cd4a-8061-43c6-9ef3-eb22beda8340}</destination>
+		</relationship>
+	</object>
+</objects>

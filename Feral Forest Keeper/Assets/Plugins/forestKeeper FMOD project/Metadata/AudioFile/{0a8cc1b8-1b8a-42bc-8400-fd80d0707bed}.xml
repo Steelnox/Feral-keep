@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{0a8cc1b8-1b8a-42bc-8400-fd80d0707bed}">
+		<property name="assetPath">
+			<value>grup_MARIA/Ch_GetHit.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>0.39200000000000002</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{4dd5cd4a-8061-43c6-9ef3-eb22beda8340}</destination>
+		</relationship>
+	</object>
+</objects>
