@@ -16,7 +16,8 @@ public class RageRanged : State
 
     private Projectile projectile;
 
-
+    [FMODUnity.EventRef]
+    public string dieEvent;
 
     public override void Enter()
     {
@@ -57,6 +58,7 @@ public class RageRanged : State
 
     public override void Exit()
     {
+        FMODUnity.RuntimeManager.PlayOneShot(dieEvent, transform.position);
 
         currentRotation = 0;
         ranged.currentHealth = 0;

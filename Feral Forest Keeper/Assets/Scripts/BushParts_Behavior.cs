@@ -20,6 +20,7 @@ public class BushParts_Behavior : MonoBehaviour
     }
     void Update()
     {
+        
         if (playerInRange && GenericSensUtilities.instance.DistanceBetween2Vectors(PlayerController.instance.playerRoot.transform.position, bodyPivot.transform.position) < interactionDistance)
         {
             if (playerInteraction != true)playerInteraction = true;

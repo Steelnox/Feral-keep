@@ -119,7 +119,7 @@ MonoBehaviour:
   damage: 0
   speed: 0
   distanceToChase: 0
-  distanceToAttack: 10
+  distanceToAttack: 7
   distanceToFlee: 0
   m_ConeAngle: 60
   m_CollisionLayerMask:
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerRecharge: 2
   bulletsShoot: 0
-  bulletsCanShoot: 30
+  bulletsCanShoot: 5
   firstTime: 1
 --- !u!114 &2516511236141379887
 MonoBehaviour:
@@ -179,6 +179,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4ba5a85f47b31a4187f553c03356c84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dieEvent: event:/E_DISTANCE/E_Distance_Die
+  hitEvent: event:/E_DISTANCE/E_Distance_Hit_2
 --- !u!114 &7993237415266343801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,7 +206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerRecharge: 2
-  bulletsCanShoot: 30
+  bulletsCanShoot: 5
 --- !u!114 &529479905805133019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,6 +238,8 @@ MonoBehaviour:
   melee_Main: {fileID: 0}
   move_Main: {fileID: 0}
   fixed_Main: {fileID: 8872921556746959468}
+  bounceEvent: 
+  shootEvent: event:/E_DISTANCE/E_Distance_Atack
 --- !u!1001 &84936642113695690
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -358,6 +362,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8825179959870137649, guid: 28575bf9bf5978545b5b7639f30050d2,
+        type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28575bf9bf5978545b5b7639f30050d2, type: 3}
 --- !u!224 &1039429938437499496 stripped
@@ -431,10 +440,98 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 678fbb933e382d24abcf4423f1173bea, type: 2}
+    - target: {fileID: 400008, guid: 5fa33bb3f3ad4b04485504864ee97d2d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.70710653
+      objectReference: {fileID: 0}
+    - target: {fileID: 400008, guid: 5fa33bb3f3ad4b04485504864ee97d2d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.00082984526
+      objectReference: {fileID: 0}
+    - target: {fileID: 400008, guid: 5fa33bb3f3ad4b04485504864ee97d2d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.0008298457
+      objectReference: {fileID: 0}
+    - target: {fileID: 400008, guid: 5fa33bb3f3ad4b04485504864ee97d2d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071061
+      objectReference: {fileID: 0}
+    - target: {fileID: 400008, guid: 5fa33bb3f3ad4b04485504864ee97d2d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9993855
+      objectReference: {fileID: 0}
+    - target: {fileID: 400008, guid: 5fa33bb3f3ad4b04485504864ee97d2d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.0052685
+      objectReference: {fileID: 0}
+    - target: {fileID: 400008, guid: 5fa33bb3f3ad4b04485504864ee97d2d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.0052682
+      objectReference: {fileID: 0}
     - target: {fileID: 13700000, guid: 5fa33bb3f3ad4b04485504864ee97d2d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 1281f15192e36e8498a05bfbd026bc31, type: 2}
+    - target: {fileID: 400002, guid: 5fa33bb3f3ad4b04485504864ee97d2d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.00000005951969
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 5fa33bb3f3ad4b04485504864ee97d2d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.0000000031046714
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 5fa33bb3f3ad4b04485504864ee97d2d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.05209127
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 5fa33bb3f3ad4b04485504864ee97d2d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9986424
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 5fa33bb3f3ad4b04485504864ee97d2d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.0000014264881
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 5fa33bb3f3ad4b04485504864ee97d2d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.0000013401335
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 5fa33bb3f3ad4b04485504864ee97d2d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7065741
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 5fa33bb3f3ad4b04485504864ee97d2d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.70763916
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 5fa33bb3f3ad4b04485504864ee97d2d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.99999976
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 5fa33bb3f3ad4b04485504864ee97d2d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.9999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 5fa33bb3f3ad4b04485504864ee97d2d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 5fa33bb3f3ad4b04485504864ee97d2d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 1.2246302e-16
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 5fa33bb3f3ad4b04485504864ee97d2d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -6.4008404e-19
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 5fa33bb3f3ad4b04485504864ee97d2d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.0052266824
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 5fa33bb3f3ad4b04485504864ee97d2d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9999864
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5fa33bb3f3ad4b04485504864ee97d2d, type: 3}
 --- !u!1 &7186434073248625966 stripped

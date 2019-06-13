@@ -12,7 +12,8 @@ public class Damaged : State
 
     private Vector3 directionKnockback;
 
-
+    [FMODUnity.EventRef]
+    public string hitEvent;
 
     public override void Enter()
     {
@@ -24,6 +25,8 @@ public class Damaged : State
         directionKnockback = (melee.enemy_navmesh.transform.position - melee.player.transform.position).normalized;
 
         timer = 0;
+
+        FMODUnity.RuntimeManager.PlayOneShot(hitEvent, transform.position);
 
         melee.enemy_animator.SetBool("Hit", true);
 

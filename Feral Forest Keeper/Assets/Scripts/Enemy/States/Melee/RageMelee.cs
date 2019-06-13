@@ -12,6 +12,9 @@ public class RageMelee : State
 
     private float timerforDisabled;
 
+    [FMODUnity.EventRef]
+    public string dieEvent;
+
     public override void Enter()
     {
         timerforDisabled = 0;
@@ -25,7 +28,9 @@ public class RageMelee : State
 
         melee.enemy_animator.SetBool("Destruction", true);
 
-        if(explosionScript.dmg_done )
+        FMODUnity.RuntimeManager.PlayOneShot(dieEvent, transform.position);
+
+        if (explosionScript.dmg_done )
         {
             explosionScript.dmg_done = false;
         }

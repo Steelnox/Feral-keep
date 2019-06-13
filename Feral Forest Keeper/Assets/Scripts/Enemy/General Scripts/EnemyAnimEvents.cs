@@ -11,6 +11,14 @@ public class EnemyAnimEvents : MonoBehaviour
 
     public RangedFixed fixed_Main;
 
+    [FMODUnity.EventRef]
+    public string bounceEvent;
+
+    [FMODUnity.EventRef]
+    public string shootEvent;
+
+    [FMODUnity.EventRef]
+    public string walkEvent;
 
     public void Move()
     {
@@ -20,7 +28,12 @@ public class EnemyAnimEvents : MonoBehaviour
 
     public void StopMove()
     {
-        if (melee_Main != null) melee_Main.move = false;
+        if (melee_Main != null)
+        {
+            melee_Main.move = false;
+            FMODUnity.RuntimeManager.PlayOneShot(bounceEvent, transform.position);
+        }
+
         if (move_Main != null) move_Main.move = false;
     }
 
@@ -35,8 +48,17 @@ public class EnemyAnimEvents : MonoBehaviour
 
     public void Shoot()
     {
-        if(move_Main!= null) move_Main.shoot = true;
-        if (fixed_Main != null) fixed_Main.shoot = true;
+        if (move_Main != null)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(shootEvent, transform.position);
+            move_Main.shoot = true;
+        }
+        if (fixed_Main != null)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(shootEvent, transform.position);
+            fixed_Main.shoot = true;
+        }
+
 
     }
 
@@ -44,4 +66,10 @@ public class EnemyAnimEvents : MonoBehaviour
     {
         fixed_Main.finishHit = true;
     }
+
+    public void StepSound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(walkEvent, transform.position);
+    }
+
 }

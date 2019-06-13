@@ -1,5 +1,79 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &929108956
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 929108957}
+  - component: {fileID: 929108959}
+  - component: {fileID: 929108958}
+  m_Layer: 5
+  m_Name: ButtonB (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &929108957
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929108956}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4936881302605668845}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 340.90012, y: -165.45999}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &929108959
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929108956}
+  m_CullTransparentMesh: 0
+--- !u!114 &929108958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929108956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 04646ac115ac8e84398cc74b09ce0eb6, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
 --- !u!1 &7380328722814154786
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +85,6 @@ GameObject:
   - component: {fileID: 7383745383864470088}
   - component: {fileID: 7359244190116884736}
   - component: {fileID: 7481602930027699604}
-  - component: {fileID: 7442327346382589532}
   - component: {fileID: 7493980762626117628}
   - component: {fileID: 4367583827182339146}
   - component: {fileID: 7380328722814154813}
@@ -88,14 +161,6 @@ Behaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7380328722814154786}
   m_Enabled: 1
---- !u!81 &7442327346382589532
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7380328722814154786}
-  m_Enabled: 1
 --- !u!114 &7493980762626117628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,7 +185,7 @@ MonoBehaviour:
   scriptedCooldownTime: 4
   actualBehavior: 0
   scriptedTarget: {fileID: 0}
-  deathCount: 0
+  scriptedHighDistance: 0
 --- !u!114 &4367583827182339146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,11 +297,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7383745383864470088}
     m_Modifications:
-    - target: {fileID: 2516344795388923023, guid: 6eff1c99a84085a43a3e77e1a24b1561,
-        type: 3}
-      propertyPath: m_Name
-      value: Canvas
-      objectReference: {fileID: 0}
     - target: {fileID: 2516344795388923120, guid: 6eff1c99a84085a43a3e77e1a24b1561,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -341,6 +401,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2516344795388923023, guid: 6eff1c99a84085a43a3e77e1a24b1561,
+        type: 3}
+      propertyPath: m_Name
+      value: Canvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6eff1c99a84085a43a3e77e1a24b1561, type: 3}

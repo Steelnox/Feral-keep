@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{f19d6b80-59c6-4e5b-b2a5-16f1fc048c99}">
+		<property name="assetPath">
+			<value>grup_PAULA/E_Melee_hit_wood_v2.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.47199999999999998</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{4dd5cd4a-8061-43c6-9ef3-eb22beda8340}</destination>
+		</relationship>
+	</object>
+</objects>

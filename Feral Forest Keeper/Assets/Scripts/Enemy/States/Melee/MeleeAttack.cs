@@ -48,7 +48,6 @@ public class MeleeAttack : State
         melee.chasing = true;
 
 
-
     }
 
     public override void Execute()
@@ -57,7 +56,7 @@ public class MeleeAttack : State
 
         Quaternion lookOnLook = Quaternion.LookRotation(-directionAttack);
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookOnLook, 2f);
+        transform.rotation = Quaternion.Slerp(melee.enemy_navmesh.transform.rotation, lookOnLook, 2f);
         
 
         melee.C_collider.enabled = false;
@@ -67,7 +66,8 @@ public class MeleeAttack : State
         if (!melee.finishAttack)
         {
 
-            melee.enemy_navmesh.Move(GenericSensUtilities.instance.GetDirectionFromTo_N(startPosition, endPosition) * 0.05f);
+
+            melee.enemy_navmesh.Move(GenericSensUtilities.instance.GetDirectionFromTo_N(startPosition, endPosition) * 0.1f);
 
             dashDone = true;
         }
@@ -75,7 +75,7 @@ public class MeleeAttack : State
 
 
 
-        Collider[] entities = Physics.OverlapSphere(transform.position, 0.5f);
+        Collider[] entities = Physics.OverlapSphere(transform.position, 0.4f);
             
             
         foreach (Collider col in entities)
@@ -105,10 +105,11 @@ public class MeleeAttack : State
 
         melee.C_collider.enabled = true;
 
+
     }
 
     #region Functions
-   
+
 
 
     private void AddDamage()

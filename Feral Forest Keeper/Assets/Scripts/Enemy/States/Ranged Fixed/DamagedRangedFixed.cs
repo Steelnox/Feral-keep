@@ -9,6 +9,12 @@ public class DamagedRangedFixed : State
 
     private float distanceToPlayer;
 
+    [FMODUnity.EventRef]
+    public string dieEvent;
+
+    [FMODUnity.EventRef]
+    public string hitEvent;
+
     public override void Enter()
     {
 
@@ -24,6 +30,13 @@ public class DamagedRangedFixed : State
 
         ranged.finishHit = false;
 
+        FMODUnity.RuntimeManager.PlayOneShot(hitEvent, transform.position);
+
+        if (ranged.currentHealth <= 0)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(dieEvent, transform.position);
+        }
+
 
     }
 
@@ -36,6 +49,7 @@ public class DamagedRangedFixed : State
         {
             if (ranged.currentHealth <= 0)
             {
+
                 ranged.chasing = false;
                 this.gameObject.SetActive(false);
             }

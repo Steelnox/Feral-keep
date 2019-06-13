@@ -57,11 +57,11 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.95, y: 0.29, z: 0.075}
+  m_Extents: {x: 0.715, y: 0.185, z: 0.075}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
-  m_Center: {x: -0.18, y: 0.09, z: 0.14}
+  m_Center: {x: -0.18, y: 0.19, z: 0.14}
   m_TimeToStationary: 0.5
 --- !u!1001 &1228773460284670924
 PrefabInstance:
@@ -70,6 +70,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 826245234797857202}
     m_Modifications:
+    - target: {fileID: 100000, guid: 46dcb06de5e94254dab311333e4715b2, type: 3}
+      propertyPath: m_Name
+      value: Baia1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 46dcb06de5e94254dab311333e4715b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -114,10 +118,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 46dcb06de5e94254dab311333e4715b2, type: 3}
-      propertyPath: m_Name
-      value: Baia1
-      objectReference: {fileID: 0}
     - target: {fileID: 2300004, guid: 46dcb06de5e94254dab311333e4715b2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -145,6 +145,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 826245234797857202}
     m_Modifications:
+    - target: {fileID: 100000, guid: 46dcb06de5e94254dab311333e4715b2, type: 3}
+      propertyPath: m_Name
+      value: Baia1 (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 46dcb06de5e94254dab311333e4715b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.355
@@ -188,10 +192,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 46dcb06de5e94254dab311333e4715b2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 46dcb06de5e94254dab311333e4715b2, type: 3}
-      propertyPath: m_Name
-      value: Baia1 (1)
       objectReference: {fileID: 0}
     - target: {fileID: 2300004, guid: 46dcb06de5e94254dab311333e4715b2, type: 3}
       propertyPath: m_Materials.Array.data[0]

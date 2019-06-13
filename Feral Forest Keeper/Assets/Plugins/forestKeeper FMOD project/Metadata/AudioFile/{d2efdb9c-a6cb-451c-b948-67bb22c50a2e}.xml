@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{d2efdb9c-a6cb-451c-b948-67bb22c50a2e}">
+		<property name="assetPath">
+			<value>grup_LAURA/Ch_RunL_1.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>0.052244897959183675</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{4dd5cd4a-8061-43c6-9ef3-eb22beda8340}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -28,7 +28,7 @@ public class Flee : State
 
         ranged.enemy_navmesh.SetDestination(newpos);
 
-        if (ranged.SeesPlayer() && distanceToPlayer <= ranged.distanceToChase && distanceToPlayer > ranged.distanceToAttack) ranged.ChangeState(ranged.chase);
+        if (distanceToPlayer <= ranged.distanceToChase && distanceToPlayer > ranged.distanceToAttack) ranged.ChangeState(ranged.chase);
         if (distanceToPlayer >= ranged.distanceToAttack) ranged.ChangeState(ranged.attack);
 
 

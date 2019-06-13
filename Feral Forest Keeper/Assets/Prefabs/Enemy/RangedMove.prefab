@@ -15,6 +15,9 @@ MonoBehaviour:
   melee_Main: {fileID: 0}
   move_Main: {fileID: 285432525731412673}
   fixed_Main: {fileID: 0}
+  bounceEvent: 
+  shootEvent: event:/E_DISTANCE/E_Distance_Atack
+  walkEvent: event:/E_DISTANCE/E-distance_patrol (run)
 --- !u!114 &6530126552126149039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,6 +210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 2
   shotAccuracy: 0.1
+  dieEvent: event:/E_DISTANCE/E_Distance_Die
 --- !u!114 &3544253825773532793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,6 +224,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeKnockback: 0.2
+  dieEvent: event:/E_DISTANCE/E_Distance_Die
+  hitEvent: event:/E_DISTANCE/E_Distance_Hit_2
 --- !u!114 &2664855832874518261
 MonoBehaviour:
   m_ObjectHideFlags: 0

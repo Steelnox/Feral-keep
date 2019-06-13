@@ -12,6 +12,11 @@ public class DamagedRanged : State
 
     private Vector3 directionKnockback;
 
+    [FMODUnity.EventRef]
+    public string dieEvent;
+
+    [FMODUnity.EventRef]
+    public string hitEvent;
 
 
     public override void Enter()
@@ -27,12 +32,16 @@ public class DamagedRanged : State
 
         ranged.enemy_animator.SetBool("Hit", true);
 
-
         ranged.enemy_rb.isKinematic = false;
 
         ranged.enemy_rb.AddForce(directionKnockback * 3.5f, ForceMode.Impulse);
 
+        FMODUnity.RuntimeManager.PlayOneShot(hitEvent, transform.position);
 
+        if (ranged.currentHealth <= 0)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(dieEvent, transform.position);
+        }
     }
 
     public override void Execute()

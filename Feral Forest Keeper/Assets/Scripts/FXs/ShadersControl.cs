@@ -14,7 +14,7 @@ public class ShadersControl : MonoBehaviour
     float max;
     float randomAmplitude;
     float randomSpeed;
-    //bool rafa = true;
+    bool rafa = true;
 
     void Start()
     {
@@ -26,7 +26,7 @@ public class ShadersControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerSensSystem.instance.differentY)
+        if (rafa)
         {
             //heightDegradateLightingShader_Material = gameObject.GetComponent<MeshRenderer>();
             worldHeightRelativeToPlayer = PlayerController.instance.characterModel.transform.position.y;
@@ -35,7 +35,7 @@ public class ShadersControl : MonoBehaviour
             heightDegradateLightingShader_Material.material.SetFloat("_HeightMin", min);
             heightDegradateLightingShader_Material.material.SetFloat("_HeightMax", max);
             heightDegradateLightingShader_Material.material.SetFloat("_Amplitude", randomAmplitude);
-            //rafa = false;
+            rafa = false;
         }
     }
 }
