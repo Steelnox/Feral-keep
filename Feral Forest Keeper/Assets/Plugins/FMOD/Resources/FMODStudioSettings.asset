@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: FMODStudioSettings
   m_EditorClassIdentifier: 
   SwitchSettingsMigration: 1
-  HasSourceProject: 1
-  HasPlatforms: 1
+  HasSourceProject: 0
+  HasPlatforms: 0
   sourceProjectPath: D:\Uni\3r any\Projecte\Feral-keep\Feral Forest Keeper\Assets\Plugins\forestKeeper
     FMOD project\forestKeeper FMOD project.fspro
   SourceProjectPathUnformatted: Assets\Plugins\forestKeeper FMOD project\forestKeeper
     FMOD project.fspro
-  SourceBankPathUnformatted: Assets\Plugins\forestKeeper FMOD project\Build
+  SourceBankPathUnformatted: Assets\Plugins\forestKeeper FMOD project\Build\Desktop
   AutomaticEventLoading: 1
   BankLoadType: 0
   AutomaticSampleLoading: 0
@@ -31,6 +31,8 @@ MonoBehaviour:
   - Platform: 2
     Value: 3
   - Platform: 20
+    Value: 3
+  - Platform: 1
     Value: 3
   SampleRateSettings:
   - Platform: 1
@@ -62,6 +64,8 @@ MonoBehaviour:
     Value: 0
   BankDirectorySettings:
   - Platform: 2
+    Value: Desktop
+  - Platform: 1
     Value: Desktop
   VirtualChannelSettings:
   - Platform: 1
